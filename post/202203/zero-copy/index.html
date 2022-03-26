@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>JavaNIO and Zero Copy - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="This article describes JavaNIO and zero-copy in detail." />
+<meta name="keywords" content="java" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/202203/zero-copy/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="JavaNIO and Zero Copy" />
+<meta property="og:description" content="This article describes JavaNIO and zero-copy in detail." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/202203/zero-copy/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-03-26T21:46:31+08:00" />
+<meta property="article:modified_time" content="2022-03-26T21:46:31+08:00" />
+
+<meta itemprop="name" content="JavaNIO and Zero Copy">
+<meta itemprop="description" content="This article describes JavaNIO and zero-copy in detail."><meta itemprop="datePublished" content="2022-03-26T21:46:31+08:00" />
+<meta itemprop="dateModified" content="2022-03-26T21:46:31+08:00" />
+<meta itemprop="wordCount" content="1485">
+<meta itemprop="keywords" content="java," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaNIO and Zero Copy"/>
+<meta name="twitter:description" content="This article describes JavaNIO and zero-copy in detail."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">JavaNIO and Zero Copy</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-03-26" class="post-time">
+          2022-03-26
+        </time>
+        <div class="post-category">
+            <a href="http://localhost:1313/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 1485 words </span>
+          <span class="more-meta"> 7 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#zero-copy-in-the-linux-operating-system">Zero-copy in the Linux operating system</a>
+      <ul>
+        <li><a href="#lets-start-with-the-general-io-process-of-linux">Let&rsquo;s start with the general I/O process of Linux</a></li>
+        <li><a href="#memory-mapping-method-io">Memory mapping method I/O</a></li>
+        <li><a href="#kernel-space-internal-transfer-io">Kernel space internal transfer I/O</a></li>
+        <li><a href="#upgraded-version---kernel-space-internal-transfer-io">Upgraded version - kernel space internal transfer I/O</a></li>
+        <li><a href="#subsequent-optimization-splice-system-call">Subsequent optimization-splice() system call</a></li>
+      </ul>
+    </li>
+    <li><a href="#zero-copy-in-javanio">Zero-copy in JavaNIO</a>
+      <ul>
+        <li><a href="#memory-mapped-io-in-nio">Memory-mapped I/O in NIO</a></li>
+        <li><a href="#zero-copy-in-nio">Zero copy in NIO</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="zero-copy-in-the-linux-operating-system">Zero-copy in the Linux operating system</h2>
+<h3 id="lets-start-with-the-general-io-process-of-linux">Let&rsquo;s start with the general I/O process of Linux</h3>
+<p>This is a procedure that reads from a disk file and writes to it via socket, and the corresponding system call is as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">read</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">write</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div align=center> <img alt="" src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/26/240d80bbe51a4960851e81b4f00a0b12.jpg"/> </div>
+<p>The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access). Instead, the DMA processor transfers the hard disk data directly to memory via the bus.
+The system changes from kernel state to user state, and when the data to be read by the program has been completely stored in the kernel read buffer, the program writes the data from the kernel read buffer to the user buffer, a process that requires the CPU to participate in reading and writing the data.
+When the program uses the write() system call, the system switches from the user state to the kernel state and writes data from the user buffer to the network buffer (Socket Buffer), a process that requires the CPU to participate in reading and writing data.
+The system switches from kernel state to user state, and the data in the network buffer is transferred to the driver (storage buffer) of the NIC (protocol engine) by DMA.
+As you can see, the common copy process goes through four kernel and user state switches (context switches) and two CPU read/write processes from memory, which is relatively more system resource intensive.</p>
+<h3 id="memory-mapping-method-io">Memory mapping method I/O</h3>
+<div align=center> <img alt="" src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/26/0a5f9878b34b4f3489c4cf3307ec976f.jpg"/></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">tmp_buf</span> <span class="o">=</span> <span class="n">mmap</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">write</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is the system call method used. The I/O principle of this method is to map the memory address of the user buffer to the memory address of the kernel buffer, which means that the system can read and manipulate the kernel data directly in the user state.</p>
+<p>The mmap() system call first reads the disk data into the kernel buffer using DMA, and then makes the memory address of the user buffer and the kernel read buffer the same memory address through memory mapping, which means there is no need for the CPU to copy the data from the kernel read buffer to the user buffer.
+When the write() system call is used, the CPU writes the data from the kernel buffer (equivalent to the user buffer) directly to the network send buffer (socket buffer), and then passes the data to the NIC driver for sending by DMA.
+You can see that this way of memory mapping reduces the number of CPU reads and writes, but the switch from user state to kernel state (context switch) is still four times, and this way allows the application to read and write the data accordingly.</p>
+<h3 id="kernel-space-internal-transfer-io">Kernel space internal transfer I/O</h3>
+<div align=center> <img alt="" src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/26/f26ec3dbaf5f430fb31634e5aa992edf.jpg"/></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">sendfile</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The sendfile() system call allows for direct I/O transfers from within kernel space.</p>
+<p>The sendfile() system call also causes a switch from the user state to the kernel state. Unlike the memory mapping method, the user space cannot see or modify the data content at this point, which means that this is a full data transfer process.
+Reading from disk to memory is DMA, reading from the kernel read buffer to the network send buffer still requires the CPU to participate in the copy, and reading from the network send buffer to the buffer in the NIC is still DMA.
+There is still one CPU data copy and two user-state and kernel-state switching operations. This is a great improvement compared to the memory mapping approach, but the problem is that the program cannot modify the data, but simply performs a data transfer process.</p>
+<h3 id="upgraded-version---kernel-space-internal-transfer-io">Upgraded version - kernel space internal transfer I/O</h3>
+<div align=center> <img alt="" src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/26/7fa0158788c24857b6a6207e09539d24.jpg"/> </div>
+<p>Still the system call sendfile().</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">sendfile</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In Linux kernel 2.4 and later versions, the socket buffer descriptor has been adjusted to support the DMA self-collection function, which is still the same for the user, but the internal operation has changed.</p>
+<p>As you can see, this is truly zero-copy, because the CPU is no longer involved in the data copying process, but of course such a process requires hardware support to achieve.</p>
+<p>With the help of the hardware, we can do it. In fact, we just need to pass the buffer descriptor to the socket buffer and then pass the data length, so that the DMA controller can directly pack the data from the page cache and send it to the network.</p>
+<p>After the system call sendfile() is initiated, the disk data is read into the kernel buffer by DMA, and the data in the kernel buffer is aggregated into the network buffer by DMA and then sent to the NIC together.
+As you can see, in this mode, there is no CPU data copy, so there is really zero copy.</p>
+<h3 id="subsequent-optimization-splice-system-call">Subsequent optimization-splice() system call</h3>
+<p>The splice() system call is very similar to sendfile() in that the user application must have two open file descriptors, one for the input device and one for the output device. Unlike sendfile(), splice() allows any two files to be connected to each other, not just files to a socket for data transfer. The sendfile() system call has always been used for the special case of sending data from a file descriptor to a socket, whereas splice has always been a mechanism that is not limited to the function of sendfile(). In other words, sendfile() is just a subset of splice(). In Linux 2.6.23, the implementation of sendfile() is no longer available, but the API and the corresponding functions still exist, except that the API and the corresponding functions are implemented using the splice() mechanism.</p>
+<p>In general, splice() is a method that replaces the sendfile() system call in Linux 2.6.23 kernel version. It supports not only direct file-to-socket transfer, but also direct file-to-file I/O transfer, but the underlying transfer process is no different from that of sendfile().</p>
+<h2 id="zero-copy-in-javanio">Zero-copy in JavaNIO</h2>
+<h3 id="memory-mapped-io-in-nio">Memory-mapped I/O in NIO</h3>
+<p>The first thing to explain is that the Channel (channel) in JavaNIO is equivalent to the kernel buffer in the operating system, which may be a read buffer or a network buffer, and the Buffer is equivalent to the user buffer in the operating system.</p>
+<p>Correction: The operating system&rsquo;s read and write buffers have no relationship with JavaNIO, the operating system&rsquo;s read and write buffers (in Linux is the PageCache) is the kernel and IO devices directly interact with the driver memory area, the programmer usually can not touch</p>
+<p>Let&rsquo;s look at a piece of code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.zip&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&#34;rw&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">FileChannel</span> <span class="n">fileChannel</span> <span class="o">=</span> <span class="n">raf</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">MappedByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">FileChannel</span><span class="o">.</span><span class="na">MapMode</span><span class="o">.</span><span class="na">READ_ONLY</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The FileChannel.map() method in IO actually uses the memory mapping method in the operating system
+Memory address mapping is actually a mapping of memory addresses and disk files by the OS, and reading and writing to this memory is equivalent to reading and writing to the disk files directly, but the actual reading still goes through the OS to read into the memory PageCache, and the writing process also requires the OS to automatically replace the dirty pages to the disk.</p>
+<p>This approach is suitable for reading large files and also for making changes to the file content, but if the file is subsequently sent via SocketChannel, the CPU is still required to make a copy of the data</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">processData</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// After data processing is complete, open a SocketChannel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SocketChannel</span> <span class="n">socketChannel</span> <span class="o">=</span> <span class="n">SocketChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">1234</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// This still requires the CPU to copy the contents of the kernel buffer to the network buffer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">socketChannel</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buffer</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="zero-copy-in-nio">Zero copy in NIO</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.zip&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&#34;rw&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">FileChannel</span> <span class="n">fileChannel</span> <span class="o">=</span> <span class="n">raf</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">SocketChannel</span> <span class="n">socketChannel</span> <span class="o">=</span> <span class="n">SocketChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">1234</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// TransferTo() is used directly for data transfer between channels
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fileChannel</span><span class="o">.</span><span class="na">transferTo</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">socketChannel</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div align=center> <img alt="" src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/26/c5e5d46e8cc4473dbb0fdffeb38c39f3.png"/> </div>
+<p>his approach is the zero copy in NIO, let&rsquo;s analyze the principle:</p>
+<p>Buffer in NIO are in user space, including DirectBuffer, which is also a piece of memory malloc out of C language.</p>
+<p>The way transferTo() is implemented is through the system call sendfile() (of course, this is a system call in Linux, the system call in Windows is different), and according to what we wrote above, this process is much more efficient than reading and writing from the kernel buffer to the user buffer.
+Similarly transferFrom() is also implemented in this way.</p>
+<p>At the same time we came to a conclusion, the efficiency of IO in Java is far worse than C and C++, because the existence of the JVM leads to Java&rsquo;s IO will always be more than other languages to exchange a layer of memory, but Java is still promising in middleware, for example, message queues, kafka is written in Java, throughput and stability have reached a satisfactory effect.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://localhost:1313/tags/java/">java</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="http://localhost:1313/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
