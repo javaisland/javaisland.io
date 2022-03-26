@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>zero-copy on JavaIsland</title>
+    <title>zero-copy on Javaland</title>
     <link>https://www.javai.net/tags/zero-copy/</link>
-    <description>Recent content in zero-copy on JavaIsland</description>
+    <description>Recent content in zero-copy on Javaland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 26 Mar 2022 21:46:31 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/zero-copy/index.xml" rel="self" type="application/rss+xml" />
