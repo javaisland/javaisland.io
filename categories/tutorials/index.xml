@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tutorials on JavaIsland</title>
-    <link>http://localhost:1313/categories/tutorials/</link>
+    <link>https://www.javai.net/categories/tutorials/</link>
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 26 Mar 2022 21:46:31 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Mar 2022 21:46:31 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JavaNIO and Zero Copy</title>
-      <link>http://localhost:1313/post/202203/zero-copy/</link>
+      <link>https://www.javai.net/post/202203/zero-copy/</link>
       <pubDate>Sat, 26 Mar 2022 21:46:31 +0800</pubDate>
       
-      <guid>http://localhost:1313/post/202203/zero-copy/</guid>
+      <guid>https://www.javai.net/post/202203/zero-copy/</guid>
       <description>Zero-copy in the Linux operating system Let&amp;rsquo;s start with the general I/O process of Linux This is a procedure that reads from a disk file and writes to it via socket, and the corresponding system call is as follows.
 1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);    The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).</description>
     </item>

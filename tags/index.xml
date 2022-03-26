@@ -2,17 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on JavaIsland</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://www.javai.net/tags/</link>
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 26 Mar 2022 21:46:31 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Mar 2022 21:46:31 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>java</title>
-      <link>http://localhost:1313/tags/java/</link>
+      <title>nio</title>
+      <link>https://www.javai.net/tags/nio/</link>
       <pubDate>Sat, 26 Mar 2022 21:46:31 +0800</pubDate>
       
-      <guid>http://localhost:1313/tags/java/</guid>
+      <guid>https://www.javai.net/tags/nio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zero-copy</title>
+      <link>https://www.javai.net/tags/zero-copy/</link>
+      <pubDate>Sat, 26 Mar 2022 21:46:31 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/zero-copy/</guid>
       <description></description>
     </item>
     

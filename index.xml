@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JavaIsland</title>
-    <link>http://localhost:1313/</link>
+    <link>https://www.javai.net/</link>
     <description>Recent content on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 26 Mar 2022 21:46:31 +0800</lastBuildDate>
     
-        <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.javai.net/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://www.javai.net/about/</link>
       <pubDate>Sat, 26 Mar 2022 21:46:31 +0800</pubDate>
       
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://www.javai.net/about/</guid>
       
         <description>&lt;p&gt;Welcome to JavaIsland, where many technical articles related to Java technology are produced, we hope the articles here can bring you some help&lt;/p&gt;
 &lt;blockquote&gt;
@@ -36,10 +36,10 @@
     
     <item>
       <title>JavaNIO and Zero Copy</title>
-      <link>http://localhost:1313/post/202203/zero-copy/</link>
+      <link>https://www.javai.net/post/202203/zero-copy/</link>
       <pubDate>Sat, 26 Mar 2022 21:46:31 +0800</pubDate>
       
-      <guid>http://localhost:1313/post/202203/zero-copy/</guid>
+      <guid>https://www.javai.net/post/202203/zero-copy/</guid>
       
         <description>&lt;h2 id=&#34;zero-copy-in-the-linux-operating-system&#34;&gt;Zero-copy in the Linux operating system&lt;/h2&gt;
 &lt;h3 id=&#34;lets-start-with-the-general-io-process-of-linux&#34;&gt;Let&amp;rsquo;s start with the general I/O process of Linux&lt;/h3&gt;
