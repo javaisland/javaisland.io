@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Javaland</title>
+    <title>JavaIsland</title>
     <link>https://www.javai.net/</link>
-    <description>Recent content on Javaland</description>
+    <description>Recent content on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 26 Mar 2022 21:46:31 +0800</lastBuildDate>
@@ -18,7 +18,7 @@
       
       <guid>https://www.javai.net/about/</guid>
       
-        <description>&lt;p&gt;Welcome to Javaland, where many technical articles related to Java technology are produced, we hope the articles here can bring you some help&lt;/p&gt;
+        <description>&lt;p&gt;Welcome to JavaIsland, where many technical articles related to Java technology are produced, we hope the articles here can bring you some help&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Some of the content is collected from the Internet, and we apologize if it inadvertently infringes on your copyright. Please contact us. We will remove it.&lt;/p&gt;
 &lt;/blockquote&gt;
