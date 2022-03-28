@@ -22,7 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" /><meta name="description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data by hutool." />
+<meta name="author" content="JavaIsland" /><meta name="description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language." />
 <meta name="keywords" content="java, crypto, hutool, Encrypt, Decrypt" />
 
 
@@ -59,19 +59,19 @@
 
 
 <meta property="og:title" content="Using encryption and decryption in Java" />
-<meta property="og:description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data by hutool." />
+<meta property="og:description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202203/huttol-crypto/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-03-28T21:48:49+08:00" />
 <meta property="article:modified_time" content="2022-03-28T21:48:49+08:00" />
 
 <meta itemprop="name" content="Using encryption and decryption in Java">
-<meta itemprop="description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data by hutool."><meta itemprop="datePublished" content="2022-03-28T21:48:49+08:00" />
+<meta itemprop="description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language."><meta itemprop="datePublished" content="2022-03-28T21:48:49+08:00" />
 <meta itemprop="dateModified" content="2022-03-28T21:48:49+08:00" />
-<meta itemprop="wordCount" content="1314">
+<meta itemprop="wordCount" content="1351">
 <meta itemprop="keywords" content="crypto,hutool,Encrypt,Decrypt," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Using encryption and decryption in Java"/>
-<meta name="twitter:description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data by hutool."/>
+<meta name="twitter:description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -301,7 +301,7 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 1314 words </span>
+        <span class="more-meta"> 1351 words </span>
           <span class="more-meta"> 7 min read </span>
 
         
@@ -319,7 +319,7 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#instructions-for-use">Instructions for use</a></li>
+    <li><a href="#instructions">Instructions</a></li>
     <li><a href="#symmetric-versus-asymmetric-encryption">Symmetric versus asymmetric encryption</a>
       <ul>
         <li><a href="#symmetric-encryption">Symmetric encryption</a></li>
@@ -345,7 +345,8 @@
 
     
     <div class="post-content">
-      <h2 id="instructions-for-use">Instructions for use</h2>
+      <h2 id="instructions">Instructions</h2>
+<p>In project development, in order to ensure the security of data and user privacy, we usually encrypt key information, this article details how to use hutool in java language to quickly encrypt and decrypt data, hope you can help.</p>
 <p>If your project is built on Maven, you can introduce Hutool through pom to use the encryption and decryption function.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

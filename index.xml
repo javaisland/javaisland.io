@@ -41,7 +41,8 @@
       
       <guid>https://www.javai.net/post/202203/huttol-crypto/</guid>
       
-        <description>&lt;h2 id=&#34;instructions-for-use&#34;&gt;Instructions for use&lt;/h2&gt;
+        <description>&lt;h2 id=&#34;instructions&#34;&gt;Instructions&lt;/h2&gt;
+&lt;p&gt;In project development, in order to ensure the security of data and user privacy, we usually encrypt key information, this article details how to use hutool in java language to quickly encrypt and decrypt data, hope you can help.&lt;/p&gt;
 &lt;p&gt;If your project is built on Maven, you can introduce Hutool through pom to use the encryption and decryption function.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
