@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Encrypt on JavaIsland</title>
+    <link>https://www.javai.net/tags/encrypt/</link>
+    <description>Recent content in Encrypt on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 28 Mar 2022 21:48:49 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/encrypt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using encryption and decryption in Java</title>
+      <link>https://www.javai.net/post/202203/huttol-crypto/</link>
+      <pubDate>Mon, 28 Mar 2022 21:48:49 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202203/huttol-crypto/</guid>
+      <description>Instructions for use If your project is built on Maven, you can introduce Hutool through pom to use the encryption and decryption function.
+1 2 3 4 5  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;cn.hutool&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;hutool-crypto&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;5.7.15&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;   If your project is not built based on maven, you can also directly download the jar package to use.
+Download Links: https://repo1.maven.org/maven2/cn/hutool/hutool-all/5.8.0.M1
+Symmetric versus asymmetric encryption Symmetric encryption Encryption Algorithm  An encryption method that uses a single-key cryptosystem where the same key can be used as both encryption and decryption of a message is called symmetric encryption, also known as single-key encryption.</description>
+    </item>
+    
+  </channel>
+</rss>
