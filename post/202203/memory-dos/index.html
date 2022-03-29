@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Memory Dos - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="DoS is the abbreviation of Denial of Service, that is, denial of service, the attack that causes DoS is called DoS attack, its purpose is to make the computer or network can not provide normal services, this article introduces a common defect in java system - Memory DoS." />
+<meta name="keywords" content="spring, java, webLogic, sentinel, dos, CVE-2021-2344, CVE-2021-2371, CVE-2021-2376, CVE-2021-2378" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202203/memory-dos/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Memory Dos" />
+<meta property="og:description" content="DoS is the abbreviation of Denial of Service, that is, denial of service, the attack that causes DoS is called DoS attack, its purpose is to make the computer or network can not provide normal services, this article introduces a common defect in java system - Memory DoS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202203/memory-dos/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-03-29T20:09:45+08:00" />
+<meta property="article:modified_time" content="2022-03-29T20:09:45+08:00" />
+
+<meta itemprop="name" content="Memory Dos">
+<meta itemprop="description" content="DoS is the abbreviation of Denial of Service, that is, denial of service, the attack that causes DoS is called DoS attack, its purpose is to make the computer or network can not provide normal services, this article introduces a common defect in java system - Memory DoS."><meta itemprop="datePublished" content="2022-03-29T20:09:45+08:00" />
+<meta itemprop="dateModified" content="2022-03-29T20:09:45+08:00" />
+<meta itemprop="wordCount" content="3405">
+<meta itemprop="keywords" content="java,dos,webLogic,CVE," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Memory Dos"/>
+<meta name="twitter:description" content="DoS is the abbreviation of Denial of Service, that is, denial of service, the attack that causes DoS is called DoS attack, its purpose is to make the computer or network can not provide normal services, this article introduces a common defect in java system - Memory DoS."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Memory Dos</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-03-29" class="post-time">
+          2022-03-29
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 3405 words </span>
+          <span class="more-meta"> 16 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#i-what-is-dos">I. What is DoS?</a></li>
+    <li><a href="#ii-status-of-java-dos">II. Status of Java DoS</a></li>
+    <li><a href="#iii-java-exception-mechanism">III. Java Exception Mechanism</a></li>
+    <li><a href="#iv-a-widespread-memory-dos">IV. A widespread Memory DoS</a>
+      <ul>
+        <li><a href="#0x01-java-se">0x01 Java SE</a></li>
+        <li><a href="#0x02-weblogic">0x02 WebLogic</a></li>
+        <li><a href="#0x03-spring">0x03 Spring</a></li>
+        <li><a href="#0x04-sentinel">0x04 Sentinel</a></li>
+        <li><a href="#0x05-points-to-note">0x05 Points to note</a></li>
+      </ul>
+    </li>
+    <li><a href="#v-summary">V. Summary</a></li>
+    <li><a href="#vi-some-cves-about-memory-dos">VI. Some CVEs about Memory DoS</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="i-what-is-dos">I. What is DoS?</h2>
+<p>DoS is short for Denial of Service, which means denial of service. The attack that causes DoS is called a DoS attack, and its purpose is to make the computer or network unable to provide normal services. Denial of Service exists on various web services, this web service can be implemented in c, c++, or go, java, php, python, and other languages.</p>
+<h2 id="ii-status-of-java-dos">II. Status of Java DoS</h2>
+<p>In various open source and closed source java system products, we often see announcements about DoS defects, most of which are CPU exhaustion type or business offload type DoS. CPU exhaustion type DoS mainly includes &ldquo;regular backtracking CPU exhaustion, code repeatedly executes a lot of CPU exhaustion, dead loop code exhaustion CPU &ldquo;etc. The business offloading DoS is a type of DoS that is strongly coupled with the system business, and is not universal in general. It is briefly described below with a few simple examples.</p>
+<ul>
+<li>Regular backtracking exhausts CPU</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Pattern</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">controllableVariableRegex</span><span class="o">,</span> <span class="n">controllableVariableText</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>CPU exhausted by repeated code execution</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">controllableVariable</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do something, e.g. consume cpu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Dead loop consumes CPU</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">while</span><span class="o">(</span><span class="n">controllableBoolVariable</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do something, e.g. consume cpu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>business uninstall DoS (when any user has access to the uninstall method, the business can be maliciously uninstalled, resulting in denial of service for normal users)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">availables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">service</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">availables</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do service
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//reject service
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">uninstall</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">availables</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">type</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When I was digging into the XStream deserialization exploit chain, I also found an exploit chain that could launch a &ldquo;regular backtracking CPU exhaustion, dead loop CPU exhaustion&rdquo; type DoS attack, and ended up with multiple CVE number tags and signatures for XStream.</p>
+<ul>
+<li>ByteArrayInputStream (dead-loop CPU exhaustion)
+<a href="https://x-stream.github.io/CVE-2021-21341.html">https://x-stream.github.io/CVE-2021-21341.html</a></li>
+<li>java.util.Scanner (regular backtracking exhausts CPU)
+<a href="https://x-stream.github.io/CVE-2021-21348.html">https://x-stream.github.io/CVE-2021-21348.html</a></li>
+</ul>
+<p>Is it possible that these are the only types of DoS that exist in the Java system? I don&rsquo;t think so. I think there are bound to be a lot of other types of DoS flaws in Java systems that we just haven&rsquo;t discovered yet. When I was auditing a Java system one day, I suddenly found a defect that was different from these DoS types, and when I audited a large number of other Java systems, it existed universally, and I knew it was a universal defect - Memory DoS.</p>
+<h2 id="iii-java-exception-mechanism">III. Java Exception Mechanism</h2>
+<p>In web services implemented in c, c++ and other languages, there may be various types of DoS such as null pointer DoS, CPU exhaustion DoS, etc. Why are there so few types of DoS in Java? This brings us to the exception mechanism in Java.</p>
+<p>Java exceptions in the JRE source code implementation, mainly divided into java.lang.Exception and java.lang.Error, they all have a common implementation of java.lang.Throwable.</p>
+<p>Exceptions are some errors in a program, but not all errors are exceptions, and errors can sometimes be avoided.</p>
+<p>For example, if your code is missing a semicolon, then running out the result is prompted by the error java.lang.Error; if you use System.out.println(11/0), then you are because you used 0 as a divisor and will throw the exception java.lang.ArithmeticException.</p>
+<p>Exceptions can occur for a number of reasons, and usually contain the following major categories.</p>
+<ul>
+<li>The user has entered illegal data.</li>
+<li>The file to be opened does not exist.</li>
+<li>The connection was broken during network communication, or the JVM memory overflowed.</li>
+</ul>
+<p>Some of these exceptions are caused by user errors, some are caused by program errors, and others are caused by physical errors.</p>
+<p>To understand how Java exception handling works, you need to master the following three types of exceptions.</p>
+<ul>
+<li>Checked exceptions: The most represented checked exceptions are those caused by user errors or problems, which are not foreseen by the programmer. For example, an exception occurs when a non-existent file is to be opened, and these exceptions cannot simply be ignored at compile time.</li>
+<li>Runtime exceptions: Runtime exceptions are exceptions that may be avoided by the programmer. In contrast to checked exceptions, runtime exceptions can be ignored at compile time.</li>
+<li>Errors: Errors are not exceptions, but problems that are out of the programmer&rsquo;s control. Errors are usually ignored in the code. For example, an error occurs when a stack overflow occurs, and they are not checked at compile either.</li>
+</ul>
+<p>The description of the Java exception mechanism, described above, makes it clear that when an exception occurs, it can often be mostly caught and handled, but when an error occurs, it means that the program is no longer running properly. That is to say, most of the exceptions we generate in the Java system, there is no way to cause a DoS, only to cause an error that will prevent the program from running properly and lead to a DoS, which is why in Java, the type of DoS is relatively small.</p>
+<p>Looking through the JRE on the implementation of the error java.lang.Error, you can see that there are very, very many, and the main character today is java.lang.OutOfMemoryError, that is, if we can make the program generate java.lang.OutOfMemoryError error, you can achieve DoS. most java programmers should be familiar with it, throwing java.lang.OutOfMemoryError error, usually appear in jvm memory shortage, or memory leak resulting in gc can not be reclaimed.</p>
+<h2 id="iv-a-widespread-memory-dos">IV. A widespread Memory DoS</h2>
+<p>As mentioned in the previous section, we can implement DoS if we can make the program generate java.lang.OutOfMemoryError error, which is called Memory DoS, a DoS attack that runs out of memory and causes the program to throw an error.</p>
+<p>So, how do you get a Java system to generate a java.lang. The answer must be &ldquo;run out of memory&rdquo;!</p>
+<p>I have scanned several java systems, components through a simple code scanning tool, which found a large number of exploitable Memory DoS flaws, yes, this means that I can make these systems generate java.lang. And these systems and components include the more famous ones like Java SE, WebLogic, Spring, Sentinel, Jackson, xstream, etc.</p>
+<h3 id="0x01-java-se">0x01 Java SE</h3>
+<p>In my scan of Java SE, I found three classes that can cause the system to generate java.lang.OutOfMemoryError errors when deserializing, and perform Memory DoS attacks on the system. I immediately reported it to Oracle, and it was eventually fixed in Java SE 8u301</p>
+<p>Let&rsquo;s take a look at the Java SE 8u301 fix and before the fix, the difference between them compared.</p>
+<h4 id="javatimezonezonerulesreadexternal">java.time.zone.ZoneRules#readExternal</h4>
+<p>Before the fix.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">ZoneRules</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">DataInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">stdSize</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span><span class="o">[]</span> <span class="n">stdTrans</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">EMPTY_LONG_ARRAY</span>
+</span></span><span class="line"><span class="cl">                                     <span class="o">:</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">stdSize</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stdSize</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stdTrans</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Ser</span><span class="o">.</span><span class="na">readEpochSec</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After the repair.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">ZoneRules</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">DataInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">stdSize</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">&gt;</span> <span class="n">1024</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">InvalidObjectException</span><span class="o">(</span><span class="s">&#34;Too many transitions&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span><span class="o">[]</span> <span class="n">stdTrans</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">EMPTY_LONG_ARRAY</span>
+</span></span><span class="line"><span class="cl">                                     <span class="o">:</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">stdSize</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stdSize</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stdTrans</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Ser</span><span class="o">.</span><span class="na">readEpochSec</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="javaawtdatatransfermimetypereadexternal">java.awt.datatransfer.MimeType#readExternal</h4>
+<p>Before the fix.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// long mime type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">byte</span><span class="o">[]</span> <span class="n">ba</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">()];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">in</span><span class="o">.</span><span class="na">readFully</span><span class="o">(</span><span class="n">ba</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ba</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parse</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">MimeTypeParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After the repair.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// long mime type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ByteArrayOutputStream</span> <span class="n">baos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="n">len</span><span class="o">--</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">baos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">baos</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parse</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">MimeTypeParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="comsundeploysecuritycredentialinforeadexternal">com.sun.deploy.security.CredentialInfo#readExternal</h4>
+<p>Before the fix.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">var1</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">sessionId</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readLong</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">domain</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">var1</span><span class="o">.</span><span class="na">readInt</span><span class="o">()];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">var2</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">var2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">[</span><span class="n">var2</span><span class="o">]</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">var3</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Trace</span><span class="o">.</span><span class="na">securityPrintException</span><span class="o">(</span><span class="n">var3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After the repair.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">var1</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">sessionId</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readLong</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">domain</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">var2</span> <span class="o">&gt;</span> <span class="n">4096</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">SecurityException</span><span class="o">(</span><span class="s">&#34;Invalid password length (&#34;</span> <span class="o">+</span> <span class="n">var2</span> <span class="o">+</span> <span class="s">&#34;). It should not exceed &#34;</span> <span class="o">+</span> <span class="n">4096</span> <span class="o">+</span> <span class="s">&#34; bytes.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">var2</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">var3</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">var3</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">var3</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">[</span><span class="n">var3</span><span class="o">]</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">var4</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Trace</span><span class="o">.</span><span class="na">securityPrintException</span><span class="o">(</span><span class="n">var4</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>With these three examples, do you see anything?</p>
+<p>Yes, this is a kind of Memory DoS defect that exists by taking advantage of the fact that the capacity parameter is controllable when the array is initialized. When a malicious user controls the capacity parameter and sets the parameter value size to the int maximum value of 2147483647-2 (2147483645 is the maximum limit for array initialization), then, when the array is initialized, the JVM will run out of memory, thus causing the system to generate a java.lang.OutOfMemoryError error and realize Memory DoS.</p>
+<h3 id="0x02-weblogic">0x02 WebLogic</h3>
+<p>In my scan of Weblogic, I found dozens of classes that can cause the system to generate java.lang.OutOfMemoryError errors during deserialization, enabling Memory DoS attacks on the system. The scan took a few minutes, but I spent a lot of time writing the report.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/29/b921600c1e0b461cb62dc53bcab4b65a.png" alt="Weblogic&amp;rsquo;s scan results"></p>
+<p>With these three examples, do you see anything?
+<img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/29/0fe9f6e0e33846eea2b04c6f5d1b8931.png" alt="Weblogic&amp;rsquo;s scan results"></p>
+<p>Yes, this is a kind of Memory DoS defect that exists by taking advantage of the fact that the capacity parameter is controllable when the array is initialized. When a malicious user controls the capacity parameter and sets the parameter value size to the int maximum value of 2147483647-2 (2147483645 is the maximum limit for array initialization), then, when the array is initialized, the JVM will run out of memory, thus causing the system to generate a java.lang.OutOfMemoryError error and realize Memory DoS.</p>
+<p>After reporting it to Oracle, I learned that it was fixed in the 2021.07 security notification at <a href="https://www.oracle.com/security-alerts/cpujul2021.html">https://www.oracle.com/security-alerts/cpujul2021.html</a>.</p>
+<p>The Memory DoS in WebLogic is not very different from the Java SE one, so I won&rsquo;t list them one by one.</p>
+<h4 id="comtangosolrunxmlsimpledocumentreadexternaljavaioobjectinput">com.tangosol.run.xml.SimpleDocument#readExternal(java.io.ObjectInput)</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cch</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span><span class="o">[]</span> <span class="n">ach</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">cch</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Utf8Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Utf8Reader</span><span class="o">((</span><span class="n">InputStream</span><span class="o">)</span><span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cchBlock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">of</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">of</span> <span class="o">&lt;</span> <span class="n">cch</span><span class="o">;</span> <span class="n">of</span> <span class="o">+=</span> <span class="n">cchBlock</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cchBlock</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">ach</span><span class="o">,</span> <span class="n">of</span><span class="o">,</span> <span class="n">cch</span> <span class="o">-</span> <span class="n">of</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">cchBlock</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">EOFException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">XmlHelper</span><span class="o">.</span><span class="na">loadXml</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ach</span><span class="o">),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>However, the preceding examples in WebLogic as well as Java SE, are sinks that attack at the time of array initialization. in fact, there is another, it is the java collection Collection, when a Collection is initialized, often in its internal implementation, will initialize one or more arrays to store data. Then, if at the time of Collection initialization, we can control its capacity parameter, it can make the JVM memory is insufficient, thus causing the system to generate java.lang.OutOfMemoryError error, resulting in Memory DoS.</p>
+<h4 id="weblogicdeploymentjmspooledconnectionfactoryreadexternal">weblogic.deployment.jms.PooledConnectionFactory#readExternal</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">extVersion</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">extVersion</span> <span class="o">!=</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">JMSPoolLogger</span><span class="o">.</span><span class="na">logInvalidExternalVersionLoggable</span><span class="o">(</span><span class="n">extVersion</span><span class="o">).</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">wrapStyle</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolName</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">containerAuth</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readBoolean</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">numProps</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolProps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">(</span><span class="n">numProps</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">inc</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">inc</span> <span class="o">&lt;</span> <span class="n">numProps</span><span class="o">;</span> <span class="o">++</span><span class="n">inc</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">poolProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span> <span class="o">=</span> <span class="n">JMSSessionPoolManager</span><span class="o">.</span><span class="na">getSessionPoolManager</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span><span class="o">.</span><span class="na">incrementReferenceCount</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">poolName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">JMSPoolDebug</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">&#34;In PooledConnectionFactory.readExternal()[poolManager=&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span> <span class="o">+</span> <span class="s">&#34;]&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As you can see, this line of code initializes the HashMap, and we are able to control the size of its construction parameter values.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">this</span><span class="o">.</span><span class="na">poolProps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">(</span><span class="n">numProps</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now the HashMap construction parameters we can control, meaning that we can freely specify the size of its initialization capacity, if its size exceeds the memory available to the JVM, it will cause the system to generate java.lang.OutOfMemoryError error and achieve Memory DoS.</p>
+<h3 id="0x03-spring">0x03 Spring</h3>
+<p>In Spring, I did a simple audit of the source code of its mvc framework and found that in an HttpMessageConverter, there is an array initialization capacity parameter controllable, which will be able to cause the system to generate a java.lang.OutOfMemoryError error when a simple construction is performed on http to achieve Memory DoS.</p>
+<p>After I reported this to Spring officials, they decided that it was a security issue, but that it was up to other systems to limit it, so it was not fixed.</p>
+<p>I also offered a fix to the Spring developers, but they didn&rsquo;t end up adopting it, so the security issue still exists, but fortunately, you don&rsquo;t need to worry about it, because this vulnerability requires certain prerequisites to exploit.</p>
+<h4 id="orgspringframeworkhttpconverterbytearrayhttpmessageconverter">org.springframework.http.converter.ByteArrayHttpMessageConverter</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">readInternal</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="kt">byte</span><span class="o">[]&gt;</span> <span class="n">clazz</span><span class="o">,</span> <span class="n">HttpInputMessage</span> <span class="n">inputMessage</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">long</span> <span class="n">contentLength</span> <span class="o">=</span> <span class="n">inputMessage</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">().</span><span class="na">getContentLength</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ByteArrayOutputStream</span> <span class="n">bos</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">			<span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">(</span><span class="n">contentLength</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">?</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">contentLength</span> <span class="o">:</span> <span class="n">StreamUtils</span><span class="o">.</span><span class="na">BUFFER_SIZE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">StreamUtils</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="n">inputMessage</span><span class="o">.</span><span class="na">getBody</span><span class="o">(),</span> <span class="n">bos</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">bos</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">ByteArrayOutputStream</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Negative initial size: &#34;</span>
+</span></span><span class="line"><span class="cl">                                           <span class="o">+</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As you can see, when we initiate the http request, we are able to use Content-Length this http header to control the initialization capacity of the byte array, if we pass in the size of the Content-Length is the maximum of the Long type, it will cause the system to generate java.lang. OutOfMemoryError error, to achieve Memory DoS attack.</p>
+<p>However, to exploit this vulnerability, the prerequisite is that the developer needs to write some implementation of Controller, which requires Controller to receive a parameter of type byte[], because only then Spring is using org.springframework.http. converter.ByteArrayHttpMessageConverter to handle it.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author JavaIsland
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RestController</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/JavaIsland&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">test</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;JavaIsland&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="0x04-sentinel">0x04 Sentinel</h3>
+<p>github: <a href="https://github.com/alibaba/Sentinel">https://github.com/alibaba/Sentinel</a></p>
+<p>Java SE, WebLogic, Spring, but all are nothing more than attacks on array initialization parameters, so are there any other Memory DoS that can cause the system to generate java.lang.OutOfMemoryError errors?</p>
+<p>The answer is &ldquo;yes&rdquo;. When I audited Alibaba Sentinel, I found that its control platform, which can also be called a registry (sentinel-dashboard), has an http endpoint that can be accessed without authentication, and with a little use, it can cause the system to generate java. OutOfMemoryError error can be caused by the system. If you are familiar with Sentinel, you know that it is an open source flow-limiting fusion component. In the official implementation, clients that access Sentinel will register their services with the registry, probably to reduce the difficulty of using and accessing Sentinel.</p>
+<p>This http endpoint is /registry/machine</p>
+<h4 id="comalibabacspsentineldashboardcontrollermachineregistrycontrollerreceiveheartbeat">com.alibaba.csp.sentinel.dashboard.controller.MachineRegistryController#receiveHeartBeat</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/machine&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Result</span><span class="o">&lt;?&gt;</span> <span class="n">receiveHeartBeat</span><span class="o">(</span><span class="n">String</span> <span class="n">app</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="nd">@RequestParam</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;app_type&#34;</span><span class="o">,</span> <span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">&#34;0&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                                      <span class="n">Integer</span> <span class="n">appType</span><span class="o">,</span> <span class="n">Long</span> <span class="n">version</span><span class="o">,</span> <span class="n">String</span> <span class="n">v</span><span class="o">,</span> <span class="n">String</span> <span class="n">hostname</span><span class="o">,</span> <span class="n">String</span> <span class="n">ip</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">Integer</span> <span class="n">port</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">app</span><span class="o">)</span> <span class="o">||</span> <span class="n">app</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">256</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid appName&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">ip</span><span class="o">)</span> <span class="o">||</span> <span class="n">ip</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">128</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid ip: &#34;</span> <span class="o">+</span> <span class="n">ip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">port</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">port</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid port&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">hostname</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">hostname</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">256</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;hostname too long&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">port</span> <span class="o">==</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">&#34;Receive heartbeat from &#34;</span> <span class="o">+</span> <span class="n">ip</span> <span class="o">+</span> <span class="s">&#34; but port not set yet&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;your port not set yet&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">sentinelVersion</span> <span class="o">=</span> <span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">v</span><span class="o">)</span> <span class="o">?</span> <span class="s">&#34;unknown&#34;</span> <span class="o">:</span> <span class="n">v</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">:</span> <span class="n">version</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MachineInfo</span> <span class="n">machineInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MachineInfo</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setApp</span><span class="o">(</span><span class="n">app</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setAppType</span><span class="o">(</span><span class="n">appType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setHostname</span><span class="o">(</span><span class="n">hostname</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setIp</span><span class="o">(</span><span class="n">ip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="n">port</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setHeartbeatVersion</span><span class="o">(</span><span class="n">version</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setLastHeartbeat</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setVersion</span><span class="o">(</span><span class="n">sentinelVersion</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">appManagement</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofSuccessMsg</span><span class="o">(</span><span class="s">&#34;success&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;Receive heartbeat error&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="--comalibabacspsentineldashboarddiscoveryappmanagementaddmachine">-&gt; com.alibaba.csp.sentinel.dashboard.discovery.AppManagement#addMachine</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">addMachine</span><span class="o">(</span><span class="n">MachineInfo</span> <span class="n">machineInfo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">machineDiscovery</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="--comalibabacspsentineldashboarddiscoverysimplemachinediscoveryaddmachine">-&gt; com.alibaba.csp.sentinel.dashboard.discovery.SimpleMachineDiscovery#addMachine</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">final</span> <span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">AppInfo</span><span class="o">&gt;</span> <span class="n">apps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">addMachine</span><span class="o">(</span><span class="n">MachineInfo</span> <span class="n">machineInfo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AssertUtil</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">,</span> <span class="s">&#34;machineInfo cannot be null&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AppInfo</span> <span class="n">appInfo</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="na">computeIfAbsent</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">.</span><span class="na">getApp</span><span class="o">(),</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">AppInfo</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">.</span><span class="na">getApp</span><span class="o">(),</span> <span class="n">machineInfo</span><span class="o">.</span><span class="na">getAppType</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appInfo</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>By tracing the above code, we can see that the data submitted by the user has to be stored straight to the memory. Because this http endpoint supports GET, POST requests, so when we use POST method in sending http requests and add very large data in the body, such as app parameters, put a 1MBytes or 10MBytes, or even larger data, then it will cause the server to run out of memory and generate java .lang.OutOfMemoryError error, and implement Memory DoS.</p>
+<h3 id="0x05-points-to-note">0x05 Points to note</h3>
+<p>Some readers in the test array initialization Memory DoS, found that although it can make the system to generate java.lang.OutOfMemoryError error, but the system does not crash as a result, to achieve the full Memory DoS, what is the reason?</p>
+<p>And look at the following three examples.</p>
+<ul>
+<li>Complete Memory DoS</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Memory DoS for a certain amount of time</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do 5s something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Short Memory DoS</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do 100ms something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After reading these three examples, I believe that most people familiar with the JVM gc mechanism will immediately understand that this is actually the difference between a shared variable referencing an object and a local variable referencing an object.</p>
+<p>Because the JVM gc mechanism is based on object references to determine whether the object memory needs to be reclaimed, and here, if we initialize an array object that is a local variable reference and only has a local variable reference, then this means that when the execution of this thread stack is complete, if the reference no longer exists, then the JVM will reclaim this piece of memory when it executes gc, so that alone This way we can only get a short period of time Memory DoS, may be 5 seconds (already relatively high quality), or only 0.1 seconds, there is no way to fully realize Memory DoS, and only let this object life cycle long enough, or reference has always existed, then, in its life cycle, we can occupy a long time JVM heap enough memory, so that the JVM can not recycle This part of the memory, so as to achieve Memory DoS.</p>
+<p>There is another most important point, the JVM corresponding array initialization size is limited, the maximum array length is 2147483645, which is equal to 2047.999997138977051MBytes, so if we encounter a controlled shared variable reference object scenario, we can only control the size of an object array, once the JVM maximum available heap memory is much larger than its array Once the JVM maximum available heap memory is much larger than its array, it is also more difficult for implementing Memory DoS.</p>
+<h2 id="v-summary">V. Summary</h2>
+<ul>
+<li>As long as Error can be generated in java, the probability is that it will cause DoS</li>
+<li>Memory DoS can be achieved by controlling the initialization capacity parameters of Array and Collection.</li>
+<li>Inserting a lot of garbage data into the collection, you can also achieve Memory DoS</li>
+</ul>
+<p>Since this article is actually nothing hardcore, so, not to write too many examples, so as not to stink and long.</p>
+<h2 id="vi-some-cves-about-memory-dos">VI. Some CVEs about Memory DoS</h2>
+<ul>
+<li><a href="https://www.oracle.com/security-alerts/cpujul2021.html">CVE-2021-2344, CVE-2021-2371, CVE-2021-2376, CVE-2021-2378</a>: WebLogic Deserialization Memory DoS</li>
+<li><a href="https://tanzu.vmware.com/security/cve-2021-22095">CVE-2021-22095</a>: Spring-AMQP Remote Denial of Service - Out of Memory Error with a Large Message Body</li>
+</ul>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/dos/">dos</a>
+          <a href="https://www.javai.net/tags/weblogic/">webLogic</a>
+          <a href="https://www.javai.net/tags/cve/">CVE</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202203/jdk18/">
+            <span class="next-text nav-default">JDK 18 / Java 18 GA is released</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
