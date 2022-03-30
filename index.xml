@@ -6,7 +6,7 @@
     <description>Recent content on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Mar 2022 10:06:26 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Mar 2022 13:04:22 +0800</lastBuildDate>
     
         <atom:link href="https://www.javai.net/index.xml" rel="self" type="application/rss+xml" />
     
@@ -30,6 +30,25 @@
 &lt;li&gt;&lt;a href=&#34;https://redis.io&#34;&gt;https://redis.io&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.nginx.com&#34;&gt;https://www.nginx.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Oracle cracks down on Java licensing issues, enterprises remove JDK overnight</title>
+      <link>https://www.javai.net/post/202203/oracle-java-license/</link>
+      <pubDate>Wed, 30 Mar 2022 13:04:22 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202203/oracle-java-license/</guid>
+      
+        <description>&lt;p&gt;According to a report in the foreign media &lt;a href=&#34;https://www.theregister.com/2022/03/22/oracle_starts_to_include_java/&#34;&gt;The Register&lt;/a&gt; and feedback from major enterprises, Oracle has recently begun to include Java in its software licensing review, with the aim of Oracle&amp;rsquo;s move is an effort to push companies to pay, an operation it routinely employs to boost payment rates.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/30/5e8f71fad18049ee8f95cde667ba7b38.png&#34; alt=&#34;oracle&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Oracle introduced two licensing models for Java SE. In April 2019, Oracle began charging a license fee for Java that was previously free, which requires users to pay for a subscription to a commercial Java SE product in order to receive patches and updates.&lt;/p&gt;
+&lt;p&gt;In September 2021, when Oracle releases Java 17, they begin offering a no-fee licensing model that provides quarterly updates for free for three years. However, the model was limited to iterations of that version, allowing users to use it for free, even for commercial use (it could not be bundled with a paid product), and did not apply to earlier versions of Java such as Java 7, 8, and 11.&lt;/p&gt;
+&lt;p&gt;There is still a lot of confusion in the market about Java, and one of the common misconceptions is that you don&amp;rsquo;t need a license to use an older version of Java. And in fact, whether you&amp;rsquo;re using a new version or an older version, you need to have a corresponding support license whenever you download patches and updates from Oracle&amp;rsquo;s website.&lt;/p&gt;
+&lt;p&gt;The Register says that according to their sources, Oracle began auditing Java adoption by major companies earlier this year, and that many companies have received letters from Oracle&amp;rsquo;s License Management Service (LMS) asking them to provide information about Java usage and licensing.&lt;/p&gt;
+&lt;p&gt;Oracle also looks at the licensing of databases, middleware, or applications to infer whether the reported Java usage is true for each enterprise. For example, the number of databases reflects the number of CPUs, and one of the rates for Java SE subscriptions is $25 per CPU per month, so that reflects whether the number of Java SE subscriptions meets the requirements.&lt;/p&gt;
+&lt;p&gt;A number of enterprises have now learned this information and have completely uninstalled the JDK overnight to avoid large bills from Oracle and potential fines for years of non-payment or underpayment, some of which have begun responding to Oracle&amp;rsquo;s audits with OpenJDK open source alternatives, while others are planning to replace their existing technology stack entirely.&lt;/p&gt;
 </description>
       
     </item>

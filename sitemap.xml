@@ -9,6 +9,62 @@
   </url>
   
   <url>
+    <loc>https://www.javai.net/categories/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/news/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/oracle/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202203/oracle-java-license/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://www.javai.net/tags/0day/</loc>
     <lastmod>2022-03-30T10:06:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -23,42 +79,7 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-03-30T10:06:26+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/</loc>
-    <lastmod>2022-03-30T10:06:26+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/news/</loc>
-    <lastmod>2022-03-30T10:06:26+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-03-30T10:06:26+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/spring/</loc>
-    <lastmod>2022-03-30T10:06:26+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
     <lastmod>2022-03-30T10:06:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -80,13 +101,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/dos/</loc>
-    <lastmod>2022-03-29T20:09:45+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/java/</loc>
     <lastmod>2022-03-29T20:09:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
