@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Memory Dos - JavaIsland</title>
+  <title>A common defect in java systems - Memory DoS - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 <link rel="canonical" href="https://www.javai.net/post/202203/memory-dos/" />
@@ -58,19 +58,19 @@
 
 
 
-<meta property="og:title" content="Memory Dos" />
+<meta property="og:title" content="A common defect in java systems - Memory DoS" />
 <meta property="og:description" content="DoS is the abbreviation of Denial of Service, that is, denial of service, the attack that causes DoS is called DoS attack, its purpose is to make the computer or network can not provide normal services, this article introduces a common defect in java system - Memory DoS." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202203/memory-dos/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-03-29T20:09:45+08:00" />
 <meta property="article:modified_time" content="2022-03-29T20:09:45+08:00" />
 
-<meta itemprop="name" content="Memory Dos">
+<meta itemprop="name" content="A common defect in java systems - Memory DoS">
 <meta itemprop="description" content="DoS is the abbreviation of Denial of Service, that is, denial of service, the attack that causes DoS is called DoS attack, its purpose is to make the computer or network can not provide normal services, this article introduces a common defect in java system - Memory DoS."><meta itemprop="datePublished" content="2022-03-29T20:09:45+08:00" />
 <meta itemprop="dateModified" content="2022-03-29T20:09:45+08:00" />
-<meta itemprop="wordCount" content="3405">
+<meta itemprop="wordCount" content="3403">
 <meta itemprop="keywords" content="java,dos,webLogic,CVE," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Memory Dos"/>
+<meta name="twitter:title" content="A common defect in java systems - Memory DoS"/>
 <meta name="twitter:description" content="DoS is the abbreviation of Denial of Service, that is, denial of service, the attack that causes DoS is called DoS attack, its purpose is to make the computer or network can not provide normal services, this article introduces a common defect in java system - Memory DoS."/>
 
 <!--[if lte IE 9]>
@@ -301,7 +301,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Memory Dos</h1>
+      <h1 class="post-title">A common defect in java systems - Memory DoS</h1>
       
       <div class="post-meta">
         <time datetime="2022-03-29" class="post-time">
@@ -311,7 +311,7 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 3405 words </span>
+        <span class="more-meta"> 3403 words </span>
           <span class="more-meta"> 16 min read </span>
 
         
@@ -362,8 +362,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Pattern</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">controllableVariableRegex</span><span class="o">,</span> <span class="n">controllableVariableText</span><span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Pattern</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">controllableVariableRegex</span><span class="o">,</span> <span class="n">controllableVariableText</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>CPU exhausted by repeated code execution</li>
@@ -375,10 +375,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">controllableVariable</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-<span class="c1">//do something, e.g. consume cpu
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">controllableVariable</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do something, e.g. consume cpu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Dead loop consumes CPU</li>
@@ -390,10 +390,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="k">while</span><span class="o">(</span><span class="n">controllableBoolVariable</span><span class="o">)</span> <span class="o">{</span>
-<span class="c1">//do something, e.g. consume cpu
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">while</span><span class="o">(</span><span class="n">controllableBoolVariable</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do something, e.g. consume cpu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>business uninstall DoS (when any user has access to the uninstall method, the business can be maliciously uninstalled, resulting in denial of service for normal users)</li>
@@ -415,20 +415,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">availables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">();</span>
-
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">service</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">availables</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
-<span class="c1">//do service
-</span><span class="c1"></span><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-<span class="c1">//reject service
-</span><span class="c1"></span><span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">uninstall</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">availables</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">type</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">availables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">service</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">availables</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do service
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//reject service
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">uninstall</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">availables</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">type</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>When I was digging into the XStream deserialization exploit chain, I also found an exploit chain that could launch a &ldquo;regular backtracking CPU exhaustion, dead loop CPU exhaustion&rdquo; type DoS attack, and ended up with multiple CVE number tags and signatures for XStream.</p>
 <ul>
@@ -480,16 +480,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="n">ZoneRules</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">DataInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">stdSize</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-    <span class="kt">long</span><span class="o">[]</span> <span class="n">stdTrans</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">EMPTY_LONG_ARRAY</span>
-                                     <span class="o">:</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">stdSize</span><span class="o">];</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stdSize</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="n">stdTrans</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Ser</span><span class="o">.</span><span class="na">readEpochSec</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="o">...</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">ZoneRules</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">DataInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">stdSize</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span><span class="o">[]</span> <span class="n">stdTrans</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">EMPTY_LONG_ARRAY</span>
+</span></span><span class="line"><span class="cl">                                     <span class="o">:</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">stdSize</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stdSize</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stdTrans</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Ser</span><span class="o">.</span><span class="na">readEpochSec</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>After the repair.</p>
 <div class="highlight"><div class="chroma">
@@ -508,19 +508,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="n">ZoneRules</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">DataInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">stdSize</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">&gt;</span> <span class="n">1024</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">InvalidObjectException</span><span class="o">(</span><span class="s">&#34;Too many transitions&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kt">long</span><span class="o">[]</span> <span class="n">stdTrans</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">EMPTY_LONG_ARRAY</span>
-                                     <span class="o">:</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">stdSize</span><span class="o">];</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stdSize</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="n">stdTrans</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Ser</span><span class="o">.</span><span class="na">readEpochSec</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="o">...</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">ZoneRules</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">DataInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">stdSize</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">&gt;</span> <span class="n">1024</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">InvalidObjectException</span><span class="o">(</span><span class="s">&#34;Too many transitions&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span><span class="o">[]</span> <span class="n">stdTrans</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">EMPTY_LONG_ARRAY</span>
+</span></span><span class="line"><span class="cl">                                     <span class="o">:</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">stdSize</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stdSize</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stdTrans</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Ser</span><span class="o">.</span><span class="na">readEpochSec</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="javaawtdatatransfermimetypereadexternal">java.awt.datatransfer.MimeType#readExternal</h4>
 <p>Before the fix.</p>
@@ -542,21 +542,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
-<span class="n">ClassNotFoundException</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// long mime type
-</span><span class="c1"></span>        <span class="kt">byte</span><span class="o">[]</span> <span class="n">ba</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">()];</span>
-        <span class="n">in</span><span class="o">.</span><span class="na">readFully</span><span class="o">(</span><span class="n">ba</span><span class="o">);</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ba</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">parse</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">MimeTypeParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// long mime type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">byte</span><span class="o">[]</span> <span class="n">ba</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">()];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">in</span><span class="o">.</span><span class="na">readFully</span><span class="o">(</span><span class="n">ba</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ba</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parse</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">MimeTypeParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>After the repair.</p>
 <div class="highlight"><div class="chroma">
@@ -580,24 +580,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
-<span class="n">ClassNotFoundException</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// long mime type
-</span><span class="c1"></span>        <span class="n">ByteArrayOutputStream</span> <span class="n">baos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">();</span>
-        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">len</span><span class="o">--</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">baos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">());</span>
-        <span class="o">}</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">baos</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">parse</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">MimeTypeParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// long mime type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ByteArrayOutputStream</span> <span class="n">baos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="n">len</span><span class="o">--</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">baos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">baos</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parse</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">MimeTypeParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="comsundeploysecuritycredentialinforeadexternal">com.sun.deploy.security.CredentialInfo#readExternal</h4>
 <p>Before the fix.</p>
@@ -620,22 +620,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">var1</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">sessionId</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readLong</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">domain</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">var1</span><span class="o">.</span><span class="na">readInt</span><span class="o">()];</span>
-
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">var2</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">var2</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">[</span><span class="n">var2</span><span class="o">]</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">var3</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Trace</span><span class="o">.</span><span class="na">securityPrintException</span><span class="o">(</span><span class="n">var3</span><span class="o">);</span>
-    <span class="o">}</span>
-
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">var1</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">sessionId</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readLong</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">domain</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">var1</span><span class="o">.</span><span class="na">readInt</span><span class="o">()];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">var2</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">var2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">[</span><span class="n">var2</span><span class="o">]</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">var3</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Trace</span><span class="o">.</span><span class="na">securityPrintException</span><span class="o">(</span><span class="n">var3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>After the repair.</p>
 <div class="highlight"><div class="chroma">
@@ -662,35 +662,35 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">var1</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">sessionId</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readLong</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">domain</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
-        <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">var2</span> <span class="o">&gt;</span> <span class="n">4096</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">SecurityException</span><span class="o">(</span><span class="s">&#34;Invalid password length (&#34;</span> <span class="o">+</span> <span class="n">var2</span> <span class="o">+</span> <span class="s">&#34;). It should not exceed &#34;</span> <span class="o">+</span> <span class="n">4096</span> <span class="o">+</span> <span class="s">&#34; bytes.&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">var2</span><span class="o">];</span>
-
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">var3</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">var3</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">var3</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">[</span><span class="n">var3</span><span class="o">]</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">var4</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Trace</span><span class="o">.</span><span class="na">securityPrintException</span><span class="o">(</span><span class="n">var4</span><span class="o">);</span>
-    <span class="o">}</span>
-
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">var1</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">sessionId</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readLong</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">domain</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">var1</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">var2</span> <span class="o">&gt;</span> <span class="n">4096</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">SecurityException</span><span class="o">(</span><span class="s">&#34;Invalid password length (&#34;</span> <span class="o">+</span> <span class="n">var2</span> <span class="o">+</span> <span class="s">&#34;). It should not exceed &#34;</span> <span class="o">+</span> <span class="n">4096</span> <span class="o">+</span> <span class="s">&#34; bytes.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">var2</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">var3</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">var3</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">var3</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">encryptedPassword</span><span class="o">[</span><span class="n">var3</span><span class="o">]</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">var4</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Trace</span><span class="o">.</span><span class="na">securityPrintException</span><span class="o">(</span><span class="n">var4</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>With these three examples, do you see anything?</p>
 <p>Yes, this is a kind of Memory DoS defect that exists by taking advantage of the fact that the capacity parameter is controllable when the array is initialized. When a malicious user controls the capacity parameter and sets the parameter value size to the int maximum value of 2147483647-2 (2147483645 is the maximum limit for array initialization), then, when the array is initialized, the JVM will run out of memory, thus causing the system to generate a java.lang.OutOfMemoryError error and realize Memory DoS.</p>
 <h3 id="0x02-weblogic">0x02 WebLogic</h3>
 <p>In my scan of Weblogic, I found dozens of classes that can cause the system to generate java.lang.OutOfMemoryError errors during deserialization, enabling Memory DoS attacks on the system. The scan took a few minutes, but I spent a lot of time writing the report.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/29/b921600c1e0b461cb62dc53bcab4b65a.png" alt="Weblogic&rsquo;s scan results"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/29/b921600c1e0b461cb62dc53bcab4b65a.png" alt="Weblogic&amp;rsquo;s scan results"></p>
 <p>With these three examples, do you see anything?
-<img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/29/0fe9f6e0e33846eea2b04c6f5d1b8931.png" alt="Weblogic&rsquo;s scan results"></p>
+<img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/29/0fe9f6e0e33846eea2b04c6f5d1b8931.png" alt="Weblogic&amp;rsquo;s scan results"></p>
 <p>Yes, this is a kind of Memory DoS defect that exists by taking advantage of the fact that the capacity parameter is controllable when the array is initialized. When a malicious user controls the capacity parameter and sets the parameter value size to the int maximum value of 2147483647-2 (2147483645 is the maximum limit for array initialization), then, when the array is initialized, the JVM will run out of memory, thus causing the system to generate a java.lang.OutOfMemoryError error and realize Memory DoS.</p>
 <p>After reporting it to Oracle, I learned that it was fixed in the 2021.07 security notification at <a href="https://www.oracle.com/security-alerts/cpujul2021.html">https://www.oracle.com/security-alerts/cpujul2021.html</a>.</p>
 <p>The Memory DoS in WebLogic is not very different from the Java SE one, so I won&rsquo;t list them one by one.</p>
@@ -714,22 +714,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">cch</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-    <span class="kt">char</span><span class="o">[]</span> <span class="n">ach</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">cch</span><span class="o">];</span>
-    <span class="n">Utf8Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Utf8Reader</span><span class="o">((</span><span class="n">InputStream</span><span class="o">)</span><span class="n">in</span><span class="o">);</span>
-
-    <span class="kt">int</span> <span class="n">cchBlock</span><span class="o">;</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">of</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">of</span> <span class="o">&lt;</span> <span class="n">cch</span><span class="o">;</span> <span class="n">of</span> <span class="o">+=</span> <span class="n">cchBlock</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">cchBlock</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">ach</span><span class="o">,</span> <span class="n">of</span><span class="o">,</span> <span class="n">cch</span> <span class="o">-</span> <span class="n">of</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">cchBlock</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">EOFException</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="n">XmlHelper</span><span class="o">.</span><span class="na">loadXml</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ach</span><span class="o">),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cch</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span><span class="o">[]</span> <span class="n">ach</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">cch</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Utf8Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Utf8Reader</span><span class="o">((</span><span class="n">InputStream</span><span class="o">)</span><span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cchBlock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">of</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">of</span> <span class="o">&lt;</span> <span class="n">cch</span><span class="o">;</span> <span class="n">of</span> <span class="o">+=</span> <span class="n">cchBlock</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cchBlock</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">ach</span><span class="o">,</span> <span class="n">of</span><span class="o">,</span> <span class="n">cch</span> <span class="o">-</span> <span class="n">of</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">cchBlock</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">EOFException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">XmlHelper</span><span class="o">.</span><span class="na">loadXml</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ach</span><span class="o">),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>However, the preceding examples in WebLogic as well as Java SE, are sinks that attack at the time of array initialization. in fact, there is another, it is the java collection Collection, when a Collection is initialized, often in its internal implementation, will initialize one or more arrays to store data. Then, if at the time of Collection initialization, we can control its capacity parameter, it can make the JVM memory is insufficient, thus causing the system to generate java.lang.OutOfMemoryError error, resulting in Memory DoS.</p>
 <h4 id="weblogicdeploymentjmspooledconnectionfactoryreadexternal">weblogic.deployment.jms.PooledConnectionFactory#readExternal</h4>
@@ -759,29 +759,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">extVersion</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">extVersion</span> <span class="o">!=</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">JMSPoolLogger</span><span class="o">.</span><span class="na">logInvalidExternalVersionLoggable</span><span class="o">(</span><span class="n">extVersion</span><span class="o">).</span><span class="na">getMessage</span><span class="o">());</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">wrapStyle</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">poolName</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">containerAuth</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readBoolean</span><span class="o">();</span>
-        <span class="kt">int</span> <span class="n">numProps</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">poolProps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">(</span><span class="n">numProps</span><span class="o">);</span>
-
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">inc</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">inc</span> <span class="o">&lt;</span> <span class="n">numProps</span><span class="o">;</span> <span class="o">++</span><span class="n">inc</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
-            <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">poolProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span> <span class="o">=</span> <span class="n">JMSSessionPoolManager</span><span class="o">.</span><span class="na">getSessionPoolManager</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span><span class="o">.</span><span class="na">incrementReferenceCount</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">poolName</span><span class="o">);</span>
-        <span class="n">JMSPoolDebug</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">&#34;In PooledConnectionFactory.readExternal()[poolManager=&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span> <span class="o">+</span> <span class="s">&#34;]&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="n">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">extVersion</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">extVersion</span> <span class="o">!=</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IOException</span><span class="o">(</span><span class="n">JMSPoolLogger</span><span class="o">.</span><span class="na">logInvalidExternalVersionLoggable</span><span class="o">(</span><span class="n">extVersion</span><span class="o">).</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">wrapStyle</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolName</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">containerAuth</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readBoolean</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">numProps</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolProps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">(</span><span class="n">numProps</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">inc</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">inc</span> <span class="o">&lt;</span> <span class="n">numProps</span><span class="o">;</span> <span class="o">++</span><span class="n">inc</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readUTF</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">poolProps</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span> <span class="o">=</span> <span class="n">JMSSessionPoolManager</span><span class="o">.</span><span class="na">getSessionPoolManager</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span><span class="o">.</span><span class="na">incrementReferenceCount</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">poolName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">JMSPoolDebug</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">&#34;In PooledConnectionFactory.readExternal()[poolManager=&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">poolManager</span> <span class="o">+</span> <span class="s">&#34;]&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>As you can see, this line of code initializes the HashMap, and we are able to control the size of its construction parameter values.</p>
 <div class="highlight"><div class="chroma">
@@ -789,8 +789,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="k">this</span><span class="o">.</span><span class="na">poolProps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">(</span><span class="n">numProps</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">this</span><span class="o">.</span><span class="na">poolProps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">(</span><span class="n">numProps</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Now the HashMap construction parameters we can control, meaning that we can freely specify the size of its initialization capacity, if its size exceeds the memory available to the JVM, it will cause the system to generate java.lang.OutOfMemoryError error and achieve Memory DoS.</p>
 <h3 id="0x03-spring">0x03 Spring</h3>
@@ -818,23 +818,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">readInternal</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="kt">byte</span><span class="o">[]&gt;</span> <span class="n">clazz</span><span class="o">,</span> <span class="n">HttpInputMessage</span> <span class="n">inputMessage</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-	<span class="kt">long</span> <span class="n">contentLength</span> <span class="o">=</span> <span class="n">inputMessage</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">().</span><span class="na">getContentLength</span><span class="o">();</span>
-	<span class="n">ByteArrayOutputStream</span> <span class="n">bos</span> <span class="o">=</span>
-			<span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">(</span><span class="n">contentLength</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">?</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">contentLength</span> <span class="o">:</span> <span class="n">StreamUtils</span><span class="o">.</span><span class="na">BUFFER_SIZE</span><span class="o">);</span>
-	<span class="n">StreamUtils</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="n">inputMessage</span><span class="o">.</span><span class="na">getBody</span><span class="o">(),</span> <span class="n">bos</span><span class="o">);</span>
-	<span class="k">return</span> <span class="n">bos</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="nf">ByteArrayOutputStream</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Negative initial size: &#34;</span>
-                                           <span class="o">+</span> <span class="n">size</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">readInternal</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="kt">byte</span><span class="o">[]&gt;</span> <span class="n">clazz</span><span class="o">,</span> <span class="n">HttpInputMessage</span> <span class="n">inputMessage</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">long</span> <span class="n">contentLength</span> <span class="o">=</span> <span class="n">inputMessage</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">().</span><span class="na">getContentLength</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ByteArrayOutputStream</span> <span class="n">bos</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">			<span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">(</span><span class="n">contentLength</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">?</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">contentLength</span> <span class="o">:</span> <span class="n">StreamUtils</span><span class="o">.</span><span class="na">BUFFER_SIZE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">StreamUtils</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="n">inputMessage</span><span class="o">.</span><span class="na">getBody</span><span class="o">(),</span> <span class="n">bos</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">bos</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">ByteArrayOutputStream</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Negative initial size: &#34;</span>
+</span></span><span class="line"><span class="cl">                                           <span class="o">+</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>As you can see, when we initiate the http request, we are able to use Content-Length this http header to control the initialization capacity of the byte array, if we pass in the size of the Content-Length is the maximum of the Long type, it will cause the system to generate java.lang. OutOfMemoryError error, to achieve Memory DoS attack.</p>
 <p>However, to exploit this vulnerability, the prerequisite is that the developer needs to write some implementation of Controller, which requires Controller to receive a parameter of type byte[], because only then Spring is using org.springframework.http. converter.ByteArrayHttpMessageConverter to handle it.</p>
@@ -853,18 +853,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
-</span><span class="cm"> * @author JavaIsland
-</span><span class="cm"> */</span>
-<span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestController</span> <span class="o">{</span>
-
-    <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/JavaIsland&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">test</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">&#34;JavaIsland&#34;</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author JavaIsland
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RestController</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/JavaIsland&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">test</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;JavaIsland&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="0x04-sentinel">0x04 Sentinel</h3>
 <p>github: <a href="https://github.com/alibaba/Sentinel">https://github.com/alibaba/Sentinel</a></p>
@@ -918,51 +918,51 @@
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@ResponseBody</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/machine&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="n">Result</span><span class="o">&lt;?&gt;</span> <span class="n">receiveHeartBeat</span><span class="o">(</span><span class="n">String</span> <span class="n">app</span><span class="o">,</span>
-                                  <span class="nd">@RequestParam</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;app_type&#34;</span><span class="o">,</span> <span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">&#34;0&#34;</span><span class="o">)</span>
-                                      <span class="n">Integer</span> <span class="n">appType</span><span class="o">,</span> <span class="n">Long</span> <span class="n">version</span><span class="o">,</span> <span class="n">String</span> <span class="n">v</span><span class="o">,</span> <span class="n">String</span> <span class="n">hostname</span><span class="o">,</span> <span class="n">String</span> <span class="n">ip</span><span class="o">,</span>
-                                  <span class="n">Integer</span> <span class="n">port</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">app</span><span class="o">)</span> <span class="o">||</span> <span class="n">app</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">256</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid appName&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">ip</span><span class="o">)</span> <span class="o">||</span> <span class="n">ip</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">128</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid ip: &#34;</span> <span class="o">+</span> <span class="n">ip</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">port</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">port</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid port&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">hostname</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">hostname</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">256</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;hostname too long&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">port</span> <span class="o">==</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">&#34;Receive heartbeat from &#34;</span> <span class="o">+</span> <span class="n">ip</span> <span class="o">+</span> <span class="s">&#34; but port not set yet&#34;</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;your port not set yet&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">String</span> <span class="n">sentinelVersion</span> <span class="o">=</span> <span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">v</span><span class="o">)</span> <span class="o">?</span> <span class="s">&#34;unknown&#34;</span> <span class="o">:</span> <span class="n">v</span><span class="o">;</span>
-
-    <span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">:</span> <span class="n">version</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">MachineInfo</span> <span class="n">machineInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MachineInfo</span><span class="o">();</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setApp</span><span class="o">(</span><span class="n">app</span><span class="o">);</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setAppType</span><span class="o">(</span><span class="n">appType</span><span class="o">);</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setHostname</span><span class="o">(</span><span class="n">hostname</span><span class="o">);</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setIp</span><span class="o">(</span><span class="n">ip</span><span class="o">);</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="n">port</span><span class="o">);</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setHeartbeatVersion</span><span class="o">(</span><span class="n">version</span><span class="o">);</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setLastHeartbeat</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
-        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setVersion</span><span class="o">(</span><span class="n">sentinelVersion</span><span class="o">);</span>
-        <span class="n">appManagement</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofSuccessMsg</span><span class="o">(</span><span class="s">&#34;success&#34;</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;Receive heartbeat error&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/machine&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Result</span><span class="o">&lt;?&gt;</span> <span class="n">receiveHeartBeat</span><span class="o">(</span><span class="n">String</span> <span class="n">app</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="nd">@RequestParam</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;app_type&#34;</span><span class="o">,</span> <span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">&#34;0&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                                      <span class="n">Integer</span> <span class="n">appType</span><span class="o">,</span> <span class="n">Long</span> <span class="n">version</span><span class="o">,</span> <span class="n">String</span> <span class="n">v</span><span class="o">,</span> <span class="n">String</span> <span class="n">hostname</span><span class="o">,</span> <span class="n">String</span> <span class="n">ip</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">Integer</span> <span class="n">port</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">app</span><span class="o">)</span> <span class="o">||</span> <span class="n">app</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">256</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid appName&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">ip</span><span class="o">)</span> <span class="o">||</span> <span class="n">ip</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">128</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid ip: &#34;</span> <span class="o">+</span> <span class="n">ip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">port</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">port</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;invalid port&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">hostname</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">hostname</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">256</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;hostname too long&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">port</span> <span class="o">==</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">&#34;Receive heartbeat from &#34;</span> <span class="o">+</span> <span class="n">ip</span> <span class="o">+</span> <span class="s">&#34; but port not set yet&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;your port not set yet&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">sentinelVersion</span> <span class="o">=</span> <span class="n">StringUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">v</span><span class="o">)</span> <span class="o">?</span> <span class="s">&#34;unknown&#34;</span> <span class="o">:</span> <span class="n">v</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">:</span> <span class="n">version</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MachineInfo</span> <span class="n">machineInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MachineInfo</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setApp</span><span class="o">(</span><span class="n">app</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setAppType</span><span class="o">(</span><span class="n">appType</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setHostname</span><span class="o">(</span><span class="n">hostname</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setIp</span><span class="o">(</span><span class="n">ip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="n">port</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setHeartbeatVersion</span><span class="o">(</span><span class="n">version</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setLastHeartbeat</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">machineInfo</span><span class="o">.</span><span class="na">setVersion</span><span class="o">(</span><span class="n">sentinelVersion</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">appManagement</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofSuccessMsg</span><span class="o">(</span><span class="s">&#34;success&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;Receive heartbeat error&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="na">ofFail</span><span class="o">(-</span><span class="n">1</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="--comalibabacspsentineldashboarddiscoveryappmanagementaddmachine">-&gt; com.alibaba.csp.sentinel.dashboard.discovery.AppManagement#addMachine</h4>
+</div><h4 id="comalibabacspsentineldashboarddiscoveryappmanagementaddmachine">com.alibaba.csp.sentinel.dashboard.discovery.AppManagement#addMachine</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -971,13 +971,13 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">long</span> <span class="nf">addMachine</span><span class="o">(</span><span class="n">MachineInfo</span> <span class="n">machineInfo</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">machineDiscovery</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">addMachine</span><span class="o">(</span><span class="n">MachineInfo</span> <span class="n">machineInfo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">machineDiscovery</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="--comalibabacspsentineldashboarddiscoverysimplemachinediscoveryaddmachine">-&gt; com.alibaba.csp.sentinel.dashboard.discovery.SimpleMachineDiscovery#addMachine</h4>
+</div><h4 id="comalibabacspsentineldashboarddiscoverysimplemachinediscoveryaddmachine">com.alibaba.csp.sentinel.dashboard.discovery.SimpleMachineDiscovery#addMachine</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -991,16 +991,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">AppInfo</span><span class="o">&gt;</span> <span class="n">apps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;();</span>
-
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">long</span> <span class="nf">addMachine</span><span class="o">(</span><span class="n">MachineInfo</span> <span class="n">machineInfo</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">AssertUtil</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">,</span> <span class="s">&#34;machineInfo cannot be null&#34;</span><span class="o">);</span>
-    <span class="n">AppInfo</span> <span class="n">appInfo</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="na">computeIfAbsent</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">.</span><span class="na">getApp</span><span class="o">(),</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">AppInfo</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">.</span><span class="na">getApp</span><span class="o">(),</span> <span class="n">machineInfo</span><span class="o">.</span><span class="na">getAppType</span><span class="o">()));</span>
-    <span class="n">appInfo</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">1</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">final</span> <span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">AppInfo</span><span class="o">&gt;</span> <span class="n">apps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">addMachine</span><span class="o">(</span><span class="n">MachineInfo</span> <span class="n">machineInfo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AssertUtil</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">,</span> <span class="s">&#34;machineInfo cannot be null&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AppInfo</span> <span class="n">appInfo</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="na">computeIfAbsent</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">.</span><span class="na">getApp</span><span class="o">(),</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">AppInfo</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">.</span><span class="na">getApp</span><span class="o">(),</span> <span class="n">machineInfo</span><span class="o">.</span><span class="na">getAppType</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appInfo</span><span class="o">.</span><span class="na">addMachine</span><span class="o">(</span><span class="n">machineInfo</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>By tracing the above code, we can see that the data submitted by the user has to be stored straight to the memory. Because this http endpoint supports GET, POST requests, so when we use POST method in sending http requests and add very large data in the body, such as app parameters, put a 1MBytes or 10MBytes, or even larger data, then it will cause the server to run out of memory and generate java .lang.OutOfMemoryError error, and implement Memory DoS.</p>
 <h3 id="0x05-points-to-note">0x05 Points to note</h3>
@@ -1019,13 +1019,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
-<span class="c1">//do something
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Memory DoS for a certain amount of time</li>
@@ -1038,11 +1038,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-<span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
-<span class="c1">//do 5s something
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do 5s something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Short Memory DoS</li>
@@ -1055,11 +1055,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-<span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
-<span class="c1">//do 100ms something
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">?</span> <span class="n">service</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do 100ms something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>After reading these three examples, I believe that most people familiar with the JVM gc mechanism will immediately understand that this is actually the difference between a shared variable referencing an object and a local variable referencing an object.</p>
 <p>Because the JVM gc mechanism is based on object references to determine whether the object memory needs to be reclaimed, and here, if we initialize an array object that is a local variable reference and only has a local variable reference, then this means that when the execution of this thread stack is complete, if the reference no longer exists, then the JVM will reclaim this piece of memory when it executes gc, so that alone This way we can only get a short period of time Memory DoS, may be 5 seconds (already relatively high quality), or only 0.1 seconds, there is no way to fully realize Memory DoS, and only let this object life cycle long enough, or reference has always existed, then, in its life cycle, we can occupy a long time JVM heap enough memory, so that the JVM can not recycle This part of the memory, so as to achieve Memory DoS.</p>

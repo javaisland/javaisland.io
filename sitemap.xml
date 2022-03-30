@@ -9,22 +9,64 @@
   </url>
   
   <url>
+    <loc>https://www.javai.net/post/202203/threadlocal-use/</loc>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/guc/</loc>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/</loc>
-    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/threadlocal/</loc>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/tutorials/</loc>
+    <lastmod>2022-03-30T20:39:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -45,20 +87,6 @@
   
   <url>
     <loc>https://www.javai.net/post/202203/oracle-java-license/</loc>
-    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
     <lastmod>2022-03-30T13:04:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -93,6 +121,13 @@
   </url>
   
   <url>
+    <loc>https://www.javai.net/post/202203/memory-dos/</loc>
+    <lastmod>2022-03-29T20:09:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://www.javai.net/tags/cve/</loc>
     <lastmod>2022-03-29T20:09:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -101,20 +136,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/dos/</loc>
-    <lastmod>2022-03-29T20:09:45+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/202203/memory-dos/</loc>
-    <lastmod>2022-03-29T20:09:45+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/tutorials/</loc>
     <lastmod>2022-03-29T20:09:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

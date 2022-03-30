@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 <link rel="canonical" href="https://www.javai.net/" />
@@ -305,6 +305,43 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/202203/threadlocal-use/">A scenario that uses Threadlocal to solve concurrency and efficiency problems</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-03-30" class="post-time">
+        2022-03-30
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 1332 words </span>
+      <span class="more-meta"> 7 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      ThreadLocal is a tool provided by JDK 1.2, a tool mainly to solve the problem of sharing resources under multi-threaded, In the next section, we will analyze how ThreadLocal can be used to solve concurrency problems and improve code efficiency in development, starting from the definition of ThreadLocal and its application scenarios.
+Scenario 1, ThreadLocal is used to save objects that are unique to each thread, creating a copy for each thread so that each thread can modify the copy it owns without affecting the other threads&rsquo; copies, ensuring thread safety.
+    </div>
+    <div class="read-more">
+      <a href="/post/202203/threadlocal-use/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/202203/oracle-java-license/">Oracle cracks down on Java licensing issues, enterprises remove JDK overnight</a>
     </h1>
     
@@ -379,7 +416,7 @@ Oracle introduced two licensing models for Java SE. In April 2019, Oracle began 
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/202203/memory-dos/">Memory Dos</a>
+      <a class="post-link" href="/post/202203/memory-dos/">A common defect in java systems - Memory DoS</a>
     </h1>
     
     <div class="post-meta">
@@ -390,7 +427,7 @@ Oracle introduced two licensing models for Java SE. In April 2019, Oracle began 
           <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
           
         </div>
-      <span class="more-meta"> 3405 words </span>
+      <span class="more-meta"> 3403 words </span>
       <span class="more-meta"> 16 min read </span>
       
       
@@ -551,7 +588,7 @@ If your project is built on Maven, you can introduce Hutool through pom to use t
     
     <div class="post-summary">
       Zero-copy in the Linux operating system Let&rsquo;s start with the general I/O process of Linux This is a procedure that reads from a disk file and writes to it via socket, and the corresponding system call is as follows.
-1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);   The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).
+1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);    The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).
     </div>
     <div class="read-more">
       <a href="/post/202203/zero-copy/" class="read-more-link">Read more</a>
