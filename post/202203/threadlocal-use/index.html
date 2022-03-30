@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>A scenario that uses Threadlocal to solve concurrency and efficiency problems - JavaIsland</title>
+  <title>A scenario using Threadlocal to solve concurrency and efficiency problems - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,7 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" /><meta name="description" content="In this article, we will analyze how ThreadLocal can solve concurrency problems and improve code efficiency in development from the definition of ThreadLocal and its application scenarios." />
+<meta name="author" content="JavaIsland" /><meta name="description" content="In this article, we introduced the ThreadLocal application scenario and demonstrated the code for the application scenario; we learned how ThreadLocal is stored in threads; and we learned the proper way to use ThreadLocal." />
 <meta name="keywords" content="java, threadlocal, guc, concurrent" />
 
 
@@ -58,20 +58,20 @@
 
 
 
-<meta property="og:title" content="A scenario that uses Threadlocal to solve concurrency and efficiency problems" />
-<meta property="og:description" content="In this article, we will analyze how ThreadLocal can solve concurrency problems and improve code efficiency in development from the definition of ThreadLocal and its application scenarios." />
+<meta property="og:title" content="A scenario using Threadlocal to solve concurrency and efficiency problems" />
+<meta property="og:description" content="In this article, we introduced the ThreadLocal application scenario and demonstrated the code for the application scenario; we learned how ThreadLocal is stored in threads; and we learned the proper way to use ThreadLocal." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202203/threadlocal-use/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-03-30T20:39:02+08:00" />
 <meta property="article:modified_time" content="2022-03-30T20:39:02+08:00" />
 
-<meta itemprop="name" content="A scenario that uses Threadlocal to solve concurrency and efficiency problems">
-<meta itemprop="description" content="In this article, we will analyze how ThreadLocal can solve concurrency problems and improve code efficiency in development from the definition of ThreadLocal and its application scenarios."><meta itemprop="datePublished" content="2022-03-30T20:39:02+08:00" />
+<meta itemprop="name" content="A scenario using Threadlocal to solve concurrency and efficiency problems">
+<meta itemprop="description" content="In this article, we introduced the ThreadLocal application scenario and demonstrated the code for the application scenario; we learned how ThreadLocal is stored in threads; and we learned the proper way to use ThreadLocal."><meta itemprop="datePublished" content="2022-03-30T20:39:02+08:00" />
 <meta itemprop="dateModified" content="2022-03-30T20:39:02+08:00" />
-<meta itemprop="wordCount" content="1332">
+<meta itemprop="wordCount" content="1333">
 <meta itemprop="keywords" content="java,threadlocal,guc," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="A scenario that uses Threadlocal to solve concurrency and efficiency problems"/>
-<meta name="twitter:description" content="In this article, we will analyze how ThreadLocal can solve concurrency problems and improve code efficiency in development from the definition of ThreadLocal and its application scenarios."/>
+<meta name="twitter:title" content="A scenario using Threadlocal to solve concurrency and efficiency problems"/>
+<meta name="twitter:description" content="In this article, we introduced the ThreadLocal application scenario and demonstrated the code for the application scenario; we learned how ThreadLocal is stored in threads; and we learned the proper way to use ThreadLocal."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -301,7 +301,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">A scenario that uses Threadlocal to solve concurrency and efficiency problems</h1>
+      <h1 class="post-title">A scenario using Threadlocal to solve concurrency and efficiency problems</h1>
       
       <div class="post-meta">
         <time datetime="2022-03-30" class="post-time">
@@ -311,7 +311,7 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 1332 words </span>
+        <span class="more-meta"> 1333 words </span>
           <span class="more-meta"> 7 min read </span>
 
         
@@ -602,9 +602,9 @@ You might think of using locks to solve the concurrency problem.</p>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>In the remove method, you can see that it gets the reference to ThreadLocalMap first and calls its remove method. The remove method here can clean up the value corresponding to the key, so that the value can be reclaimed by GC</p>
+</div><p>In the remove method, you can see that it gets the reference to ThreadLocalMap first and calls its remove method. The remove method here can clean up the value corresponding to the key, so that the value can be reclaimed by GC.</p>
 <h2 id="summary">Summary</h2>
-<p>In this article, we introduced the scenarios of ThreadLocal and demonstrated the code for the scenarios; we learned how ThreadLocal is stored in threads; and we learned the correct posture of using ThreadLocal.</p>
+<p>In this article, we introduced the ThreadLocal application scenario and demonstrated the code for the application scenario; we learned how ThreadLocal is stored in threads; and we learned the proper way to use ThreadLocal.</p>
 
     </div>
 
