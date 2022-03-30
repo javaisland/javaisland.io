@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 <link rel="canonical" href="https://www.javai.net/post/202203/zero-copy/" />
@@ -350,9 +350,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">read</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">write</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">read</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+<span class="n">write</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><div align=center> <img alt="System call flow chart" src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/26/240d80bbe51a4960851e81b4f00a0b12.jpg"/> </div>
 <p>The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access). Instead, the DMA processor transfers the hard disk data directly to memory via the bus.
@@ -368,9 +368,9 @@ As you can see, the common copy process goes through four kernel and user state 
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">tmp_buf</span> <span class="o">=</span> <span class="n">mmap</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">write</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">tmp_buf</span> <span class="o">=</span> <span class="n">mmap</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+<span class="n">write</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">tmp_buf</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>This is the system call method used. The I/O principle of this method is to map the memory address of the user buffer to the memory address of the kernel buffer, which means that the system can read and manipulate the kernel data directly in the user state.</p>
 <p>The mmap() system call first reads the disk data into the kernel buffer using DMA, and then makes the memory address of the user buffer and the kernel read buffer the same memory address through memory mapping, which means there is no need for the CPU to copy the data from the kernel read buffer to the user buffer.
@@ -383,8 +383,8 @@ You can see that this way of memory mapping reduces the number of CPU reads and 
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">sendfile</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">sendfile</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>The sendfile() system call allows for direct I/O transfers from within kernel space.</p>
 <p>The sendfile() system call also causes a switch from the user state to the kernel state. Unlike the memory mapping method, the user space cannot see or modify the data content at this point, which means that this is a full data transfer process.
@@ -398,8 +398,8 @@ There is still one CPU data copy and two user-state and kernel-state switching o
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">sendfile</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">sendfile</span><span class="o">(</span><span class="n">socket</span><span class="o">,</span> <span class="n">file</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>In Linux kernel 2.4 and later versions, the socket buffer descriptor has been adjusted to support the DMA self-collection function, which is still the same for the user, but the internal operation has changed.</p>
 <p>As you can see, this is truly zero-copy, because the CPU is no longer involved in the data copying process, but of course such a process requires hardware support to achieve.</p>
@@ -422,11 +422,11 @@ As you can see, in this mode, there is no CPU data copy, so there is really zero
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.zip&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&#34;rw&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileChannel</span> <span class="n">fileChannel</span> <span class="o">=</span> <span class="n">raf</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">MappedByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">FileChannel</span><span class="o">.</span><span class="na">MapMode</span><span class="o">.</span><span class="na">READ_ONLY</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.zip&#34;</span><span class="o">);</span>
+<span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&#34;rw&#34;</span><span class="o">);</span>
+<span class="n">FileChannel</span> <span class="n">fileChannel</span> <span class="o">=</span> <span class="n">raf</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+<span class="n">MappedByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">FileChannel</span><span class="o">.</span><span class="na">MapMode</span><span class="o">.</span><span class="na">READ_ONLY</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>The FileChannel.map() method in IO actually uses the memory mapping method in the operating system
 Memory address mapping is actually a mapping of memory addresses and disk files by the OS, and reading and writing to this memory is equivalent to reading and writing to the disk files directly, but the actual reading still goes through the OS to read into the memory PageCache, and the writing process also requires the OS to automatically replace the dirty pages to the disk.</p>
@@ -440,12 +440,12 @@ Memory address mapping is actually a mapping of memory addresses and disk files 
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">processData</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// After data processing is complete, open a SocketChannel
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SocketChannel</span> <span class="n">socketChannel</span> <span class="o">=</span> <span class="n">SocketChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">1234</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// This still requires the CPU to copy the contents of the kernel buffer to the network buffer
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">socketChannel</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buffer</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">processData</span><span class="o">();</span>
+<span class="c1">// After data processing is complete, open a SocketChannel
+</span><span class="c1"></span><span class="n">SocketChannel</span> <span class="n">socketChannel</span> <span class="o">=</span> <span class="n">SocketChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">1234</span><span class="o">));</span>
+<span class="c1">// This still requires the CPU to copy the contents of the kernel buffer to the network buffer
+</span><span class="c1"></span><span class="n">socketChannel</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buffer</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="zero-copy-in-nio">Zero copy in NIO</h3>
 <div class="highlight"><div class="chroma">
@@ -458,13 +458,13 @@ Memory address mapping is actually a mapping of memory addresses and disk files 
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.zip&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&#34;rw&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileChannel</span> <span class="n">fileChannel</span> <span class="o">=</span> <span class="n">raf</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">SocketChannel</span> <span class="n">socketChannel</span> <span class="o">=</span> <span class="n">SocketChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">1234</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// TransferTo() is used directly for data transfer between channels
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fileChannel</span><span class="o">.</span><span class="na">transferTo</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">socketChannel</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.zip&#34;</span><span class="o">);</span>
+<span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&#34;rw&#34;</span><span class="o">);</span>
+<span class="n">FileChannel</span> <span class="n">fileChannel</span> <span class="o">=</span> <span class="n">raf</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+<span class="n">SocketChannel</span> <span class="n">socketChannel</span> <span class="o">=</span> <span class="n">SocketChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">1234</span><span class="o">));</span>
+<span class="c1">// TransferTo() is used directly for data transfer between channels
+</span><span class="c1"></span><span class="n">fileChannel</span><span class="o">.</span><span class="na">transferTo</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">fileChannel</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">socketChannel</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><div align=center> <img alt="System call flow chart" src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/26/c5e5d46e8cc4473dbb0fdffeb38c39f3.png"/> </div>
 <p>his approach is the zero copy in NIO, let&rsquo;s analyze the principle:</p>

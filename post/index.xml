@@ -6,9 +6,19 @@
     <description>Recent content in Posts on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Mar 2022 20:09:45 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Mar 2022 10:06:26 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>A common defect in java systems - Memory DoS</title>
+      <title>About Spring Core Spring Beans Remote Code Warning Notice for Execution 0day Vulnerability</title>
+      <link>https://www.javai.net/post/202203/spring-0day-vulnerability/</link>
+      <pubDate>Wed, 30 Mar 2022 10:06:26 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202203/spring-0day-vulnerability/</guid>
+      <description>Information indicates that an RCE 0day vulnerability has been reported in the Spring Framework. If the target system is developed using Spring and has a JDK version above JDK9, an unauthorized attacker can exploit this vulnerability to remotely execute arbitrary code on the target device.
+1. Vulnerability Situation Analysis The Spring framework is the most widely used lightweight open source framework for Java, and in the JDK9 version of the Spring framework (and above), a remote attacker can obtain an AccessLogValve object through the framework&amp;rsquo;s parameter binding feature and use malicious field values to trigger the pipeline mechanism and write to a file in an arbitrary path if certain conditions are met.</description>
+    </item>
+    
+    <item>
+      <title>Memory Dos</title>
       <link>https://www.javai.net/post/202203/memory-dos/</link>
       <pubDate>Tue, 29 Mar 2022 20:09:45 +0800</pubDate>
       
@@ -55,7 +65,7 @@ If your project is built on Maven, you can introduce Hutool through pom to use t
       
       <guid>https://www.javai.net/post/202203/zero-copy/</guid>
       <description>Zero-copy in the Linux operating system Let&amp;rsquo;s start with the general I/O process of Linux This is a procedure that reads from a disk file and writes to it via socket, and the corresponding system call is as follows.
-1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);    The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).</description>
+1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);   The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).</description>
     </item>
     
   </channel>

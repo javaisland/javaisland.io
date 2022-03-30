@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 <link rel="canonical" href="https://www.javai.net/post/202203/java-startup-params/" />
@@ -354,15 +354,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># java -help</span>
-</span></span><span class="line"><span class="cl">Usage: java <span class="o">[</span>-options<span class="o">]</span> class <span class="o">[</span>args...<span class="o">]</span>
-</span></span><span class="line"><span class="cl">           <span class="o">(</span>execute class<span class="o">)</span>
-</span></span><span class="line"><span class="cl">   or java <span class="o">[</span>-options<span class="o">]</span> -jar jarfile <span class="o">[</span>args...<span class="o">]</span>
-</span></span><span class="line"><span class="cl">           <span class="o">(</span>execute jar file<span class="o">)</span>
-</span></span><span class="line"><span class="cl">Startup options are omitted
-</span></span><span class="line"><span class="cl"><span class="o">[</span>-options<span class="o">]</span>: options
-</span></span><span class="line"><span class="cl"><span class="o">[</span>-options<span class="o">]</span>: options <span class="o">[</span>args...<span class="o">]</span> : Passes a parameter to the main method
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># java -help</span>
+Usage: java <span class="o">[</span>-options<span class="o">]</span> class <span class="o">[</span>args...<span class="o">]</span>
+           <span class="o">(</span>execute class<span class="o">)</span>
+   or java <span class="o">[</span>-options<span class="o">]</span> -jar jarfile <span class="o">[</span>args...<span class="o">]</span>
+           <span class="o">(</span>execute jar file<span class="o">)</span>
+Startup options are omitted
+<span class="o">[</span>-options<span class="o">]</span>: options
+<span class="o">[</span>-options<span class="o">]</span>: options <span class="o">[</span>args...<span class="o">]</span> : Passes a parameter to the main method
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="standard-options">Standard options</h2>
 <ul>
@@ -455,8 +455,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">java -XX:+PrintCommandLineFlags -Xms128M -Xmx128M -Xmn64M -XX:MetaspaceSize<span class="o">=</span>256M -XX:MaxMetaspaceSize<span class="o">=</span>256M -XX:SurvivorRatio<span class="o">=</span><span class="m">8</span> -jar web.jar
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">java -XX:+PrintCommandLineFlags -Xms128M -Xmx128M -Xmn64M -XX:MetaspaceSize<span class="o">=</span>256M -XX:MaxMetaspaceSize<span class="o">=</span>256M -XX:SurvivorRatio<span class="o">=</span><span class="m">8</span> -jar web.jar
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
