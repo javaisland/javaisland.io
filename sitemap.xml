@@ -10,7 +10,49 @@
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-04-01T14:10:49+08:00</lastmod>
+    <lastmod>2022-04-01T22:47:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/</loc>
+    <lastmod>2022-04-01T22:47:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-04-01T22:47:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/spring-framework-rce-solution/</loc>
+    <lastmod>2022-04-01T22:47:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/spring-framework/</loc>
+    <lastmod>2022-04-01T22:47:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-04-01T22:47:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/tutorials/</loc>
+    <lastmod>2022-04-01T22:47:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,27 +66,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-04-01T14:10:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/</loc>
-    <lastmod>2022-04-01T14:10:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-04-01T14:10:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
     <lastmod>2022-04-01T14:10:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -65,13 +86,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/categories/tutorials/</loc>
-    <lastmod>2022-04-01T14:10:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/categories/news/</loc>
     <lastmod>2022-03-31T19:16:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -80,13 +94,6 @@
   
   <url>
     <loc>https://www.javai.net/post/202203/spring-framework-rce-early-announcement/</loc>
-    <lastmod>2022-03-31T19:16:46+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/spring-framework/</loc>
     <lastmod>2022-03-31T19:16:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

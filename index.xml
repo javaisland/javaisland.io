@@ -6,7 +6,7 @@
     <description>Recent content on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 01 Apr 2022 14:10:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Apr 2022 22:47:06 +0800</lastBuildDate>
     
         <atom:link href="https://www.javai.net/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,7 +18,8 @@
       
       <guid>https://www.javai.net/about/</guid>
       
-        <description>&lt;p&gt;Welcome to JavaIsland, where many technical articles related to Java technology are produced, we hope the articles here can bring you some help&lt;/p&gt;
+        <description>&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/01/3b544c8180514c8aaf58a33949ab4eb0.png&#34; alt=&#34;25 years of java&#34;&gt;&lt;/p&gt;
+&lt;p&gt;JavaLand is a comprehensive website that keeps up with new technologies and news on the Internet, mainly covering experience tutorials in various fields such as Java, etc. The purpose of JavaLand is to show the most practical experience to the readers who need it most, hoping that every reader who visits will gain something.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Some of the content is collected from the Internet, and we apologize if it inadvertently infringes on your copyright. Please contact us. We will remove it.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -30,6 +31,26 @@
 &lt;li&gt;&lt;a href=&#34;https://redis.io&#34;&gt;https://redis.io&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.nginx.com&#34;&gt;https://www.nginx.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Spring Framework RCE Solution</title>
+      <link>https://www.javai.net/post/202204/spring-framework-rce-solution/</link>
+      <pubDate>Fri, 01 Apr 2022 22:47:06 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/spring-framework-rce-solution/</guid>
+      
+        <description>&lt;p&gt;Just yesterday Spring officially announced a Spring Framework RCE vulnerability CVE-2022-22965.&lt;/p&gt;
+&lt;p&gt;Upgrading to Spring Framework 5.3.18+ or 5.2.20+ remains the main official Spring recommendation, which officially claims to address the root cause and prevent some other vulnerability attacks, and these also provide fixes for other CVEs.&lt;/p&gt;
+&lt;p&gt;Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has also released versions 10.0.20, 9.0.62 and 8.5.78 with it, which are the official Tomcat solutions for the reported CVE-2022-22965 vulnerability, which has been addressed in the above versions, for older The above version has resolved the CVE-2022-22965 vulnerability, and for older, unsupported versions of Spring Framework, the vulnerability can be circumvented by upgrading the Tomcat version.&lt;/p&gt;
+&lt;p&gt;However, the primary goal should be to upgrade to a currently supported version of the Spring Framework.&lt;/p&gt;
+&lt;p&gt;Another quick and easy solution is to downgrade to Java 8, but this may not be applicable to all projects.&lt;/p&gt;
+&lt;p&gt;All three of these options can be used to circumvent the Spring Framework RCE vulnerability CVE-2022-22965 and we hope this article has helped you.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Reference &lt;a href=&#34;https://spring.io/blog/2022/04/01/spring-framework-rce-mitigation-alternative&#34;&gt;https://spring.io/blog/2022/04/01/spring-framework-rce-mitigation-alternative&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
       
     </item>
