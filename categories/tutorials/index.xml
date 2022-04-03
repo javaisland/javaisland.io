@@ -6,17 +6,7 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Apr 2022 20:16:08 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Linux 5.18 has two key improvements to exFAT file system support</title>
-      <link>https://www.javai.net/post/202204/linux-exfat/</link>
-      <pubDate>Sun, 03 Apr 2022 20:16:08 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/linux-exfat/</guid>
-      <description>According to the foreign media Phoronix presentation: This week&amp;rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18+ adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &amp;ldquo;keep_last_dots&amp;rdquo; mount option, which can be used to control whether trailing dots are removed.</description>
-    </item>
-    
+    <lastBuildDate>Sun, 03 Apr 2022 15:17:30 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Practical application scenarios for pipeline stream</title>
       <link>https://www.javai.net/post/202204/piped-stream/</link>
