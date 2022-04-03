@@ -6,7 +6,16 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Apr 2022 16:00:46 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Apr 2022 15:17:30 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Practical application scenarios for pipeline stream</title>
+      <link>https://www.javai.net/post/202204/piped-stream/</link>
+      <pubDate>Sun, 03 Apr 2022 15:17:30 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/piped-stream/</guid>
+      <description>Preface PipedInputStream and PipedOutputStream are designed to solve cross-thread byte data transfers. They always come in pairs and can only be used on two different threads, using piped input and output streams in one thread can cause deadlocks. In some business scenarios, using pipeline streams will increase the speed of file uploads and reduce CPU and IO overhead, this is very practical, so this article talks about Practical application scenarios for pipeline stream.</description>
+    </item>
+    
     <item>
       <title>Principle of implementation of atomic operations</title>
       <link>https://www.javai.net/post/202204/atomic-principle/</link>
