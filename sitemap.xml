@@ -10,7 +10,63 @@
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-04-03T15:17:30+08:00</lastmod>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/exfat/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/file-system/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/linux/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/linux-exfat/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/tutorials/</loc>
+    <lastmod>2022-04-03T20:16:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -30,13 +86,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/</loc>
-    <lastmod>2022-04-03T15:17:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/piped-stream/</loc>
     <lastmod>2022-04-03T15:17:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -44,28 +93,7 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-04-03T15:17:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/post/202204/piped-stream/</loc>
-    <lastmod>2022-04-03T15:17:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
-    <lastmod>2022-04-03T15:17:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/tutorials/</loc>
     <lastmod>2022-04-03T15:17:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
