@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zombie process on JavaIsland</title>
+    <link>https://www.javai.net/tags/zombie-process/</link>
+    <description>Recent content in zombie process on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Apr 2022 17:07:11 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/zombie-process/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java generates a lot of zombie process problems</title>
+      <link>https://www.javai.net/post/202204/java-zombie-processes/</link>
+      <pubDate>Mon, 04 Apr 2022 17:07:11 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-zombie-processes/</guid>
+      <description>Recently I encountered a problem, a Java process using Runtime().exec() to execute script files, creating a large number of zombie processes, while the Java process is running in the container.
+At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
+Locate the zombie process by ps aux | grep Z.
+1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0.</description>
+    </item>
+    
+  </channel>
+</rss>

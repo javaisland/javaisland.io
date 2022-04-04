@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java9 released on JavaIsland</title>
+    <link>https://www.javai.net/tags/java9-released/</link>
+    <description>Recent content in java9 released on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Apr 2022 17:27:47 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java9-released/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Changes to the String object in Java 9</title>
+      <link>https://www.javai.net/post/202204/java9-string/</link>
+      <pubDate>Mon, 04 Apr 2022 17:27:47 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java9-string/</guid>
+      <description>Overview In Java 9, the underlying String object has been changed from char[] to byte[], which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement. Because in Java char takes up 2 bytes and byte takes up 1 byte, while a Unicode character does not necessarily need 2 bytes to be represented, at least ASCII characters only need 1 byte to be done. That is, if your string is full of ASCII characters, half the space would be wasted if you use char.</description>
+    </item>
+    
+  </channel>
+</rss>

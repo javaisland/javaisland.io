@@ -6,7 +6,16 @@
     <description>Recent content in news on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Apr 2022 20:16:08 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Apr 2022 17:27:47 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Changes to the String object in Java 9</title>
+      <link>https://www.javai.net/post/202204/java9-string/</link>
+      <pubDate>Mon, 04 Apr 2022 17:27:47 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java9-string/</guid>
+      <description>Overview In Java 9, the underlying String object has been changed from char[] to byte[], which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement. Because in Java char takes up 2 bytes and byte takes up 1 byte, while a Unicode character does not necessarily need 2 bytes to be represented, at least ASCII characters only need 1 byte to be done. That is, if your string is full of ASCII characters, half the space would be wasted if you use char.</description>
+    </item>
+    
     <item>
       <title>Linux 5.18 has two key improvements to exFAT file system support</title>
       <link>https://www.javai.net/post/202204/linux-exfat/</link>

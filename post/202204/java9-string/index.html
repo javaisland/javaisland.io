@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Linux 5.18 has two key improvements to exFAT file system support - JavaIsland</title>
+  <title>Changes to the String object in Java 9 - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,10 +22,8 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="According to the foreign media Phoronix presentation: This week&amp;rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &amp;ldquo;keep_last_dots&amp;rdquo; mount option, which can be used to control whether trailing dots are removed." />
-<meta name="keywords" content="linux, exfat, file system" />
+<meta name="author" content="JavaIsland" /><meta name="description" content="JIn Java 9, the underlying String object has been changed from `char[]` to `byte[]`, which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement." />
+<meta name="keywords" content="java, string, java9 released" />
 
 
 
@@ -36,7 +34,7 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 <meta name="generator" content="Hugo 0.95.0" />
 
 
-<link rel="canonical" href="https://www.javai.net/post/202204/linux-exfat/" />
+<link rel="canonical" href="https://www.javai.net/post/202204/java9-string/" />
 
 
 
@@ -60,23 +58,20 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 
 
 
-<meta property="og:title" content="Linux 5.18 has two key improvements to exFAT file system support" />
-<meta property="og:description" content="According to the foreign media Phoronix presentation: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed." />
+<meta property="og:title" content="Changes to the String object in Java 9" />
+<meta property="og:description" content="JIn Java 9, the underlying String object has been changed from `char[]` to `byte[]`, which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.javai.net/post/202204/linux-exfat/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-04-03T20:16:08+08:00" />
-<meta property="article:modified_time" content="2022-04-03T20:16:08+08:00" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java9-string/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-04T17:27:47+08:00" />
+<meta property="article:modified_time" content="2022-04-04T17:27:47+08:00" />
 
-<meta itemprop="name" content="Linux 5.18 has two key improvements to exFAT file system support">
-<meta itemprop="description" content="According to the foreign media Phoronix presentation: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed."><meta itemprop="datePublished" content="2022-04-03T20:16:08+08:00" />
-<meta itemprop="dateModified" content="2022-04-03T20:16:08+08:00" />
-<meta itemprop="wordCount" content="234">
-<meta itemprop="keywords" content="linux,exfat,file system," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux 5.18 has two key improvements to exFAT file system support"/>
-<meta name="twitter:description" content="According to the foreign media Phoronix presentation: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed."/>
+<meta itemprop="name" content="Changes to the String object in Java 9">
+<meta itemprop="description" content="JIn Java 9, the underlying String object has been changed from `char[]` to `byte[]`, which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement."><meta itemprop="datePublished" content="2022-04-04T17:27:47+08:00" />
+<meta itemprop="dateModified" content="2022-04-04T17:27:47+08:00" />
+<meta itemprop="wordCount" content="305">
+<meta itemprop="keywords" content="java,string,java9 released," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Changes to the String object in Java 9"/>
+<meta name="twitter:description" content="JIn Java 9, the underlying String object has been changed from `char[]` to `byte[]`, which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -306,17 +301,17 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Linux 5.18 has two key improvements to exFAT file system support</h1>
+      <h1 class="post-title">Changes to the String object in Java 9</h1>
       
       <div class="post-meta">
-        <time datetime="2022-04-03" class="post-time">
-          2022-04-03
+        <time datetime="2022-04-04" class="post-time">
+          2022-04-04
         </time>
         <div class="post-category">
             <a href="https://www.javai.net/categories/news/"> news </a>
             
           </div>
-        <span class="more-meta"> 234 words </span>
+        <span class="more-meta"> 305 words </span>
           <span class="more-meta"> 2 min read </span>
 
         
@@ -332,17 +327,74 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Table of Contents</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#a-brief-unicode-description">A brief Unicode description</a></li>
+  </ul>
+</nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      <p>According to the foreign media <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=Linux-5.18-exFAT">Phoronix presentation</a>: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.</p>
-<p>exFAT on Linux 5.18+ adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed. The motivation for this work was the discovery that the FUSE exFAT driver&rsquo;s trailing dots worked well, but the Linux kernel driver did not allow it. For more information about this <a href="https://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/exfat.git/commit/?h=dev&amp;id=9ec784bf774c2d3b35a7577fc6441cfbd60aefea">patch</a> can be viewed in the Linux kernel mailing list.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/03/788a4b1c8f56490fba37fb5bc262b451.png" alt="exfat"></p>
-<p>Linux 5.18 <a href="https://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/exfat.git/commit/?h=dev&amp;id=a4a3d8c52d952ab1f5c8b8b67b57f2e01936628d">another exFAT patch</a> is to: no longer clear VolumeDirty in writebacks and avoid shortening storage device life. Prior to this patch, if &lsquo;dirsync&rsquo; or &lsquo;sync&rsquo; was not enabled, VolumeDirty was cleared first in the writeback. However, if a sudden power failure occurs after purging VolumeDirty and no other updates are written, the exFAT file system will not detect the power failure on the next mount. And VolumeDirty will be reset when the parent directory is updated, but not cleared. This means that the BootSector must be written to at least once per write back, which shortens the life of the device.</p>
-<p>This is the <a href="https://lkml.org/lkml/2022/4/1/403">exFAT pull</a> in Linux 5.18.</p>
+      <h2 id="overview">Overview</h2>
+<p>In Java 9, the underlying String object has been changed from <code>char[]</code> to <code>byte[]</code>, which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement. Because in Java <code>char</code> takes up 2 bytes and <code>byte</code> takes up 1 byte, while a Unicode character does not necessarily need 2 bytes to be represented, at least ASCII characters only need 1 byte to be done. That is, if your string is full of ASCII characters, half the space would be wasted if you use char.</p>
+<h2 id="a-brief-unicode-description">A brief Unicode description</h2>
+<p>Speaking of Unicode and its Code Points and Code Units, think of Unicode as a giant table where each character has a unique corresponding number.</p>
+<p>A Code Point represents the serial number of a Unicode character in the table.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&gt; &#39;A&#39;.codePointAt(0).toString(16)
+</span></span><span class="line"><span class="cl">&#39;41&#39;
+</span></span><span class="line"><span class="cl">&gt; &#39;π&#39;.codePointAt(0).toString(16)
+</span></span><span class="line"><span class="cl">&#39;3c0&#39;
+</span></span><span class="line"><span class="cl">&gt; &#39;🙂&#39;.codePointAt(0).toString(16)
+</span></span><span class="line"><span class="cl">&#39;1f642&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>One or more Code Units represent a Code Point, which is used to store and transmit Unicode characters, as follows in UTF-8 encoding.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Character</td>
+<td>Code point</td>
+<td>Code units</td>
+</tr>
+<tr>
+<td>A</td>
+<td>0x0041</td>
+<td>01000001</td>
+</tr>
+<tr>
+<td>π</td>
+<td>0x03C0</td>
+<td>11001111, 10000000</td>
+</tr>
+<tr>
+<td>i</td>
+<td>0x1F642</td>
+<td>11110000, 10011111, 10011001, 10000010</td>
+</tr>
+</tbody>
+</table>
+<p>UTF-8 Code Unit occupies 8 bits (1 byte), UTF-16 Code Unit occupies 16 bits (2 bytes), UTF-32 Code Unit occupies 32 bits (4 bytes), except for UTF-32, UTF-8/16 are variable length encoding, which means that when converting a Code Point into a Code Unit This means that when converting a Code Point to a Code Unit, one or more Code Units are used depending on the situation (as explained in the table above).</p>
+<p>So, when Java 9 String is changed from <code>char[]</code> to <code>byte[]</code> at the bottom, unless UTF-32 encoding (fixed-length encoding) is used, then it is definitely variable-length encoding, making the memory footprint more compact. That&rsquo;s why the Java 9 String API adds methods on Code Point.</p>
 
     </div>
 
@@ -355,16 +407,16 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://www.javai.net/tags/linux/">linux</a>
-          <a href="https://www.javai.net/tags/exfat/">exfat</a>
-          <a href="https://www.javai.net/tags/file-system/">file system</a>
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/string/">string</a>
+          <a href="https://www.javai.net/tags/java9-released/">java9 released</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/202204/java-zombie-processes/">
+          <a class="prev" href="/post/202204/threadpool-size/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -374,12 +426,12 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 </svg>
 
             </i>
-            <span class="prev-text nav-default">Java generates a lot of zombie process problems</span>
+            <span class="prev-text nav-default">How to estimate throughput and thread pool size</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         
-          <a class="next" href="/post/202204/piped-stream/">
-            <span class="next-text nav-default">Practical application scenarios for pipeline stream</span>
+          <a class="next" href="/post/202204/java-zombie-processes/">
+            <span class="next-text nav-default">Java generates a lot of zombie process problems</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">

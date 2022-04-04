@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Linux 5.18 has two key improvements to exFAT file system support - JavaIsland</title>
+  <title>How to estimate throughput and thread pool size - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,10 +22,8 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="According to the foreign media Phoronix presentation: This week&amp;rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &amp;ldquo;keep_last_dots&amp;rdquo; mount option, which can be used to control whether trailing dots are removed." />
-<meta name="keywords" content="linux, exfat, file system" />
+<meta name="author" content="JavaIsland" /><meta name="description" content="We often use thread pools in development, and this article describes how to estimate throughput and thread pool size." />
+<meta name="keywords" content="java, threadpool, throughput , concurrent, juc" />
 
 
 
@@ -36,7 +34,7 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 <meta name="generator" content="Hugo 0.95.0" />
 
 
-<link rel="canonical" href="https://www.javai.net/post/202204/linux-exfat/" />
+<link rel="canonical" href="https://www.javai.net/post/202204/threadpool-size/" />
 
 
 
@@ -60,23 +58,20 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 
 
 
-<meta property="og:title" content="Linux 5.18 has two key improvements to exFAT file system support" />
-<meta property="og:description" content="According to the foreign media Phoronix presentation: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed." />
+<meta property="og:title" content="How to estimate throughput and thread pool size" />
+<meta property="og:description" content="We often use thread pools in development, and this article describes how to estimate throughput and thread pool size." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.javai.net/post/202204/linux-exfat/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-04-03T20:16:08+08:00" />
-<meta property="article:modified_time" content="2022-04-03T20:16:08+08:00" />
+<meta property="og:url" content="https://www.javai.net/post/202204/threadpool-size/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-04T17:35:33+08:00" />
+<meta property="article:modified_time" content="2022-04-04T17:35:33+08:00" />
 
-<meta itemprop="name" content="Linux 5.18 has two key improvements to exFAT file system support">
-<meta itemprop="description" content="According to the foreign media Phoronix presentation: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed."><meta itemprop="datePublished" content="2022-04-03T20:16:08+08:00" />
-<meta itemprop="dateModified" content="2022-04-03T20:16:08+08:00" />
-<meta itemprop="wordCount" content="234">
-<meta itemprop="keywords" content="linux,exfat,file system," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux 5.18 has two key improvements to exFAT file system support"/>
-<meta name="twitter:description" content="According to the foreign media Phoronix presentation: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.
-exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed."/>
+<meta itemprop="name" content="How to estimate throughput and thread pool size">
+<meta itemprop="description" content="We often use thread pools in development, and this article describes how to estimate throughput and thread pool size."><meta itemprop="datePublished" content="2022-04-04T17:35:33+08:00" />
+<meta itemprop="dateModified" content="2022-04-04T17:35:33+08:00" />
+<meta itemprop="wordCount" content="766">
+<meta itemprop="keywords" content="java,threadpool,throughput ," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to estimate throughput and thread pool size"/>
+<meta name="twitter:description" content="We often use thread pools in development, and this article describes how to estimate throughput and thread pool size."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -306,18 +301,18 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Linux 5.18 has two key improvements to exFAT file system support</h1>
+      <h1 class="post-title">How to estimate throughput and thread pool size</h1>
       
       <div class="post-meta">
-        <time datetime="2022-04-03" class="post-time">
-          2022-04-03
+        <time datetime="2022-04-04" class="post-time">
+          2022-04-04
         </time>
         <div class="post-category">
-            <a href="https://www.javai.net/categories/news/"> news </a>
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 234 words </span>
-          <span class="more-meta"> 2 min read </span>
+        <span class="more-meta"> 766 words </span>
+          <span class="more-meta"> 4 min read </span>
 
         
         
@@ -332,17 +327,89 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Table of Contents</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#estimating-throughput">Estimating Throughput</a></li>
+    <li><a href="#estimating-thread-pool-size">Estimating thread pool size</a></li>
+  </ul>
+</nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      <p>According to the foreign media <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=Linux-5.18-exFAT">Phoronix presentation</a>: This week&rsquo;s Linux 5.18 merge window has two driver PRs for the Microsoft exFAT file system, both of which are very important driver patches, albeit small in number.</p>
-<p>exFAT on Linux 5.18+ adds an option to allow access to paths with trailing points. Until now, the exFAT driver unconditionally removed trailing dots from path components, while Linux 5.18 introduced the exFAT &ldquo;keep_last_dots&rdquo; mount option, which can be used to control whether trailing dots are removed. The motivation for this work was the discovery that the FUSE exFAT driver&rsquo;s trailing dots worked well, but the Linux kernel driver did not allow it. For more information about this <a href="https://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/exfat.git/commit/?h=dev&amp;id=9ec784bf774c2d3b35a7577fc6441cfbd60aefea">patch</a> can be viewed in the Linux kernel mailing list.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/03/788a4b1c8f56490fba37fb5bc262b451.png" alt="exfat"></p>
-<p>Linux 5.18 <a href="https://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/exfat.git/commit/?h=dev&amp;id=a4a3d8c52d952ab1f5c8b8b67b57f2e01936628d">another exFAT patch</a> is to: no longer clear VolumeDirty in writebacks and avoid shortening storage device life. Prior to this patch, if &lsquo;dirsync&rsquo; or &lsquo;sync&rsquo; was not enabled, VolumeDirty was cleared first in the writeback. However, if a sudden power failure occurs after purging VolumeDirty and no other updates are written, the exFAT file system will not detect the power failure on the next mount. And VolumeDirty will be reset when the parent directory is updated, but not cleared. This means that the BootSector must be written to at least once per write back, which shortens the life of the device.</p>
-<p>This is the <a href="https://lkml.org/lkml/2022/4/1/403">exFAT pull</a> in Linux 5.18.</p>
+      <h2 id="estimating-throughput">Estimating Throughput</h2>
+<p>Now there is a task which execution time is divided into 2 parts, the first part does math and the second part waits for IO. these two parts are called compute operation and wait operation.</p>
+<p>So now we need to estimate the peak throughput that can be achieved by executing this task with the CPU at full power.</p>
+<p>Then we need to know how much time it takes to execute this task, how much time is spent on the computation part and how much time is spent on the wait part.</p>
+<p>Assuming that the computation part of the task takes 1 second and the waiting part takes 9 seconds, and that 10 threads are opened to execute 10 tasks, the following execution graph can be obtained with a single-core CPU.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/04/62bb8721a00048e691e52cb9275cb3a8.png" alt="task image"></p>
+<p>The blue line in the graph is the waiting schedule, the orange line is the execution of the computation task, and the green line is the time spent by the CPU waiting.</p>
+<p>You can benefit from having 10 threads open, each task can use the waiting time of other tasks to perform its own computational operations, while keeping the CPU always busy, i.e. 100% utilization. This also tells you that even if you open 11 threads, you won&rsquo;t get more benefits.</p>
+<p>In reality, the OS will run these 10 threads alternately, see the red line in the diagram, and the OS can schedule the computation tasks of these 10 tasks as many times as it wants within this range. If the overhead of thread scheduling is removed, the total time spent is still equal to 10 seconds.</p>
+<p>The throughput of this diagram becomes obvious: ``The throughput of</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">throughput = 10 tasks / (10 * computing time + wait time) 
+</span></span><span class="line"><span class="cl">           = 10 tasks / (10 * 1s + 9s) 
+</span></span><span class="line"><span class="cl">           = 10 / 19s = 0.526 tasks/s
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>What if we now have a dual-core CPU?</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/04/a84521f5605444d39f435e47870e93ae.png" alt="one core"></p>
+<p>You can see that because there are 2 CPU cores, the computational tasks can overlap and thus the time spent is halved and the throughput is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">throughput = 10 tasks / (10 * computing time / 2 + wait time) 
+</span></span><span class="line"><span class="cl">           = 10 tasks / (10 * 1s / 2 + 9s) 
+</span></span><span class="line"><span class="cl">           = 10 / 14s = 0.7142 tasks/s
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>So to summarize the throughput calculation formula.</p>
+<ul>
+<li>Throughput: throughput.</li>
+<li>Tn: number of tasks.</li>
+<li>C: Number of CPUs. Can have a decimal number, such as 0.5, which means only half of the computing power is provided.</li>
+<li>Tc: time spent by task computation.</li>
+<li>Tw: the time spent by task waiting.</li>
+<li>E: time consumed for the last task to finish.</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/04/047c14c5f5e74c579162aa2d5285fb6a.png" alt="two cores"></p>
+<p>C=1 in the formula means that the CPU is working at 100% of full speed, if C=0.5 then it means that the CPU has 50% of idle time, if C=2 then it means that two CPUs are started to run at full speed.</p>
+<p>You can see that to increase the throughput there are.</p>
+<ul>
+<li>Increase C, which will be discussed below.</li>
+<li>Decrease Tc</li>
+<li>Decrease Tw</li>
+</ul>
+<p>The general idea is to use more CPU cores to make the task run in less time.</p>
+<p>Maybe you think you can also improve throughput by increasing Tn, as in the following figure.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/04/ec47fc65e45b49ff8887a68d47d28d41.png" alt="task-number-throughput"></p>
+<p>You can see that the throughput goes up with the number of tasks, so will it always be longer? The answer is no, as Tn gets bigger and bigger, Tn * Tc / C will also get bigger and bigger, then you can ignore Tw and the formula becomes C / Tc, which is the theoretical upper bound on throughput, and increasing Tn will only converge to this value infinitely.</p>
+<h2 id="estimating-thread-pool-size">Estimating thread pool size</h2>
+<p>So the question is, how do you know how many threads to open to get the CPU to reach the target utilization?</p>
+<p>This depends on the following equation.</p>
+<ul>
+<li>N: Number of CPUs.</li>
+<li>U: CPU utilization, 0.1 means 10%, 1 means 100%.</li>
+<li>C: time used CPU.</li>
+<li>W: Waiting time.</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/04/b199770ae06345e2ac65334068f7fbec.png" alt="number of threads"></p>
+<p>Note: N * U in this formula = C in the throughput formula.</p>
+<p>If U = 1 (100% utilization), it is the ratio of W to C that determines the number of threads, when W is higher then more threads are needed, when W = 0, only the same number of threads as N is needed.</p>
+<p>This formula also tells us that opening more threads will not bring additional benefits but will cause the opposite effect (increased thread scheduling overhead), so in practice we use thread pools with upper bounds.</p>
+<p>And when actually doing performance tuning, the thread pool size is adjusted around the calculated number to achieve the best results.</p>
 
     </div>
 
@@ -355,31 +422,18 @@ exFAT on Linux 5.18&#43; adds an option to allow access to paths with trailing p
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://www.javai.net/tags/linux/">linux</a>
-          <a href="https://www.javai.net/tags/exfat/">exfat</a>
-          <a href="https://www.javai.net/tags/file-system/">file system</a>
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/threadpool/">threadpool</a>
+          <a href="https://www.javai.net/tags/throughput/">throughput </a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/202204/java-zombie-processes/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">Java generates a lot of zombie process problems</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
-          <a class="next" href="/post/202204/piped-stream/">
-            <span class="next-text nav-default">Practical application scenarios for pipeline stream</span>
+          <a class="next" href="/post/202204/java9-string/">
+            <span class="next-text nav-default">Changes to the String object in Java 9</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">
