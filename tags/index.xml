@@ -6,13 +6,49 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 04 Apr 2022 17:35:33 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Apr 2022 20:26:02 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>bigdecimal</title>
+      <link>https://www.javai.net/tags/bigdecimal/</link>
+      <pubDate>Tue, 05 Apr 2022 20:26:02 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/bigdecimal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Calculated data</title>
+      <link>https://www.javai.net/tags/calculated-data/</link>
+      <pubDate>Tue, 05 Apr 2022 20:26:02 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/calculated-data/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Mon, 04 Apr 2022 17:35:33 +0800</pubDate>
+      <pubDate>Tue, 05 Apr 2022 20:26:02 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java8 new feature</title>
+      <link>https://www.javai.net/tags/java8-new-feature/</link>
+      <pubDate>Tue, 05 Apr 2022 17:40:16 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java8-new-feature/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time api</title>
+      <link>https://www.javai.net/tags/time-api/</link>
+      <pubDate>Tue, 05 Apr 2022 17:40:16 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/time-api/</guid>
       <description></description>
     </item>
     
@@ -148,42 +184,6 @@
       <pubDate>Thu, 31 Mar 2022 15:53:34 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/reflect/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>guc</title>
-      <link>https://www.javai.net/tags/guc/</link>
-      <pubDate>Wed, 30 Mar 2022 20:39:02 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/guc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>threadlocal</title>
-      <link>https://www.javai.net/tags/threadlocal/</link>
-      <pubDate>Wed, 30 Mar 2022 20:39:02 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/threadlocal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>oracle</title>
-      <link>https://www.javai.net/tags/oracle/</link>
-      <pubDate>Wed, 30 Mar 2022 13:04:22 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/oracle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>0day</title>
-      <link>https://www.javai.net/tags/0day/</link>
-      <pubDate>Wed, 30 Mar 2022 10:06:26 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/0day/</guid>
       <description></description>
     </item>
     

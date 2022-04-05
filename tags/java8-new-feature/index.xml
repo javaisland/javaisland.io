@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java8 new feature on JavaIsland</title>
+    <link>https://www.javai.net/tags/java8-new-feature/</link>
+    <description>Recent content in java8 new feature on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 05 Apr 2022 17:40:16 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java8-new-feature/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java8 new features of the time and date API</title>
+      <link>https://www.javai.net/post/202204/java8-time-api/</link>
+      <pubDate>Tue, 05 Apr 2022 17:40:16 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java8-time-api/</guid>
+      <description>Java8 includes a new time and date API, which is placed under the java.time package. This new time-date API is immutable and thread-safe (This class is immutable and thread-safe).
+Local time: LocalDate, LocalTime, LocalDateTime Instances of the classes localDate, LocalTime, and LocalDateTime are immutable objects that represent the date, time, date, and time, respectively, using the ISO-8601 calendar system. They provide a simple date or time and do not contain current time information.</description>
+    </item>
+    
+  </channel>
+</rss>
