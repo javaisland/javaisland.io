@@ -6,7 +6,40 @@
     <description>Recent content in java on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 05 Apr 2022 20:26:02 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 16:30:46 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ReentrantLock implementation principle</title>
+      <link>https://www.javai.net/post/202204/reentrantlock-principle/</link>
+      <pubDate>Wed, 06 Apr 2022 16:30:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/reentrantlock-principle/</guid>
+      <description>When using synchronize to do synchronization, lock acquisition and release are implicitly implemented by compiling and adding different machine instructions to achieve the principle.
+ ReentrantLock is a class based on AbstractQueuedSynchronizer(AQS for short) implementation, this article analyzes the implementation principle of ReentrantLock, I hope it will be helpful to you.
+ReentrantLock: a thread can still repeat the lock after it has obtained it, and will not appear to block itself.</description>
+    </item>
+    
+    <item>
+      <title>Practical Applications of Reflection - Building Log Objects</title>
+      <link>https://www.javai.net/post/202204/java-reflect-application/</link>
+      <pubDate>Wed, 06 Apr 2022 16:16:21 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-reflect-application/</guid>
+      <description>Preface In our practical development, we often use reflection, I present an example of the logging function done by reflection in practical development.
+Traditional logging Some basic knowledge about reflection can be found in Reflection Primer.
+I believe that logging is not new to you, in the actual development of some more sensitive data tables we need to record every operation of it.
+First, let&amp;rsquo;s look at the traditional way of writing.</description>
+    </item>
+    
+    <item>
+      <title>How to implement detection of undirected and directed loops in Java</title>
+      <link>https://www.javai.net/post/202204/detect-loops/</link>
+      <pubDate>Wed, 06 Apr 2022 13:59:55 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/detect-loops/</guid>
+      <description>Undirected rings An undirected graph with rings is shown below, where there are two rings, 0-2-1-0 and 2-3-4-2, respectively.
+To detect rings in an undirected graph, you can use depth-first search. Suppose we start from vertex 0, then walk to the adjacent vertex 2, then walk to the vertex 1 adjacent to vertex 2. Since vertex 0 and vertex 1 are adjacent and vertex 0 is labeled, it means we have spared a loop, so there is a loop in the undirected graph.</description>
+    </item>
+    
     <item>
       <title>Usage of Bigdecimal</title>
       <link>https://www.javai.net/post/202204/bigdecimal-use/</link>

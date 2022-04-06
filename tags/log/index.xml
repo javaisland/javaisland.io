@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>log on JavaIsland</title>
+    <link>https://www.javai.net/tags/log/</link>
+    <description>Recent content in log on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 06 Apr 2022 16:16:21 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Practical Applications of Reflection - Building Log Objects</title>
+      <link>https://www.javai.net/post/202204/java-reflect-application/</link>
+      <pubDate>Wed, 06 Apr 2022 16:16:21 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-reflect-application/</guid>
+      <description>Preface In our practical development, we often use reflection, I present an example of the logging function done by reflection in practical development.
+Traditional logging Some basic knowledge about reflection can be found in Reflection Primer.
+I believe that logging is not new to you, in the actual development of some more sensitive data tables we need to record every operation of it.
+First, let&amp;rsquo;s look at the traditional way of writing.</description>
+    </item>
+    
+  </channel>
+</rss>
