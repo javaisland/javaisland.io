@@ -51,6 +51,16 @@ To detect rings in an undirected graph, you can use depth-first search. Suppose 
     </item>
     
     <item>
+      <title>How to implement undirected graphs in Java</title>
+      <link>https://www.javai.net/post/202204/undirected-graphs/</link>
+      <pubDate>Wed, 06 Apr 2022 13:57:30 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/undirected-graphs/</guid>
+      <description>Basic concepts Definition of a graph A graph is a binary consisting of a set of points V={vi}V={vi} and a set E={ek}E={ek} of unordered pairs of elements in VV, denoted G=(V,E)G=(V,E), elements vivi in VV are called vertices and elements ekek in EE are called edges.
+For two points u,vu,v in VV, if the edge (u,v)(u,v) belongs to EE, then the two points u,vu,v are said to be adjacent and u,vu,v is called the endpoint of the edge (u,v)(u,v).</description>
+    </item>
+    
+    <item>
       <title>Usage of Bigdecimal</title>
       <link>https://www.javai.net/post/202204/bigdecimal-use/</link>
       <pubDate>Tue, 05 Apr 2022 20:26:02 +0800</pubDate>
@@ -198,16 +208,6 @@ Oracle introduced two licensing models for Java SE. In April 2019, Oracle began 
       <guid>https://www.javai.net/post/202203/spring-0day-vulnerability/</guid>
       <description>Information indicates that an RCE 0day vulnerability has been reported in the Spring Framework. If the target system is developed using Spring and has a JDK version above JDK9, an unauthorized attacker can exploit this vulnerability to remotely execute arbitrary code on the target device.
 1. Vulnerability Situation Analysis The Spring framework is the most widely used lightweight open source framework for Java, and in the JDK9 version of the Spring framework (and above), a remote attacker can obtain an AccessLogValve object through the framework&amp;rsquo;s parameter binding feature and use malicious field values to trigger the pipeline mechanism and write to a file in an arbitrary path if certain conditions are met.</description>
-    </item>
-    
-    <item>
-      <title>A common defect in java systems - Memory DoS</title>
-      <link>https://www.javai.net/post/202203/memory-dos/</link>
-      <pubDate>Tue, 29 Mar 2022 20:09:45 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202203/memory-dos/</guid>
-      <description>I. What is DoS? DoS is short for Denial of Service, which means denial of service. The attack that causes DoS is called a DoS attack, and its purpose is to make the computer or network unable to provide normal services. Denial of Service exists on various web services, this web service can be implemented in c, c++, or go, java, php, python, and other languages.
-II. Status of Java DoS In various open source and closed source java system products, we often see announcements about DoS defects, most of which are CPU exhaustion type or business offload type DoS.</description>
     </item>
     
   </channel>

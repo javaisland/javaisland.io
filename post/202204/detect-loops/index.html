@@ -345,7 +345,7 @@
     <div class="post-content">
       <h2 id="undirected-rings">Undirected rings</h2>
 <p>An undirected graph with rings is shown below, where there are two rings, 0-2-1-0 and 2-3-4-2, respectively.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/06/bec982609990410eafa56fc996138cfc.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/06/bec982609990410eafa56fc996138cfc.png" alt="undirected graph"></p>
 <p>To detect rings in an undirected graph, you can use depth-first search. Suppose we start from vertex 0, then walk to the adjacent vertex 2, then walk to the vertex 1 adjacent to vertex 2. Since vertex 0 and vertex 1 are adjacent and vertex 0 is labeled, it means we have spared a loop, so there is a loop in the undirected graph. Although vertex 2 is adjacent to vertex 1, it does not indicate the existence of a ring, because we go directly from vertex 2 to vertex 1, which is only an edge relationship. The algorithm is shown below.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -467,7 +467,7 @@
 </div>
 </div><h2 id="directed-rings">Directed rings</h2>
 <h3 id="directed-graphs">Directed graphs</h3>
-<p>The implementation of a directed graph is almost the same as the implementation of an undirected graph in the previous blog <a href="https://www.cnblogs.com/javaisland/p/16101613.html">&ldquo;How to Implement Undirected Graphs in Java&rdquo;</a>, except that when adding edges v-w, only vertex w is added to the chain of vertices v, and the chain of vertices w is not without manipulating the chain table of vertex w. If you change the access rights of the member variables in <code>LinkGraph</code> to <code>protected</code>, you can simply inherit and override the <code>addEdge</code> method.</p>
+<p>The implementation of a directed graph is almost the same as the implementation of an undirected graph in the previous blog <a href="https://www.javaisland.net/post/202204/undirected-graphs/">&ldquo;How to Implement Undirected Graphs in Java&rdquo;</a>, except that when adding edges v-w, only vertex w is added to the chain of vertices v, and the chain of vertices w is not without manipulating the chain table of vertex w. If you change the access rights of the member variables in <code>LinkGraph</code> to <code>protected</code>, you can simply inherit and override the <code>addEdge</code> method.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -702,8 +702,8 @@
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         
-          <a class="next" href="/post/202204/bigdecimal-use/">
-            <span class="next-text nav-default">Usage of Bigdecimal</span>
+          <a class="next" href="/post/202204/undirected-graphs/">
+            <span class="next-text nav-default">How to implement undirected graphs in Java</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">
