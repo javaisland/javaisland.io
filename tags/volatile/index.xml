@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>volatile on JavaIsland</title>
+    <link>https://www.javai.net/tags/volatile/</link>
+    <description>Recent content in volatile on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Apr 2022 16:01:20 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/volatile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Application of Volatile</title>
+      <link>https://www.javai.net/post/202204/volatile-application/</link>
+      <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/volatile-application/</guid>
+      <description>Memory Visibility Since the Java Memory Model (JMM) states that all variables are stored in main memory, and each thread has its own working memory (cache).
+When a thread is working, it needs to copy the data from the main memory to the working memory. This way, any operation on the data is based on the working memory (which is more efficient) and cannot directly manipulate the data in the main memory or the working memory of other threads, and then flush the updated data to the main memory afterwards.</description>
+    </item>
+    
+  </channel>
+</rss>

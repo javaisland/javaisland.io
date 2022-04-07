@@ -22,8 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="Preface When it comes to java thread pools nothing is more familiar than the ExecutorService interface. jdk1.5 adds java.util.concurrent package under this api, which greatly simplifies the development of multi-threaded code. Whether you use FixedThreadPool or CachedThreadPool the implementation behind it is ThreadPoolExecutor. threadPoolExecutor is a typical product of cache pooling design, because the pool has a size, when the pool volume is not enough to carry, it involves a rejection policy." />
+<meta name="author" content="JavaIsland" /><meta name="description" content="This article describes the definition of the java thread pool rejection policy interface and the timing he use scenario for triggering the rejection policy." />
 <meta name="keywords" content="java, threadpool, thread, concurrent, rejectionpolicy" />
 
 
@@ -60,19 +59,19 @@
 
 
 <meta property="og:title" content="Thread pool rejection policy" />
-<meta property="og:description" content="Preface When it comes to java thread pools nothing is more familiar than the ExecutorService interface. jdk1.5 adds java.util.concurrent package under this api, which greatly simplifies the development of multi-threaded code. Whether you use FixedThreadPool or CachedThreadPool the implementation behind it is ThreadPoolExecutor. threadPoolExecutor is a typical product of cache pooling design, because the pool has a size, when the pool volume is not enough to carry, it involves a rejection policy." />
+<meta property="og:description" content="This article describes the definition of the java thread pool rejection policy interface and the timing he use scenario for triggering the rejection policy." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202204/thread-pool-rejection-strategy/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-04-01T14:10:49+08:00" />
 <meta property="article:modified_time" content="2022-04-01T14:10:49+08:00" />
 
 <meta itemprop="name" content="Thread pool rejection policy">
-<meta itemprop="description" content="Preface When it comes to java thread pools nothing is more familiar than the ExecutorService interface. jdk1.5 adds java.util.concurrent package under this api, which greatly simplifies the development of multi-threaded code. Whether you use FixedThreadPool or CachedThreadPool the implementation behind it is ThreadPoolExecutor. threadPoolExecutor is a typical product of cache pooling design, because the pool has a size, when the pool volume is not enough to carry, it involves a rejection policy."><meta itemprop="datePublished" content="2022-04-01T14:10:49+08:00" />
+<meta itemprop="description" content="This article describes the definition of the java thread pool rejection policy interface and the timing he use scenario for triggering the rejection policy."><meta itemprop="datePublished" content="2022-04-01T14:10:49+08:00" />
 <meta itemprop="dateModified" content="2022-04-01T14:10:49+08:00" />
 <meta itemprop="wordCount" content="1737">
 <meta itemprop="keywords" content="java,threadpool,concurrent," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Thread pool rejection policy"/>
-<meta name="twitter:description" content="Preface When it comes to java thread pools nothing is more familiar than the ExecutorService interface. jdk1.5 adds java.util.concurrent package under this api, which greatly simplifies the development of multi-threaded code. Whether you use FixedThreadPool or CachedThreadPool the implementation behind it is ThreadPoolExecutor. threadPoolExecutor is a typical product of cache pooling design, because the pool has a size, when the pool volume is not enough to carry, it involves a rejection policy."/>
+<meta name="twitter:description" content="This article describes the definition of the java thread pool rejection policy interface and the timing he use scenario for triggering the rejection policy."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>

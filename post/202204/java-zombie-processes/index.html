@@ -22,11 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="Recently I encountered a problem, a Java process using Runtime().exec() to execute script files, creating a large number of zombie processes, while the Java process is running in the container.
-At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
-Locate the zombie process by ps aux | grep Z.
-1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0." />
+<meta name="author" content="JavaIsland" /><meta name="description" content="When we use Java programs in containers, there may be a problem of java processes generating a large number of zombie processes, which are analyzed here." />
 <meta name="keywords" content="java, docker, zombie process" />
 
 
@@ -63,28 +59,19 @@ Locate the zombie process by ps aux | grep Z.
 
 
 <meta property="og:title" content="Java generates a lot of zombie process problems" />
-<meta property="og:description" content="Recently I encountered a problem, a Java process using Runtime().exec() to execute script files, creating a large number of zombie processes, while the Java process is running in the container.
-At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
-Locate the zombie process by ps aux | grep Z.
-1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0." />
+<meta property="og:description" content="When we use Java programs in containers, there may be a problem of java processes generating a large number of zombie processes, which are analyzed here." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202204/java-zombie-processes/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-04-04T17:07:11+08:00" />
 <meta property="article:modified_time" content="2022-04-04T17:07:11+08:00" />
 
 <meta itemprop="name" content="Java generates a lot of zombie process problems">
-<meta itemprop="description" content="Recently I encountered a problem, a Java process using Runtime().exec() to execute script files, creating a large number of zombie processes, while the Java process is running in the container.
-At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
-Locate the zombie process by ps aux | grep Z.
-1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0."><meta itemprop="datePublished" content="2022-04-04T17:07:11+08:00" />
+<meta itemprop="description" content="When we use Java programs in containers, there may be a problem of java processes generating a large number of zombie processes, which are analyzed here."><meta itemprop="datePublished" content="2022-04-04T17:07:11+08:00" />
 <meta itemprop="dateModified" content="2022-04-04T17:07:11+08:00" />
 <meta itemprop="wordCount" content="711">
 <meta itemprop="keywords" content="java,docker,zombie process," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java generates a lot of zombie process problems"/>
-<meta name="twitter:description" content="Recently I encountered a problem, a Java process using Runtime().exec() to execute script files, creating a large number of zombie processes, while the Java process is running in the container.
-At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
-Locate the zombie process by ps aux | grep Z.
-1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0."/>
+<meta name="twitter:description" content="When we use Java programs in containers, there may be a problem of java processes generating a large number of zombie processes, which are analyzed here."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>

@@ -22,9 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="What is Reflection In the runtime state, for any class, you can know all the properties and methods of the class; for any object, you can call any of its methods and properties; this dynamically obtained information and dynamic invocation of the object&amp;rsquo;s methods is called the reflection mechanism of the Java language. So what can we do with reflection?
- Analyze classes at runtime. Look at objects at runtime. We can also use reflection to write a toString method for all classes to use." />
+<meta name="author" content="JavaIsland" /><meta name="description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package." />
 <meta name="keywords" content="java, reflect, javaapi, class" />
 
 
@@ -61,22 +59,19 @@
 
 
 <meta property="og:title" content="Java reflection mechanism" />
-<meta property="og:description" content="What is Reflection In the runtime state, for any class, you can know all the properties and methods of the class; for any object, you can call any of its methods and properties; this dynamically obtained information and dynamic invocation of the object&rsquo;s methods is called the reflection mechanism of the Java language. So what can we do with reflection?
- Analyze classes at runtime. Look at objects at runtime. We can also use reflection to write a toString method for all classes to use." />
+<meta property="og:description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202203/java-reflect/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-03-31T15:53:34+08:00" />
 <meta property="article:modified_time" content="2022-03-31T15:53:34+08:00" />
 
 <meta itemprop="name" content="Java reflection mechanism">
-<meta itemprop="description" content="What is Reflection In the runtime state, for any class, you can know all the properties and methods of the class; for any object, you can call any of its methods and properties; this dynamically obtained information and dynamic invocation of the object&rsquo;s methods is called the reflection mechanism of the Java language. So what can we do with reflection?
- Analyze classes at runtime. Look at objects at runtime. We can also use reflection to write a toString method for all classes to use."><meta itemprop="datePublished" content="2022-03-31T15:53:34+08:00" />
+<meta itemprop="description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package."><meta itemprop="datePublished" content="2022-03-31T15:53:34+08:00" />
 <meta itemprop="dateModified" content="2022-03-31T15:53:34+08:00" />
 <meta itemprop="wordCount" content="1352">
 <meta itemprop="keywords" content="java,reflect," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java reflection mechanism"/>
-<meta name="twitter:description" content="What is Reflection In the runtime state, for any class, you can know all the properties and methods of the class; for any object, you can call any of its methods and properties; this dynamically obtained information and dynamic invocation of the object&rsquo;s methods is called the reflection mechanism of the Java language. So what can we do with reflection?
- Analyze classes at runtime. Look at objects at runtime. We can also use reflection to write a toString method for all classes to use."/>
+<meta name="twitter:description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>

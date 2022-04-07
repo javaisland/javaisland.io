@@ -6,7 +6,17 @@
     <description>Recent content in Posts on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 06 Apr 2022 16:30:46 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Apr 2022 16:01:20 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Application of Volatile</title>
+      <link>https://www.javai.net/post/202204/volatile-application/</link>
+      <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/volatile-application/</guid>
+      <description>Memory Visibility Since the Java Memory Model (JMM) states that all variables are stored in main memory, and each thread has its own working memory (cache).
+When a thread is working, it needs to copy the data from the main memory to the working memory. This way, any operation on the data is based on the working memory (which is more efficient) and cannot directly manipulate the data in the main memory or the working memory of other threads, and then flush the updated data to the main memory afterwards.</description>
+    </item>
+    
     <item>
       <title>ReentrantLock implementation principle</title>
       <link>https://www.javai.net/post/202204/reentrantlock-principle/</link>
@@ -198,16 +208,6 @@ Oracle introduced two licensing models for Java SE. In April 2019, Oracle began 
       <guid>https://www.javai.net/post/202203/memory-dos/</guid>
       <description>I. What is DoS? DoS is short for Denial of Service, which means denial of service. The attack that causes DoS is called a DoS attack, and its purpose is to make the computer or network unable to provide normal services. Denial of Service exists on various web services, this web service can be implemented in c, c++, or go, java, php, python, and other languages.
 II. Status of Java DoS In various open source and closed source java system products, we often see announcements about DoS defects, most of which are CPU exhaustion type or business offload type DoS.</description>
-    </item>
-    
-    <item>
-      <title>JDK 18 / Java 18 GA is released</title>
-      <link>https://www.javai.net/post/202203/jdk18/</link>
-      <pubDate>Mon, 28 Mar 2022 22:44:09 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202203/jdk18/</guid>
-      <description>JDK 18 / Java 18 GA is released. JDK 18 is a short-term maintenance release that will receive six months of support. Despite this, it is still available for use in production environments. According to the development plan, JDK 19 will be released this September, and the next LTS version, JDK 21, will be released in September 2023.
-JDK 18 includes a total of nine JEPs, as well as hundreds of smaller enhancements and more than a thousand bug fixes.</description>
     </item>
     
   </channel>

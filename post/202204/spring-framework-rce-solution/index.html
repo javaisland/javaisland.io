@@ -22,10 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="Just yesterday Spring officially announced a Spring Framework RCE vulnerability CVE-2022-22965.
-Upgrading to Spring Framework 5.3.18&#43; or 5.2.20&#43; remains the main official Spring recommendation, which officially claims to address the root cause and prevent some other vulnerability attacks, and these also provide fixes for other CVEs.
-Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has also released versions 10.0.20, 9.0.62 and 8.5.78 with it, which are the official Tomcat solutions for the reported CVE-2022-22965 vulnerability, which has been addressed in the above versions, for older The above version has resolved the CVE-2022-22965 vulnerability, and for older, unsupported versions of Spring Framework, the vulnerability can be circumvented by upgrading the Tomcat version." />
+<meta name="author" content="JavaIsland" /><meta name="description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package." />
 <meta name="keywords" content="java, Spring Framework, RCE, RCESolution" />
 
 
@@ -62,25 +59,19 @@ Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has a
 
 
 <meta property="og:title" content="Spring Framework RCE Solution" />
-<meta property="og:description" content="Just yesterday Spring officially announced a Spring Framework RCE vulnerability CVE-2022-22965.
-Upgrading to Spring Framework 5.3.18&#43; or 5.2.20&#43; remains the main official Spring recommendation, which officially claims to address the root cause and prevent some other vulnerability attacks, and these also provide fixes for other CVEs.
-Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has also released versions 10.0.20, 9.0.62 and 8.5.78 with it, which are the official Tomcat solutions for the reported CVE-2022-22965 vulnerability, which has been addressed in the above versions, for older The above version has resolved the CVE-2022-22965 vulnerability, and for older, unsupported versions of Spring Framework, the vulnerability can be circumvented by upgrading the Tomcat version." />
+<meta property="og:description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202204/spring-framework-rce-solution/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-04-01T22:47:06+08:00" />
 <meta property="article:modified_time" content="2022-04-01T22:47:06+08:00" />
 
 <meta itemprop="name" content="Spring Framework RCE Solution">
-<meta itemprop="description" content="Just yesterday Spring officially announced a Spring Framework RCE vulnerability CVE-2022-22965.
-Upgrading to Spring Framework 5.3.18&#43; or 5.2.20&#43; remains the main official Spring recommendation, which officially claims to address the root cause and prevent some other vulnerability attacks, and these also provide fixes for other CVEs.
-Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has also released versions 10.0.20, 9.0.62 and 8.5.78 with it, which are the official Tomcat solutions for the reported CVE-2022-22965 vulnerability, which has been addressed in the above versions, for older The above version has resolved the CVE-2022-22965 vulnerability, and for older, unsupported versions of Spring Framework, the vulnerability can be circumvented by upgrading the Tomcat version."><meta itemprop="datePublished" content="2022-04-01T22:47:06+08:00" />
+<meta itemprop="description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package."><meta itemprop="datePublished" content="2022-04-01T22:47:06+08:00" />
 <meta itemprop="dateModified" content="2022-04-01T22:47:06+08:00" />
 <meta itemprop="wordCount" content="178">
 <meta itemprop="keywords" content="Spring Framework," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spring Framework RCE Solution"/>
-<meta name="twitter:description" content="Just yesterday Spring officially announced a Spring Framework RCE vulnerability CVE-2022-22965.
-Upgrading to Spring Framework 5.3.18&#43; or 5.2.20&#43; remains the main official Spring recommendation, which officially claims to address the root cause and prevent some other vulnerability attacks, and these also provide fixes for other CVEs.
-Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has also released versions 10.0.20, 9.0.62 and 8.5.78 with it, which are the official Tomcat solutions for the reported CVE-2022-22965 vulnerability, which has been addressed in the above versions, for older The above version has resolved the CVE-2022-22965 vulnerability, and for older, unsupported versions of Spring Framework, the vulnerability can be circumvented by upgrading the Tomcat version."/>
+<meta name="twitter:description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>

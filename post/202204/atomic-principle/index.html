@@ -22,9 +22,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="1. Introduction Atomic means &amp;ldquo;the smallest particle that cannot be further divided&amp;rdquo;, and atomic operation means &amp;ldquo;an operation or series of operations that cannot be interrupted&amp;rdquo;. Implementing atomic operations on a multiprocessor becomes a bit complicated. In this article, let&amp;rsquo;s talk about how atomic operations are implemented on Intel processors and in Java.
-2. Definition of Terms Compare and Swap CAS operations require two values to be entered, an old value (the value before the desired operation) and a new value, during which the old value is compared to the new value if it has not changed, and not exchanged if it." />
+<meta name="author" content="JavaIsland" /><meta name="description" content="An atomic operation means a series of operations that cannot be interrupted, and we will discuss how to implement atomic operations in Intel processors and Java." />
 <meta name="keywords" content="java, atomic, cas, concurrent, lock" />
 
 
@@ -61,22 +59,19 @@
 
 
 <meta property="og:title" content="Principle of implementation of atomic operations" />
-<meta property="og:description" content="1. Introduction Atomic means &ldquo;the smallest particle that cannot be further divided&rdquo;, and atomic operation means &ldquo;an operation or series of operations that cannot be interrupted&rdquo;. Implementing atomic operations on a multiprocessor becomes a bit complicated. In this article, let&rsquo;s talk about how atomic operations are implemented on Intel processors and in Java.
-2. Definition of Terms Compare and Swap CAS operations require two values to be entered, an old value (the value before the desired operation) and a new value, during which the old value is compared to the new value if it has not changed, and not exchanged if it." />
+<meta property="og:description" content="An atomic operation means a series of operations that cannot be interrupted, and we will discuss how to implement atomic operations in Intel processors and Java." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.javai.net/post/202204/atomic-principle/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-04-02T16:00:46+08:00" />
 <meta property="article:modified_time" content="2022-04-02T16:00:46+08:00" />
 
 <meta itemprop="name" content="Principle of implementation of atomic operations">
-<meta itemprop="description" content="1. Introduction Atomic means &ldquo;the smallest particle that cannot be further divided&rdquo;, and atomic operation means &ldquo;an operation or series of operations that cannot be interrupted&rdquo;. Implementing atomic operations on a multiprocessor becomes a bit complicated. In this article, let&rsquo;s talk about how atomic operations are implemented on Intel processors and in Java.
-2. Definition of Terms Compare and Swap CAS operations require two values to be entered, an old value (the value before the desired operation) and a new value, during which the old value is compared to the new value if it has not changed, and not exchanged if it."><meta itemprop="datePublished" content="2022-04-02T16:00:46+08:00" />
+<meta itemprop="description" content="An atomic operation means a series of operations that cannot be interrupted, and we will discuss how to implement atomic operations in Intel processors and Java."><meta itemprop="datePublished" content="2022-04-02T16:00:46+08:00" />
 <meta itemprop="dateModified" content="2022-04-02T16:00:46+08:00" />
 <meta itemprop="wordCount" content="1737">
 <meta itemprop="keywords" content="java,atomic,concurrent," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Principle of implementation of atomic operations"/>
-<meta name="twitter:description" content="1. Introduction Atomic means &ldquo;the smallest particle that cannot be further divided&rdquo;, and atomic operation means &ldquo;an operation or series of operations that cannot be interrupted&rdquo;. Implementing atomic operations on a multiprocessor becomes a bit complicated. In this article, let&rsquo;s talk about how atomic operations are implemented on Intel processors and in Java.
-2. Definition of Terms Compare and Swap CAS operations require two values to be entered, an old value (the value before the desired operation) and a new value, during which the old value is compared to the new value if it has not changed, and not exchanged if it."/>
+<meta name="twitter:description" content="An atomic operation means a series of operations that cannot be interrupted, and we will discuss how to implement atomic operations in Intel processors and Java."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
