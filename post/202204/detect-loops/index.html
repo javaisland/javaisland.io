@@ -467,7 +467,7 @@
 </div>
 </div><h2 id="directed-rings">Directed rings</h2>
 <h3 id="directed-graphs">Directed graphs</h3>
-<p>The implementation of a directed graph is almost the same as the implementation of an undirected graph in the previous blog <a href="https://www.javaisland.net/post/202204/undirected-graphs/">&ldquo;How to Implement Undirected Graphs in Java&rdquo;</a>, except that when adding edges v-w, only vertex w is added to the chain of vertices v, and the chain of vertices w is not without manipulating the chain table of vertex w. If you change the access rights of the member variables in <code>LinkGraph</code> to <code>protected</code>, you can simply inherit and override the <code>addEdge</code> method.</p>
+<p>The implementation of a directed graph is almost the same as the implementation of an undirected graph in the previous blog <a href="https://www.javai.net/post/202204/undirected-graphs/">&ldquo;How to Implement Undirected Graphs in Java&rdquo;</a>, except that when adding edges v-w, only vertex w is added to the chain of vertices v, and the chain of vertices w is not without manipulating the chain table of vertex w. If you change the access rights of the member variables in <code>LinkGraph</code> to <code>protected</code>, you can simply inherit and override the <code>addEdge</code> method.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
