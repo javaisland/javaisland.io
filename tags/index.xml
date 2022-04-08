@@ -6,22 +6,40 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 07 Apr 2022 16:01:20 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Apr 2022 13:14:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java</title>
+      <link>https://www.javai.net/tags/java/</link>
+      <pubDate>Fri, 08 Apr 2022 13:14:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>throughput</title>
+      <link>https://www.javai.net/tags/throughput/</link>
+      <pubDate>Fri, 08 Apr 2022 13:14:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/throughput/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtual threads</title>
+      <link>https://www.javai.net/tags/virtual-threads/</link>
+      <pubDate>Fri, 08 Apr 2022 13:14:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/virtual-threads/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>concurrent</title>
       <link>https://www.javai.net/tags/concurrent/</link>
       <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/concurrent/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Mon, 04 Apr 2022 17:35:33 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/threadpool/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>throughput </title>
-      <link>https://www.javai.net/tags/throughput/</link>
-      <pubDate>Mon, 04 Apr 2022 17:35:33 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/throughput/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java9 released</title>
-      <link>https://www.javai.net/tags/java9-released/</link>
-      <pubDate>Mon, 04 Apr 2022 17:27:47 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java9-released/</guid>
       <description></description>
     </item>
     

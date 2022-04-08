@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.96.0" />
 
 
 <link rel="canonical" href="https://www.javai.net/" />
@@ -300,6 +300,43 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202204/java-virtual-threads/">Java introduces preview virtual threads</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-08" class="post-time">
+        2022-04-08
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/news/"> news </a>
+          
+        </div>
+      <span class="more-meta"> 818 words </span>
+      <span class="more-meta"> 4 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      OpenJDK&rsquo;s JEP 425: Virtual Threads (Preview) feature proposal shows that the Java platform will introduce the virtual threads feature. Virtual threads are lightweight threads that can significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.
+Java developers have always relied on threads as the building blocks of concurrent server applications, where statements in each method are executed within a thread, and each thread provides a stack to store local variables and coordinate method calls, as well as context trapping when errors are reported.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-virtual-threads/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -1001,43 +1038,6 @@ Oracle introduced two licensing models for Java SE. In April 2019, Oracle began 
     </div>
     <div class="read-more">
       <a href="/post/202203/oracle-java-license/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202203/spring-0day-vulnerability/">About Spring Core Spring Beans Remote Code Warning Notice for Execution 0day Vulnerability</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-03-30" class="post-time">
-        2022-03-30
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/news/"> news </a>
-          
-        </div>
-      <span class="more-meta"> 342 words </span>
-      <span class="more-meta"> 2 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Information indicates that an RCE 0day vulnerability has been reported in the Spring Framework. If the target system is developed using Spring and has a JDK version above JDK9, an unauthorized attacker can exploit this vulnerability to remotely execute arbitrary code on the target device.
-1. Vulnerability Situation Analysis The Spring framework is the most widely used lightweight open source framework for Java, and in the JDK9 version of the Spring framework (and above), a remote attacker can obtain an AccessLogValve object through the framework&rsquo;s parameter binding feature and use malicious field values to trigger the pipeline mechanism and write to a file in an arbitrary path if certain conditions are met.
-    </div>
-    <div class="read-more">
-      <a href="/post/202203/spring-0day-vulnerability/" class="read-more-link">Read more</a>
     </div>
     
   </div>

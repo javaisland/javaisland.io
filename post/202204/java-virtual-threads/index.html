@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Spring Framework RCE Solution - JavaIsland</title>
+  <title>Java introduces preview virtual threads - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,8 +22,8 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" /><meta name="description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package." />
-<meta name="keywords" content="java, Spring Framework, RCE, RCESolution" />
+<meta name="author" content="JavaIsland" /><meta name="description" content="The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads." />
+<meta name="keywords" content="java, virtual threads, throughput" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.96.0" />
 
 
-<link rel="canonical" href="https://www.javai.net/post/202204/spring-framework-rce-solution/" />
+<link rel="canonical" href="https://www.javai.net/post/202204/java-virtual-threads/" />
 
 
 
@@ -58,20 +58,20 @@
 
 
 
-<meta property="og:title" content="Spring Framework RCE Solution" />
-<meta property="og:description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package." />
+<meta property="og:title" content="Java introduces preview virtual threads" />
+<meta property="og:description" content="The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.javai.net/post/202204/spring-framework-rce-solution/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-04-01T22:47:06+08:00" />
-<meta property="article:modified_time" content="2022-04-01T22:47:06+08:00" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-virtual-threads/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-08T13:14:35+08:00" />
+<meta property="article:modified_time" content="2022-04-08T13:14:35+08:00" />
 
-<meta itemprop="name" content="Spring Framework RCE Solution">
-<meta itemprop="description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package."><meta itemprop="datePublished" content="2022-04-01T22:47:06+08:00" />
-<meta itemprop="dateModified" content="2022-04-01T22:47:06+08:00" />
-<meta itemprop="wordCount" content="178">
-<meta itemprop="keywords" content="Spring Framework," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Spring Framework RCE Solution"/>
-<meta name="twitter:description" content="This article is about the reflection mechanism of Java and the api provided by the `Field`, `Method` and `Constructor` classes under the reflection package."/>
+<meta itemprop="name" content="Java introduces preview virtual threads">
+<meta itemprop="description" content="The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads."><meta itemprop="datePublished" content="2022-04-08T13:14:35+08:00" />
+<meta itemprop="dateModified" content="2022-04-08T13:14:35+08:00" />
+<meta itemprop="wordCount" content="818">
+<meta itemprop="keywords" content="java,virtual threads,throughput," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java introduces preview virtual threads"/>
+<meta name="twitter:description" content="The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -301,18 +301,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Spring Framework RCE Solution</h1>
+      <h1 class="post-title">Java introduces preview virtual threads</h1>
       
       <div class="post-meta">
-        <time datetime="2022-04-01" class="post-time">
-          2022-04-01
+        <time datetime="2022-04-08" class="post-time">
+          2022-04-08
         </time>
         <div class="post-category">
-            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            <a href="https://www.javai.net/categories/news/"> news </a>
             
           </div>
-        <span class="more-meta"> 178 words </span>
-          <span class="more-meta"> 1 min read </span>
+        <span class="more-meta"> 818 words </span>
+          <span class="more-meta"> 4 min read </span>
 
         
         
@@ -327,21 +327,60 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Table of Contents</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#about-virtual-threads">About virtual threads</a></li>
+    <li><a href="#higher-throughput">Higher throughput</a></li>
+    <li><a href="#how-do-i-enable-virtual-threads">How do I enable virtual threads?</a></li>
+  </ul>
+</nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      <p>Just yesterday Spring officially announced a Spring Framework RCE vulnerability CVE-2022-22965.</p>
-<p>Upgrading to Spring Framework 5.3.18+ or 5.2.20+ remains the main official Spring recommendation, which officially claims to address the root cause and prevent some other vulnerability attacks, and these also provide fixes for other CVEs.</p>
-<p>Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has also released versions 10.0.20, 9.0.62 and 8.5.78 with it, which are the official Tomcat solutions for the reported CVE-2022-22965 vulnerability, which has been addressed in the above versions, for older The above version has resolved the CVE-2022-22965 vulnerability, and for older, unsupported versions of Spring Framework, the vulnerability can be circumvented by upgrading the Tomcat version.</p>
-<p>However, the primary goal should be to upgrade to a currently supported version of the Spring Framework.</p>
-<p>Another quick and easy solution is to downgrade to Java 8, but this may not be applicable to all projects.</p>
-<p>All three of these options can be used to circumvent the Spring Framework RCE vulnerability CVE-2022-22965 and we hope this article has helped you.</p>
-<blockquote>
-<p>Reference <a href="https://spring.io/blog/2022/04/01/spring-framework-rce-mitigation-alternative">https://spring.io/blog/2022/04/01/spring-framework-rce-mitigation-alternative</a></p>
-</blockquote>
+      <p>OpenJDK&rsquo;s <a href="https://openjdk.java.net/jeps/425">JEP 425: Virtual Threads (Preview)</a> feature proposal shows that the Java platform will introduce the virtual threads feature. Virtual threads are lightweight threads that can significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</p>
+<p>Java developers have always relied on threads as the building blocks of concurrent server applications, where statements in each method are executed within a thread, and each thread provides a stack to store local variables and coordinate method calls, as well as context trapping when errors are reported. Threads are the concurrent unit of Java and the core foundation of Java tools: the debugger executes statements in threaded methods incrementally, and the parser visualizes the behavior of multiple threads.</p>
+<p>Currently, the JDK implements its platform threads as wrappers for operating system (OS) threads, where each instance of the JDK is a platform thread that runs Java code on the underlying OS thread and captures OS threads throughout the life of the code. The number of platform threads is limited by the number of OS threads, which are costly and cannot take up too much. As a result, this current approach to the JDK&rsquo;s threading implementation limits the throughput of its applications to well below the level supported by the hardware.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/08/b1e85feea6f34eb592df196550a901c7.png" alt="Virtual Threads"></p>
+<h2 id="about-virtual-threads">About virtual threads</h2>
+<p>Virtual threads <code>java.lang.Thread</code> are threads that run Java code on the underlying operating system thread (OS thread), but do not capture instances of the OS thread for the entire lifetime of the code. This means that many virtual threads can run Java code on the same OS thread, thus effectively sharing it.</p>
+<p>Virtual threads are lightweight implementations of threads provided by the JDK rather than the OS, and are a form of <strong>user-mode threads</strong>. User mode threads were known as <a href="https://en.wikipedia.org/wiki/Green_threads">&ldquo;green threads&rdquo;</a> in earlier versions of Java , when the concept of OS threads was not mature and popular enough and all green threads in Java shared an OS thread (M:1 scheduling). As the concept of threads evolved, green threads were eventually overtaken by the current platform threads, implemented as wrappers for OS threads (1:1 scheduling), while the newly introduced virtual threads use M:N scheduling, where a large number (M) of virtual threads are scheduled to run on a smaller number (N) of OS threads.</p>
+<h2 id="higher-throughput">Higher throughput</h2>
+<p>Developers can choose whether to use virtual threads or platform threads, but virtual threads perform better in high-throughput server applications. For example, the following code that sleeps for one second creates a large number of virtual threads, and the program first gets an <a href="https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/ExecutorService.html">ExecutorService</a>, which creates a new virtual thread for each submitted task, then submits 10000 tasks and waits for all of them to complete:.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">10_000</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">executor</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">i</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="c1">// executor.close() is called implicitly, and waits
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Modern hardware can easily support 10,000 virtual threads running such code simultaneously. If the program uses an ExecutorService that creates a new platform thread for each task, such as Executors.newCachedThreadPool(), then it will try to create 10,000 platform threads, which means 10,000 OS threads, and the program will crash on most operating systems. Or maybe the program uses an ExecutorService that gets the platform threads from a pool, like Executors.newFixedThreadPool(200), which is not much better. The ExecutorService will create 200 platform threads to be shared by the 10,000 tasks, which will run sequentially instead of simultaneously, taking the program a long time to run through.</p>
+<p>For the above program, a pool with 200 platform threads would only achieve a throughput of 200 tasks per second, while virtual threads would achieve a throughput of about 10,000 tasks per second (after a full warm-up). In addition, if you change 10,000 in the example program to 1,000,000, the program will submit 1,000,000 tasks, create 1,000,000 concurrently running virtual threads, and (after full warm-up) achieve a throughput of about 1,000,000 tasks/second.</p>
+<p>In short, virtual threads are not faster threads &ndash; they do not run code faster than platform threads. They exist to provide scale (higher throughput), not speed (lower latency).</p>
+<h2 id="how-do-i-enable-virtual-threads">How do I enable virtual threads?</h2>
+<p>Virtual threads are currently widely used in other multi-threaded languages (e.g. goroutine in Go and process in Erlang, and are a stable feature in C++), but are still a preview API in Java and disabled by default. To try this feature on JDK XX, you must enable the preview API by</p>
+<ul>
+<li>compiling the program with <code>javac --release XX --enable-preview Main.java</code> and running it with <code>java --enable-preview Main</code></li>
+<li>When using the source launcher, run the program with <code>java --release XX --enable-preview Main.java</code></li>
+<li>When using jshell, start with <code>jshell --enable-preview</code></li>
+</ul>
+<p>More information about virtual threads can be found in the OpenJDK&rsquo;s <a href="https://bugs.openjdk.java.net/browse/JDK-8277131">JDK Issue-8277131</a>, which was currently created on 2021/11/15 and is still in the first phase of the JEP process and is still some time away from a stable release.</p>
 
     </div>
 
@@ -354,29 +393,18 @@
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://www.javai.net/tags/spring-framework/">Spring Framework</a>
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/virtual-threads/">virtual threads</a>
+          <a href="https://www.javai.net/tags/throughput/">throughput</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/202204/atomic-principle/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">Principle of implementation of atomic operations</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
-          <a class="next" href="/post/202204/thread-pool-rejection-strategy/">
-            <span class="next-text nav-default">Thread pool rejection policy</span>
+          <a class="next" href="/post/202204/volatile-application/">
+            <span class="next-text nav-default">Application of Volatile</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">

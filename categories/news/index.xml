@@ -6,7 +6,17 @@
     <description>Recent content in news on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 05 Apr 2022 17:40:16 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Apr 2022 13:14:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java introduces preview virtual threads</title>
+      <link>https://www.javai.net/post/202204/java-virtual-threads/</link>
+      <pubDate>Fri, 08 Apr 2022 13:14:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-virtual-threads/</guid>
+      <description>OpenJDK&amp;rsquo;s JEP 425: Virtual Threads (Preview) feature proposal shows that the Java platform will introduce the virtual threads feature. Virtual threads are lightweight threads that can significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.
+Java developers have always relied on threads as the building blocks of concurrent server applications, where statements in each method are executed within a thread, and each thread provides a stack to store local variables and coordinate method calls, as well as context trapping when errors are reported.</description>
+    </item>
+    
     <item>
       <title>Java8 new features of the time and date API</title>
       <link>https://www.javai.net/post/202204/java8-time-api/</link>

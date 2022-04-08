@@ -9,14 +9,70 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/202204/volatile-application/</loc>
-    <lastmod>2022-04-07T16:01:20+08:00</lastmod>
+    <loc>https://www.javai.net/categories/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.javai.net/categories/</loc>
+    <loc>https://www.javai.net/tags/java/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-virtual-threads/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/news/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/throughput/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/virtual-threads/</loc>
+    <lastmod>2022-04-08T13:14:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/volatile-application/</loc>
     <lastmod>2022-04-07T16:01:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -30,35 +86,7 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-04-07T16:01:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/</loc>
-    <lastmod>2022-04-07T16:01:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/jvm/</loc>
-    <lastmod>2022-04-07T16:01:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-04-07T16:01:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
     <lastmod>2022-04-07T16:01:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -205,13 +233,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/categories/news/</loc>
-    <lastmod>2022-04-05T17:40:16+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/time-api/</loc>
     <lastmod>2022-04-05T17:40:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -227,13 +248,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/threadpool/</loc>
-    <lastmod>2022-04-04T17:35:33+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/throughput/</loc>
     <lastmod>2022-04-04T17:35:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
