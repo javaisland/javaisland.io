@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>zombie process on JavaIsland</title>
-    <link>https://www.javai.net/tags/zombie-process/</link>
-    <description>Recent content in zombie process on JavaIsland</description>
+    <title>container on JavaIsland</title>
+    <link>https://www.javai.net/tags/container/</link>
+    <description>Recent content in container on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 09 Apr 2022 15:26:12 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/zombie-process/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Apr 2022 15:26:12 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/container/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java Zombie Processes Continued</title>
       <link>https://www.javai.net/post/202204/java-zombie-processes-continued/</link>

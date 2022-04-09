@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Archive - JavaIsland</title>
+  <title>Java Zombie Processes Continued - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,9 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="Level up your Java code and explore what Java can do for you." />
-  <meta name="keywords" content="java, javaweb, spring, javaee, java software, oracle java, java platform, what is java" />
+<meta name="author" content="JavaIsland" /><meta name="description" content="In a previous article, I mentioned the problem of Java program containers generating a lot of zombie processes. Today I ran into it again, but in a different way." />
+<meta name="keywords" content="java, docker, zombie process, process, container" />
+
 
 
 
@@ -34,8 +34,8 @@
 <meta name="generator" content="Hugo 0.95.0" />
 
 
-<link rel="canonical" href="https://www.javai.net/post/" />
-<link href="/post/index.xml" rel="alternate" type="application/rss+xml" title="JavaIsland" />
+<link rel="canonical" href="https://www.javai.net/post/202204/java-zombie-processes-continued/" />
+
 
 
 
@@ -58,15 +58,20 @@
 
 
 
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="Level up your Java code and explore what Java can do for you." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.javai.net/post/" />
+<meta property="og:title" content="Java Zombie Processes Continued" />
+<meta property="og:description" content="In a previous article, I mentioned the problem of Java program containers generating a lot of zombie processes. Today I ran into it again, but in a different way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-zombie-processes-continued/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-09T15:26:12+08:00" />
+<meta property="article:modified_time" content="2022-04-09T15:26:12+08:00" />
 
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="Level up your Java code and explore what Java can do for you."><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="Level up your Java code and explore what Java can do for you."/>
+<meta itemprop="name" content="Java Zombie Processes Continued">
+<meta itemprop="description" content="In a previous article, I mentioned the problem of Java program containers generating a lot of zombie processes. Today I ran into it again, but in a different way."><meta itemprop="datePublished" content="2022-04-09T15:26:12+08:00" />
+<meta itemprop="dateModified" content="2022-04-09T15:26:12+08:00" />
+<meta itemprop="wordCount" content="187">
+<meta itemprop="keywords" content="java,docker,zombie process,process,container," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java Zombie Processes Continued"/>
+<meta name="twitter:description" content="In a previous article, I mentioned the problem of Java program containers generating a lot of zombie processes. Today I ran into it again, but in a different way."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -293,297 +298,163 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-<section id="archive" class="archive">
-    <div class="archive-title">
-      <span class="archive-post-counter">
-          27 posts In Total
-      </span>
-    </div>
+          <article class="post bg-white">
     
-      <div class="collection-title">
-        <h2 class="archive-year">2022</h2>
+    <header class="post-header">
+      <h1 class="post-title">Java Zombie Processes Continued</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-09" class="post-time">
+          2022-04-09
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 187 words </span>
+          <span class="more-meta"> 1 min read </span>
+
+        
+        
+
+        
+        
       </div>
+    </header>
 
-    <div class="archive-post">
-      <time datetime="2022-04-09" class="archive-post-time">
-        2022-04-09
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java-zombie-processes-continued/" class="archive-post-link">
-          Java Zombie Processes Continued
-        </a>
-      </span>
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>In a <a href="https://www.javai.net/post/202204/java-zombie-processes/">previous article</a>, I mentioned the problem of Java program containers generating a lot of zombie processes. Today I ran into it again, but in a different way.</p>
+<p>The zombie processes are also generated by a bash script, but this script is executed in the K8S readinessProbe and livenessProbe, not by the java program itself.</p>
+<p>Let&rsquo;s look at some failure diagrams.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/09/c6e606853d88474e93fee81a9525f6ca.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/09/86adc81f0199446b9c00a2b937dd6249.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/09/b560ca55e2ca451ea88f989e24eb0bf6.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/09/dee39d812ab94c44b668d0e6fae26697.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/09/1f1c74d192e148ec8cf79ab0ae3ecc8c.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/09/202e4d91f1014b908a44a9eb69d2cdd0.png" alt=""></p>
+<p>You can see that there are many timeout processes that are not cleaned up after execution.</p>
+<p>And readinessProbe and livenessProbe look like this.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">readinessProbe:
+</span></span><span class="line"><span class="cl">  exec:
+</span></span><span class="line"><span class="cl">    command:
+</span></span><span class="line"><span class="cl">    - sh
+</span></span><span class="line"><span class="cl">    -c
+</span></span><span class="line"><span class="cl">    - /health/ping_readiness_local.sh 1
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">livenessProbe:
+</span></span><span class="line"><span class="cl">  exec:
+</span></span><span class="line"><span class="cl">    command:
+</span></span><span class="line"><span class="cl">    - sh
+</span></span><span class="line"><span class="cl">    -c
+</span></span><span class="line"><span class="cl">    - /health/ping_liveness_local.sh 5
+</span></span><span class="line"><span class="cl">    ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After a series of troubleshooting, I found out that it has something to do with the <code>ENTRYPOINT of</code> the image.</p>
+<p>The base image is <code>openjdk:8-alpine</code>, and the original one looks like this.</p>
+<p>ENTRYPOINT [&quot;/home/java-app/docker-entrypoint.sh&quot;]
+Change to.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">RUN apk add --no-cache --update tini
+</span></span><span class="line"><span class="cl">ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/sbin/tini&#34;</span>, <span class="s2">&#34;--&#34;</span>, <span class="s2">&#34;/home/java-app/docker-entrypoint.sh&#34;</span><span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/krallin/tini">tini</a> prevents containers from spawning zombie processes.</p>
+<p>PS. So far the bot process problem is often found on <code>alpine</code> images.</p>
+
     </div>
+
+    
     
 
-    <div class="archive-post">
-      <time datetime="2022-04-08" class="archive-post-time">
-        2022-04-08
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java-virtual-threads/" class="archive-post-link">
-          Java introduces preview virtual threads
-        </a>
-      </span>
-    </div>
+
+    
     
 
-    <div class="archive-post">
-      <time datetime="2022-04-07" class="archive-post-time">
-        2022-04-07
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/volatile-application/" class="archive-post-link">
-          Application of Volatile
-        </a>
-      </span>
-    </div>
-    
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/docker/">docker</a>
+          <a href="https://www.javai.net/tags/zombie-process/">zombie process</a>
+          <a href="https://www.javai.net/tags/process/">process</a>
+          <a href="https://www.javai.net/tags/container/">container</a>
+          
+        </div>
 
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/reentrantlock-principle/" class="archive-post-link">
-          ReentrantLock implementation principle
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java-reflect-application/" class="archive-post-link">
-          Practical Applications of Reflection - Building Log Objects
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/detect-loops/" class="archive-post-link">
-          How to implement detection of undirected and directed loops in Java
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/undirected-graphs/" class="archive-post-link">
-          How to implement undirected graphs in Java
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-05" class="archive-post-time">
-        2022-04-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/bigdecimal-use/" class="archive-post-link">
-          Usage of Bigdecimal
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-05" class="archive-post-time">
-        2022-04-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java8-time-api/" class="archive-post-link">
-          Java8 new features of the time and date API
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-04" class="archive-post-time">
-        2022-04-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/threadpool-size/" class="archive-post-link">
-          How to estimate throughput and thread pool size
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-04" class="archive-post-time">
-        2022-04-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java9-string/" class="archive-post-link">
-          Changes to the String object in Java 9
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-04" class="archive-post-time">
-        2022-04-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java-zombie-processes/" class="archive-post-link">
-          Java generates a lot of zombie process problems
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-03" class="archive-post-time">
-        2022-04-03
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/linux-exfat/" class="archive-post-link">
-          Linux 5.18 has two key improvements to exFAT file system support
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-03" class="archive-post-time">
-        2022-04-03
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/piped-stream/" class="archive-post-link">
-          Practical application scenarios for pipeline stream
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-02" class="archive-post-time">
-        2022-04-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/atomic-principle/" class="archive-post-link">
-          Principle of implementation of atomic operations
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-01" class="archive-post-time">
-        2022-04-01
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/spring-framework-rce-solution/" class="archive-post-link">
-          Spring Framework RCE Solution
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-04-01" class="archive-post-time">
-        2022-04-01
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/thread-pool-rejection-strategy/" class="archive-post-link">
-          Thread pool rejection policy
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-03-31" class="archive-post-time">
-        2022-03-31
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/spring-framework-rce-early-announcement/" class="archive-post-link">
-          Spring Framework RCE, Early Announcement
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-03-31" class="archive-post-time">
-        2022-03-31
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/java-reflect/" class="archive-post-link">
-          Java reflection mechanism
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2022-03-30" class="archive-post-time">
-        2022-03-30
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/threadlocal-use/" class="archive-post-link">
-          A scenario using Threadlocal to solve concurrency and efficiency problems
-        </a>
-      </span>
-    </div></section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
       
-      <li  class="active" >
-        <a href="/post/">1</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/2/">2</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202204/java-virtual-threads/">
+            <span class="next-text nav-default">Java introduces preview virtual threads</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>
@@ -665,6 +536,13 @@
 
 
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 
