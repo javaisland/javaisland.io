@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Using encryption and decryption in Java - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language." />
+<meta name="keywords" content="java, crypto, hutool, Encrypt, Decrypt" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202203/hutool-crypto/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Using encryption and decryption in Java" />
+<meta property="og:description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202203/hutool-crypto/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-03-28T21:48:49+08:00" />
+<meta property="article:modified_time" content="2022-03-28T21:48:49+08:00" />
+
+<meta itemprop="name" content="Using encryption and decryption in Java">
+<meta itemprop="description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language."><meta itemprop="datePublished" content="2022-03-28T21:48:49+08:00" />
+<meta itemprop="dateModified" content="2022-03-28T21:48:49+08:00" />
+<meta itemprop="wordCount" content="1351">
+<meta itemprop="keywords" content="crypto,hutool,Encrypt,Decrypt," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using encryption and decryption in Java"/>
+<meta name="twitter:description" content="For the security of system data, we usually encrypt important data, this article describes how to encrypt and decrypt data in java language."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Using encryption and decryption in Java</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-03-28" class="post-time">
+          2022-03-28
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 1351 words </span>
+          <span class="more-meta"> 7 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#instructions">Instructions</a></li>
+    <li><a href="#symmetric-versus-asymmetric-encryption">Symmetric versus asymmetric encryption</a>
+      <ul>
+        <li><a href="#symmetric-encryption">Symmetric encryption</a></li>
+        <li><a href="#des-and-aes-sample-code">DES and AES sample code</a></li>
+      </ul>
+    </li>
+    <li><a href="#asymmetric-encryption">Asymmetric Encryption</a>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#rsa-example"><code>RSA</code> example</a></li>
+      </ul>
+    </li>
+    <li><a href="#abstract-encryption">Abstract Encryption</a>
+      <ul>
+        <li><a href="#introduction-1">Introduction</a></li>
+        <li><a href="#md5-and-sha-1-examples"><code>MD5</code> and <code>SHA-1</code> examples</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="instructions">Instructions</h2>
+<p>In project development, in order to ensure the security of data and user privacy, we usually encrypt key information, this article details how to use hutool in java language to quickly encrypt and decrypt data, hope you can help.</p>
+<p>If your project is built on Maven, you can introduce Hutool through pom to use the encryption and decryption function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>cn.hutool<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>hutool-crypto<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>5.7.15<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If your project is not built based on maven, you can also directly download the jar package to use.</p>
+<p><code>Download Links</code>: <a href="https://repo1.maven.org/maven2/cn/hutool/hutool-all/5.8.0.M1">https://repo1.maven.org/maven2/cn/hutool/hutool-all/5.8.0.M1</a></p>
+<h2 id="symmetric-versus-asymmetric-encryption">Symmetric versus asymmetric encryption</h2>
+<h3 id="symmetric-encryption">Symmetric encryption</h3>
+<h4 id="encryption-algorithm">Encryption Algorithm</h4>
+<ul>
+<li>An encryption method that uses a single-key cryptosystem where the same key can be used as both encryption and decryption of a message is called symmetric encryption, also known as single-key encryption.</li>
+<li>Common encryption algorithms
+<ul>
+<li><code>DES(Data Encryption Standard)</code> : Data Encryption Standard, a block algorithm using key encryption, was established as a Federal Information Processing Standard (FIPS) by the National Bureau of Standards of the U.S. federal government in 1977 and authorized for use in unclassified government communications, and the algorithm has since spread widely internationally.</li>
+<li><code>AES (Advanced Encryption Standard)</code> : Advanced Encryption Standard. Also known as Rijndael cryptography in cryptography, it is a block encryption standard adopted by the U.S. federal government. This standard is used to replace the original DES, which has been analyzed by many parties and is widely used around the world.</li>
+</ul>
+</li>
+<li>Features
+<ul>
+<li>Fast encryption speed, can encrypt large files</li>
+<li>Ciphertext reversible, if the key file is leaked, the data will be exposed</li>
+<li>After encryption, the encoding table can not find the corresponding characters, resulting in garbled code, usually used in combination with Base64</li>
+</ul>
+</li>
+</ul>
+<h4 id="encryption-mode">encryption mode</h4>
+<ul>
+<li><code>ECB(Electronic codebook)</code> : Electronic codebook. The message to be encrypted is divided into several blocks according to the block size of the block cipher, and each block is encrypted independently.
+<img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/28/a5ea5314d575487881c1d7094d6bb76f.png" alt="Electronic codebook">
+<ul>
+<li>Advantages: data can be processed in parallel</li>
+<li>Disadvantage: the same original text generates the same ciphertext, which does not protect the data well</li>
+<li>Simultaneous encryption, the original text is the same and the encrypted ciphertext is also the same</li>
+</ul>
+</li>
+<li><code>CBC(Cipher-block chaining)</code> : Cipher-block linking. Each plaintext block is first heterogeneous with the previous ciphertext block before encryption, and each ciphertext block depends on all the plaintext blocks before it
+<img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/03/28/b1fa725f1b2c438f95d583021b137053.png" alt="Cipher-block chaining">
+<ul>
+<li>Advantage: the same original text generates different ciphertexts</li>
+<li>Disadvantage: serial processing of data</li>
+</ul>
+</li>
+</ul>
+<h4 id="padding-mode">padding mode</h4>
+<p>When data needs to be processed by block, and the data length does not meet the block processing requirements, the block length is filled according to certain rules</p>
+<ul>
+<li><code>NoPadding</code> no padding
+<ul>
+<li>In <code>DES</code> encryption algorithm, the length of the original text must be an integer multiple of <code>8byte</code>.</li>
+<li>Under <code>AES</code> encryption, the original text length must be an integer multiple of <code>16byte</code>.</li>
+</ul>
+</li>
+<li><code>PKCS5Padding</code>
+<ul>
+<li>The size of the data block is 8 bits, if it is not enough, it will be filled</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Tips: By default, the encryption mode and padding mode are: <code>ECB/PKCS5Padding</code>. If you use <code>CBC</code> mode, you need to add the parameter initialization vector <code>IV</code></p>
+</blockquote>
+<h3 id="des-and-aes-sample-code">DES and AES sample code</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SymmetricCryptoTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">des</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;HelloWorld&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// key: in DES mode, the key must be 8 bits
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// iv: offset, not required in ECB mode, must be 8 bits in CBC mode
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">iv</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// DES des = new DES(Mode.ECB, Padding.PKCS5Padding, key.getBytes());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">DES</span> <span class="n">des</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DES</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">CBC</span><span class="o">,</span> <span class="n">Padding</span><span class="o">.</span><span class="na">PKCS5Padding</span><span class="o">,</span> <span class="n">key</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="n">iv</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">encrypt</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="na">encryptBase64</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">encrypt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">decrypt</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="na">decryptStr</span><span class="o">(</span><span class="n">encrypt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">decrypt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">aes</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;HelloWorld&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// key：AES mode, the key must be 16 bits
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="s">&#34;1234567812345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// iv: offset, not required in ECB mode, must be 16 bits in CBC mode
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">iv</span> <span class="o">=</span> <span class="s">&#34;1234567812345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// AES aes = new AES(Mode.ECB, Padding.PKCS5Padding, key.getBytes());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">AES</span> <span class="n">aes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AES</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">CBC</span><span class="o">,</span> <span class="n">Padding</span><span class="o">.</span><span class="na">PKCS5Padding</span><span class="o">,</span> <span class="n">key</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="n">iv</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Encryption and Base transcoding
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">encrypt</span> <span class="o">=</span> <span class="n">aes</span><span class="o">.</span><span class="na">encryptBase64</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">encrypt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Decrypt to string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">decrypt</span> <span class="o">=</span> <span class="n">aes</span><span class="o">.</span><span class="na">decryptStr</span><span class="o">(</span><span class="n">encrypt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">decrypt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="asymmetric-encryption">Asymmetric Encryption</h2>
+<h3 id="introduction">Introduction</h3>
+<ul>
+<li>Asymmetric encryption algorithms are also known as modern encryption algorithms.</li>
+<li>Asymmetric encryption is the cornerstone of computer communication security, ensuring that encrypted data cannot be broken.</li>
+<li>Unlike symmetric encryption algorithms, asymmetric encryption algorithms require two keys: a public key <code>(publickey)</code> and a private key <code>(privatekey)</code>
+<ul>
+<li>The public key and the private key are a pair</li>
+<li>If the data is encrypted with the public key, it can only be decrypted with the corresponding private key.</li>
+<li>If the data is encrypted with a private key, it can only be decrypted with the corresponding public key.</li>
+</ul>
+</li>
+<li>Because encryption and decryption use two different keys, this algorithm is called an asymmetric encryption algorithm.</li>
+<li>Features
+<ul>
+<li>Different keys are used for encryption and decryption</li>
+<li>Slower processing of data, because of high security level</li>
+</ul>
+</li>
+<li>Common algorithms
+<ul>
+<li>RSA</li>
+<li>ECC</li>
+</ul>
+</li>
+</ul>
+<h3 id="rsa-example"><code>RSA</code> example</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsymmetricCryptoTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * private key and public key
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">privateKey</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">publicKey</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">encryptByPublic</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Generate public and private keys
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@BeforeAll</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">genKey</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">KeyPair</span> <span class="n">pair</span> <span class="o">=</span> <span class="n">SecureUtil</span><span class="o">.</span><span class="na">generateKeyPair</span><span class="o">(</span><span class="s">&#34;RSA&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">privateKey</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">pair</span><span class="o">.</span><span class="na">getPrivate</span><span class="o">().</span><span class="na">getEncoded</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;private key\t&#34;</span> <span class="o">+</span> <span class="n">privateKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">publicKey</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">pair</span><span class="o">.</span><span class="na">getPublic</span><span class="o">().</span><span class="na">getEncoded</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;public key\t&#34;</span> <span class="o">+</span> <span class="n">publicKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;HelloWorld&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Initialize the object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// The first parameter is the encryption algorithm, which defaults to RSA/ECB/PKCS1Padding if not passed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// The second parameter is the private key (Base64 string)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// The third parameter is the public key (Base64 string)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">RSA</span> <span class="n">rsa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RSA</span><span class="o">(</span><span class="n">AsymmetricAlgorithm</span><span class="o">.</span><span class="na">RSA_ECB_PKCS1</span><span class="o">.</span><span class="na">getValue</span><span class="o">(),</span> <span class="n">privateKey</span><span class="o">,</span> <span class="n">publicKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Public key encryption, private key decryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">encryptByPublic</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="na">encryptBase64</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">KeyType</span><span class="o">.</span><span class="na">PublicKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;public key encryption\t&#34;</span> <span class="o">+</span> <span class="n">encryptByPublic</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">decryptByPrivate</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="na">decryptStr</span><span class="o">(</span><span class="n">encryptByPublic</span><span class="o">,</span> <span class="n">KeyType</span><span class="o">.</span><span class="na">PrivateKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;private key decryption\t&#34;</span> <span class="o">+</span> <span class="n">decryptByPrivate</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Private key encryption, public key decryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">encryptByPrivate</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="na">encryptBase64</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">KeyType</span><span class="o">.</span><span class="na">PrivateKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;private key encryption\t&#34;</span> <span class="o">+</span> <span class="n">encryptByPrivate</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">decryptByPublic</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="na">decryptStr</span><span class="o">(</span><span class="n">encryptByPrivate</span><span class="o">,</span> <span class="n">KeyType</span><span class="o">.</span><span class="na">PublicKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;public key decryption\t&#34;</span> <span class="o">+</span> <span class="n">decryptByPublic</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">        <span class="n">AsymmetricCryptoTest</span><span class="o">.</span><span class="na">encryptByPublic</span> <span class="o">=</span> <span class="n">encryptByPublic</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Decrypt the ciphertext after public key encryption using private key only
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test2</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Pass in the private key and the corresponding algorithm
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">RSA</span> <span class="n">rsa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RSA</span><span class="o">(</span><span class="n">AsymmetricAlgorithm</span><span class="o">.</span><span class="na">RSA_ECB_PKCS1</span><span class="o">.</span><span class="na">getValue</span><span class="o">(),</span> <span class="n">privateKey</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Private key decryption of the ciphertext after public key encryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">decrypt</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="na">decryptStr</span><span class="o">(</span><span class="n">encryptByPublic</span><span class="o">,</span> <span class="n">KeyType</span><span class="o">.</span><span class="na">PrivateKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">decrypt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="abstract-encryption">Abstract Encryption</h2>
+<h3 id="introduction-1">Introduction</h3>
+<ul>
+<li>Message Digest <code>Message Digest</code> is also known as Digital Digest</li>
+<li>It is a fixed-length value that uniquely corresponds to a message or text, and is generated by a one-way <code>Hash</code> encryption function that acts on the message</li>
+<li>The value generated using Digital Digest is not tamperable, in order to secure the file or value</li>
+<li>Features.
+<ul>
+<li>The length of the computed message digest is always fixed, no matter how long the input message is. For example
+<ul>
+<li>Message digested with <code>MD5</code> algorithm has 128 bits</li>
+<li>A message digested with the <code>SHA-1</code> algorithm ends up with 160 bits</li>
+</ul>
+</li>
+<li>As long as the input message is different, the digested message must be different; but the same input must produce the same output</li>
+<li>Message digest is one-way and irreversible</li>
+</ul>
+</li>
+<li>Common algorithms
+<ul>
+<li>MD5</li>
+<li>SHA1</li>
+<li>SHA256</li>
+<li>SHA512</li>
+</ul>
+</li>
+</ul>
+<h3 id="md5-and-sha-1-examples"><code>MD5</code> and <code>SHA-1</code> examples</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DigesterTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">md5</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;HelloWorld&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// The first one: create Digester object and execute encryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Digester</span> <span class="n">md5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Digester</span><span class="o">(</span><span class="n">DigestAlgorithm</span><span class="o">.</span><span class="na">MD5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">digestHex</span> <span class="o">=</span> <span class="n">md5</span><span class="o">.</span><span class="na">digestHex</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">digestHex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// The second one: implementation using DigestUtil
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">md5Hex</span> <span class="o">=</span> <span class="n">DigestUtil</span><span class="o">.</span><span class="na">md5Hex</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">md5Hex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sha1</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;HelloWorld&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// The first one: create Digester object and execute encryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Digester</span> <span class="n">md5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Digester</span><span class="o">(</span><span class="n">DigestAlgorithm</span><span class="o">.</span><span class="na">SHA1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">digestHex</span> <span class="o">=</span> <span class="n">md5</span><span class="o">.</span><span class="na">digestHex</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">digestHex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// The second one: implementation using DigestUtil
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">md5Hex</span> <span class="o">=</span> <span class="n">DigestUtil</span><span class="o">.</span><span class="na">sha1Hex</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">md5Hex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/crypto/">crypto</a>
+          <a href="https://www.javai.net/tags/hutool/">hutool</a>
+          <a href="https://www.javai.net/tags/encrypt/">Encrypt</a>
+          <a href="https://www.javai.net/tags/decrypt/">Decrypt</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/202203/jdk18/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">JDK 18 / Java 18 GA is released</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/202203/java-startup-params/">
+            <span class="next-text nav-default">Java Startup Params</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

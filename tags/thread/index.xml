@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>thread on JavaIsland</title>
+    <link>https://www.javai.net/tags/thread/</link>
+    <description>Recent content in thread on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Apr 2022 22:19:20 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/thread/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Difference between wait and sleep in java</title>
+      <link>https://www.javai.net/post/202204/java-wait-sleep/</link>
+      <pubDate>Sun, 10 Apr 2022 22:19:20 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-wait-sleep/</guid>
+      <description>Introduction In this post, we will discuss the difference between wait() and sleep() methods in java. And discuss how to use these two methods.
+Difference between wait and sleep wait() is a native method defined in Object.
+1  public final native void wait(long timeout) throws InterruptedException;   So every instance of the class can call this method. wait() can only be called in a synchronized block. It will release the lock put on the object when it is synchronized.</description>
+    </item>
+    
+  </channel>
+</rss>

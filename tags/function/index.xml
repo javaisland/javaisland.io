@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>function on JavaIsland</title>
+    <link>https://www.javai.net/tags/function/</link>
+    <description>Recent content in function on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Apr 2022 21:59:57 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/function/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced Usage of java - Function in JNA</title>
+      <link>https://www.javai.net/post/202204/java-jna-function/</link>
+      <pubDate>Sun, 10 Apr 2022 21:59:57 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-jna-function/</guid>
+      <description>Introduction In JNA, in order to map with native functions, we can have two mapping methods, the first one is interface mapping and the second one is direct mapping. Although the two approaches are different, in the specific method mapping, we both need to define a method in JAVA that maps to the native method..
+This JAVA mapping is a function in JNA, and by using a function object, we can achieve some very powerful functionality.</description>
+    </item>
+    
+  </channel>
+</rss>
