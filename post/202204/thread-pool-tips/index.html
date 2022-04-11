@@ -68,7 +68,7 @@
 <meta itemprop="name" content="Better use of Java thread pool">
 <meta itemprop="description" content="This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the techniques of using thread pools from all aspects of thread pooling."><meta itemprop="datePublished" content="2022-04-11T15:57:29+08:00" />
 <meta itemprop="dateModified" content="2022-04-11T15:57:29+08:00" />
-<meta itemprop="wordCount" content="1718">
+<meta itemprop="wordCount" content="1692">
 <meta itemprop="keywords" content="java,threadpool,juc,concurrent," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Better use of Java thread pool"/>
 <meta name="twitter:description" content="This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the techniques of using thread pools from all aspects of thread pooling."/>
@@ -311,8 +311,8 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 1718 words </span>
-          <span class="more-meta"> 9 min read </span>
+        <span class="more-meta"> 1692 words </span>
+          <span class="more-meta"> 8 min read </span>
 
         
         
@@ -406,10 +406,10 @@
 <p>Bounded queues such as ArrayBlockingQueue help to limit the consumption of resources, but are not easy to control. The two values of queue length and maximumPoolSize affect each other. Using a large queue and a small maximumPoolSize will reduce CPU usage, OS resources, and context switching consumption, but will reduce throughput. If tasks are blocked frequently such as IO threads, the system can actually schedule more threads. Using a small queue usually requires a large maximumPoolSize, which makes the CPU a little busier, but increases the consumption of thread scheduling that reduces throughput. To summarize is IO-intensive can consider more threads to balance the CPU usage, CPU-intensive can consider less threads to reduce the consumption of thread scheduling.</p>
 <h2 id="choose-a-suitable-rejection-strategy">Choose a suitable rejection strategy</h2>
 <p>When new tasks arrive and the thread pool is closed, or when the number of threads and queues have reached the upper limit, we need to make a decision on how to reject these tasks. The following is a description of the common strategies.</p>
-<p>ThreadPoolExecutor#AbortPolicy: This policy directly throws a RejectedExecutionException exception.</p>
-<p>ThreadPoolExecutor#CallerRunsPolicy: This policy will use the Caller thread to execute the task, which is a feedback policy that slows down the task submission.</p>
-<p>ThreadPoolExecutor#DiscardPolicy: This policy will simply discard the task.</p>
-<p>ThreadPoolExecutor#DiscardOldestPolicy: This policy will discard the task at the head of the task queue and then retry to execute it, and if it still fails, continue with the policy.</p>
+<p><code>ThreadPoolExecutor#AbortPolicy</code>: This policy directly throws a RejectedExecutionException exception.</p>
+<p><code>ThreadPoolExecutor#CallerRunsPolicy</code>: This policy will use the Caller thread to execute the task, which is a feedback policy that slows down the task submission.</p>
+<p><code>ThreadPoolExecutor#DiscardPolicy</code>: This policy will simply discard the task.</p>
+<p><code>ThreadPoolExecutor#DiscardOldestPolicy</code>: This policy will discard the task at the head of the task queue and then retry to execute it, and if it still fails, continue with the policy.</p>
 <p>In addition to the above policies, we can also implement our own policies by implementing RejectedExecutionHandler.</p>
 <h2 id="embedding-your-behavior-with-hook">Embedding your behavior with Hook</h2>
 <p>ThreadPoolExecutor provides hook methods of type protected that can be overridden, allowing the user to do something after the task will be executed before it is executed. We can use it to implement operations such as initializing ThreadLocal, collecting statistics, such as logging, etc. There is another hook that can be used to allow the user to insert logic when the task is finished being executed, such as rerminated.</p>
@@ -419,7 +419,7 @@
 <h2 id="closing-the-thread-pool">Closing the thread pool</h2>
 <p>The thread pool will be terminated when it is not referenced anymore and the number of working threads is 0. We can also call shutdown to manually terminate the thread pool. If we forget to call shutdown, we can also use keepAliveTime and allowCoreThreadTimeOut in order to get the thread resources released.</p>
 <h2 id="written-at-the-end">Written at the end</h2>
-<p>The API provided by JAVA itself already allows us to quickly do multi-threaded development based on thread pools, but we have to be responsible for the code we write, and each parameter setting and strategy choice has an absolute relationship with different application scenarios. However, it is not easy to choose different parameters and different strategies. We have to answer some basic questions first: what does the OS do for us for each thread created, and what is the main part of the OS resource consumption for this thread? If my application scenario is IO-intensive, do I need more threads or fewer threads? In my opinion, multi-threaded development is a not easy thing to do.</p>
+<p>The API provided by JAVA itself already allows us to quickly do multi-threaded development based on thread pools. However, it is not easy to choose different parameters and different strategies. We have to answer some basic questions first: what does the OS do for us for each thread created, and what is the main part of the OS resource consumption for this thread? If my application scenario is IO-intensive, do I need more threads or fewer threads? In my opinion, multi-threaded development is a not easy thing to do.</p>
 <p>If you are interested in multi-threaded development, then please check out the other multi-threaded articles on this site</p>
 
     </div>
@@ -504,6 +504,14 @@
 </div>
 
 <div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
   <span class="copyright-year">
     &copy;
     2022
