@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>trends on JavaIsland</title>
+    <link>https://www.javai.net/tags/trends/</link>
+    <description>Recent content in trends on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Apr 2022 15:33:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/trends/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Technology Trends Java Teams Should Watch in 2022</title>
+      <link>https://www.javai.net/post/202204/java-2022-trends/</link>
+      <pubDate>Mon, 11 Apr 2022 15:33:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-2022-trends/</guid>
+      <description>Java is evolving quickly, and with potential changes to the OpenJDK release cycle, it may accelerate even further. For people like Michael Rasmussen, JRebel development lead at Perforce, keeping up with these changes and understanding their impact on development; creating features that resonate with the Java development community, keeping applications up to date with the latest versions of popular Java technologies, and developing new features, improvements, and integrations for JRebel is critical.</description>
+    </item>
+    
+  </channel>
+</rss>

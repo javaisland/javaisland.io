@@ -6,7 +6,27 @@
     <description>Recent content in concurrent on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 10 Apr 2022 22:19:20 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/concurrent/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Apr 2022 15:57:29 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/concurrent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Better use of Java thread pool</title>
+      <link>https://www.javai.net/post/202204/thread-pool-tips/</link>
+      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/thread-pool-tips/</guid>
+      <description>Introduction This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the use of thread pools from the setting of thread pool size parameters, the creation of work threads, the recycling of idle threads, the use of blocking queues, task rejection strategies, thread pool Hook and other aspects, which involves some details including the choice of different parameters, different queues, different rejection strategies, the resulting The details include the different parameters, the different queues, the choice of different rejection strategies, the resulting impact and behavior, and for better use of the thread pool.</description>
+    </item>
+    
+    <item>
+      <title>Synchronized keywords in java concurrency</title>
+      <link>https://www.javai.net/post/202204/java-synchronized/</link>
+      <pubDate>Mon, 11 Apr 2022 10:26:19 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-synchronized/</guid>
+      <description>Introduction In a multi-threaded environment, we often encounter resource competition, such as multiple threads going to modify the same shared variable at the same time, it is necessary to perform some processing of the resource access method to ensure that only one thread accesses it at the same time.
+Java provides the synchronized keyword to facilitate us to achieve the above operation.
+Why synchronized Let&amp;rsquo;s take an example where we create a class that provides a setSum method.</description>
+    </item>
+    
     <item>
       <title>Difference between wait and sleep in java</title>
       <link>https://www.javai.net/post/202204/java-wait-sleep/</link>

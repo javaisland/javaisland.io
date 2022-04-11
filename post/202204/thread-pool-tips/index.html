@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Better use of Java thread pool - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the techniques of using thread pools from all aspects of thread pooling." />
+<meta name="keywords" content="java, threadpool, juc, concurrent" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202204/thread-pool-tips/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Better use of Java thread pool" />
+<meta property="og:description" content="This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the techniques of using thread pools from all aspects of thread pooling." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/thread-pool-tips/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-11T15:57:29+08:00" />
+<meta property="article:modified_time" content="2022-04-11T15:57:29+08:00" />
+
+<meta itemprop="name" content="Better use of Java thread pool">
+<meta itemprop="description" content="This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the techniques of using thread pools from all aspects of thread pooling."><meta itemprop="datePublished" content="2022-04-11T15:57:29+08:00" />
+<meta itemprop="dateModified" content="2022-04-11T15:57:29+08:00" />
+<meta itemprop="wordCount" content="1718">
+<meta itemprop="keywords" content="java,threadpool,juc,concurrent," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Better use of Java thread pool"/>
+<meta name="twitter:description" content="This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the techniques of using thread pools from all aspects of thread pooling."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Better use of Java thread pool</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-11" class="post-time">
+          2022-04-11
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 1718 words </span>
+          <span class="more-meta"> 9 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#quick-start">Quick Start</a></li>
+    <li><a href="#what-you-need-to-know-about-setting-the-thread-count-size-parameter">What you need to know about setting the thread count size parameter</a></li>
+    <li><a href="#corethreadwarmup">CoreThreadWarmUp</a></li>
+    <li><a href="#custom-work-thread-creation">Custom work thread creation</a></li>
+    <li><a href="#idle-thread-recycling">Idle thread recycling</a></li>
+    <li><a href="#choosing-the-right-blocking-queue">Choosing the right blocking queue</a></li>
+    <li><a href="#direct-submission">Direct Submission</a></li>
+    <li><a href="#unbounded-queues">Unbounded Queues</a></li>
+    <li><a href="#bounded-queues">Bounded Queues</a></li>
+    <li><a href="#choose-a-suitable-rejection-strategy">Choose a suitable rejection strategy</a></li>
+    <li><a href="#embedding-your-behavior-with-hook">Embedding your behavior with Hook</a></li>
+    <li><a href="#accessible-queues">Accessible Queues</a></li>
+    <li><a href="#closing-the-thread-pool">Closing the thread pool</a></li>
+    <li><a href="#written-at-the-end">Written at the end</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="introduction">Introduction</h2>
+<p>This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the use of thread pools from the setting of thread pool size parameters, the creation of work threads, the recycling of idle threads, the use of blocking queues, task rejection strategies, thread pool Hook and other aspects, which involves some details including the choice of different parameters, different queues, different rejection strategies, the resulting The details include the different parameters, the different queues, the choice of different rejection strategies, the resulting impact and behavior, and for better use of the thread pool.</p>
+<p>The ExecutorService is based on pooled threads to execute user submitted tasks, usually simply by creating ThreadPoolExecutor instances via the factory methods provided by Executors.</p>
+<p>Thread pooling solves two problems:</p>
+<ul>
+<li>
+<p>thread pooling optimizes system performance when executing a large number of asynchronous tasks by reducing the performance consumption incurred each time a task is performed.</p>
+</li>
+<li>
+<p>thread pooling also provides a way to limit and manage the resources and threads consumed when batch tasks are executed. In addition ThreadPoolExecutor provides simple statistics such as how many tasks have been executed so far.</p>
+</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<p>To make the thread pool suitable for a large number of different application contexts, ThreadPoolExecutor provides a number of configurable parameters and hooks that can be used to extend it. However, users can also quickly create ThreadPoolExecutor instances by using some of the factory methods provided by Executors. For example.</p>
+<ol>
+<li>using Executors#newCachedThreadPool you can quickly create a thread pool with automatic thread recycling and no limits.</li>
+<li>use Executors#newFixedThreadPool to create a fixed thread size thread pool.</li>
+<li>use Executors#newSingleThreadExecutor to create a single-threaded executor.</li>
+</ol>
+<p>If the instance created by the above method does not meet our needs, we can configure it ourselves with parameters to instantiate an instance.</p>
+<h2 id="what-you-need-to-know-about-setting-the-thread-count-size-parameter">What you need to know about setting the thread count size parameter</h2>
+<p>ThreadPoolExecutor dynamically adjusts the size of the thread pool based on corePoolSize and maximumPoolSize:poolSize.</p>
+<p>When a task is submitted to the thread pool through the executor, we need to know the following points.</p>
+<ul>
+<li>If the number of worker threads in the current pool is less than corePoolSize at this time, a new worker thread is created to execute the task, regardless of whether there are threads in the worker thread collection that are idle. If there are threads in the pool, then a new thread is created to execute the task, regardless of whether there are threads in the worker set that are idle.</li>
+<li>If there is a worker thread in the pool that is larger than the corePoolSize but smaller than the maximumPoolSize, the task will be first tried to be put into the queue, and two cases need to be mentioned separately here:
+<ul>
+<li>If the task is successfully put into the queue, see if a new thread needs to be opened to execute the task. Only when the current number of threads is 0 will a new thread be created, because the previous threads may be removed because they are idle or because the work is finished.</li>
+<li>Only go ahead and create a new worker thread if it fails to be put into the queue.</li>
+</ul>
+</li>
+<li>If corePoolSize and maximumPoolSize are the same, the size of the thread pool is fixed.</li>
+<li>By setting maximumPoolSize to infinity, we can get a thread pool with no upper limit.</li>
+<li>In addition to setting these thread pool parameters via the construction parameters we can also set them at runtime.</li>
+</ul>
+<h2 id="corethreadwarmup">CoreThreadWarmUp</h2>
+<p>By default, core worker threads are created initially and started when a new task arrives, but we can change this behavior by overriding the restartCoreThread or restartCoreThreads methods. The usual scenario is that we can WarmUp the core thread when the application is started, thus achieving the result of being able to execute the task immediately when it comes, making the initial task processing time somewhat optimized.</p>
+<h2 id="custom-work-thread-creation">Custom work thread creation</h2>
+<p>New threads are created via ThreadFactory, if not specified, the default Executors#defaultThreadFactory will be used, at this time the created threads will all belong to the same thread group, with the same priority and daemon status. Extending the configuration of ThreadFactory, we can configure the thread name, thread combination daemon status. If the call to ThreadFactory#createThread fails, it will return null and the executor will not perform any task.</p>
+<h2 id="idle-thread-recycling">Idle thread recycling</h2>
+<p>If the number of worker threads in the current pool is greater than corePoolSize, and if the threads above this number are idle for longer than keepAliveTime, these threads will be terminated as a strategy to reduce unnecessary resource consumption. This parameter can be changed at runtime, and we can also apply this policy to core threads, which we can do by calling allowCoreThreadTimeout.</p>
+<h2 id="choosing-the-right-blocking-queue">Choosing the right blocking queue</h2>
+<p>All blocking queues can be used to hold tasks, but using different queues for corePoolSize will exhibit different behavior.</p>
+<p>When the number of worker threads in the pool is less than corePoolSize, a new worker thread will be created each time a task comes in.</p>
+<p>When the number of worker threads in the pool is greater than or equal to corePoolSize, each time a task comes in, it first tries to put the thread into the queue instead of creating the thread directly.</p>
+<p>If the queue fails and the number of threads in the pool is less than the maximumPoolSize, then a worker thread is created.</p>
+<p>The following are mainly the different queueing strategies performance:</p>
+<h2 id="direct-submission">Direct Submission</h2>
+<p>A better default option is to use SynchronousQueue, a strategy that delivers the submitted task directly to the worker thread without holding it. If there is currently no worker thread to process it, i.e., the task fails to be placed in the queue, a new worker thread is triggered to be created according to the thread pool implementation, so the newly submitted task is processed. This strategy avoids lock contention consumption when there are dependencies between the submitted batch of tasks. It is worth mentioning that this strategy is best used in conjunction with the number of unbounded threads, thus avoiding task rejection. Also we have to consider a scenario when tasks arrive faster than they can be processed, which will cause the number of unbounded threads to keep increasing.</p>
+<h2 id="unbounded-queues">Unbounded Queues</h2>
+<p>Using an unbounded queue such as LinkedBlockingQueue without specifying a maximum capacity will cause new tasks to be placed on the queue when the core threads are all busy, so that no threads larger than corePoolSize will ever be created, and therefore the maximumPoolSize parameter will fail. This strategy is more suitable for all tasks that are not dependent on each other and execute independently. As an example, for example, in a web server, each thread processes requests independently. But when the task processing speed is less than the task entry speed it will cause infinite expansion of the queue.</p>
+<h2 id="bounded-queues">Bounded Queues</h2>
+<p>Bounded queues such as ArrayBlockingQueue help to limit the consumption of resources, but are not easy to control. The two values of queue length and maximumPoolSize affect each other. Using a large queue and a small maximumPoolSize will reduce CPU usage, OS resources, and context switching consumption, but will reduce throughput. If tasks are blocked frequently such as IO threads, the system can actually schedule more threads. Using a small queue usually requires a large maximumPoolSize, which makes the CPU a little busier, but increases the consumption of thread scheduling that reduces throughput. To summarize is IO-intensive can consider more threads to balance the CPU usage, CPU-intensive can consider less threads to reduce the consumption of thread scheduling.</p>
+<h2 id="choose-a-suitable-rejection-strategy">Choose a suitable rejection strategy</h2>
+<p>When new tasks arrive and the thread pool is closed, or when the number of threads and queues have reached the upper limit, we need to make a decision on how to reject these tasks. The following is a description of the common strategies.</p>
+<p>ThreadPoolExecutor#AbortPolicy: This policy directly throws a RejectedExecutionException exception.</p>
+<p>ThreadPoolExecutor#CallerRunsPolicy: This policy will use the Caller thread to execute the task, which is a feedback policy that slows down the task submission.</p>
+<p>ThreadPoolExecutor#DiscardPolicy: This policy will simply discard the task.</p>
+<p>ThreadPoolExecutor#DiscardOldestPolicy: This policy will discard the task at the head of the task queue and then retry to execute it, and if it still fails, continue with the policy.</p>
+<p>In addition to the above policies, we can also implement our own policies by implementing RejectedExecutionHandler.</p>
+<h2 id="embedding-your-behavior-with-hook">Embedding your behavior with Hook</h2>
+<p>ThreadPoolExecutor provides hook methods of type protected that can be overridden, allowing the user to do something after the task will be executed before it is executed. We can use it to implement operations such as initializing ThreadLocal, collecting statistics, such as logging, etc. There is another hook that can be used to allow the user to insert logic when the task is finished being executed, such as rerminated.</p>
+<p>If the hook method fails to execute, the execution of the internal worker thread will fail or be interrupted.</p>
+<h2 id="accessible-queues">Accessible Queues</h2>
+<p>The getQueue method can be used to access the queue for some statistical or debug work, but we do not recommend it for other purposes. Also the remove and purge methods can be used to remove tasks from the queue.</p>
+<h2 id="closing-the-thread-pool">Closing the thread pool</h2>
+<p>The thread pool will be terminated when it is not referenced anymore and the number of working threads is 0. We can also call shutdown to manually terminate the thread pool. If we forget to call shutdown, we can also use keepAliveTime and allowCoreThreadTimeOut in order to get the thread resources released.</p>
+<h2 id="written-at-the-end">Written at the end</h2>
+<p>The API provided by JAVA itself already allows us to quickly do multi-threaded development based on thread pools, but we have to be responsible for the code we write, and each parameter setting and strategy choice has an absolute relationship with different application scenarios. However, it is not easy to choose different parameters and different strategies. We have to answer some basic questions first: what does the OS do for us for each thread created, and what is the main part of the OS resource consumption for this thread? If my application scenario is IO-intensive, do I need more threads or fewer threads? In my opinion, multi-threaded development is a not easy thing to do.</p>
+<p>If you are interested in multi-threaded development, then please check out the other multi-threaded articles on this site</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/threadpool/">threadpool</a>
+          <a href="https://www.javai.net/tags/juc/">juc</a>
+          <a href="https://www.javai.net/tags/concurrent/">concurrent</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202204/java-2022-trends/">
+            <span class="next-text nav-default">Technology Trends Java Teams Should Watch in 2022</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

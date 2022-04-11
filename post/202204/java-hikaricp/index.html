@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Analysis of connection pooling principles through HiKariCP - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="HiKariCP as the default connection pool of SpringBoot2 framework, claimed to be the fastest running connection pool, from the principle of design are based on the pooling idea." />
+<meta name="keywords" content="java, hikaricp, connection pooling, jdbc" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202204/java-hikaricp/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Analysis of connection pooling principles through HiKariCP" />
+<meta property="og:description" content="HiKariCP as the default connection pool of SpringBoot2 framework, claimed to be the fastest running connection pool, from the principle of design are based on the pooling idea." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-hikaricp/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-11T13:54:22+08:00" />
+<meta property="article:modified_time" content="2022-04-11T13:54:22+08:00" />
+
+<meta itemprop="name" content="Analysis of connection pooling principles through HiKariCP">
+<meta itemprop="description" content="HiKariCP as the default connection pool of SpringBoot2 framework, claimed to be the fastest running connection pool, from the principle of design are based on the pooling idea."><meta itemprop="datePublished" content="2022-04-11T13:54:22+08:00" />
+<meta itemprop="dateModified" content="2022-04-11T13:54:22+08:00" />
+<meta itemprop="wordCount" content="1546">
+<meta itemprop="keywords" content="java,hikaricp,connection pooling,jdbc," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Analysis of connection pooling principles through HiKariCP"/>
+<meta name="twitter:description" content="HiKariCP as the default connection pool of SpringBoot2 framework, claimed to be the fastest running connection pool, from the principle of design are based on the pooling idea."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Analysis of connection pooling principles through HiKariCP</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-11" class="post-time">
+          2022-04-11
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 1546 words </span>
+          <span class="more-meta"> 8 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#design-and-principle">Design and Principle</a>
+      <ul>
+        <li><a href="#the-base-case">The base case</a></li>
+        <li><a href="#core-related-classes">Core related classes</a></li>
+        <li><a href="#loading-logic">Loading logic</a></li>
+      </ul>
+    </li>
+    <li><a href="#container-analysis">Container analysis</a>
+      <ul>
+        <li><a href="#container-structure">Container structure</a></li>
+        <li><a href="#packaging-objects">Packaging objects</a></li>
+      </ul>
+    </li>
+    <li><a href="#object-management">Object management</a>
+      <ul>
+        <li><a href="#initialization">initialization</a></li>
+        <li><a href="#borrowed-objects">Borrowed Objects</a></li>
+        <li><a href="#releasing-objects">Releasing objects</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="design-and-principle">Design and Principle</h2>
+<h3 id="the-base-case">The base case</h3>
+<p>HiKariCP as the default connection pool of SpringBoot2 framework, claimed to be the fastest running connection pool, database connection pool and the previous two mentioned thread pool and object pool, from the principle of design are based on the pooling idea, only in the implementation of their own characteristics; first or see the basic case of HiKariCP usage.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.zaxxer.hikari.HikariConfig</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.zaxxer.hikari.HikariDataSource</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.sql.ResultSet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.sql.Statement</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConPool</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">HikariConfig</span> <span class="nf">buildConfig</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HikariConfig</span> <span class="n">hikariConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HikariConfig</span><span class="o">()</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Basic configuration
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setJdbcUrl</span><span class="o">(</span><span class="s">&#34;jdbc:mysql://127.0.0.1:3306/javaisland&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;javaisland&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&#34;javaisland&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Connection pool configuration
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setPoolName</span><span class="o">(</span><span class="s">&#34;javaisland&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setMinimumIdle</span><span class="o">(</span><span class="n">4</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setMaximumPoolSize</span><span class="o">(</span><span class="n">8</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setIdleTimeout</span><span class="o">(</span><span class="n">600000L</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">hikariConfig</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Build the data source
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">HikariDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HikariDataSource</span><span class="o">(</span><span class="n">buildConfig</span><span class="o">())</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Get the connection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">dataSource</span><span class="o">.</span><span class="na">getConnection</span><span class="o">()</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// declare the SQL execution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Statement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ResultSet</span> <span class="n">resultSet</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="s">&#34;SELECT count(1) num FROM javaisland&#34;</span><span class="o">)</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Output the execution result
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">resultSet</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;query-count-result: &#34;</span> <span class="o">+</span> <span class="n">resultSet</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">&#34;num&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="core-related-classes">Core related classes</h3>
+<ul>
+<li><code>HikariDataSource class</code> : brings together information related to the description of the data source, such as configuration, connection pool, connection object, state management, etc..</li>
+<li><code>HikariConfig class</code> : maintain the configuration of the data source management, and parameter verification, such as userName, passWord, minIdle, maxPoolSize, etc..</li>
+<li><code>HikariPool class</code>: provides the core ability to manage connection pools and objects in the pool, and implements query methods for pool-related monitoring data.</li>
+<li><code>ConcurrentBag class</code> : abandon the blocking queue used in the conventional pool as a container, customize the concurrent container to store connection objects.</li>
+<li><code>PoolEntry class</code> : extends information about connection objects, such as status, time, etc., to facilitate tracking of these instantiated objects in the container.</li>
+</ul>
+<p>Through the analysis of several core classes in the connection pool, you can also intuitively appreciate the design principles of the source code, and the previous summary of the application of the object pool has similarities, but different components of different developers in the implementation of the time, have their own abstract logic.</p>
+<h3 id="loading-logic">Loading logic</h3>
+<p>Through the configuration information to build the data source description, in the construction method based on the configuration and then to instantiate the connection pool, in the construction of HikariPool, instantiate the ConcurrentBag container object; the following and then analyze the implementation details from the source code level.</p>
+<h2 id="container-analysis">Container analysis</h2>
+<h3 id="container-structure">Container structure</h3>
+<p>Container ConcurrentBag class provides the PoolEntry type of connected object storage, as well as basic element management capabilities, object state description; although held by the HikariPool object pool class, but the actual logic of the operation is in the class.</p>
+<h4 id="basic-properties">Basic properties</h4>
+<p>The most central of these are <code>sharedList</code> shared collections, <code>threadList</code> thread-level caches, and <code>handoffQueue</code> instant queues.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Shared object collection that holds database connections
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">final</span> <span class="n">CopyOnWriteArrayList</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">sharedList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Cache of thread-level connection objects, which will be used first to avoid contention
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">final</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">threadList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Number of threads waiting to get a connection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">final</span> <span class="n">AtomicInteger</span> <span class="n">waiters</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// marker to close or not
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">closed</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Queue for instant connection processing, which assigns connections to waiting threads when they are available
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">final</span> <span class="n">SynchronousQueue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">handoffQueue</span><span class="o">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="state-description">State Description</h4>
+<p>The IConcurrentBagEntry internal interface in the ConcurrentBag class, implemented by the PoolEntry class, which defines the state of the connection object.</p>
+<ul>
+<li><code>STATE_NOT_IN_USE</code>: unused, i.e., inactive.</li>
+<li><code>STATE_IN_USE</code>: in use.</li>
+<li><code>STATE_REMOVED</code>: deprecated.</li>
+<li><code>STATE_RESERVED</code>: reserved state, intermediate state, used when trying to evict a connected object.</li>
+</ul>
+<h3 id="packaging-objects">Packaging objects</h3>
+<p>the basic ability of the container is used to store the connection object, while the management of the object requires a lot of extended tracking information to effectively complete the identification of various scenarios, at which point it is necessary to resort to the introduction of packaging classes;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// the business really use the connection object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Connection</span> <span class="n">connection</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// the most recent access time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="n">lastAccessed</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Last borrowed time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="n">lastBorrowed</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// state description
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">int</span> <span class="n">state</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Whether to evict or not
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">evict</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Scheduled task at the end of the life cycle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">volatile</span> <span class="n">ScheduledFuture</span><span class="o">&lt;?</span> <span class="o">&gt;</span> <span class="n">endOfLife</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Connection to the generated Statement object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">final</span> <span class="n">FastList</span><span class="o">&lt;</span><span class="n">Statement</span><span class="o">&gt;</span> <span class="n">openStatements</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Pool object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">final</span> <span class="n">HikariPool</span> <span class="n">hikariPool</span><span class="o">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here it should be noted that the FastList class implements the List interface, customized for HiKariCP components, compared to the ArrayList class, for the pursuit of performance, in the management of the elements, to remove the many range checks.</p>
+<h2 id="object-management">Object management</h2>
+<p>Based on the conventional use of connection pools to see how the connection object is specifically managed, such as being lent, released, discarded, etc., as well as the state transition process of objects under these operations.</p>
+<h3 id="initialization">initialization</h3>
+<p>Above <strong>loading logic</strong> description, has been mentioned in the construction of the data source, will be instantiated according to the configuration of the connection pool, at the time of initialization, based on two core entry points to analyze the source code:</p>
+<ul>
+<li>how many connection objects are instantiated</li>
+<li>connection object conversion packaging object</li>
+</ul>
+<p><code>checkFailFast</code> method is executed in the connection pool construction, within which the MinIdle minimum idle number judgment is performed, and if it is greater than 0, a wrapper object is created and placed in the container.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">HikariPool</span><span class="o">(</span><span class="kd">final</span> <span class="n">HikariConfig</span> <span class="n">config</span><span class="o">)</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">checkFailFast</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">PoolEntry</span> <span class="n">poolEntry</span> <span class="o">=</span> <span class="n">createPoolEntry</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">getMinimumIdle</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">connectionBag</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">poolEntry</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Two issues need to be noted, the creation of the connection wrapper object, the initial state is 0 that is idle; in addition, although the case set the value of <code>MinIdle=4</code>, but here the judgment is greater than 0, but also only in the container in advance put a free object.</p>
+<h3 id="borrowed-objects">Borrowed Objects</h3>
+<p>When fetching the connection object from the pool, the <code>borrow</code> method in the container class is actually called.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Connection</span> <span class="n">HikariPool</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="kd">final</span> <span class="kt">long</span> <span class="n">hardTimeout</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">T</span> <span class="n">ConcurrentBag</span><span class="o">.</span><span class="na">borrow</span><span class="o">(</span><span class="kt">long</span> <span class="n">timeout</span><span class="o">,</span> <span class="kd">final</span> <span class="n">TimeUnit</span> <span class="n">timeUnit</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When executing the <code>borrow</code> method, the following core steps and logic are involved.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">T</span> <span class="nf">borrow</span><span class="o">(</span><span class="kt">long</span> <span class="n">timeout</span><span class="o">,</span> <span class="kd">final</span> <span class="n">TimeUnit</span> <span class="n">timeUnit</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Iterating over the local thread cache
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">threadList</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="kd">final</span> <span class="n">Object</span> <span class="n">entry</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">       <span class="kd">final</span> <span class="n">T</span> <span class="n">bagEntry</span> <span class="o">=</span> <span class="n">weakThreadLocals</span> <span class="o">?</span> <span class="o">((</span><span class="n">WeakReference</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;)</span> <span class="n">entry</span><span class="o">).</span><span class="na">get</span><span class="o">()</span> <span class="o">:</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">entry</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">       <span class="k">if</span> <span class="o">(</span><span class="n">bagEntry</span> <span class="o">!</span> <span class="o">=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">bagEntry</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="n">STATE_NOT_IN_USE</span><span class="o">,</span> <span class="n">STATE_IN_USE</span><span class="o">))</span> <span class="o">{</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Increase the number of waiting threads
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">final</span> <span class="kt">int</span> <span class="n">waiting</span> <span class="o">=</span> <span class="n">waiters</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Iterate through the Shared shared collection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="n">T</span> <span class="n">bagEntry</span> <span class="o">:</span> <span class="n">sharedList</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">           <span class="k">if</span> <span class="o">(</span><span class="n">bagEntry</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="n">STATE_NOT_IN_USE</span><span class="o">,</span> <span class="n">STATE_IN_USE</span><span class="o">))</span> <span class="o">{</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Poll the handoff queue for a certain amount of time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">listener</span><span class="o">.</span><span class="na">addBagItem</span><span class="o">(</span><span class="n">waiting</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">timeout</span> <span class="o">=</span> <span class="n">timeUnit</span><span class="o">.</span><span class="na">toNanos</span><span class="o">(</span><span class="n">timeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">do</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">           <span class="kd">final</span> <span class="n">T</span> <span class="n">bagEntry</span> <span class="o">=</span> <span class="n">handoffQueue</span><span class="o">.</span><span class="na">poll</span><span class="o">(</span><span class="n">timeout</span><span class="o">,</span> <span class="n">NANOSECONDS</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> 
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Reduce the number of waiting threads
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="n">waiters</span><span class="o">.</span><span class="na">decrementAndGet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>first reverse iterate through the local thread cache and return the object if an idle connection exists; if not, look for the Shared collection.</li>
+<li>Before traversing the Shared shared collection, it marks the number of waiting threads plus one, and returns it directly if there is an idle connection.</li>
+<li>When there is no idle connection in the Shared shared collection either, then the current thread performs <code>handoffQueue</code> queue polling for a certain amount of time, possibly with the release of resources, or with newly added resources.</li>
+</ul>
+<p>Note that here, when traversing the collection, the objects taken out are judged and updated for status, and if a free object is obtained, it is updated to <code>IN_USE</code> status and returned.</p>
+<h3 id="releasing-objects">Releasing objects</h3>
+<p>When releasing a connected object from the pool, the <code>requite</code> method in the container class is actually called.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">HikariPool</span><span class="o">.</span><span class="na">recycle</span><span class="o">(</span><span class="kd">final</span> <span class="n">PoolEntry</span> <span class="n">poolEntry</span><span class="o">)</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="n">ConcurrentBag</span><span class="o">.</span><span class="na">request</span><span class="o">(</span><span class="kd">final</span> <span class="n">T</span> <span class="n">bagEntry</span><span class="o">)</span> <span class="o">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When releasing the connection object, first update the object state to idle, then determine whether there is currently a waiting thread, in the <code>borrow</code> method waiting thread will enter a certain time polling, if not then the object into the local thread cache:.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">requite</span><span class="o">(</span><span class="kd">final</span> <span class="n">T</span> <span class="n">bagEntry</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Update Status
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">bagEntry</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="n">STATE_NOT_IN_USE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Waiting for the thread to judge
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">waiters</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">bagEntry</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">!=</span> <span class="n">STATE_NOT_IN_USE</span> <span class="o">||</span> <span class="n">handoffQueue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">bagEntry</span><span class="o">))</span> <span class="o">{</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Local thread caching
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">threadLocalList</span> <span class="o">=</span> <span class="n">threadList</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">threadLocalList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">50</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">threadLocalList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">weakThreadLocals</span> <span class="o">?</span> <span class="k">new</span> <span class="n">WeakReference</span><span class="o">&lt;&gt;(</span><span class="n">bagEntry</span><span class="o">)</span> <span class="o">:</span> <span class="n">bagEntry</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the state of the connection object involved here from use to <code>NOT_IN_USE</code> idle; <code>borrow</code> and <code>requite</code> as the two core methods in the connection pool, responsible for resource creation and recycling.</p>
+<p>Although only part of the source code, but already enough to highlight the author&rsquo;s ultimate pursuit of performance, such as: local thread cache, custom container types, FastList, etc.; can be commonly adopted must exist many reasons to support.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/hikaricp/">hikaricp</a>
+          <a href="https://www.javai.net/tags/connection-pooling/">connection pooling</a>
+          <a href="https://www.javai.net/tags/jdbc/">jdbc</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/202204/java-2022-trends/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Technology Trends Java Teams Should Watch in 2022</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/202204/java-synchronized/">
+            <span class="next-text nav-default">Synchronized keywords in java concurrency</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

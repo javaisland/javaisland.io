@@ -6,11 +6,11 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 10 Apr 2022 22:19:20 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Apr 2022 15:57:29 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>concurrent</title>
       <link>https://www.javai.net/tags/concurrent/</link>
-      <pubDate>Sun, 10 Apr 2022 22:19:20 +0800</pubDate>
+      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/concurrent/</guid>
       <description></description>
@@ -19,7 +19,7 @@
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Sun, 10 Apr 2022 22:19:20 +0800</pubDate>
+      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
       <description></description>
@@ -28,16 +28,70 @@
     <item>
       <title>juc</title>
       <link>https://www.javai.net/tags/juc/</link>
-      <pubDate>Sun, 10 Apr 2022 22:19:20 +0800</pubDate>
+      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/juc/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>threadpool</title>
+      <link>https://www.javai.net/tags/threadpool/</link>
+      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/threadpool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trends</title>
+      <link>https://www.javai.net/tags/trends/</link>
+      <pubDate>Mon, 11 Apr 2022 15:33:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/trends/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>connection pooling</title>
+      <link>https://www.javai.net/tags/connection-pooling/</link>
+      <pubDate>Mon, 11 Apr 2022 13:54:22 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/connection-pooling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hikaricp</title>
+      <link>https://www.javai.net/tags/hikaricp/</link>
+      <pubDate>Mon, 11 Apr 2022 13:54:22 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/hikaricp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jdbc</title>
+      <link>https://www.javai.net/tags/jdbc/</link>
+      <pubDate>Mon, 11 Apr 2022 13:54:22 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/jdbc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>synchronized</title>
+      <link>https://www.javai.net/tags/synchronized/</link>
+      <pubDate>Mon, 11 Apr 2022 10:26:19 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/synchronized/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>thread</title>
       <link>https://www.javai.net/tags/thread/</link>
-      <pubDate>Sun, 10 Apr 2022 22:19:20 +0800</pubDate>
+      <pubDate>Mon, 11 Apr 2022 10:26:19 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/thread/</guid>
       <description></description>
@@ -130,60 +184,6 @@
       <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/volatile/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lock</title>
-      <link>https://www.javai.net/tags/lock/</link>
-      <pubDate>Wed, 06 Apr 2022 16:30:46 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/lock/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>principle</title>
-      <link>https://www.javai.net/tags/principle/</link>
-      <pubDate>Wed, 06 Apr 2022 16:30:46 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/principle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reentrantLock</title>
-      <link>https://www.javai.net/tags/reentrantlock/</link>
-      <pubDate>Wed, 06 Apr 2022 16:30:46 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/reentrantlock/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>log</title>
-      <link>https://www.javai.net/tags/log/</link>
-      <pubDate>Wed, 06 Apr 2022 16:16:21 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/log/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reflect</title>
-      <link>https://www.javai.net/tags/reflect/</link>
-      <pubDate>Wed, 06 Apr 2022 16:16:21 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/reflect/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>algorithm</title>
-      <link>https://www.javai.net/tags/algorithm/</link>
-      <pubDate>Wed, 06 Apr 2022 13:59:55 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/algorithm/</guid>
       <description></description>
     </item>
     
