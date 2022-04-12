@@ -6,7 +6,43 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 11 Apr 2022 15:57:29 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Apr 2022 17:24:00 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>future</title>
+      <link>https://www.javai.net/tags/future/</link>
+      <pubDate>Tue, 12 Apr 2022 17:24:00 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/future/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://www.javai.net/tags/java/</link>
+      <pubDate>Tue, 12 Apr 2022 17:24:00 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thread</title>
+      <link>https://www.javai.net/tags/thread/</link>
+      <pubDate>Tue, 12 Apr 2022 17:24:00 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/thread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>threadpool</title>
+      <link>https://www.javai.net/tags/threadpool/</link>
+      <pubDate>Tue, 12 Apr 2022 17:24:00 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/threadpool/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>concurrent</title>
       <link>https://www.javai.net/tags/concurrent/</link>
@@ -17,29 +53,11 @@
     </item>
     
     <item>
-      <title>java</title>
-      <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>juc</title>
       <link>https://www.javai.net/tags/juc/</link>
       <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/juc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>threadpool</title>
-      <link>https://www.javai.net/tags/threadpool/</link>
-      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/threadpool/</guid>
       <description></description>
     </item>
     
@@ -85,15 +103,6 @@
       <pubDate>Mon, 11 Apr 2022 10:26:19 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/synchronized/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thread</title>
-      <link>https://www.javai.net/tags/thread/</link>
-      <pubDate>Mon, 11 Apr 2022 10:26:19 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/thread/</guid>
       <description></description>
     </item>
     
@@ -175,15 +184,6 @@
       <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/jvm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>volatile</title>
-      <link>https://www.javai.net/tags/volatile/</link>
-      <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/volatile/</guid>
       <description></description>
     </item>
     
