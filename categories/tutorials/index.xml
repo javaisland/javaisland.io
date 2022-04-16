@@ -6,14 +6,24 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 13 Apr 2022 20:59:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Apr 2022 19:44:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Class File Format Analysis</title>
+      <link>https://www.javai.net/post/202204/java-class-file-format-analysis/</link>
+      <pubDate>Sat, 16 Apr 2022 19:44:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-class-file-format-analysis/</guid>
+      <description>Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
+Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.</description>
+    </item>
+    
     <item>
       <title>Java Virtual Threads Explained</title>
       <link>https://www.javai.net/post/202204/java-virtual-threads-explained/</link>
-      <pubDate>Wed, 13 Apr 2022 20:59:32 +0800</pubDate>
+      <pubDate>Fri, 15 Apr 2022 20:59:32 +0800</pubDate>
       
       <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
-      <description>Many languages have technologies like &amp;ldquo;virtual threads&amp;rdquo;, such as Go, C#, Erlang, Lua, etc., which they call &amp;ldquo;concurrent threads&amp;rdquo;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.
+      <description>Many languages have technologies like virtual threads, such as Go, C#, Erlang, Lua, etc., which they call concurrent threads. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.
 The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</description>
     </item>
     
@@ -204,15 +214,6 @@ Locate the zombie process by ps aux | grep Z.
       <description>Just yesterday Spring officially announced a Spring Framework RCE vulnerability CVE-2022-22965.
 Upgrading to Spring Framework 5.3.18+ or 5.2.20+ remains the main official Spring recommendation, which officially claims to address the root cause and prevent some other vulnerability attacks, and these also provide fixes for other CVEs.
 Although the vulnerability is not in Tomcat itself, the Apache Tomcat team has also released versions 10.0.20, 9.0.62 and 8.5.78 with it, which are the official Tomcat solutions for the reported CVE-2022-22965 vulnerability, which has been addressed in the above versions, for older The above version has resolved the CVE-2022-22965 vulnerability, and for older, unsupported versions of Spring Framework, the vulnerability can be circumvented by upgrading the Tomcat version.</description>
-    </item>
-    
-    <item>
-      <title>Thread pool rejection policy</title>
-      <link>https://www.javai.net/post/202204/thread-pool-rejection-strategy/</link>
-      <pubDate>Fri, 01 Apr 2022 14:10:49 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/thread-pool-rejection-strategy/</guid>
-      <description>Preface When it comes to java thread pools nothing is more familiar than the ExecutorService interface. jdk1.5 adds java.util.concurrent package under this api, which greatly simplifies the development of multi-threaded code. Whether you use FixedThreadPool or CachedThreadPool the implementation behind it is ThreadPoolExecutor. threadPoolExecutor is a typical product of cache pooling design, because the pool has a size, when the pool volume is not enough to carry, it involves a rejection policy.</description>
     </item>
     
   </channel>

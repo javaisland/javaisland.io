@@ -6,14 +6,24 @@
     <description>Recent content in Posts on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 13 Apr 2022 20:59:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Apr 2022 19:44:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Class File Format Analysis</title>
+      <link>https://www.javai.net/post/202204/java-class-file-format-analysis/</link>
+      <pubDate>Sat, 16 Apr 2022 19:44:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-class-file-format-analysis/</guid>
+      <description>Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
+Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.</description>
+    </item>
+    
     <item>
       <title>Java Virtual Threads Explained</title>
       <link>https://www.javai.net/post/202204/java-virtual-threads-explained/</link>
-      <pubDate>Wed, 13 Apr 2022 20:59:32 +0800</pubDate>
+      <pubDate>Fri, 15 Apr 2022 20:59:32 +0800</pubDate>
       
       <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
-      <description>Many languages have technologies like &amp;ldquo;virtual threads&amp;rdquo;, such as Go, C#, Erlang, Lua, etc., which they call &amp;ldquo;concurrent threads&amp;rdquo;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.
+      <description>Many languages have technologies like virtual threads, such as Go, C#, Erlang, Lua, etc., which they call concurrent threads. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.
 The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</description>
     </item>
     
@@ -200,18 +210,6 @@ Then we need to know how much time it takes to execute this task, how much time 
       
       <guid>https://www.javai.net/post/202204/java9-string/</guid>
       <description>Overview In Java 9, the underlying String object has been changed from char[] to byte[], which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement. Because in Java char takes up 2 bytes and byte takes up 1 byte, while a Unicode character does not necessarily need 2 bytes to be represented, at least ASCII characters only need 1 byte to be done. That is, if your string is full of ASCII characters, half the space would be wasted if you use char.</description>
-    </item>
-    
-    <item>
-      <title>Java generates a lot of zombie process problems</title>
-      <link>https://www.javai.net/post/202204/java-zombie-processes/</link>
-      <pubDate>Mon, 04 Apr 2022 17:07:11 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-zombie-processes/</guid>
-      <description>Recently I encountered a problem, a Java process using Runtime().exec() to execute script files, creating a large number of zombie processes, while the Java process is running in the container.
-At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
-Locate the zombie process by ps aux | grep Z.
-1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0.</description>
     </item>
     
   </channel>

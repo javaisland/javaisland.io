@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Java Class File Format Analysis - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method." />
+<meta name="keywords" content="java, jvm, class, classfile, class analysis" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202204/java-class-file-format-analysis/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Java Class File Format Analysis" />
+<meta property="og:description" content="Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-class-file-format-analysis/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-16T19:44:15+08:00" />
+<meta property="article:modified_time" content="2022-04-16T19:44:15+08:00" />
+
+<meta itemprop="name" content="Java Class File Format Analysis">
+<meta itemprop="description" content="Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method."><meta itemprop="datePublished" content="2022-04-16T19:44:15+08:00" />
+<meta itemprop="dateModified" content="2022-04-16T19:44:15+08:00" />
+<meta itemprop="wordCount" content="505">
+<meta itemprop="keywords" content="java,class,jvm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java Class File Format Analysis"/>
+<meta name="twitter:description" content="Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java Class File Format Analysis</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-16" class="post-time">
+          2022-04-16
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 505 words </span>
+          <span class="more-meta"> 3 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#preface">Preface</a>
+      <ul>
+        <li><a href="#class-file-specification">Class file specification</a></li>
+        <li><a href="#how-to-solve-a-class-file-by-yourself">How to solve a class file by yourself</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="preface">Preface</h2>
+<p>Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.</p>
+<h3 id="class-file-specification">Class file specification</h3>
+<p>The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent).
+It is often (but not always) stored as a file, so this format is called the Class file format.
+The Class file format defines the precise representation of classes and interfaces, including the conventions in the platform-dependent target file format.
+The Class file format defines the precise representation of classes and interfaces, including some detailed conventions in the platform-related target file format</p>
+<p><a href="https://docs.oracle.com/javase/specs/jvms/se15/html/jvms-4.html"><code>Related documents</code></a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ClassFile</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u4</span> <span class="n">magic</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">minor_version</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">major_version</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">constant_pool_count</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cp_info</span> <span class="n">constant_pool</span><span class="o">[</span><span class="n">constant_pool_count</span><span class="o">-</span><span class="n">1</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">access_flags</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">this_class</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">super_class</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">interfaces_count</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">interfaces</span><span class="o">[</span><span class="n">interfaces_count</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">fields_count</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">field_info</span> <span class="n">fields</span><span class="o">[</span><span class="n">fields_count</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">methods_count</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">method_info</span> <span class="n">methods</span><span class="o">[</span><span class="n">methods_count</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u2</span> <span class="n">attributes_count</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">attribute_info</span> <span class="n">attributes</span><span class="o">[</span><span class="n">attributes_count</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Next, we start to parse out how each field is identified
+What do u4, u2 mean?
+u is an unsigned number, followed by a number indicating how many bytes it takes up
+u4 occupies 4 bytes
+u2 occupies 2 bytes</p>
+<ol>
+<li>magic takes up 4 bytes, (ca fe ba be)</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/16/9897c288d19a453a9d5fe1a69bf8c7fe.png" alt="image"></p>
+<ol start="2">
+<li>minor_version subversion number, 2 bytes</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/16/13a04d9b945f475180b5c5ba791ddb6e.png" alt="image"></p>
+<ol start="3">
+<li>major_version major version good 2 byte number</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/16/99344a00ea064559b8a0a9e5fad53a38.png" alt="image"></p>
+<ol start="4">
+<li>constant_pool_count Number of constant pools 2 bytes</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/16/625c5d4bc3c64d04a75149d2b89b637a.png" alt="image"></p>
+<ol start="5">
+<li>constant_pool[constant_pool_count-1] Array of constant pools</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/16/9c1f72bcb5194ca882d20098877aebfe.png" alt="image"></p>
+<ol start="6">
+<li>access_flags access_flags 2 byte number</li>
+<li>this_class index of the class name</li>
+<li>super_class index of the superclass name</li>
+<li>interfaces_count the number of interfaces</li>
+<li>interfaces[interfaces_count] Array of interfaces</li>
+<li>fields_count Number of fields</li>
+<li>fields[fields_count] Array of fields</li>
+<li>methods_count Number of methods</li>
+<li>methods[methods_count] Array of methods</li>
+<li>attributes_count The number of attributes</li>
+<li>attributes[attributes_count] array of attributes</li>
+</ol>
+<h3 id="how-to-solve-a-class-file-by-yourself">How to solve a class file by yourself</h3>
+<p>I believe that most of the first time I saw the above protocol, I could read it, but to parse out the meaning of each field by myself.
+It is impossible to start.</p>
+<ol>
+<li>read the class file</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">FileInputStream</span> <span class="n">in</span><span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&#34;d:/javaisland.class&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>read magic, (magic u4 takes up 4 bytes)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span><span class="o">=</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">4</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">       <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>read minor_version u2 occupies 2 bytes</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="kt">byte</span><span class="o">[]</span> <span class="n">minorByte</span><span class="o">=</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">2</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">       <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">minorByte</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>read major_version u2 occupies 2 bytes</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="kt">byte</span><span class="o">[]</span> <span class="n">majorVersion</span><span class="o">=</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">2</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">       <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">majorVersion</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>See the above parsing, whether to understand, in fact, or very regular, as long as you look carefully at the protocol document (to see many times to do)</p>
+<p>The final parsing class document is this</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ClassFile</span> <span class="n">classFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassFile</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">PcBufferInputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PcBufferInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">fileName</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setMagic</span><span class="o">(</span><span class="n">readMagic</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setMinorVersion</span><span class="o">(</span><span class="n">readMinorVersion</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setMajorVersion</span><span class="o">(</span><span class="n">readMajorVersion</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setConstantPoolCount</span><span class="o">(</span><span class="n">readConstantPoolCount</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setCpInfo</span><span class="o">(</span><span class="n">readCpInfo</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setAccessFlags</span><span class="o">(</span><span class="n">readAccessFlags</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setThisClass</span><span class="o">(</span><span class="n">readThisClass</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setSuperClass</span><span class="o">(</span><span class="n">readSuperClass</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setInterfacesCount</span><span class="o">(</span><span class="n">readInterfacesCount</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// u2 interfaces interfaces_count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">classFile</span><span class="o">.</span><span class="na">setInterfaces</span><span class="o">(</span><span class="n">readInterfaces</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// u2 fields_count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">classFile</span><span class="o">.</span><span class="na">setFieldsCount</span><span class="o">(</span><span class="n">readFieldsCount</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// field_info fields fields_count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">classFile</span><span class="o">.</span><span class="na">setFields</span><span class="o">(</span><span class="n">readFields</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// u2 methods_count 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// method_info methods methods_count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">classFile</span><span class="o">.</span><span class="na">setMethodsCount</span><span class="o">(</span><span class="n">readMethodsCount</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setMethods</span><span class="o">(</span><span class="n">readMethods</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// u2 attribute_count 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">classFile</span><span class="o">.</span><span class="na">setAttributeCount</span><span class="o">(</span><span class="n">readAttributeCount</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// attribute_info attributes attributes_count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">classFile</span><span class="o">.</span><span class="na">setAttributes</span><span class="o">(</span><span class="n">readAttributes</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">classFile</span><span class="o">.</span><span class="na">setPcRecord</span><span class="o">(</span><span class="n">recordMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">classFile</span><span class="o">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/class/">class</a>
+          <a href="https://www.javai.net/tags/jvm/">jvm</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202204/java-virtual-threads-explained/">
+            <span class="next-text nav-default">Java Virtual Threads Explained</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

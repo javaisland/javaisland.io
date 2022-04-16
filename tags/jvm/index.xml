@@ -6,7 +6,17 @@
     <description>Recent content in jvm on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 07 Apr 2022 16:01:20 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Apr 2022 19:44:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Class File Format Analysis</title>
+      <link>https://www.javai.net/post/202204/java-class-file-format-analysis/</link>
+      <pubDate>Sat, 16 Apr 2022 19:44:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-class-file-format-analysis/</guid>
+      <description>Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
+Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.</description>
+    </item>
+    
     <item>
       <title>Application of Volatile</title>
       <link>https://www.javai.net/post/202204/volatile-application/</link>
