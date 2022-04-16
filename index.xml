@@ -258,7 +258,7 @@ It is impossible to start.&lt;/p&gt;
       
       <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
       
-        <description>&lt;p&gt;Many languages have technologies like &lt;code&gt;virtual threads&lt;/code&gt;, such as Go, C#, Erlang, Lua, etc., which they call &lt;code&gt;concurrent threads&lt;/code&gt;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.&lt;/p&gt;
+        <description>&lt;p&gt;Many languages have technologies like &lt;code&gt;virtual threads&lt;/code&gt;, such as Go, C#, Erlang, Lua, etc, which they call &lt;code&gt;concurrent threads&lt;/code&gt;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &lt;code&gt;virtual threads&lt;/code&gt; technology, &lt;code&gt;JEP 425: Virtual Threads (Preview)&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications. The &lt;code&gt;JEP 425: Virtual Threads (Preview)&lt;/code&gt; project is a preview API.&lt;/p&gt;
 &lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
 &lt;ul&gt;

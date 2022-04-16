@@ -23,7 +23,7 @@ Class file specification The code that is compiled and executed by the Java virt
       <pubDate>Fri, 15 Apr 2022 20:59:32 +0800</pubDate>
       
       <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
-      <description>Many languages have technologies like virtual threads, such as Go, C#, Erlang, Lua, etc., which they call concurrent threads. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.
+      <description>Many languages have technologies like virtual threads, such as Go, C#, Erlang, Lua, etc, which they call concurrent threads. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s virtual threads technology, JEP 425: Virtual Threads (Preview).
 The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</description>
     </item>
     
