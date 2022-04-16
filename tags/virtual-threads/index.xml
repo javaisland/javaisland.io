@@ -6,7 +6,17 @@
     <description>Recent content in virtual threads on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 Apr 2022 13:14:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/virtual-threads/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Apr 2022 20:59:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/virtual-threads/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Virtual Threads Explained</title>
+      <link>https://www.javai.net/post/202204/java-virtual-threads-explained/</link>
+      <pubDate>Wed, 13 Apr 2022 20:59:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
+      <description>Many languages have technologies like &amp;ldquo;virtual threads&amp;rdquo;, such as Go, C#, Erlang, Lua, etc., which they call &amp;ldquo;concurrent threads&amp;rdquo;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.
+The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</description>
+    </item>
+    
     <item>
       <title>Java introduces preview virtual threads</title>
       <link>https://www.javai.net/post/202204/java-virtual-threads/</link>

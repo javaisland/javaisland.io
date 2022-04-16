@@ -6,7 +6,17 @@
     <description>Recent content in java on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 12 Apr 2022 17:24:00 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Apr 2022 20:59:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Virtual Threads Explained</title>
+      <link>https://www.javai.net/post/202204/java-virtual-threads-explained/</link>
+      <pubDate>Wed, 13 Apr 2022 20:59:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
+      <description>Many languages have technologies like &amp;ldquo;virtual threads&amp;rdquo;, such as Go, C#, Erlang, Lua, etc., which they call &amp;ldquo;concurrent threads&amp;rdquo;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &amp;ldquo;virtual threads&amp;rdquo; technology, &amp;ldquo;JEP 425: Virtual Threads (Preview)&amp;rdquo;.
+The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</description>
+    </item>
+    
     <item>
       <title>The use of Future in java</title>
       <link>https://www.javai.net/post/202204/java-future-use/</link>
@@ -202,15 +212,6 @@ Then we need to know how much time it takes to execute this task, how much time 
 At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
 Locate the zombie process by ps aux | grep Z.
 1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0.</description>
-    </item>
-    
-    <item>
-      <title>Practical application scenarios for pipeline stream</title>
-      <link>https://www.javai.net/post/202204/piped-stream/</link>
-      <pubDate>Sun, 03 Apr 2022 15:17:30 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/piped-stream/</guid>
-      <description>Preface PipedInputStream and PipedOutputStream are designed to solve cross-thread byte data transfers. They always come in pairs and can only be used on two different threads, using piped input and output streams in one thread can cause deadlocks. In some business scenarios, using pipeline streams will increase the speed of file uploads and reduce CPU and IO overhead, this is very practical, so this article talks about Practical application scenarios for pipeline stream.</description>
     </item>
     
   </channel>

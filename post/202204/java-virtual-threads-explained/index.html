@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Java Virtual Threads Explained - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content=" The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads." />
+<meta name="keywords" content="java, virtual threads, concurrent threads, throughput" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202204/java-virtual-threads-explained/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Java Virtual Threads Explained" />
+<meta property="og:description" content=" The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-virtual-threads-explained/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-13T20:59:32+08:00" />
+<meta property="article:modified_time" content="2022-04-13T20:59:32+08:00" />
+
+<meta itemprop="name" content="Java Virtual Threads Explained">
+<meta itemprop="description" content=" The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads."><meta itemprop="datePublished" content="2022-04-13T20:59:32+08:00" />
+<meta itemprop="dateModified" content="2022-04-13T20:59:32+08:00" />
+<meta itemprop="wordCount" content="6664">
+<meta itemprop="keywords" content="java,virtual threads,concurrent threads,throughput," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java Virtual Threads Explained"/>
+<meta name="twitter:description" content=" The Java platform will introduce the virtual threads feature (the long-awaited concurrency). Virtual threads are lightweight threads."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java Virtual Threads Explained</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-13" class="post-time">
+          2022-04-13
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 6664 words </span>
+          <span class="more-meta"> 32 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#objectives">Objectives</a></li>
+    <li><a href="#non-targeting">Non-targeting</a></li>
+    <li><a href="#motivation">Motivation</a>
+      <ul>
+        <li><a href="#thread-per-request-style">Thread per request style</a></li>
+        <li><a href="#using-asynchronous-styles-to-improve-scalability">Using asynchronous styles to improve scalability</a></li>
+        <li><a href="#use-virtual-threads-to-preserve-thread-per-request-style">Use virtual threads to preserve thread per-request style</a></li>
+        <li><a href="#the-meaning-of-virtual-threads">The meaning of virtual threads</a></li>
+      </ul>
+    </li>
+    <li><a href="#description">Description</a>
+      <ul>
+        <li><a href="#using-virtual-threads-vs-platform-threads">Using virtual threads vs. platform threads</a></li>
+        <li><a href="#virtual-threads-is-a-preview-api-disabled-by-default">Virtual Threads is a preview API, disabled by default</a></li>
+        <li><a href="#not-pooling-virtual-threads">Not pooling virtual threads</a></li>
+        <li><a href="#observing-virtual-threads">Observing virtual threads</a></li>
+        <li><a href="#scheduling-virtual-threads">Scheduling virtual threads</a></li>
+        <li><a href="#executing-virtual-threads">Executing virtual threads</a></li>
+        <li><a href="#memory-usage-and-interaction-with-garbage-collection">Memory usage and interaction with garbage collection</a></li>
+        <li><a href="#detailed-changes">Detailed changes</a></li>
+        <li><a href="#javalangthread">java.lang.Thread</a></li>
+        <li><a href="#thread-local-variables">Thread Local Variables</a></li>
+        <li><a href="#javautilconcurrent">java.util.concurrent</a></li>
+        <li><a href="#networking">Networking</a></li>
+        <li><a href="#javaio">java.io</a></li>
+        <li><a href="#java-native-interface-jni">Java Native Interface (JNI)</a></li>
+        <li><a href="#debugging">Debugging</a></li>
+        <li><a href="#jdk-flight-recorder-jfr">JDK Flight Recorder (JFR)</a></li>
+        <li><a href="#java-management-extensions-jmx">Java Management Extensions (JMX)</a></li>
+        <li><a href="#javalangthreadgroup">java.lang.ThreadGroup</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>Many languages have technologies like &ldquo;virtual threads&rdquo;, such as Go, C#, Erlang, Lua, etc., which they call &ldquo;concurrent threads&rdquo;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&rsquo;s &ldquo;virtual threads&rdquo; technology, &ldquo;JEP 425: Virtual Threads (Preview)&rdquo;.</p>
+<p>The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications. The &ldquo;JEP 425: Virtual Threads (Preview)&rdquo; project is a preview API.</p>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Enable server applications written in a simple thread-per-request style to scale with near-optimal hardware utilization.</li>
+<li>Enable existing code that uses the java.lang.Thread API to adopt virtual threads with minimal changes.</li>
+<li>Easily troubleshoot, debug, and analyze virtual threads using existing JDK tools.</li>
+</ul>
+<h2 id="non-targeting">Non-targeting</h2>
+<ul>
+<li>The goal is not to remove legacy implementations of threads or to silently migrate existing applications to use virtual threads.</li>
+<li>Changing Java&rsquo;s basic concurrency model is not the goal.</li>
+<li>Providing new data parallelism structures in the Java language or Java libraries is not the goal. stream APIs are still the preferred way to parallelize large data sets.</li>
+</ul>
+<h2 id="motivation">Motivation</h2>
+<p>For nearly 30 years, Java developers have relied on threads as the building blocks of concurrent server applications. Every statement in every method is executed within a thread, and because Java is multi-threaded, multiple threads of execution occur simultaneously. A thread is Java&rsquo;s concurrent unit: a piece of sequential code that runs concurrently with, and largely independent of, other such units. Each thread provides a stack to store local variables and coordinate method calls, as well as the context when something goes wrong: exceptions are thrown and caught by methods in the same thread, so developers can use a thread&rsquo;s stack trace to find out what happened. Threads are also a core concept of the tool: the debugger steps through statements in threaded methods, and the analyzer visualizes the behavior of multiple threads to help understand their performance.</p>
+<h3 id="thread-per-request-style">Thread per request style</h3>
+<p>Server applications typically handle concurrent user requests independently of each other, so it makes sense for applications to process requests by dedicating threads to that request for the entire duration of the request. This thread-per-request style is easy to understand, easy to program, and easy to debug and analyze because it uses the concurrency units of the platform to represent the concurrency units of the application.</p>
+<p>The scalability of server applications follows Little&rsquo;s Law, which relates latency, concurrency, and throughput: for a given request processing duration (i.e., latency), the number of requests processed simultaneously by the application (i.e., concurrency) must grow proportionally to the arrival rate (i.e., throughput). For example, assume that an application with an average latency of 50ms achieves a throughput of 200 requests per second by processing 10 requests simultaneously. In order for the application to scale to a throughput of 2000 requests per second, it needs to process 100 requests simultaneously. If each request is processed in a thread for the duration of the request, then for the application to keep up, the number of threads must grow as the throughput grows.</p>
+<p>Unfortunately, the number of available threads is limited because the JDK implements threads as wrappers for operating system (OS) threads. OS threads are costly, so we cannot have too many threads, which makes the implementation unsuitable for a threaded per-request style. If each request consumes one thread for its duration, and thus one OS thread, the number of threads typically becomes a limiting factor long before other resources, such as CPU or network connections, are exhausted.The JDK&rsquo;s current threaded implementation limits application throughput to well below what the hardware can support. This can happen even with thread pooling, which helps avoid the high cost of starting new threads but does not increase the total number of threads.</p>
+<h3 id="using-asynchronous-styles-to-improve-scalability">Using asynchronous styles to improve scalability</h3>
+<p>Some developers who want to take full advantage of the hardware have abandoned the per-request thread style and moved to a thread-sharing style. Instead of processing a request on a thread from start to finish, request processing code returns its thread to the pool while waiting for the I/O operation to complete so that the thread can service other requests. This fine-grained thread sharing - in which the code reserves threads only while the thread performs a computation, not while waiting for I/O - allows for a large number of concurrent operations without consuming a large number of threads. While it removes the throughput limitations imposed by OS thread scarcity, it comes at a high cost: it requires what is called an asynchronous programming style, using a separate set of I/O methods that do not wait for I/O operations to complete but, instead, indicate their completion to a callback later. Without dedicated threads, developers must break their request processing logic into small phases, usually written as lambda expressions, and then use APIs to combine them into sequential pipelines (see the CompletableFuture, or so-called &ldquo;reactive&rdquo; framework. Thus, they abandon the language&rsquo;s basic sequential composition operators, such as loops and try/catch blocks.</p>
+<p>In the asynchronous style, each phase of the request may be executed on a different thread, each running the phases belonging to a different request in an interleaved fashion. This has profound implications for understanding program behavior: stack traces do not provide usable context, debuggers cannot step through request processing logic, and analyzers cannot correlate the cost of an operation with its caller. Writing lambda expressions is manageable when using Java Stream APIs process data in short pipelines, but it is problematic when all request processing code in an application must be written in this manner. This style of programming is inconsistent with the Java platform because the application&rsquo;s unit of concurrency - the asynchronous pipeline - is no longer the platform&rsquo;s unit of concurrency.</p>
+<h3 id="use-virtual-threads-to-preserve-thread-per-request-style">Use virtual threads to preserve thread per-request style</h3>
+<p>To enable applications to scale while remaining in harmony with the platform, we should strive to preserve per-request thread styles by implementing threads more efficiently so they can be richer. Operating systems cannot implement OS threads more efficiently because different languages and runtimes use the thread stack in different ways. However, the Java runtime can implement Java threads in a way that separates the one-to-one correspondence between Java threads and OS threads. Just as the operating system gives the illusion of abundant memory by mapping a large amount of virtual address space to a limited amount of physical RAM, so the Java runtime can give the illusion of abundant threads by mapping a large number of virtual threads to a small number of operating system threads.</p>
+<p>A virtual thread is an instance of java.lang.Thread that is not bound to a specific operating system thread. In contrast, a platform thread is an instance of java.lang.Thread, implemented in the traditional way as a streamlined wrapper around the operating system thread.</p>
+<p>Application code in the thread-per-request style can run for the entire request duration in a virtual thread, but the virtual thread only consumes the OS thread while the computation is performed on the CPU. The result is the same scalability as the asynchronous style, except that it is transparent: when code running in the virtual thread calls the <code>java.*</code> API for blocking I/O operations in java, the runtime executes a non-blocking OS call and automatically hangs the virtual thread until it can be resumed later. For Java developers, virtual threads are simply cheap to create and almost infinitely rich in threads. Hardware utilization is near optimal, allowing high levels of concurrency and thus high throughput, while the application remains in harmony with the multi-threaded design of the Java platform and its tools.</p>
+<h3 id="the-meaning-of-virtual-threads">The meaning of virtual threads</h3>
+<p>Virtual threads are both cheap and abundant and therefore should never be pooled: a new virtual thread should be created for each application task. As a result, most virtual threads are ephemeral and have shallow call stacks, executing for as little as a single HTTP client call or a single JDBC query. In contrast, platform threads are heavyweight and expensive, and therefore usually must be pooled. They tend to be long-lived, have deep call stacks, and are shared across many tasks.</p>
+<p>In summary, virtual threads retain a reliable per-request thread style that is harmonious with the design of the Java platform while optimally utilizing the hardware. Using virtual threading does not require learning new concepts, although it may require getting into the habit of not learning to cope with the high cost of threading today. Virtual threading will help not only application developers, but also framework designers with easy-to-use APIs that are compatible with the platform&rsquo;s design without compromising scalability.</p>
+<h2 id="description">Description</h2>
+<p>Today, per example java.lang.Thread in the JDK, is a platform thread. A platform thread runs Java code on the underlying operating system thread and captures the operating system thread for the entire life of the code. The number of platform threads is limited to the number of operating system threads.</p>
+<p>A virtual thread is an instance of java.lang.Thread that runs Java code on the underlying operating system thread, but does not capture operating system threads for the entire life cycle of the code. This means that many virtual threads can run their Java code on the same OS thread, effectively sharing it. While platform threads have a monopoly on valuable OS threads, virtual threads do not. The number of virtual threads can be much larger than the number of operating system threads.</p>
+<p>Virtual threads are lightweight implementations of threads provided by the JDK rather than the operating system. They are a form of user-mode threads that have been successful in other multi-threaded languages (e.g., goroutines in Go and processes in Erlang). User state threads were even called &ldquo;green threads&rdquo; in early versions of Java, when OS threads were not yet mature and widespread. However, Java&rsquo;s green threads all share a single OS thread (M:1 scheduling), and platform threads are implemented as wrappers for OS threads (1:1 scheduling). Virtual threads use M:N scheduling, where a large number (M) of virtual threads are scheduled to run on a smaller number (N) of OS threads.</p>
+<h3 id="using-virtual-threads-vs-platform-threads">Using virtual threads vs. platform threads</h3>
+<p>Developers can choose whether to use virtual threads or platform threads. Here is an example program that creates a large number of virtual threads. The program first gets an ExecutorService which will create a new virtual thread for each task submitted. It then submits 10,000 tasks and waits for all of them to complete.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">10_000</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">executor</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">i</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="c1">// executor.close() is called implicitly, and waits
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The task in this example is simple code - sleep for a second - and modern hardware can easily support 10,000 virtual threads running such code simultaneously. Behind the scenes, the JDK runs the code on a small number of OS threads, perhaps just one.</p>
+<p>If this program uses an ExecutorService that creates a new platform thread for each task, such as Executor.newCachedThreadPool(), the situation is very different. the ExecutorService will try to create 10,000 platform threads, thus creating 10,000 OS threads, and the program will crash on most operating systems.</p>
+<p>Conversely, the situation is not much better if the program uses an ExecutorService that gets its platform threads from a pool, such as Executor.newFixedThreadPool(200). 200 platform threads will be created by the ExecutorService to be shared by all 10,000 tasks, so many tasks will run sequentially instead of concurrently, and the program will need to run sequentially. Instead of running concurrently, the program will take a long time to complete. For this program, a pool with 200 platform threads would only achieve a throughput of 200 tasks per second, while the virtual threads would have a throughput of about 10,000 tasks per second (after a full warm-up). In addition, if <code>10_000</code> in the sample program is changed to <code>1_000_000</code>, the program will submit 1,000,000 tasks, create 1,000,000 simultaneous virtual threads, and achieve (after full warm-up) a throughput of about 1,000,000 tasks per second.</p>
+<p>If the tasks in this program perform a second of computation (e.g., sorting a huge array) and not just sleep, then increasing the number of threads beyond the number of processor cores will not help, regardless of whether they are virtual or platform threads. Virtual threads are not faster threads-they do not run code faster than platform threads. They exist to provide scale (higher throughput), not speed (lower latency). They may be much more numerous than platform threads, so by Little&rsquo;s law they achieve the higher concurrency required for higher throughput.</p>
+<p>Put another way, virtual threads can significantly increase application throughput when</p>
+<ul>
+<li>the number of concurrent tasks is high (more than a few thousand), and</li>
+<li>workloads are not CPU-bound, because in this case, a much larger number of threads than processor cores cannot improve throughput.</li>
+</ul>
+<p>Virtual threads help improve the throughput of typical server applications precisely because such applications consist of a large number of concurrent tasks that spend a lot of time waiting.</p>
+<p>Virtual threads can run any code that platform threads can run. In particular, virtual threads support thread-local variables and thread interrupts, just like platform threads. This means that existing Java code that handles requests will easily run in a virtual thread. Many server frameworks will choose to do this automatically, starting a new virtual thread for each incoming request and running the application&rsquo;s business logic in it.</p>
+<p>The following is an example of a server application that aggregates the results of two other services. The hypothetical server framework (not shown) creates a new virtual thread for each request and runs the application&rsquo;s handle code in that virtual thread. The application code in turn creates two new virtual threads that obtain resources concurrently through the same ExecutorService as in the first example.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Request</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">url1</span> <span class="o">=</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">url2</span> <span class="o">=</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">var</span> <span class="n">future1</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">fetchURL</span><span class="o">(</span><span class="n">url1</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">var</span> <span class="n">future2</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">fetchURL</span><span class="o">(</span><span class="n">url2</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">future1</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">+</span> <span class="n">future2</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ExecutionException</span> <span class="o">|</span> <span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span><span class="o">.</span><span class="na">fail</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="nf">fetchURL</span><span class="o">(</span><span class="n">URL</span> <span class="n">url</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">in</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="na">openStream</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readAllBytes</span><span class="o">(),</span> <span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>A server application like this, with simple blocking code, can scale well because it can use a large number of virtual threads. Executor.newVirtualThreadPerTaskExecutor() is not the only way to create virtual threads. The new java.lang.Thread.BuilderAPI, discussed below, can create and start virtual threads. In addition, structured concurrency provides a more powerful API for creating and managing virtual threads, especially in code like this server example, through which the relationships between threads will be known to the platform and its tools.</p>
+<h3 id="virtual-threads-is-a-preview-api-disabled-by-default">Virtual Threads is a preview API, disabled by default</h3>
+<p>The above programs use Executors.newVirtualThreadPerTaskExecutor() method, so to run them on JDK XX, the preview API must be enabled as follows.</p>
+<ul>
+<li>Compile the program using <code>javac --release XX --enable-preview Main.java</code> and run it using <code>java --enable-preview Main</code>; or</li>
+<li>When using the source launcher, run the program with <code>java --release XX --enable-preview Main.java;</code>; or</li>
+<li>When using jshell, start with <code>jshell --enable-preview</code></li>
+</ul>
+<h3 id="not-pooling-virtual-threads">Not pooling virtual threads</h3>
+<p>Developers often migrate application code from a traditional thread pool-based ExecutorService to a virtual thread per-task ExecutorService. thread pools, like all resource pools, are designed to share expensive resources, but virtual threads are not expensive, and there is never a need to pool them.</p>
+<p>Developers sometimes use thread pooling to limit concurrent access to limited resources. For example, if a service cannot handle more than 20 concurrent requests, performing all accesses to that service through tasks submitted to a pool of size 20 will ensure this. This idiom has become ubiquitous due to the high cost of platform threads that make thread pools ubiquitous, but developers should not be tempted to pool virtual threads to limit concurrency. Constructs designed specifically for this purpose, such as semaphores, should be used to protect access to limited resources. This is more efficient and convenient than thread pooling, and safer too, since thread-local data is not at risk of accidental leakage from one task to another.</p>
+<h3 id="observing-virtual-threads">Observing virtual threads</h3>
+<p>Writing clear code is not the complete story. A clear representation of the state of a running program is also essential for troubleshooting, maintenance, and optimization, and the JDK has long provided mechanisms for debugging, analyzing, and monitoring threads. These tools should perform the same operations on virtual threads-perhaps with some reconciliation of their extensive operations-because they are, after all, instances of java.lang.</p>
+<p>The Java debugger can step through virtual threads, display call stacks, and examine variables in stack frames.JDK Flight Recorder (JFR) is the JDK&rsquo;s low-overhead analysis and monitoring mechanism that associates events in application code, such as object allocations and I/O operations, with the correct virtual threads. These tools cannot perform these operations for applications written in an asynchronous style. In this style, the task is thread-independent, so the debugger cannot display or manipulate the state of the task, and the parser cannot determine how long the task is waiting for I/O.</p>
+<p>Thread dumps are another popular tool for troubleshooting applications written in a thread-per-request style. Unfortunately, the JDK&rsquo;s legacy thread dumps, obtained using jstack or jcmd, provide a flat list of threads. This is suitable for tens or hundreds of platform threads, but not for thousands or millions of virtual threads. Therefore, instead of extending the traditional thread dump to include virtual threads, we will introduce a new thread dump in jcmd to present virtual threads along with platform threads, all of which are grouped in a meaningful way. When used by programs, a richer <a href="https://openjdk.java.net/jeps/8277129">relational structured concurrency</a> between threads can be displayed.</p>
+<p>Since visualizing and analyzing a large number of threads can benefit from the tool, jcmd can issue new thread dumps in JSON format in addition to plain text as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">jcmd &lt;pid&gt; Thread.dump_to_file -format<span class="o">=</span>json &lt;file&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The new thread dump format lists virtual threads that are blocked in network I/O operations, as well as virtual threads created by the new-thread-per-task (one-task-one-thread) ExecutorService shown above. It does not include object addresses, locks, JNI statistics, heap statistics, and other information that appears in traditional thread dumps. In addition, because it may need to list a large number of threads, generating a new thread dump does not suspend the application. The following is an example of such a thread dump, taken from an application similar to the second example above, presented in the JSON viewer (see below).</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/13/6fcf1f15abef48f8945c16033c4cbb37.png" alt="Thread.dump"></p>
+<p>Since virtual threads are implemented in the JDK and are not bound to any specific OS thread, they are invisible to the OS, which is unaware of their existence. OS-level monitoring will observe that JDK processes use fewer OS threads than virtual threads.</p>
+<h3 id="scheduling-virtual-threads">Scheduling virtual threads</h3>
+<p>To do useful work, threads need to be scheduled, i.e., assigned to execute on the processor core. For platform threads, which are implemented as operating system threads, the JDK relies on the scheduler in the operating system. In contrast, for virtual threads, the JDK has its own scheduler. the JDK&rsquo;s scheduler assigns virtual threads to platform threads instead of assigning virtual threads directly to processors (this is the M:N scheduling of virtual threads mentioned earlier). The operating system will then schedule the platform threads as usual.</p>
+<p>The JDK&rsquo;s virtual thread scheduler is a steal job tool ForkJoinPool works in FIFO mode. The parallelism of the scheduler is the number of platform threads available for scheduling virtual threads. By default, it is equal to the available processors, but it can be adjusted using the system property jdk.virtualThreadScheduler.parallelism. Note that this ForkJoinPool is different from the public pool, for example, it is used for parallel stream implementations and works in LIFO mode.</p>
+<p>The platform thread on which the scheduler allocates virtual threads is called a carrier of virtual threads. Virtual threads can be scheduled on different carriers during their lifetime; in other words, the scheduler does not maintain an affinity between virtual threads and any particular platform thread. However, from the perspective of Java code, a running virtual thread is logically independent of its current carrier: the</p>
+<ul>
+<li>The virtual thread cannot use the identity of the carrier. the value returned by Thread.currentThread() is always the virtual thread itself.</li>
+<li>The carrier and the stack trace of the virtual thread are separate. Exceptions thrown in the virtual thread will not include the carrier&rsquo;s stack frame. Thread dumps will not display the carrier&rsquo;s stack frame on the virtual thread&rsquo;s stack, and vice versa.</li>
+<li>Thread-local variables of carriers are not available to the virtual thread, and vice versa.</li>
+</ul>
+<p>Furthermore, from the perspective of Java code, the fact that the virtual thread and its carrier temporarily share the operating system thread is invisible. In contrast, from the perspective of native code, both the virtual thread and its carrier run on the same native thread. Therefore, native code that is called multiple times on the same virtual thread may observe a different OS thread identifier on each call.</p>
+<p>Schedulers do not currently implement time-sharing for virtual threads. Time-sharing is a forced preemption of threads that take up an allocated amount of CPU time. While time-sharing can be effective using a few hundred platform threads, it is unclear whether time-sharing would be as effective using a million virtual threads.</p>
+<h3 id="executing-virtual-threads">Executing virtual threads</h3>
+<p>To take advantage of virtual threads, there is no need to rewrite the program. Virtual threads do not require or expect the application code to explicitly hand control back to the scheduler; in other words, virtual threads are not cooperative. User code must not assume how or when virtual threads are assigned to platform threads, just as it assumes how or when platform threads are assigned to processor cores.</p>
+<p>To run code in a virtual thread, the JDK&rsquo;s virtual thread scheduler assigns virtual threads to execute on platform threads by mounting them on platform threads. This makes the platform thread a vehicle for the virtual thread. Later, after running some code, the virtual thread can be unmounted from its carrier. At this point, the platform thread is idle, so the scheduler can load a different virtual thread on it, thus making it a carrier again.</p>
+<p>Typically, virtual threads are unloaded when they block I/O or other blocking operations in the JDK, such as BlockingQueue.take(). When the blocking operation is ready to complete (e.g., bytes have been received on a socket), it commits the virtual thread back to the scheduler, which will load the virtual thread on the carrier to resume execution.</p>
+<p>The loading and unloading of virtual threads occurs frequently and transparently, and does not block any OS threads. For example, the server application shown earlier includes the following lines of code that contain calls to the blocking operation.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">response</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">future1</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">+</span> <span class="n">future2</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>These operations will cause the virtual thread to load and unload multiple times, usually once per call to get() and possibly multiple times during the execution of I/O in send(&hellip;).</p>
+<p>The vast majority of blocking operations in the JDK will unload the virtual thread, freeing its carrier and the underlying OS thread to take on new work. However, some blocking operations in the JDK do not offload virtual threads, and therefore block their carriers and the underlying OS threads. This is due to the operating system level (e.g., many file system operations) or the JDK level (e.g., Object.wait()). The implementation of these blocking operations will compensate for the capture of OS threads by temporarily extending the parallelism of the scheduler. As a result, the number of platform threads in the scheduler&rsquo;s ForkJoinPool may temporarily exceed the number of available processors. The maximum number of platform threads available to the scheduler can be adjusted using the system property jdk.virtualThreadScheduler.maxPoolSize.</p>
+<p>A virtual thread cannot be unloaded during a blocking operation because it is fixed to its carrier in two cases.</p>
+<ul>
+<li>when it executes code in a synchronous block or method, or</li>
+<li>when it executes a native method or a foreign function.</li>
+</ul>
+<p>Fixation does not make the application incorrect, but it may hinder its scalability. If a virtual thread performs a blocking operation, such as I/O or BlockingQueue.take(), while being fixed, its carrier and the underlying OS thread will be blocked for the duration of the operation. Frequent fixes over long periods of time may harm the scalability of the application by capturing operators.</p>
+<p>Schedulers do not compensate for fixes by extending their parallelism. Instead, frequent and long term fixes are avoided by modifying frequently run synchronization blocks or methods and protecting potentially long I/O operations to be used java.util.concurrent.locks.ReentrantLock Instead, there is no need to replace infrequently used synchronization blocks and methods (e.g., executed only at startup) or to protect memory operations. As always, efforts are made to keep locking strategies simple and straightforward.</p>
+<p>The new diagnostics help to migrate code to virtual threads and to assess whether a specific use of synchronization should be replaced with java.util.concurrentLock.</p>
+<ul>
+<li>JDK Flight Recorder (JFR) events will be raised when a thread blocks while being fixed.</li>
+<li>The system property <code>jdk.tracePinnedThreads</code> triggers a stack trace when a thread is blocked at a fixed time. Use <code>-Djdk.tracePinnedThreads=full</code> to print a full stack trace when the thread is blocked at fixed time, with native frames and frames holding monitors highlighted. Use <code>-Djdk.tracePinnedThreads=short</code> to limit the output to only problematic frames.</li>
+</ul>
+<p>We may be able to remove the first restriction above in a future release. The second restriction is necessary for proper interaction with native code.</p>
+<h3 id="memory-usage-and-interaction-with-garbage-collection">Memory usage and interaction with garbage collection</h3>
+<p>The virtual thread&rsquo;s stack is stored in Java&rsquo;s garbage collection heap as a stack block object. The stack grows and shrinks as the application runs, both for memory efficiency and to accommodate stacks of arbitrary depth (up to the JVM-configured platform thread stack size). This efficiency allows for a large number of virtual threads, which in turn allows for the continuous per-request style survivability of threads in server applications.</p>
+<p>In the second example above, keep in mind that the framework is assumed to process each request by creating a new virtual thread and calling the handle method; even if it calls the handle at the end of the deep call stack (after authentication, transactions, etc.), the handle itself generates multiple virtual threads that perform only short-term tasks. Thus, for each virtual thread with a deep call stack, there will be multiple virtual threads with shallow call stacks consuming very little memory.</p>
+<p>In general, the amount of heap space and garbage collector activity required by virtual threads is difficult to compare with asynchronous code. Application code that handles requests must typically maintain data across I/O operations; threaded per-request code can keep data in local variables, which are stored on a virtual thread stack in the heap. Asynchronous code, on the other hand, must retain the same data in heap objects that are passed from one stage of the pipeline to the next. On the one hand, the layout of stack frames required by virtual threads is more wasteful than compact objects; on the other hand, virtual threads can mutate and reuse their stacks in many cases (depending on low-level GC interactions), while asynchronous pipelines always require the allocation of new objects. Overall, heap consumption and garbage collector activity should be roughly similar for threads per request and asynchronous code. Over time, we want to make the internal representation of the virtual thread stack more compact.</p>
+<p>Unlike the platform thread stack, the virtual thread stack is not the GC root, so the references contained in it are not traversed by the garbage collector performing concurrent scans in a stop-world pause. This also means that if a virtual thread is blocked on, say, BlockingQueue.take(), and no other thread can get a reference to the virtual thread or queue, then that thread can be garbage collected-which is good because the virtual thread is never interrupted or unblocked. Of course, if the virtual thread is running, or if it is blocked and may be unblocked, it will not be garbage collected.</p>
+<p>The current limitation of virtual threads is that G1 GC does not support huge stack block objects. A StackOverflowError may be raised if the virtual thread&rsquo;s stack reaches half the size of the region (typically 512KB).</p>
+<h3 id="detailed-changes">Detailed changes</h3>
+<p>The remaining subsections detail the changes proposed in the Java platform and its implementation.</p>
+<ul>
+<li>java.lang.Thread</li>
+<li>Thread-local variables</li>
+<li>java.util.concurrent</li>
+<li>Networking</li>
+<li>java.io</li>
+<li>Java Native Interface (JNI)</li>
+<li>Debugging (JVM TI, JDWP, and JDI)</li>
+<li>JDK Flight Recorder (JFR)</li>
+<li>Java Management Extensions (JMX)</li>
+<li>java.lang.ThreadGroup</li>
+</ul>
+<h3 id="javalangthread">java.lang.Thread</h3>
+<p>Update the java.lang.Thread API as follows.</p>
+<ul>
+<li>Thread.Builder, Thread.ofVirtual() and Thread.ofPlatform() are new APIs for creating virtual and platform threads. for example, <code>Thread thread = Thread.ofVirtual().name(&quot;duke&quot;). unstarted(runnable);</code> Creates a new unstarted virtual thread named &ldquo;duke&rdquo;.</li>
+<li>``Thread.startVirtualThread(Runnable)` is a convenient method for creating and starting virtual threads.</li>
+<li>Thread.Builder can create a single thread, or a ThreadFactory, which can then create multiple threads with the same properties.</li>
+<li>Thread.isVirtual() tests if a thread is virtual.</li>
+<li>Thread.join and Thread.sleep accept wait and sleep times as java.time.</li>
+<li>The new final method Thread.threadId() returns the thread&rsquo;s identifier. The existing non-final method Thread.getId() is now deprecated.</li>
+<li>Thread.getAllStackTraces() now returns a mapping of all platform threads instead of all threads.</li>
+</ul>
+<p>The java.lang.Thread API remains otherwise unchanged. The constructor for the thread class definition creates platform threads, as before. There is no new public constructor.</p>
+<p>The main API differences between virtual threads and platform threads are.</p>
+<ul>
+<li>The public thread constructor cannot create virtual threads.</li>
+<li>A virtual thread is always a daemon thread. The Thread.setDaemon(boolean) method cannot change a virtual thread to a non-daemon thread.</li>
+<li>Virtual threads have a fixed priority of Thread.NORM_PRIORITY. The Thread.setPriority(int) method has no effect on virtual threads. This restriction may be revisited in a future release.</li>
+<li>A virtual thread is not an active member of a thread group. The Thread.getThreadGroup() returns a placeholder thread group named &ldquo;VirtualThreads&rdquo; when called on a virtual thread.</li>
+<li>Virtual threads do not have permissions when run with the SecurityManager set.</li>
+<li>The stop(), suspend(), and resume() methods are not supported for virtual threads. These methods raise an exception when called on a virtual thread.</li>
+</ul>
+<h3 id="thread-local-variables">Thread Local Variables</h3>
+<p>Virtual threads support ThreadLocal and InheritableThreadLocal variables, just like platform threads, so they can run existing code that uses thread-local programs. However, since virtual threads can be very numerous, please use thread locals after careful consideration. In particular, do not use thread locals to pool expensive resources between multiple tasks that share the same thread in a thread pool. Virtual threads should not be pooled, as each thread runs only one task during its lifetime. We have removed much of the use of thread local from the java.base module to prepare virtual threads to reduce memory usage when running with millions of threads.</p>
+<p>In addition.</p>
+<ul>
+<li>The Thread.Builder API defines methods to opt out of thread local when creating threads. It also defines methods for opting out of inheriting thread-local initial values that can be inherited. ThreadLocal.get() returns the initial value and ThreadLocalSet(T) throws an exception when called from a thread that never supports thread locals.</li>
+<li>The legacy context class loader is now specified to work like a local inheritable thread. If Thread.setContextClassLoader(ClassLoader) is called on a thread that does not support thread locality, then an exception is thrown.</li>
+</ul>
+<p><a href="https://openjdk.java.net/jeps/8263012">scope-local variables</a> may prove to be a better alternative to thread-local for some use cases.</p>
+<h3 id="javautilconcurrent">java.util.concurrent</h3>
+<p>LockSupport, now supports virtual threads: the resident virtual thread releases the base carrier thread to perform other work, and the unresident virtual thread plans for it to continue. This change to LockSupport allows all APIs that use it (locks, semaphores, blocking queues, etc.) to be gracefully parked when called in a virtual thread.</p>
+<p>In addition.</p>
+<ul>
+<li>Executors.newThreadPerTaskExecutor(ThreadFactory) and Executors.newVirtualThreadPerTaskExecutor() create an ExecutorService that creates a new thread for each task. These methods support migration and interoperability with existing code that uses thread pools and ExecutorService.</li>
+<li>ExecutorService is now extended to be automatically closed, thus allowing this API to be used with the try-with-resource construct shown in the example above.</li>
+<li>Future now defines methods to get the result or exception of a completed task and to get the status of the task. Combined, these additions make it easy to use the Future object as an element of a stream, filter the Future stream to find completed tasks, and then map to get the result stream. These methods will also help for structured concurrency.</li>
+</ul>
+<h3 id="networking">Networking</h3>
+<p>The implementation of the networking API in the java.net and java.nio.channels packages now works with virtual threads: an operation on the virtual thread that prevents the establishment of a network connection or reading from a socket, releasing the underlying carrier thread to perform other work.</p>
+<p>To allow interrupts and cancellations, blocking I/O methods defined as java.net.Socket, ServerSocket and DatagramSocket are now specified as interruptible when called in a virtual thread: a virtual thread blocking on an interrupted socket will unlock the thread and close the socket. Blocking I/O operations on these types of sockets when fetching from an InterruptibleChannel is always interruptible, so this change aligns the behavior of these APIs at creation time with the behavior when fetching from a channel.</p>
+<h3 id="javaio">java.io</h3>
+<p>The java.io package provides APIs for byte streams and character streams. the implementation of these APIs is highly synchronous and changes are needed to avoid fixing them when they are used in virtual threads.</p>
+<p>As background, byte-oriented input/output streams are not specified as thread-safe, nor is the expected behavior when close() is called when a thread is blocked in a read or write method. In most cases, it does not make sense to use a specific input or output stream from multiple concurrent threads. Character-oriented readers/writers are also not specified as thread-safe, but they do expose lock objects for subclasses. In addition to being fixed, synchronization in these classes is problematic and inconsistent; for example, the stream decoders and encoders used by InputStreamReader and OutputStreamWriter are synchronized on the stream object, not on the lock object.</p>
+<p>To prevent fixes, the implementation now works as follows.</p>
+<ul>
+<li>BufferedInputStream, BufferedOutputStream, BufferedReader, BufferedWriter, PrintStream, and PrintWriter now use explicit locks instead of monitors when used directly. These classes are synchronized when subclassing as before.</li>
+<li>Stream decoders and encoders used by InputStreamReader and OutputStreamWriter now use the same locks as the closed InputStreamReader or OutputStreamWriter.</li>
+</ul>
+<p>Further, eliminating all of these normally unnecessary locks is beyond the scope of this JEP.</p>
+<p>In addition, the initial size of the buffers used by the stream encoders of BufferedOutputStream, BufferedWriter, and OutputStreamWriter are now smaller to reduce memory usage when there are many streams or writers in the heap - if there are a million virtual threads, each with a buffer on the socket connection streams.</p>
+<h3 id="java-native-interface-jni">Java Native Interface (JNI)</h3>
+<p>JNI defines a new function, IsVirtualThread, to test whether an object is a virtual thread.</p>
+<p>The JNI specification remains otherwise unchanged.</p>
+<h3 id="debugging">Debugging</h3>
+<p>The debugging architecture consists of three interfaces: the JVM Tool Interface (JVM TI), the Java Debug Wire Protocol (JDWP), and the Java Debug Interface (JDI). All three interfaces now support virtual threads.</p>
+<p>Updates to the JVM TI are.</p>
+<ul>
+<li>Most functions called with jthread (i.e., a JNI reference to a thread object) can be called with a reference to a virtual thread. Virtual threads do not support a small number of functions, namely PopFrame, ForceEarlyReturn, StopThread, AgentStartFunction, and GetThreadCpuTime. The <code>SetLocal*</code> function is limited to setting local variables in the topmost frame of a virtual thread that is hung at a breakpoint or single-step event.</li>
+<li>The GetAllThreads and GetAllStackTraces functions are now specified to return all platform threads, not all threads.</li>
+<li>Event callbacks can be called in the context of a virtual thread for all events except those posted during early VM startup or heap iterations.</li>
+<li>The hang/resume implementation allows the debugger to hang and resume virtual threads, and allows carrier threads to be hung when a virtual thread is hung.</li>
+<li>A new function, can_support_virtual_threads, allows the agent to more finely control the thread start and end events of virtual threads.</li>
+<li>New functions to support bulk hangs and resumes of virtual threads; these functions require the can_support_virtual_threads feature.</li>
+</ul>
+<p>Existing JVM TI agents will work as before, but they may encounter errors if they call functions that are not supported by virtual threads. These occur when agents that are not aware of virtual threads are used with applications that use virtual threads. For some agents, changing GetAllThreads to return an array containing only platform threads may be a problem. Existing agents with ThreadStart and ThreadEnd events enabled may encounter performance issues because they are unable to restrict these events to platform threads.</p>
+<p>Updates to JDWP are.</p>
+<ul>
+<li>A new command that allows the debugger to test if a thread is a virtual thread.</li>
+<li>A new modifier on the EventRequest command allows the debugger to restrict thread start and end events to platform threads.</li>
+</ul>
+<p>Updates to JDI are.</p>
+<ul>
+<li>A new method com.sun.jdi.ThreadReference to test if a thread is virtual.</li>
+<li>The new methods com.sun.jdi.request.ThreadStartRequest and com.sun.jdi.request.ThreadDeathRequest restrict the events generated for the request to the platform thread.</li>
+</ul>
+<p>As mentioned above, virtual threads are not considered to be active threads in the thread group. Therefore, the list of threads returned by the JVM TI function GetThreadGroupCalt, the JDWP command ThreadGroupReference/Children, and the JDI method com.sun.jdi.ThreadGroupReference.threads() includes only platform threads.</p>
+<h3 id="jdk-flight-recorder-jfr">JDK Flight Recorder (JFR)</h3>
+<p>JFR supports virtual threads with multiple new events:.</p>
+<ul>
+<li>jdk.VirtualThreadStart and jdk.VirtualThreadEnd indicate the start and end of a virtual thread. By default, these events are disabled.</li>
+<li>jdk.VirtualThreadPinned indicates that a virtual thread is resident while being fixed, i.e., not releasing its carrier thread (see Restrictions). This event is enabled by default and has a threshold value of 20ms.</li>
+<li>jdk.VirtualThreadSubmitFailed indicates that starting or canceling a resident virtual thread failed, possibly due to a resource issue. By default, this event is enabled.</li>
+</ul>
+<h3 id="java-management-extensions-jmx">Java Management Extensions (JMX)</h3>
+<p>A new method com.sun.management.HotSpotDiagnosticsMXBean generates a new style of thread dump described above. The method can also be called indirectly via the platform MBeanServer from a local or remote JMX tool.</p>
+<p>java.lang.management.ThreadMXBean supports monitoring and management of platform threads only.</p>
+<h3 id="javalangthreadgroup">java.lang.ThreadGroup</h3>
+<p>java.lang.ThreadGroup is an old API for grouping threads that is rarely used in modern applications and is not suitable for grouping virtual threads. We do not recommend and downgrade it now, and hope to introduce a new thread organization structure as structured concurrency in the future.</p>
+<p>As background, the ThreadGroup API dates back to Java 1.0. it was originally intended to provide job control operations such as stopping all threads in a group. Modern code prefers to use the thread pool API of java.util.concurrent (introduced in Java 5.) ThreadGroup supported the isolation of applets in early Java versions, but the Java security architecture evolved significantly in Java 1.2 and ThreadGroup no longer plays an important role. ThreadGroup was also intended to be used for diagnostic purposes, but that role has been replaced by monitoring and management features introduced in Java 5, including the java.lang. management API. In addition to being largely irrelevant now, there are a number of significant issues with the ThreadGroup API and implementation.</p>
+<ul>
+<li>The API and mechanism for destroying thread groups is flawed.</li>
+<li>The API requires the implementation to reference all active threads in the group. This adds synchronization and contention overhead to thread creation, thread startup, and thread termination.</li>
+<li>The API defines enumerate() methods, which are valid in their own right.</li>
+<li>The API defines the suspend(), resume(), and stop() methods, which are inherently deadlock-prone and unsafe.</li>
+</ul>
+<p>Now specify, discourage, and demote ThreadGroup , as follows.</p>
+<ul>
+<li>Removed the ability to explicitly destroy the thread group: the ultimately not recommended destroy() method does nothing.</li>
+<li>The concept of a daemon thread group has been removed: the setDaemon(boolean) and isDaemon() methods, which were set by the daemon state and eventually deprecated, are ignored.</li>
+<li>The implementation no longer retains strong references to subgroups. Thread groups are now eligible for garbage collection when there are no active threads in the thread group and no other any other threads keep the thread group active.</li>
+<li>The suspend(), resume(), and stop() methods, which are ultimately not recommended, always throw exceptions.</li>
+</ul>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/virtual-threads/">virtual threads</a>
+          <a href="https://www.javai.net/tags/concurrent-threads/">concurrent threads</a>
+          <a href="https://www.javai.net/tags/throughput/">throughput</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202204/java-future-use/">
+            <span class="next-text nav-default">The use of Future in java</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
