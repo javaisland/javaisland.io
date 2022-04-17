@@ -6,7 +6,44 @@
     <description>Recent content in Posts on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 16 Apr 2022 19:44:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Apr 2022 13:47:38 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The use of ThreadLocal in java</title>
+      <link>https://www.javai.net/post/202204/java-threadlocal-use/</link>
+      <pubDate>Sun, 17 Apr 2022 13:47:38 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-threadlocal-use/</guid>
+      <description>Preface ThreadLocal is mainly used to store data for the current thread, this data is only accessible by the current thread.
+When defining a ThreadLocal, we can also define specific types of objects stored in the ThreadLocal.
+1  ThreadLocal&amp;lt;Integer&amp;gt; threadLocalValue = new ThreadLocal&amp;lt;&amp;gt;();   Above we have defined a ThreadLocal object that stores an Integer.
+To store and get the object in ThreadLocal is also very simple, using get() and set().</description>
+    </item>
+    
+    <item>
+      <title>The difference between Runnable and Callable in java</title>
+      <link>https://www.javai.net/post/202204/java-runnable-callable/</link>
+      <pubDate>Sun, 17 Apr 2022 13:40:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-runnable-callable/</guid>
+      <description>Preface In java&amp;rsquo;s multi-threaded development Runnable has always been the core of multi-threading, and Callable is an enhanced version of java 1.5 added in.
+In this article, we will explore the differences between Runnable and Callable in detail.
+Operation mechanism First look at the interface definition of Runnable and Callable:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  @FunctionalInterface public interface Runnable { /** * When an object implementing interface &amp;lt;code&amp;gt;Runnable&amp;lt;/code&amp;gt; is used * to create a thread, starting the thread causes the object&amp;#39;s * &amp;lt;code&amp;gt;run&amp;lt;/code&amp;gt; method to be called in that separately executing * thread.</description>
+    </item>
+    
+    <item>
+      <title>The use of ExecutorService in java concurrency</title>
+      <link>https://www.javai.net/post/202204/java-executorservice-use/</link>
+      <pubDate>Sun, 17 Apr 2022 13:29:57 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-executorservice-use/</guid>
+      <description>Preface ExecutorService is a framework for asynchronous execution in java. By using ExecutorService you can easily create a multi-threaded execution environment.
+This article will explain in detail the specific use of ExecutorService.
+Creating an ExecutorService Generally speaking, there are two ways to create an ExecutorService.
+The first way is to use the factory class methods in Executors, for example.
+1  ExecutorService executor = Executors.newFixedThreadPool(10);   In addition to the newFixedThreadPool method, Executors contains a number of methods to create an ExecutorService.</description>
+    </item>
+    
     <item>
       <title>Java Class File Format Analysis</title>
       <link>https://www.javai.net/post/202204/java-class-file-format-analysis/</link>
@@ -180,36 +217,6 @@ For two points u,vu,v in VV, if the edge (u,v)(u,v) belongs to EE, then the two 
       
       <guid>https://www.javai.net/post/202204/bigdecimal-use/</guid>
       <description>As a Java developer in the daily work, many times we will encounter some need to calculate the data scenario, usually for the scenario does not need to calculate the precision we can use Integer, Float or Double to calculate, although will lose precision but occasionally can be used, if we need to calculate the results accurately, we will use the class BigDecimal provided in the java.math package to implement the corresponding function.</description>
-    </item>
-    
-    <item>
-      <title>Java8 new features of the time and date API</title>
-      <link>https://www.javai.net/post/202204/java8-time-api/</link>
-      <pubDate>Tue, 05 Apr 2022 17:40:16 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java8-time-api/</guid>
-      <description>Java8 includes a new time and date API, which is placed under the java.time package. This new time-date API is immutable and thread-safe (This class is immutable and thread-safe).
-Local time: LocalDate, LocalTime, LocalDateTime Instances of the classes localDate, LocalTime, and LocalDateTime are immutable objects that represent the date, time, date, and time, respectively, using the ISO-8601 calendar system. They provide a simple date or time and do not contain current time information.</description>
-    </item>
-    
-    <item>
-      <title>How to estimate throughput and thread pool size</title>
-      <link>https://www.javai.net/post/202204/threadpool-size/</link>
-      <pubDate>Mon, 04 Apr 2022 17:35:33 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/threadpool-size/</guid>
-      <description>Estimating Throughput Now there is a task which execution time is divided into 2 parts, the first part does math and the second part waits for IO. these two parts are called compute operation and wait operation.
-So now we need to estimate the peak throughput that can be achieved by executing this task with the CPU at full power.
-Then we need to know how much time it takes to execute this task, how much time is spent on the computation part and how much time is spent on the wait part.</description>
-    </item>
-    
-    <item>
-      <title>Changes to the String object in Java 9</title>
-      <link>https://www.javai.net/post/202204/java9-string/</link>
-      <pubDate>Mon, 04 Apr 2022 17:27:47 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java9-string/</guid>
-      <description>Overview In Java 9, the underlying String object has been changed from char[] to byte[], which has the immediate benefit of being more memory-efficient, hence the name Compact Strings Improvement. Because in Java char takes up 2 bytes and byte takes up 1 byte, while a Unicode character does not necessarily need 2 bytes to be represented, at least ASCII characters only need 1 byte to be done. That is, if your string is full of ASCII characters, half the space would be wasted if you use char.</description>
     </item>
     
   </channel>

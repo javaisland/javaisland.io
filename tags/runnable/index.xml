@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>runnable on JavaIsland</title>
+    <link>https://www.javai.net/tags/runnable/</link>
+    <description>Recent content in runnable on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Apr 2022 13:40:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/runnable/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The difference between Runnable and Callable in java</title>
+      <link>https://www.javai.net/post/202204/java-runnable-callable/</link>
+      <pubDate>Sun, 17 Apr 2022 13:40:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-runnable-callable/</guid>
+      <description>Preface In java&amp;rsquo;s multi-threaded development Runnable has always been the core of multi-threading, and Callable is an enhanced version of java 1.5 added in.
+In this article, we will explore the differences between Runnable and Callable in detail.
+Operation mechanism First look at the interface definition of Runnable and Callable:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  @FunctionalInterface public interface Runnable { /** * When an object implementing interface &amp;lt;code&amp;gt;Runnable&amp;lt;/code&amp;gt; is used * to create a thread, starting the thread causes the object&amp;#39;s * &amp;lt;code&amp;gt;run&amp;lt;/code&amp;gt; method to be called in that separately executing * thread.</description>
+    </item>
+    
+  </channel>
+</rss>
