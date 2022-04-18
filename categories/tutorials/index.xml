@@ -6,7 +6,40 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 17 Apr 2022 13:47:38 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Apr 2022 17:14:34 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simple use of the Atomic class</title>
+      <link>https://www.javai.net/post/202204/java-atomic-class/</link>
+      <pubDate>Mon, 18 Apr 2022 17:14:34 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-atomic-class/</guid>
+      <description>Problem Background In a multi-threaded environment, the most common problem we encounter is synchronizing the values of variables. Since variables need to be shared across multiple threads, we must need to employ some synchronization mechanism to control them.
+From the previous article we know that the Lock mechanism can be used, and of course, the Atomic class we are talking about today.
+Here we will introduce each of the two ways.</description>
+    </item>
+    
+    <item>
+      <title>Use of join in java</title>
+      <link>https://www.javai.net/post/202204/java-join-use/</link>
+      <pubDate>Mon, 18 Apr 2022 16:24:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-join-use/</guid>
+      <description>Introduction join() is a method we often use in java that sets the current thread to the WAITTING state and then waits for the calling thread to finish executing or be interrupted.
+Definition join() is a method defined in Thread, let&amp;rsquo;s look at his definition.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * Waits for this thread to die.</description>
+    </item>
+    
+    <item>
+      <title>The life cycle of threads in java</title>
+      <link>https://www.javai.net/post/202204/java-thread-life-cycle/</link>
+      <pubDate>Mon, 18 Apr 2022 15:55:37 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-thread-life-cycle/</guid>
+      <description>Introduction Threads is a frequently used technology in java, this article will explain in detail the life cycle of threads in java, I hope you can give some help.
+The state of Thread in java There are six states of Thread in java, which are.
+ NEW - newly created Thread, has not yet started execution RUNNABLE - Thread in runnable state, including ready to run and running. BLOCKED - Threads that are waiting for a resource lock WAITING - A thread that is waiting indefinitely for other threads to perform a specific operation TIMED_WAITING - Waiting for a certain amount of time for other threads to perform a specific operation TERMINATED - the thread has finished executing  We can visualize this in a diagram.</description>
+    </item>
+    
     <item>
       <title>The use of ThreadLocal in java</title>
       <link>https://www.javai.net/post/202204/java-threadlocal-use/</link>
@@ -189,38 +222,6 @@ To detect rings in an undirected graph, you can use depth-first search. Suppose 
       <guid>https://www.javai.net/post/202204/undirected-graphs/</guid>
       <description>Basic concepts Definition of a graph A graph is a binary consisting of a set of points V={vi}V={vi} and a set E={ek}E={ek} of unordered pairs of elements in VV, denoted G=(V,E)G=(V,E), elements vivi in VV are called vertices and elements ekek in EE are called edges.
 For two points u,vu,v in VV, if the edge (u,v)(u,v) belongs to EE, then the two points u,vu,v are said to be adjacent and u,vu,v is called the endpoint of the edge (u,v)(u,v).</description>
-    </item>
-    
-    <item>
-      <title>Usage of Bigdecimal</title>
-      <link>https://www.javai.net/post/202204/bigdecimal-use/</link>
-      <pubDate>Tue, 05 Apr 2022 20:26:02 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/bigdecimal-use/</guid>
-      <description>As a Java developer in the daily work, many times we will encounter some need to calculate the data scenario, usually for the scenario does not need to calculate the precision we can use Integer, Float or Double to calculate, although will lose precision but occasionally can be used, if we need to calculate the results accurately, we will use the class BigDecimal provided in the java.math package to implement the corresponding function.</description>
-    </item>
-    
-    <item>
-      <title>How to estimate throughput and thread pool size</title>
-      <link>https://www.javai.net/post/202204/threadpool-size/</link>
-      <pubDate>Mon, 04 Apr 2022 17:35:33 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/threadpool-size/</guid>
-      <description>Estimating Throughput Now there is a task which execution time is divided into 2 parts, the first part does math and the second part waits for IO. these two parts are called compute operation and wait operation.
-So now we need to estimate the peak throughput that can be achieved by executing this task with the CPU at full power.
-Then we need to know how much time it takes to execute this task, how much time is spent on the computation part and how much time is spent on the wait part.</description>
-    </item>
-    
-    <item>
-      <title>Java generates a lot of zombie process problems</title>
-      <link>https://www.javai.net/post/202204/java-zombie-processes/</link>
-      <pubDate>Mon, 04 Apr 2022 17:07:11 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-zombie-processes/</guid>
-      <description>Recently I encountered a problem, a Java process using Runtime().exec() to execute script files, creating a large number of zombie processes, while the Java process is running in the container.
-At that time, I saw this situation on the Host machine, and I could see that there were a large number of zombie processes.
-Locate the zombie process by ps aux | grep Z.
-1 2 3 4 5 6 7 8 9  USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND root 2518 0.</description>
     </item>
     
   </channel>

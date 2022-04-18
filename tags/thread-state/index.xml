@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>thread state on JavaIsland</title>
+    <link>https://www.javai.net/tags/thread-state/</link>
+    <description>Recent content in thread state on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Apr 2022 15:55:37 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/thread-state/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The life cycle of threads in java</title>
+      <link>https://www.javai.net/post/202204/java-thread-life-cycle/</link>
+      <pubDate>Mon, 18 Apr 2022 15:55:37 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-thread-life-cycle/</guid>
+      <description>Introduction Threads is a frequently used technology in java, this article will explain in detail the life cycle of threads in java, I hope you can give some help.
+The state of Thread in java There are six states of Thread in java, which are.
+ NEW - newly created Thread, has not yet started execution RUNNABLE - Thread in runnable state, including ready to run and running. BLOCKED - Threads that are waiting for a resource lock WAITING - A thread that is waiting indefinitely for other threads to perform a specific operation TIMED_WAITING - Waiting for a certain amount of time for other threads to perform a specific operation TERMINATED - the thread has finished executing  We can visualize this in a diagram.</description>
+    </item>
+    
+  </channel>
+</rss>

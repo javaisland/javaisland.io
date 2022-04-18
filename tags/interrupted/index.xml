@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interrupted on JavaIsland</title>
+    <link>https://www.javai.net/tags/interrupted/</link>
+    <description>Recent content in interrupted on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Apr 2022 16:24:46 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/interrupted/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Use of join in java</title>
+      <link>https://www.javai.net/post/202204/java-join-use/</link>
+      <pubDate>Mon, 18 Apr 2022 16:24:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-join-use/</guid>
+      <description>Introduction join() is a method we often use in java that sets the current thread to the WAITTING state and then waits for the calling thread to finish executing or be interrupted.
+Definition join() is a method defined in Thread, let&amp;rsquo;s look at his definition.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * Waits for this thread to die.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,18 @@
     <description>Recent content in lock on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 06 Apr 2022 16:30:46 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/lock/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Apr 2022 17:14:34 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/lock/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simple use of the Atomic class</title>
+      <link>https://www.javai.net/post/202204/java-atomic-class/</link>
+      <pubDate>Mon, 18 Apr 2022 17:14:34 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-atomic-class/</guid>
+      <description>Problem Background In a multi-threaded environment, the most common problem we encounter is synchronizing the values of variables. Since variables need to be shared across multiple threads, we must need to employ some synchronization mechanism to control them.
+From the previous article we know that the Lock mechanism can be used, and of course, the Atomic class we are talking about today.
+Here we will introduce each of the two ways.</description>
+    </item>
+    
     <item>
       <title>ReentrantLock implementation principle</title>
       <link>https://www.javai.net/post/202204/reentrantlock-principle/</link>
