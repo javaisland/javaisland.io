@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Notes on upgrading from Java 8 to Java 11 - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them." />
+<meta name="keywords" content="java, jdk, java8, java11, jdk upgrade, jdeprscan, jdeps" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Notes on upgrading from Java 8 to Java 11" />
+<meta property="og:description" content="This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-19T20:21:04+08:00" />
+<meta property="article:modified_time" content="2022-04-19T20:21:04+08:00" />
+
+<meta itemprop="name" content="Notes on upgrading from Java 8 to Java 11">
+<meta itemprop="description" content="This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them."><meta itemprop="datePublished" content="2022-04-19T20:21:04+08:00" />
+<meta itemprop="dateModified" content="2022-04-19T20:21:04+08:00" />
+<meta itemprop="wordCount" content="5131">
+<meta itemprop="keywords" content="java,jdk,java8,java11,jdk upgrade,jdeprscan,jdeps," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes on upgrading from Java 8 to Java 11"/>
+<meta name="twitter:description" content="This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes on upgrading from Java 8 to Java 11</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-19" class="post-time">
+          2022-04-19
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 5131 words </span>
+          <span class="more-meta"> 25 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#preface">Preface</a></li>
+    <li><a href="#why-java-11-is-needed">Why Java 11 is needed</a>
+      <ul>
+        <li><a href="#modules">Modules</a></li>
+        <li><a href="#java-network-traffic-recorder">Java Network Traffic Recorder</a></li>
+        <li><a href="#java-mission-control">Java Mission Control</a></li>
+        <li><a href="#unified-logging">Unified Logging</a></li>
+        <li><a href="#low-overhead-heap-analysis">Low Overhead Heap Analysis</a></li>
+        <li><a href="#stackwalker">StackWalker</a></li>
+        <li><a href="#garbage-collection">Garbage collection</a></li>
+        <li><a href="#g1gc">G1GC</a></li>
+        <li><a href="#parallel-gc">Parallel GC</a></li>
+        <li><a href="#epsilon">Epsilon</a></li>
+        <li><a href="#docker-container-improvements">Docker container improvements</a></li>
+        <li><a href="#multi-version-jar-files">Multi-version jar files</a></li>
+        <li><a href="#other-performance-improvements">Other Performance Improvements</a></li>
+      </ul>
+    </li>
+    <li><a href="#possible-issues-with-converting-java-8-to-java-11">Possible issues with converting Java 8 to Java 11</a></li>
+    <li><a href="#toolbox">Toolbox</a>
+      <ul>
+        <li><a href="#using-jdeprscan">Using jdeprscan</a></li>
+        <li><a href="#using-jdeps">Using jdeps</a></li>
+        <li><a href="#using-javac">Using javac</a></li>
+      </ul>
+    </li>
+    <li><a href="#running-on-java-11">Running on Java 11</a>
+      <ul>
+        <li><a href="#check-command-line-options">Check command line options</a></li>
+        <li><a href="#check-third-party-libraries">Check third-party libraries</a></li>
+        <li><a href="#explicitly-setting-up-garbage-collection">Explicitly setting up garbage collection</a></li>
+        <li><a href="#explicitly-set-default-options">Explicitly set default options</a></li>
+        <li><a href="#classloader-caution">ClassLoader Caution</a></li>
+        <li><a href="#region-setting-data-changes">Region setting data changes</a></li>
+      </ul>
+    </li>
+    <li><a href="#potential-problems">Potential problems</a>
+      <ul>
+        <li><a href="#unrecognized-options">Unrecognized options</a></li>
+        <li><a href="#vm-warnings">VM Warnings</a></li>
+        <li><a href="#error-unable-to-create-java-virtual-machine">Error: Unable to create Java Virtual Machine</a></li>
+        <li><a href="#warning-illegal-reflection-access-operation-occurred">Warning: Illegal Reflection Access Operation Occurred</a></li>
+        <li><a href="#javalangreflectinaccessibleobjectexception">java.lang.reflect.InaccessibleObjectException</a></li>
+        <li><a href="#javalangnoclassdeffounderror">java.lang.NoClassDefFoundError</a></li>
+        <li><a href="#-xbootclasspathp-is-no-longer-a-supported-option"><code>-Xbootclasspath/p</code> is no longer a supported option</a></li>
+        <li><a href="#unsupportedclassversionerror">UnsupportedClassVersionError</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next steps</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="preface">Preface</h2>
+<p>Although the latest version of Java has evolved to Java 18, most projects on the market are still using Java 8. Many people are apprehensive about upgrading their Java version because the Java API is not necessarily forward compatible from Java 8. Java 11 is the next long-supported version of Java 8, and there is no doubt that Java 11 is even better than Java 8. superior.</p>
+<p>This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them.</p>
+<h2 id="why-java-11-is-needed">Why Java 11 is needed</h2>
+<p>Java 11 is the next long-term supported version of Java 8, which means that Java 8 is no longer officially supported. In addition, the Java platform has changed significantly from Java 8 to Java 11, and these changes have been made to make the Java platform even better.</p>
+<p>This article focuses on the changes that had an impact on performance, diagnostics, and productivity.</p>
+<h3 id="modules">Modules</h3>
+<p>Modules address configuration and packaging issues that are difficult to manage in large applications (running on classpath). A module is a self-descriptive collection of Java classes and interfaces and related resources.</p>
+<p>With modules, it is possible to customize runtime configurations that contain only the components required by the application. This customization produces a small memory footprint, so the application can be statically linked to the custom runtime for deployment using jlink. This smaller memory footprint may be particularly suitable for microservice architectures.</p>
+<p>Internally, the JVM can make use of modules by making class loading more efficient. The result is a smaller, lighter and faster start-up runtime. The optimization techniques used by the JVM to improve application performance can be more effective because modules can code what components are needed for a particular class.</p>
+<p>For programmers, modules can help enforce strong encapsulation by requiring explicit declarations of which packages a module can export and which components it requires, and by restricting reflective access. This level of encapsulation makes the application more secure and easier to maintain.</p>
+<p>Applications can continue to use classpath and run on Java 11 without converting to modules that are required components.</p>
+<h3 id="java-network-traffic-recorder">Java Network Traffic Recorder</h3>
+<p>Java Flight Recorder (JFR) collects diagnostic and analytical data from running Java applications. JFR has little to no effect on running Java applications. The collected data can then be analyzed using Java Mission Control (JMC) and other tools. While both JFR and JMC are commercial features in Java 8, both are open source in Java 11.</p>
+<h3 id="java-mission-control">Java Mission Control</h3>
+<p>java Mission Control (JMC) provides a graphical display of the data collected by the java network traffic logger (JFR) and is open source in java 11. In addition to general information about the running application, JMC allows the user to drill down into the data. JFR and JMC can be used to diagnose runtime problems such as memory leaks, GC overhead, hot methods, thread bottlenecks, and blocking I/O.</p>
+<h3 id="unified-logging">Unified Logging</h3>
+<p>Java 11 has a common logging system for all components of the JVM. Users can use this unified logging system to define which components need to be logged, and to what level. This granular logging is useful for root cause analysis of JVM crashes and for diagnosing performance issues in production environments.</p>
+<h3 id="low-overhead-heap-analysis">Low Overhead Heap Analysis</h3>
+<p>A new API has been added to the Java Virtual Machine Tools Interface (JVMTI) for sampling Java heap allocations. Sampling is low overhead and can be enabled on an ongoing basis. While heap allocation can be monitored using the Java Flight Recorder (JFR), the sampling methods in JFR can only be used for allocation. JFR implementations may also fail to hit allocations. In contrast, heap sampling in Java 11 can provide information about both live and dead objects.</p>
+<p>Application Performance Monitoring (APM) vendors are starting to take advantage of this new feature, and the Java engineering group is investigating the possibility of using it with Azure performance monitoring tools.</p>
+<h3 id="stackwalker">StackWalker</h3>
+<p>When logging, you typically get a snapshot of the current thread&rsquo;s stack. The question is how many stack traces to log, and whether it is necessary to log stack traces. For example, a user may only want to see the stack trace when a specific exception occurs in a method. The StackWalker class (added in Java 9) provides a snapshot of the stack and provides ways to facilitate fine-grained programmer control over how the stack trace is used.</p>
+<h3 id="garbage-collection">Garbage collection</h3>
+<p>Java 11 provides the following garbage collectors: Serial, Parallel, Garbage-First, and Epsilon. The default garbage collector in Java 11 is the Garbage First garbage collector (G1GC).</p>
+<p>The other three collectors are mentioned here to keep the content complete. The Z Garbage Collector (ZGC) is a concurrent, low-latency collector that tries to keep the pause time below 10 milliseconds. ZGC is available as an experimental feature in Java 11. The Shenandoah recycler is a short-pause recycler that performs more garbage collection in a concurrent manner through running Java programs, thus reducing GC pause time. Shenandoah was an experimental feature in Java 12, but can be backward ported to Java 11. The Concurrent Mark and Sweep (CMS) recycler was released, but has been deprecated since the release of Java 9.</p>
+<p>For general use, the JVM uses GC as the default setting. Typically, these and other GC settings need to be adjusted to optimize throughput or latency according to the requirements of the application. Proper GC tuning requires a deep understanding of GC and requires expertise from the Microsoft Java Engineering Group.</p>
+<h3 id="g1gc">G1GC</h3>
+<p>The default garbage collector in Java 11 is the G1 Garbage Collector (G1GC). The goal of G1GC is to strike a balance between latency and throughput. The G1 garbage collector attempts to achieve a high throughput goal with a high probability of meeting the pause time goal. G1GC aims to avoid entire collections, but fallback to full GC occurs when concurrent recovery cannot recover memory fast enough. Full GC uses the same number of parallel worker threads as the initial mixed recovery.</p>
+<h3 id="parallel-gc">Parallel GC</h3>
+<p>The parallel recycler is the default recycler in Java 8. Parallel GC is a throughput recycler that uses multiple threads to speed up garbage collection.</p>
+<h3 id="epsilon">Epsilon</h3>
+<p>The Epsilon garbage collector handles allocations, but does not reclaim any memory. When the heap is exhausted, the JVM shuts down. Epsilon is suitable for services with short lifetimes and applications that are known to have no garbage.</p>
+<h3 id="docker-container-improvements">Docker container improvements</h3>
+<p>Prior to Java 10, the JVM did not recognize memory and CPU constraints set on the container. For example, in Java 8, the JVM would set the maximum heap size to a quarter of the physical memory of the base host by default. Starting with Java 10, the JVM uses the constraints set by container control groups (cgroups) to set memory and CPU limits (see the description below). For example, the default maximum heap size is a quarter of the container&rsquo;s memory limit (e.g., if the memory limit is 2G, the maximum heap size is 500MB).</p>
+<p>The <code>JVM option</code> has also been added to give Docker container users fine-grained control over the amount of system memory used for Java heaps.</p>
+<p>This support is enabled by default and is only available on Linux-based platforms.</p>
+<h3 id="multi-version-jar-files">Multi-version jar files</h3>
+<p>In Java 11, it is possible to create a jar file that contains multiple versions of a class file specific to a Java distribution. With multi-release jar files, library developers can support multiple versions of Java without having to deliver multiple versions of jar files. For users of these libraries, multi-release jar files solve the problem of having to match a specific jar file to a specific runtime target.</p>
+<h3 id="other-performance-improvements">Other Performance Improvements</h3>
+<p>The following changes to the JVM have a direct impact on performance.</p>
+<ul>
+<li>JEP 197: Segmented Code Cache - splits the code cache into segments. This segmentation improves performance by better controlling the JVM memory footprint, reducing scan time for compiled methods, and significantly reducing code cache fragmentation.</li>
+<li>JEP 254: Compact string - changes the internal representation of a string from two bytes per character to one or two bytes per character, depending on the character encoding. Since most strings contain the <code>ISO-8859-1/Latin-1</code> character, this change effectively halves the amount of space needed to store the string.</li>
+<li>JEP 310: Application Class-Data Sharing The <code>-Class-Data</code> share reduces startup time by allowing memory mapping at runtime. Application Class-Data sharing extends class-data sharing by allowing application classes to be placed in CDS archives. This saves memory and reduces overall system response time when multiple JVMs share the same archive file.</li>
+<li>JEP 312: Thread-Local Handshake - enables you to perform callbacks on threads without having to perform a global VM safepoint, which helps VMs reduce the number of global safepoints, resulting in lower latency.</li>
+<li>Delayed allocation of compiler threads - In layered compilation mode, the VM will start a large number of compiler threads. On systems with many CPUs, this is the default mode. These threads are created regardless of the amount of memory available and regardless of how many compilation requests there are. The threads consume memory even when they are idle (which is almost all the time), which leads to inefficient use of resources. To solve this problem, we have changed the implementation to start only one compiler thread of each type at startup. The system will dynamically handle starting other threads and closing unused threads.</li>
+</ul>
+<p>The following changes to the core library can affect the performance of new or modified code.</p>
+<ul>
+<li>JEP 193: Variable Handles - Define a standard method to invoke the equivalent of various util and operations on object fields and array elements, a standard set of fencing operations for precise control of memory ordering, and a standard accessibility guard operation to ensure that referenced objects remain accessible.</li>
+<li>JEP 269: Convenience Factory Methods for Collections - Defines library api&rsquo;s that allow you to easily create instances of collections and mappings that contain a small number of elements. This is a static factory method on the collection interface for creating lean and unmodifiable instances of collections. These instances are inherently more efficient. The collections created by these APIs are represented in a concise manner, without wrapper classes.</li>
+<li>JEP 285: Spin-Wait hints - provides APIs that allow Java to hint that the runtime system is in a spin-loop. Some hardware platforms can take advantage of software indications that a thread is in a &ldquo;busy-waiting&rdquo; state.</li>
+<li>JEP 321: HTTP Client (Standard) - provides a new http client API that implements Http/2 and WebSocket, and replaces the older HttpURLConnection API.</li>
+</ul>
+<h2 id="possible-issues-with-converting-java-8-to-java-11">Possible issues with converting Java 8 to Java 11</h2>
+<p>When converting code from Java 8 to Java 11, there is no one-size-fits-all solution. For less critical applications, migrating from Java 8 to Java 11 can mean a significant amount of work. Potential problems include.</p>
+<ul>
+<li>Deleted APIs</li>
+<li>Deprecated packages</li>
+<li>Use of internal APIs</li>
+<li>changes to the class loader</li>
+<li>and changes to garbage collection.</li>
+</ul>
+<p>Usually, the solution is to try to run on Java 11 without recompiling, or to compile with JDK 11 first. If the goal is to get the application up and running as soon as possible, the best approach is usually to run it directly on Java 11. For libraries, the goal will be to release projects compiled and tested using JDK 11.</p>
+<p>Migrating to Java 11 is worth the effort. Since the release of Java 8, several new features have been added and enhancements have been made to existing features. These features and enhancements improve startup, performance and memory usage, and provide better integration with containers. Additions and changes have also been made to the API, which can improve developer productivity.</p>
+<h2 id="toolbox">Toolbox</h2>
+<p>Java 11 has two tools for probing potential problems: jdeprscan and jdeps. These two tools can be run on existing classes or jar files. The conversion effort can be evaluated without recompiling.</p>
+<ul>
+<li>jdeprscan can see if a deprecated or deleted API is being used. Using a deprecated API is not a blocking issue, but is worth exploring. Is there an issue that needs to be logged to resolve the use of the deprecated API? If using the deprecated API is a blocking issue that must be resolved before you can attempt to run the application on Java 11.</li>
+<li>jdeps, a Java class dependency parser. When used with the <code>--jdk-internals</code> option, jdeps tells you which class depends on which internal API. It is possible to continue using the internal APIs in Java 11, but changing this usage should be a priority. OpenJDK Wiki page <a href="https://wiki.openjdk.java.net/display/JDK8/Java+Dependency+Analysis+Tool">Java Dependency Analysis Tool</a> recommends replacements for some common JDK internal APIs.</li>
+</ul>
+<p>Both Gradle and Maven have jdeps and jdeprscan plugins. It is recommended that the following tools be added to the generated scripts.</p>
+<table>
+<thead>
+<tr>
+<th>Tools</th>
+<th>Gradle Plugin</th>
+<th>Maven Plugin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jdeps</td>
+<td>jdeps-gradle-plugin</td>
+<td>Apache Maven JDeps plugin</td>
+</tr>
+<tr>
+<td>jdeprscan</td>
+<td>jdeprscan-gradle-plugin</td>
+<td>Apache Maven JDeprScan plugin</td>
+</tr>
+</tbody>
+</table>
+<p>The Java compiler itself, javac, is another tool in the toolbox. The warnings and errors obtained from jdeprscan and jdeps come from the compiler. The advantage of using jdeprscan and jdeps is that both tools can be run on existing jar and class files (including third-party libraries). What jdeprscan and jdeps cannot do is to warn about the use of reflection to access the wrapped API. Reflection access is checked at runtime. Ultimately the code must be run on Java 11 to know exactly.</p>
+<h3 id="using-jdeprscan">Using jdeprscan</h3>
+<p>To use jdeprscan, the easiest way is to provide it with a jar file from an existing generation. You can also specify a directory (such as the compiler output directory) or a single class name for it. Use the <code>-release 11</code> option to get the most complete list of deprecated APIs. To determine the priority of deprecated APIs to adopt, roll back the setting to <code>-release 8</code>. Deprecated APIs in Java 8 may be removed earlier than the most recently deprecated APIs.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">jdeprscan --release 11 my-application.jar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The jdeprscan tool generates an error message if it is unable to resolve a dependent class. For example <code>error: cannot find class org/apache/logging/log4j/Logger</code>. It is recommended to add the dependent class to <code>--class-path</code> or use the application <code>class-path</code>, but the tool will continue to scan without it. The argument is <code>-class-path</code>. Other variants of the <code>-class-path</code> argument will not work.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">jdeprscan --release 11 --class-path log4j-api-2.13.0.jar my-application.jar
+</span></span><span class="line"><span class="cl">error: cannot find class sun/misc/BASE64Encoder
+</span></span><span class="line"><span class="cl">class com/company/Util uses deprecated method java/lang/Double::&lt;init&gt;(D)V
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This output tells us that the com.company.Util class is calling the deprecated constructor of the java.lang. javadoc will suggest an API to replace the deprecated API. There is no way to resolve the &ldquo;error: cannot find class sun/misc/BASE64Encoder&rdquo; issue because it is a deprecated API. Since the release of Java 8, you should Use java.util.Base64.</p>
+<p>Run <code>jdeprscan --release 11 --list</code> to see the specific APIs deprecated since Java 8. To get a list of deprecated APIs, run <code>jdeprscan --release 11 --list --for-removal</code>.</p>
+<h3 id="using-jdeps">Using jdeps</h3>
+<p>You can use jdeps to find dependencies on the JDK&rsquo;s internal APIs with the <code> --jdk-internals</code> option. This example requires the <code>-multi-release 11</code> command line option, because log4j-core-2.13.0.jar is a multi-release jar file. Without this option, jdeps will issue an error message if a multi-release jar file is found. This option specifies the version of the class file to check.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">jdeps --jdk-internals --multi-release 11 --class-path log4j-core-2.13.0.jar my-application.jar
+</span></span><span class="line"><span class="cl">Util.class -&gt; JDK removed internal API
+</span></span><span class="line"><span class="cl">Util.class -&gt; jdk.base
+</span></span><span class="line"><span class="cl">Util.class -&gt; jdk.unsupported
+</span></span><span class="line"><span class="cl">   com.company.Util -&gt; sun.misc.BASE64Encoder JDK internal API (JDK removed internal API)
+</span></span><span class="line"><span class="cl">   com.company.Util -&gt; sun.misc.Unsafe JDK internal API (jdk.unsupported)
+</span></span><span class="line"><span class="cl">   com.company.Util -&gt; sun.nio.ch.Util JDK internal API (java.base)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Warning: JDK internal APIs are unsupported and private to JDK implementations that are
+</span></span><span class="line"><span class="cl">subject to be removed or changed incompatibly and could break your application.
+</span></span><span class="line"><span class="cl">Please modify your code to eliminate dependence on any JDK internal APIs.
+</span></span><span class="line"><span class="cl">For the most recent update on JDK internal API replacements, please check:
+</span></span><span class="line"><span class="cl">https://wiki.openjdk.java.net/display/JDK8/Java+Dependency+Analysis+Tool
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">JDK Internal API Suggested Replacement
+</span></span><span class="line"><span class="cl">---------------- ---------------------
+</span></span><span class="line"><span class="cl">sun.misc.BASE64Encoder Use java.util.Base64 @since 1.8
+</span></span><span class="line"><span class="cl">sun.misc.Unsafe See http://openjdk.java.net/jeps/260   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The output provides some good advice on avoiding using the JDK&rsquo;s internal APIs! If possible, it is recommended to use the replacement API. Provide the name of the module that wraps the package in parentheses. If you need to break the wrapper explicitly, use the module name in conjunction with <code>-add-exports</code> or <code>-add-opens</code>. Using sun.misc.BASE64Encoder or sun.misc.BASE64Decoder causes java.lang.NoClassDefFoundError in Java 11. Code using these APIs must be modified to use java.util.Base64.</p>
+<p>Try not to use any APIs from the jdk.unsupported module. The APIs in this module will reference <a href="https://openjdk.java.net/jeps/260">JDK Enhancement Program (JEP) 260</a> as a suggested replacement. In short, JEP 260 states that using the internal API will be supported until the replacement API is available. Although your code is using the JDK internal API, it will work, at least for a while. Take a look at JEP 260, as it points out certain replacements for the internal API. For example, you can use <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/invoke/VarHandle.html">variable handle</a> instead of one of the sun.misc.Unsafe APIs Unsafe API.</p>
+<p>In addition to scanning for usage of the JDK&rsquo;s internal APIs, jdeps can also perform other operations. It is a useful tool for analyzing dependencies and generating module information files. For more information, see the documentation.</p>
+<h3 id="using-javac">Using javac</h3>
+<p>If you compile with JDK 11, you will need to update it to generate scripts, tools, test frameworks, and included libraries. Use javac&rsquo;s <code>-Xlint:unchecked</code> option to get usage details and other warnings for the JDK&rsquo;s internal APIs. It may also be necessary to expose wrapped packages to the compiler using <code>-add-opens</code> or <code>-add-reads</code> (see JEP 261).</p>
+<p>Libraries may be considered to be packaged as multi-version jar files. Multi-version jar files allow both Java 8 and Java 11 runtimes to be supported in the same jar file. They increase the complexity of generation. It is beyond the scope of this document to discuss how to generate multi-version jars.</p>
+<h2 id="running-on-java-11">Running on Java 11</h2>
+<p>Most applications should be able to run on Java 11 without modification. The first thing to try is to run on Java 11 without recompiling the code. The purpose of running it directly is to see what warnings and errors occur when it is executed. This method allows the application to run faster on Java 11 because it minimizes those concerns that must be completed.</p>
+<p>Most of the issues you may encounter can be resolved without recompiling the code. If you need to fix the problem in your code, do so, but continue to compile with JDK 8. If possible, have the application run with java version 11 before compiling with JDK 11.</p>
+<h3 id="check-command-line-options">Check command line options</h3>
+<p>Before running on Java 11, do a quick scan of the command line options. Removed options can cause the Java Virtual Machine (JVM) to exit. This check is especially important if using the GC logging options, as they are significantly different from what was the case in Java 8. The JaCoLine tool is a good tool for checking command line options for problems.</p>
+<h3 id="check-third-party-libraries">Check third-party libraries</h3>
+<p>Third-party libraries that you do not control are a potential source of problems. You can proactively update third-party libraries to a newer version. It is also possible to see which libraries are not in use when running the application and update only those that are required. The problem with updating all libraries to the latest version is that if there is an error in the application, it is more difficult to find the root cause. Did the error occur because a library was updated? Or was the error caused by some change in the runtime? The problem with updating only what is needed is that it may take several iterations to fix the problem.</p>
+<p>The recommendation here is to make as few changes as possible and update the third-party libraries separately. If you update third-party libraries, you will often need the latest and greatest version that is compatible with Java 11. Depending on how far behind the current version is, you may need to take a more cautious approach and upgrade to the first version compatible with <code>Java 9+</code>.</p>
+<p>In addition to checking the release notes, you can use jdeps and jdeprscan to evaluate jar files. In addition, the OpenJDK Quality Group maintains a Quality Outreach Wiki page, which lists the status of tests performed on several Free Open Source Software (FOSS) projects based on OpenJDK versions.</p>
+<h3 id="explicitly-setting-up-garbage-collection">Explicitly setting up garbage collection</h3>
+<p>The parallel garbage collector (parallel GC) was the default GC in Java 8. If your application uses the default, you should set the GC explicitly using the command line option <code>-XX:+UseParallelGC</code>. The default in Java 9 has been changed to the Garbage First garbage collector (G1GC). For a fair comparison of applications running on Java 8 and Java 11, the GC setting must be the same. Experimentation with GC settings should be deferred until the application has been verified on Java 11.</p>
+<h3 id="explicitly-set-default-options">Explicitly set default options</h3>
+<p>If running on a point-of-action VM, setting the command line option <code>-XX:+PrintCommandLineFlags</code> dumps the values of the options set by the VM, specifically the default values set by the GC. Run with this flag on Java 8, and use the output options when running on Java 11. For the most part, the defaults are the same in Java 8 through 11. However, using the setting in Java 8 ensures parity.</p>
+<p>It is recommended to set the command line option <code>--illegal-access=warn</code>. In Java 11, using reflection to access the JDK internal API generates an &ldquo;Illegal Reflection Access&rdquo; warning. By default, the system only warns about the first illegal access. Setting <code>--illegal-access=warn</code> causes the system to warn about every illegal reflection access. If you set the option to warn, more cases of illegal access will be found. However, you will also receive a large number of redundant warnings.</p>
+<p>Setting <code>--illegal-access=deny</code> will simulate future behavior of the Java runtime once the application is running on Java 11. Starting with Java 16, the default setting will be <code>--illegal-access=deny</code>.</p>
+<h3 id="classloader-caution">ClassLoader Caution</h3>
+<p>In Java 8, it is possible to force the system class loader to be converted to a URLClassLoader. This is typically done by applications and libraries that need to inject classes into the classpath at runtime. The class loader hierarchy has been changed in Java 11. The system class loader (also known as the application class loader) is now an internal class. Forcing a conversion to URLClassLoader raises a ClassCastException at runtime. Java 11 cannot dynamically enhance the classpath at runtime via the API, but this can be done via reflection, which displays a prominent warning about how to use the internal API.</p>
+<p>In Java 11, the startup class loader only loads core modules. If you create a class loader with a null parent, it may not find all the platform classes. In Java 11, you need to pass ClassLoader.getPlatformClassLoader() instead of null as the parent class loader in such cases.</p>
+<h3 id="region-setting-data-changes">Region setting data changes</h3>
+<p>The default source for locale data in Java 11 has been changed to the Unicode Consortium&rsquo;s public locale data repository via <a href="https://openjdk.java.net/jeps/252">JEP 252</a>. This may affect the localized formatting. If necessary, set the system property to <code>java.locale.providers=COMPAT,SPI</code> and revert to the Java 8 locale behavior.</p>
+<h2 id="potential-problems">Potential problems</h2>
+<p>Here are some common problems that may be encountered.</p>
+<ul>
+<li>Unrecognized VM options</li>
+<li>Unrecognized options</li>
+<li>VM warning: ignore options</li>
+<li>VM warning: option</li>
+<li>Warning: illegal reflection access operation occurred</li>
+<li>java.lang.reflect.InaccessibleObjectException</li>
+<li>java.lang.NoClassDefFoundError</li>
+<li>-Xbootclasspath/p is no longer a supported option</li>
+<li>java.lang.UnsupportedClassVersionError</li>
+</ul>
+<h3 id="unrecognized-options">Unrecognized options</h3>
+<p>If a command line option is removed, the application outputs <code>Unrecognized option:</code> or <code>Unrecognized VM option</code> followed by the name of the problematic option. Unrecognized options will cause the VM to exit. Options that have been deprecated but not removed generate VM warnings.</p>
+<p>Usually, there is no replacement for a deleted option, and the only way to remove it from the command line is to delete it. The exception is the garbage collection logging option. GC logging has been re-implemented in Java 9 and can be done using the Unified JVM logging framework. See the Java SE 11 Tool Reference for permission to <a href="https://docs.oracle.com/en/java/javase/11/tools/java.html#GUID-BE93ABDC-999C-4CB5-A88B-1994AAAC74D5">Logging via the JVM Unified Logging Framework</a> section of the Java SE 11 Tool Reference, &ldquo;Table 2-2 Mapping Old Garbage Collection Logging Flags to Xlog Configuration&rdquo;.</p>
+<h3 id="vm-warnings">VM Warnings</h3>
+<p>Using a deprecated option generates a warning. When an option has been replaced or is no longer useful, it is deprecated. These options should be removed from the command line, as with the use of deleted options. &ldquo;VM Warning: Option</p>
+<p>The Web Page VM Options Explorer provides an exhaustive list of options that have been added or removed in Java since JDK 7.</p>
+<h3 id="error-unable-to-create-java-virtual-machine">Error: Unable to create Java Virtual Machine</h3>
+<p>This error message is output when the JVM encounters an unrecognized option.</p>
+<h3 id="warning-illegal-reflection-access-operation-occurred">Warning: Illegal Reflection Access Operation Occurred</h3>
+<p>When Java code uses reflection to access the JDK&rsquo;s internal APIs, an &ldquo;Illegal Reflection Access&rdquo; warning is issued at runtime.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">WARNING: An illegal reflective access operation has occurred
+</span></span><span class="line"><span class="cl">WARNING: Illegal reflective access by my.sample.Main (file:/C:/sample/) to method sun.nio.ch.Util.getTemporaryDirectBuffer(int)
+</span></span><span class="line"><span class="cl">WARNING: Please consider reporting this to the maintainers of com.company.
+</span></span><span class="line"><span class="cl">WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+</span></span><span class="line"><span class="cl">WARNING: All illegal access operations will be denied in a future release
+</span></span><span class="line"><span class="cl">WARNING: All illegal access operations will be denied in a future release.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This means that the module is not exporting a package that is accessible via reflection. This package is wrapped in the module and is essentially an internal API. When starting and running an application on Java 11, the first action is likely to be to ignore this warning. The Java 11 runtime allows reflection access, so older code can continue to run. To resolve this warning, look for updated code that does not use the internal API. If you cannot resolve the issue with updated code, you can use the <code>-add-exports</code> or <code>-add-opens</code> command line options to enable access to packages. These options allow access to the unexported types of another module from one module.</p>
+<p>The <code>--add-exports</code> option allows the target module to access the public types of the named packages of the source module. Sometimes, code will use setAccessible(true) to access non-public members and APIs. This is called deep reflection. In this case, use <code>--add-opens</code> to allow the code to access the non-public members of the package. If you are not sure whether to use <code>--add-exports</code> or <code>--add-opens</code>, start with <code>--add-exports</code>. The <code>--add-exports</code> or <code>--add-opens</code> options should be viewed as a stop-gap solution, not a long-term solution. Using these options breaks the encapsulation of the module system, which is designed to prevent the JDK internal API from being used. If the internal API is removed or changed, the application will fail. Java 16 will deny reflection access except when access is enabled via command line options such as <code>-add-opens</code>. To simulate future behavior, set <code>--illegal-access=deny</code> on the command line.</p>
+<p>The warning in the above example is issued because the sun.nio.ch package is not exported by the java.base module. In other words, there is no exports sun.nio.ch; in the module-info.java file of the module java.base. This can be fixed with <code>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED</code>. Classes not defined in the module implicitly belong to the unnamed module, which is literally named ALL-UNNAMED.</p>
+<h3 id="javalangreflectinaccessibleobjectexception">java.lang.reflect.InaccessibleObjectException</h3>
+<p>This exception instructs you to try to call setAccessible(true) on a field or method of an encapsulated class. You may also receive an &ldquo;illegal reflection access&rdquo; warning. Use the <code>-add-opens</code> option to give code access to non-public members of the package. The exception message will tell you that the module did not open the package to the module trying to call setAccessible. If the module is an <code>unnamed module'', use UNNAMED-MODULE as the target module in the</code>-add-opens`&rsquo; option.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">java.lang.reflect.InaccessibleObjectException: Unable to make field private final java.util.ArrayList jdk.internal.loader.URLClassPath. loaders accessible: 
+</span></span><span class="line"><span class="cl">module java.base does not &#34;opens jdk.internal.loader&#34; to unnamed module @6442b0a6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ java --add-opens=java.base/jdk.internal.loader=UNNAMED-MODULE example.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="javalangnoclassdeffounderror">java.lang.NoClassDefFoundError</h3>
+<p>NoClassDefFoundError is most likely caused by splitting a package or referencing a deleted module.</p>
+<h4 id="noclassdeffounderror-caused-by-splitting-a-package">NoClassDefFoundError caused by splitting a package</h4>
+<p>If a package is found in multiple libraries, it is a split package. The symptom of the split package problem is that you know a class will be on the class-path, but cannot find it.</p>
+<p>This problem only occurs when using <code>module-path</code>. The Java module system optimizes class lookup by restricting packages to a named module. When performing a class lookup, the runtime will give priority to <code>module-path</code> over <code>class-path</code>. If a package is split between a module and <code>class-path</code>, only that module will be used to perform class lookups. This may result in a NoClassDefFound error.</p>
+<p>To check for split packages, a simple way is to insert the module path and class path into jdeps, using the path to the application class file as . If there is a split package, jdeps will output a warning: <code>Warning: split package:</code>. This can be fixed by adding the split package to the named module using <code>-patch-module =[,]</code>.</p>
+<h4 id="noclassdeffounderror-caused-by-using-java-ee-or-corba-modules">NoClassDefFoundError caused by using Java EE or CORBA modules</h4>
+<p>If an application is running on Java 8 but raises java.lang.NoClassDefFoundError or java.lang.ClassNotFoundException, it is possible that the application is using packages from a Java EE or CORBA module. These modules were deprecated in Java 9 and removed in Java 11.</p>
+<p>To resolve this issue, add a runtime dependency to the project.</p>
+<table>
+<thead>
+<tr>
+<th>Removed Modules</th>
+<th>Affected Packages</th>
+<th>Suggested Dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java API for XML Web Services (JAX-WS)</td>
+<td>java.xml.ws</td>
+<td>JAX WS RI Runtime</td>
+</tr>
+<tr>
+<td>Java Architecture for XML Binding (JAXB)</td>
+<td>java.xml.bind</td>
+<td>JAXB Runtime</td>
+</tr>
+<tr>
+<td>JavaBeans Activation Framework (JAV)</td>
+<td>java.activation</td>
+<td>JavaBeans (TM) Activation Framework</td>
+</tr>
+<tr>
+<td>Common Annotations</td>
+<td>java.xml.ws.annotation</td>
+<td>Javax Annotation API</td>
+</tr>
+<tr>
+<td>Common Object Request Broker Architecture (CORBA)</td>
+<td>java.corba</td>
+<td>GlassFish CORBA ORB</td>
+</tr>
+<tr>
+<td>Java Transaction API (JTA)</td>
+<td>java.transaction</td>
+<td>Java Transaction API</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-xbootclasspathp-is-no-longer-a-supported-option"><code>-Xbootclasspath/p</code> is no longer a supported option</h3>
+<p>Support for <code>-Xbootclasspath/p</code> has been removed. Please use <code>--patch-module</code> instead. The <code>-patch-module</code> option is described in JEP 261. Look for the section labeled &ldquo;Patch Module Contents&rdquo;. You can use <code>-patch-module</code> with javac and java to rewrite or enhance classes in a module.</p>
+<p>In effect, <code>-patch-module</code> performs the operation of inserting the patch module into the module system&rsquo;s class lookup. The module system will first fetch the classes from the patch module. This has the same effect as prepending the bootclasspath in Java 8.</p>
+<h3 id="unsupportedclassversionerror">UnsupportedClassVersionError</h3>
+<p>This exception indicates that you are trying to run code compiled with a higher version of Java on a lower version of Java. For example, running its jar on Java 11 is a program compiled using JDK 13.</p>
+<table>
+<thead>
+<tr>
+<th>Java Version</th>
+<th>Class File Format Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>52</td>
+</tr>
+<tr>
+<td>9</td>
+<td>53</td>
+</tr>
+<tr>
+<td>10</td>
+<td>54</td>
+</tr>
+<tr>
+<td>11</td>
+<td>55</td>
+</tr>
+<tr>
+<td>12</td>
+<td>56</td>
+</tr>
+<tr>
+<td>13</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next steps</h2>
+<p>After running the application on Java 11, consider moving the library out of <code>class-path</code> and then into <code>module-path</code>. Find the updated version of the library on which the application depends. Select the module library (if available). Use module-path whenever possible, even if you do not intend to use modules in your application. Use <code>module-path</code> for better class loading performance than <code>class-path</code>.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/jdk/">jdk</a>
+          <a href="https://www.javai.net/tags/java8/">java8</a>
+          <a href="https://www.javai.net/tags/java11/">java11</a>
+          <a href="https://www.javai.net/tags/jdk-upgrade/">jdk upgrade</a>
+          <a href="https://www.javai.net/tags/jdeprscan/">jdeprscan</a>
+          <a href="https://www.javai.net/tags/jdeps/">jdeps</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202204/java-aqs-principle-2/">
+            <span class="next-text nav-default">AbstractQueuedSynchronizer implementation principle - 2</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jdk on JavaIsland</title>
+    <link>https://www.javai.net/tags/jdk/</link>
+    <description>Recent content in jdk on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 19 Apr 2022 20:21:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/jdk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on upgrading from Java 8 to Java 11</title>
+      <link>https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/</link>
+      <pubDate>Tue, 19 Apr 2022 20:21:04 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/</guid>
+      <description>Preface Although the latest version of Java has evolved to Java 18, most projects on the market are still using Java 8. Many people are apprehensive about upgrading their Java version because the Java API is not necessarily forward compatible from Java 8. Java 11 is the next long-supported version of Java 8, and there is no doubt that Java 11 is even better than Java 8. superior.
+This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them.</description>
+    </item>
+    
+  </channel>
+</rss>

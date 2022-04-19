@@ -6,14 +6,24 @@
     <description>Recent content in java on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 19 Apr 2022 15:11:02 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Apr 2022 20:21:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on upgrading from Java 8 to Java 11</title>
+      <link>https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/</link>
+      <pubDate>Tue, 19 Apr 2022 20:21:04 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/</guid>
+      <description>Preface Although the latest version of Java has evolved to Java 18, most projects on the market are still using Java 8. Many people are apprehensive about upgrading their Java version because the Java API is not necessarily forward compatible from Java 8. Java 11 is the next long-supported version of Java 8, and there is no doubt that Java 11 is even better than Java 8. superior.
+This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them.</description>
+    </item>
+    
     <item>
       <title>AbstractQueuedSynchronizer implementation principle - 2</title>
       <link>https://www.javai.net/post/202204/java-aqs-principle-2/</link>
       <pubDate>Tue, 19 Apr 2022 15:11:02 +0800</pubDate>
       
       <guid>https://www.javai.net/post/202204/java-aqs-principle-2/</guid>
-      <description>Preface In the previous articleAbstractQueuedSynchronizer implementation principle - the first part, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
+      <description>Preface In the previous articleAbstractQueuedSynchronizer implementation principle - 1, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
 Shared Synchronous State Acquisition and Release Shared lock as the name implies is that multiple threads can share a lock, use acquireShared in the synchronizer to get the shared lock (synchronous state), the source code of the method is as follows.</description>
     </item>
     
@@ -208,16 +218,6 @@ You can see that there are many timeout processes that are not cleaned up after 
       <guid>https://www.javai.net/post/202204/java-virtual-threads/</guid>
       <description>OpenJDK&amp;rsquo;s JEP 425: Virtual Threads (Preview) feature proposal shows that the Java platform will introduce the virtual threads feature. Virtual threads are lightweight threads that can significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.
 Java developers have always relied on threads as the building blocks of concurrent server applications, where statements in each method are executed within a thread, and each thread provides a stack to store local variables and coordinate method calls, as well as context trapping when errors are reported.</description>
-    </item>
-    
-    <item>
-      <title>Application of Volatile</title>
-      <link>https://www.javai.net/post/202204/volatile-application/</link>
-      <pubDate>Thu, 07 Apr 2022 16:01:20 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/volatile-application/</guid>
-      <description>Memory Visibility Since the Java Memory Model (JMM) states that all variables are stored in main memory, and each thread has its own working memory (cache).
-When a thread is working, it needs to copy the data from the main memory to the working memory. This way, any operation on the data is based on the working memory (which is more efficient) and cannot directly manipulate the data in the main memory or the working memory of other threads, and then flush the updated data to the main memory afterwards.</description>
     </item>
     
   </channel>

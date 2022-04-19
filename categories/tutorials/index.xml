@@ -6,14 +6,24 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 19 Apr 2022 15:11:02 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Apr 2022 20:21:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on upgrading from Java 8 to Java 11</title>
+      <link>https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/</link>
+      <pubDate>Tue, 19 Apr 2022 20:21:04 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/</guid>
+      <description>Preface Although the latest version of Java has evolved to Java 18, most projects on the market are still using Java 8. Many people are apprehensive about upgrading their Java version because the Java API is not necessarily forward compatible from Java 8. Java 11 is the next long-supported version of Java 8, and there is no doubt that Java 11 is even better than Java 8. superior.
+This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them.</description>
+    </item>
+    
     <item>
       <title>AbstractQueuedSynchronizer implementation principle - 2</title>
       <link>https://www.javai.net/post/202204/java-aqs-principle-2/</link>
       <pubDate>Tue, 19 Apr 2022 15:11:02 +0800</pubDate>
       
       <guid>https://www.javai.net/post/202204/java-aqs-principle-2/</guid>
-      <description>Preface In the previous articleAbstractQueuedSynchronizer implementation principle - the first part, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
+      <description>Preface In the previous articleAbstractQueuedSynchronizer implementation principle - 1, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
 Shared Synchronous State Acquisition and Release Shared lock as the name implies is that multiple threads can share a lock, use acquireShared in the synchronizer to get the shared lock (synchronous state), the source code of the method is as follows.</description>
     </item>
     
@@ -210,18 +220,6 @@ When a thread is working, it needs to copy the data from the main memory to the 
       <description>When using synchronize to do synchronization, lock acquisition and release are implicitly implemented by compiling and adding different machine instructions to achieve the principle.
  ReentrantLock is a class based on AbstractQueuedSynchronizer(AQS for short) implementation, this article analyzes the implementation principle of ReentrantLock, I hope it will be helpful to you.
 ReentrantLock: a thread can still repeat the lock after it has obtained it, and will not appear to block itself.</description>
-    </item>
-    
-    <item>
-      <title>Practical Applications of Reflection - Building Log Objects</title>
-      <link>https://www.javai.net/post/202204/java-reflect-application/</link>
-      <pubDate>Wed, 06 Apr 2022 16:16:21 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-reflect-application/</guid>
-      <description>Preface In our practical development, we often use reflection, I present an example of the logging function done by reflection in practical development.
-Traditional logging Some basic knowledge about reflection can be found in Reflection Primer.
-I believe that logging is not new to you, in the actual development of some more sensitive data tables we need to record every operation of it.
-First, let&amp;rsquo;s look at the traditional way of writing.</description>
     </item>
     
   </channel>

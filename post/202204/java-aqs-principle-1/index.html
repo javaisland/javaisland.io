@@ -68,7 +68,7 @@
 <meta itemprop="name" content="AbstractQueuedSynchronizer implementation principle - 1">
 <meta itemprop="description" content="AbstractQueuedSynchronizer is the basic framework for implementing concurrency tools in the JDK , this article provides an in-depth analysis of it."><meta itemprop="datePublished" content="2022-04-19T14:29:23+08:00" />
 <meta itemprop="dateModified" content="2022-04-19T14:29:23+08:00" />
-<meta itemprop="wordCount" content="3461">
+<meta itemprop="wordCount" content="3459">
 <meta itemprop="keywords" content="java,thread,atomic,lock,abstractqueuedsynchronizer,queue,node,acquire," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="AbstractQueuedSynchronizer implementation principle - 1"/>
 <meta name="twitter:description" content="AbstractQueuedSynchronizer is the basic framework for implementing concurrency tools in the JDK , this article provides an in-depth analysis of it."/>
@@ -311,7 +311,7 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 3461 words </span>
+        <span class="more-meta"> 3459 words </span>
           <span class="more-meta"> 17 min read </span>
 
         
@@ -927,7 +927,7 @@ You can see that the execution of the spin inside and the above exclusive synchr
 <p>If the current thread fails to acquire a lock, it will determine whether the remaining timeout <code>nanosTimeout</code> is less than 0. If it is less than 0, the method will return immediately. <code>shouldParkAfterFailedAcquire</code> method, it will further compare the size of the remaining timeout <code>nanosTimeout</code> and <code>spinForTimeoutThreshold</code>, and if it is less than or equal to<code>spinForTimeoutThreshold</code> value (1000 nanoseconds), the current thread will not wait for the timeout, but will go through the spin process again.
 The main reason for adding this latter judgment is that waiting in a very short time (less than 1000 nanoseconds) cannot be done very precisely, and if we wait for a timeout at this point, it will make the timeout we specify for <code>nanosTimeout</code> feel less precise in general. The process of acquiring a lock.</p>
 <h2 id="summary">Summary</h2>
-<p>This article explains the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and we will explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer in the next article<a href="http://www.javai.net/post/java-aqs-principle-2"><code>AbstractQueuedSynchronizer implementation principle - the second part</code></a>.</p>
+<p>This article explains the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and we will explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer in the next article<a href="https://www.javai.net/post/202204/java-aqs-principle-2"><code>AbstractQueuedSynchronizer implementation principle - 2</code></a>.</p>
 
     </div>
 

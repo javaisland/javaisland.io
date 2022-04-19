@@ -13,7 +13,7 @@
       <pubDate>Tue, 19 Apr 2022 15:11:02 +0800</pubDate>
       
       <guid>https://www.javai.net/post/202204/java-aqs-principle-2/</guid>
-      <description>Preface In the previous articleAbstractQueuedSynchronizer implementation principle - the first part, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
+      <description>Preface In the previous articleAbstractQueuedSynchronizer implementation principle - 1, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
 Shared Synchronous State Acquisition and Release Shared lock as the name implies is that multiple threads can share a lock, use acquireShared in the synchronizer to get the shared lock (synchronous state), the source code of the method is as follows.</description>
     </item>
     
