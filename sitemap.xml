@@ -9,70 +9,112 @@
   </url>
   
   <url>
+    <loc>https://www.javai.net/tags/abstractqueuedsynchronizer/</loc>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-aqs-principle-2/</loc>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/acquire/</loc>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://www.javai.net/tags/atomic/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/lock/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/node/</loc>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/202204/java-atomic-class/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <loc>https://www.javai.net/tags/queue/</loc>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/thread/</loc>
-    <lastmod>2022-04-18T17:14:34+08:00</lastmod>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/categories/tutorials/</loc>
+    <lastmod>2022-04-19T15:11:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-aqs-principle-1/</loc>
+    <lastmod>2022-04-19T14:29:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-atomic-class/</loc>
     <lastmod>2022-04-18T17:14:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

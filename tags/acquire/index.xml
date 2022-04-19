@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>lock on JavaIsland</title>
-    <link>https://www.javai.net/tags/lock/</link>
-    <description>Recent content in lock on JavaIsland</description>
+    <title>acquire on JavaIsland</title>
+    <link>https://www.javai.net/tags/acquire/</link>
+    <description>Recent content in acquire on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 19 Apr 2022 15:11:02 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/lock/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Apr 2022 15:11:02 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/acquire/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AbstractQueuedSynchronizer implementation principle - 2</title>
       <link>https://www.javai.net/post/202204/java-aqs-principle-2/</link>
@@ -25,28 +25,6 @@ Shared Synchronous State Acquisition and Release Shared lock as the name implies
       <guid>https://www.javai.net/post/202204/java-aqs-principle-1/</guid>
       <description>Preface AbstractQueuedSynchronizer is the basic framework for implementing concurrency tools in the JDK, and a deeper understanding of it will help us to better use its features and related tools. We hope you will read this article carefully and gain something from it.
 In Java, access to shared resources by multiple threads is controlled by lock. We know that the lock function can be implemented by the synchronized keyword, which can implicitly acquire locks, that is, we do not need to care about the process of acquiring and releasing locks by using this keyword, but while it provides convenience, it also means that its flexibility is reduced.</description>
-    </item>
-    
-    <item>
-      <title>Simple use of the Atomic class</title>
-      <link>https://www.javai.net/post/202204/java-atomic-class/</link>
-      <pubDate>Mon, 18 Apr 2022 17:14:34 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-atomic-class/</guid>
-      <description>Problem Background In a multi-threaded environment, the most common problem we encounter is synchronizing the values of variables. Since variables need to be shared across multiple threads, we must need to employ some synchronization mechanism to control them.
-From the previous article we know that the Lock mechanism can be used, and of course, the Atomic class we are talking about today.
-Here we will introduce each of the two ways.</description>
-    </item>
-    
-    <item>
-      <title>ReentrantLock implementation principle</title>
-      <link>https://www.javai.net/post/202204/reentrantlock-principle/</link>
-      <pubDate>Wed, 06 Apr 2022 16:30:46 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/reentrantlock-principle/</guid>
-      <description>When using synchronize to do synchronization, lock acquisition and release are implicitly implemented by compiling and adding different machine instructions to achieve the principle.
- ReentrantLock is a class based on AbstractQueuedSynchronizer(AQS for short) implementation, this article analyzes the implementation principle of ReentrantLock, I hope it will be helpful to you.
-ReentrantLock: a thread can still repeat the lock after it has obtained it, and will not appear to block itself.</description>
     </item>
     
   </channel>

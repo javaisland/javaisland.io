@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AbstractQueuedSynchronizer implementation principle - 1 - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="AbstractQueuedSynchronizer is the basic framework for implementing concurrency tools in the JDK , this article provides an in-depth analysis of it." />
+<meta name="keywords" content="java, thread, abstractqueuedsynchronizer, lock, aqs, queue, node, acquire" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202204/java-aqs-principle-1/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="AbstractQueuedSynchronizer implementation principle - 1" />
+<meta property="og:description" content="AbstractQueuedSynchronizer is the basic framework for implementing concurrency tools in the JDK , this article provides an in-depth analysis of it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-aqs-principle-1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-19T14:29:23+08:00" />
+<meta property="article:modified_time" content="2022-04-19T14:29:23+08:00" />
+
+<meta itemprop="name" content="AbstractQueuedSynchronizer implementation principle - 1">
+<meta itemprop="description" content="AbstractQueuedSynchronizer is the basic framework for implementing concurrency tools in the JDK , this article provides an in-depth analysis of it."><meta itemprop="datePublished" content="2022-04-19T14:29:23+08:00" />
+<meta itemprop="dateModified" content="2022-04-19T14:29:23+08:00" />
+<meta itemprop="wordCount" content="3461">
+<meta itemprop="keywords" content="java,thread,atomic,lock,abstractqueuedsynchronizer,queue,node,acquire," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AbstractQueuedSynchronizer implementation principle - 1"/>
+<meta name="twitter:description" content="AbstractQueuedSynchronizer is the basic framework for implementing concurrency tools in the JDK , this article provides an in-depth analysis of it."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">AbstractQueuedSynchronizer implementation principle - 1</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-19" class="post-time">
+          2022-04-19
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 3461 words </span>
+          <span class="more-meta"> 17 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#preface">Preface</a></li>
+    <li><a href="#aqs-basic-data-structure">AQS basic data structure</a>
+      <ul>
+        <li><a href="#synchronized-queues">Synchronized Queues</a></li>
+        <li><a href="#queue-node">Queue Node</a></li>
+        <li><a href="#sync-state">Sync state</a></li>
+      </ul>
+    </li>
+    <li><a href="#exclusive-synchronous-state-acquisition-and-release">Exclusive synchronous state acquisition and release</a></li>
+    <li><a href="#exclusive-interruptible-synchronization-state-acquisition">Exclusive Interruptible Synchronization State Acquisition</a></li>
+    <li><a href="#exclusive-timeout-to-obtain-synchronization-status">Exclusive timeout to obtain synchronization status</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="preface">Preface</h2>
+<p><code>AbstractQueuedSynchronizer</code> is the basic framework for implementing concurrency tools in the <code>JDK</code>, and a deeper understanding of it will help us to better use its features and related tools. We hope you will read this article carefully and gain something from it.</p>
+<p>In <code>Java</code>, access to shared resources by multiple threads is controlled by <code>lock</code>. We know that the lock function can be implemented by the <code>synchronized</code> keyword, which can implicitly acquire locks, that is, we do not need to care about the process of acquiring and releasing locks by using this keyword, but while it provides convenience, it also means that its flexibility is reduced. For example, there is a scenario where lock A is acquired first, then lock B is acquired, when lock B is acquired, lock A is released and lock C is acquired, when lock C is acquired, then lock B is released and lock D is acquired, and so on.
+After <code>Java SE 5</code>, a new <code>Lock</code> interface and a series of implementation classes were added to provide the same functionality as the <code>synchronized</code> keyword, which requires us to display the lock acquisition and release, in addition to providing synchronization features such as interruptible lock acquisition operations and timeout lock acquisition. Most of the <code>Lock</code> interface implementation classes provided in the <code>JDK</code> aggregate a subclass of the synchronizer AQS to achieve multi-threaded access control, so let&rsquo;s take a look at the basic framework for building locks and other synchronization components - <code>AQS ( AbstractQueuedSynchronizer)</code></p>
+<h2 id="aqs-basic-data-structure">AQS basic data structure</h2>
+<h3 id="synchronized-queues">Synchronized Queues</h3>
+<p>When a thread fails to obtain the synchronization status, the synchronizer encapsulates the current thread and the current waiting status into an internally defined node <code>Node</code> and then adds it to the queue. When the synchronization state is released, the first node in the synchronization queue is woken up and allowed to try to get the synchronization state again. The basic structure of the synchronization queue is as follows.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/19/314b758ac33945deadefa00b47b50fa3.png" alt="AQS_QUEUE.png"></p>
+<h3 id="queue-node">Queue Node</h3>
+<p>The synchronous queue uses the static internal class <code>Node</code> in the synchronizer to hold references to threads that get synchronized state, the wait state of the thread, the predecessor node and the successor node.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/19/5b71cdead2634190be39db36b0fb0e0d.png" alt="AQS_inner_class_node.png"></p>
+<p>The names and specific meanings of the attributes of the <code>Node</code> nodes in the synchronous queue are shown in the following table.</p>
+<table>
+<thead>
+<tr>
+<th>attribute type and name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>volatile int waitStatus</td>
+<td>The wait status of the current node in the queue</td>
+</tr>
+<tr>
+<td>volatile Node prev</td>
+<td>The predecessor node that is assigned when the node is added to the synchronization queue (using the tail-add method)</td>
+</tr>
+<tr>
+<td>volatile Node next</td>
+<td>the successor node</td>
+</tr>
+<tr>
+<td>volatile Thread thread</td>
+<td>The thread that gets the synchronization status</td>
+</tr>
+<tr>
+<td>Node nextWaiter</td>
+<td>waits for the successor node in the queue, or if the current node is shared, this field is a <code>SHARED</code> constant</td>
+</tr>
+</tbody>
+</table>
+<p>Each node thread has two lock modes, <code>SHARED</code> means that the thread waits for the lock in shared mode and <code>EXCLUSIVE</code> means that the thread waits for the lock in exclusive mode. Also the wait status <code>waitStatus</code> of each node can only take enumerated values from the following table.</p>
+<table>
+<thead>
+<tr>
+<th>enumerated values</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGNAL</td>
+<td>A value of -1 means that the node&rsquo;s thread is ready to wait for the resource to be released</td>
+</tr>
+<tr>
+<td>CANCELLED</td>
+<td>A value of 1 indicates that the request for a lock has been cancelled by the thread of the node</td>
+</tr>
+<tr>
+<td>A CONDITION</td>
+<td>value of -2 indicates that the node&rsquo;s thread is waiting on <code>Condition</code> to be woken up by another thread</td>
+</tr>
+<tr>
+<td>A PROPAGATE</td>
+<td>value of -3 means that the next shared synchronization state acquisition will continue indefinitely and will only be used in the <code>SHARED</code> case</td>
+</tr>
+<tr>
+<td>0</td>
+<td>value is 0, the initial state, the default value for initialization</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sync-state">Sync state</h3>
+<p>The synchronizer internally uses an <code>int</code> type variable named <code>state</code> to represent the synchronization state. The main way the synchronizer is used is through inheritance, where subclasses manage the synchronization state by inheriting and implementing its abstract methods. The synchronizer gives us the following three methods to make changes to the synchronization state.</p>
+<table>
+<thead>
+<tr>
+<th>method signature</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>protected final int getState()</td>
+<td>Get the current synchronization state</td>
+</tr>
+<tr>
+<td>protected final void setState(int newState)</td>
+<td>set the current synchronization state</td>
+</tr>
+<tr>
+<td>protected final boolean compareAndSetState(int expect, int update)</td>
+<td>set the current state using <code>CAS</code>, which guarantees atomicity of state setting</td>
+</tr>
+</tbody>
+</table>
+<p>In exclusive locks the value of the synchronization state <code>state</code> is usually 0 or 1 (in the case of reentrant locks the <code>state</code> value is the number of reentrants), in shared locks <code>state</code> is the number of locks held.</p>
+<h2 id="exclusive-synchronous-state-acquisition-and-release">Exclusive synchronous state acquisition and release</h2>
+<p>The synchronizer provides the <code>acquire(int arg)</code> method to acquire the exclusive synchronous state, which is the same as acquiring the lock.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">acquire</span><span class="o">(</span><span class="kt">int</span> <span class="n">arg</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(!</span><span class="n">tryAcquire</span><span class="o">(</span><span class="n">arg</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">acquireQueued</span><span class="o">(</span><span class="n">addWaiter</span><span class="o">(</span><span class="n">Node</span><span class="o">.</span><span class="na">EXCLUSIVE</span><span class="o">),</span> <span class="n">arg</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">selfInterrupt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="err">```</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">method</span> <span class="n">will</span> <span class="n">first</span> <span class="n">call</span> <span class="n">the</span> <span class="err">`</span><span class="n">tryAcquire</span><span class="err">`</span> <span class="n">method</span> <span class="n">to</span> <span class="k">try</span> <span class="n">to</span> <span class="n">acquire</span> <span class="n">a</span> <span class="n">lock</span><span class="o">,</span> <span class="n">and</span> <span class="k">if</span> <span class="n">you</span> <span class="n">look</span> <span class="n">at</span> <span class="n">the</span> <span class="n">source</span> <span class="n">code</span> <span class="n">of</span> <span class="n">the</span> <span class="n">method</span><span class="o">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">see</span> <span class="n">that</span> <span class="n">the</span> <span class="n">synchronizer</span> <span class="n">does</span> <span class="n">not</span> <span class="n">implement</span> <span class="n">the</span> <span class="nf">method</span> <span class="o">(</span><span class="n">it</span> <span class="n">just</span> <span class="kd">throws</span> <span class="n">an</span> <span class="n">unsupported</span> <span class="n">operation</span> <span class="n">exception</span> <span class="err">`</span><span class="n">UnsupportedOperationException</span><span class="err">`</span><span class="o">),</span> <span class="n">and</span> <span class="k">this</span> <span class="n">method</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">implemented</span> <span class="n">by</span> <span class="n">the</span> <span class="n">developers</span> <span class="n">of</span> <span class="n">the</span> <span class="n">subsequent</span> <span class="n">synchronization</span> <span class="n">components</span> <span class="n">themselves</span><span class="o">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">method</span> <span class="n">If</span> <span class="n">the</span> <span class="n">method</span> <span class="n">returns</span> <span class="err">`</span><span class="kc">true</span><span class="err">`</span> <span class="n">then</span> <span class="n">the</span> <span class="n">current</span> <span class="n">thread</span> <span class="n">has</span> <span class="n">successfully</span> <span class="n">acquired</span> <span class="n">the</span> <span class="n">lock</span><span class="o">,</span> <span class="n">and</span> <span class="err">`</span><span class="n">selfInterrupt</span><span class="o">()</span><span class="err">`</span> <span class="n">is</span> <span class="n">called</span> <span class="n">to</span> <span class="n">interrupt</span> <span class="n">the</span> <span class="n">current</span> <span class="nf">thread</span> <span class="o">(</span><span class="n">PS</span><span class="o">:</span> <span class="err">`</span><span class="n">This</span> <span class="n">leaves</span> <span class="n">you</span> <span class="n">with</span> <span class="n">a</span> <span class="n">question</span><span class="o">:</span> <span class="n">why</span> <span class="n">interrupt</span> <span class="n">the</span> <span class="n">thread</span> <span class="n">after</span> <span class="n">acquiring</span> <span class="n">the</span> <span class="n">lock</span><span class="o">?</span> <span class="n">If</span> <span class="n">the</span> <span class="n">method</span> <span class="n">returns</span> <span class="err">`</span><span class="kc">false</span><span class="err">`</span> <span class="n">it</span> <span class="n">means</span> <span class="n">that</span> <span class="n">the</span> <span class="n">current</span> <span class="n">thread</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">get</span> <span class="n">the</span> <span class="n">lock</span><span class="o">,</span> <span class="n">that</span> <span class="n">is</span> <span class="n">to</span> <span class="n">say</span><span class="o">,</span> <span class="n">some</span> <span class="n">other</span> <span class="n">thread</span> <span class="n">has</span> <span class="n">already</span> <span class="n">gotten</span> <span class="n">the</span> <span class="n">lock</span> <span class="n">before</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">source</span> <span class="n">code</span> <span class="n">shows</span> <span class="n">that</span> <span class="n">when</span> <span class="n">the</span> <span class="n">lock</span> <span class="n">is</span> <span class="n">not</span> <span class="n">acquired</span><span class="o">,</span> <span class="n">the</span> <span class="n">second</span> <span class="n">half</span> <span class="n">of</span> <span class="n">the</span> <span class="n">condition</span> <span class="n">and</span> <span class="n">operation</span> <span class="err">`</span><span class="n">acquireQueued</span><span class="o">(</span><span class="n">addWaiter</span><span class="o">(</span><span class="n">Node</span><span class="o">.</span><span class="na">EXCLUSIVE</span><span class="o">),</span> <span class="n">arg</span><span class="o">)</span><span class="err">`</span> <span class="n">will</span> <span class="n">be</span> <span class="n">executed</span><span class="o">,</span> <span class="n">first</span> <span class="n">specifying</span> <span class="n">the</span> <span class="n">lock</span> <span class="n">mode</span> <span class="n">as</span> <span class="err">`</span><span class="n">Node</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">```</span><span class="n">java</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">Node</span> <span class="nf">addWaiter</span><span class="o">(</span><span class="n">Node</span> <span class="n">mode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">(),</span> <span class="n">mode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Try the fast path of enq; backup to full enq on failure
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Node</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">tail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">pred</span> <span class="o">!</span> <span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">pred</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">compareAndSetTail</span><span class="o">(</span><span class="n">pred</span><span class="o">,</span> <span class="n">node</span><span class="o">))</span> <span class="o">{</span> <span class="k">if</span> <span class="o">(</span><span class="n">compareAndSetTail</span><span class="o">(</span><span class="n">pred</span><span class="o">,</span> <span class="n">node</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pred</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">enq</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Construct a <code>Node</code> node with the lock mode (shared or exclusive) specified by the method parameters and the current thread. If the synchronous queue has been initialized, an attempt to join the queue from the tail will be made first, using the <code>compareAndSetTail</code> method to ensure atomicity. The source code of this method is based on the <code>Unsafe</code> class provided in the <code>sun.misc</code> package. If the first attempt to join the synchronous queue fails, the <code>enq</code> method will be called again to perform the queue entry operation, and the source code of the <code>enq</code> method will be followed up as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">Node</span> <span class="nf">enq</span><span class="o">(</span><span class="kd">final</span> <span class="n">Node</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(;;)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">t</span> <span class="o">=</span> <span class="n">tail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Must initialize
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">compareAndSetHead</span><span class="o">(</span><span class="k">new</span> <span class="n">Node</span><span class="o">()))</span>
+</span></span><span class="line"><span class="cl">                <span class="n">tail</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">node</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">compareAndSetTail</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">node</span><span class="o">))</span> <span class="o">{</span> <span class="k">if</span> <span class="o">(</span><span class="n">compareAndSetTail</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">node</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">t</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">t</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The source code is similar to the first attempt to join the queue, except that the method adds a synchronous queue initialization judgment, uses the <code>compareAndSetHead</code> method to ensure the atomicity of setting the head node, and is also based on the <code>Unsafe</code> class, and then has an outer <code>for (;;)</code> dead loop, and the only exit condition is from the The only exit condition is a successful queue entry from the end of the queue, that is, if the method returns successfully, it means that the queue has been successfully entered, so that the execution of <code>addWaiter</code> is completed and the current <code>Node</code> node is returned. The node is then used as an input to the <code>acquireQueued</code> method to continue with the other steps, which is shown below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">acquireQueued</span><span class="o">(</span><span class="kd">final</span> <span class="n">Node</span> <span class="n">node</span><span class="o">,</span> <span class="kt">int</span> <span class="n">arg</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">failed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">boolean</span> <span class="n">interrupted</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(;;)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">final</span> <span class="n">Node</span> <span class="n">p</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">predecessor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">head</span> <span class="o">&amp;&amp;</span> <span class="n">tryAcquire</span><span class="o">(</span><span class="n">arg</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">setHead</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// help GC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">failed</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">interrupted</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">shouldParkAfterFailedAcquire</span><span class="o">(</span><span class="n">p</span><span class="o">,</span> <span class="n">node</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">parkAndCheckInterrupt</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="n">interrupted</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">failed</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cancelAcquire</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">shouldParkAfterFailedAcquire</span><span class="o">(</span><span class="n">Node</span> <span class="n">pred</span><span class="o">,</span> <span class="n">Node</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ws</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="na">waitStatus</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">ws</span> <span class="o">==</span> <span class="n">Node</span><span class="o">.</span><span class="na">SIGNAL</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SIGNAL</span><span class="o">)</span> <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">          * This node has already set status asking a release
+</span></span></span><span class="line"><span class="cl"><span class="cm">          SIGNAL) /* This node has already set status asking a release * to signal it, so it can safely park.
+</span></span></span><span class="line"><span class="cl"><span class="cm">          */</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">ws</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">          * Skip over predecessors and
+</span></span></span><span class="line"><span class="cl"><span class="cm">          * indicate retry.
+</span></span></span><span class="line"><span class="cl"><span class="cm">          Skip over predecessors and * indicate retry. */</span>
+</span></span><span class="line"><span class="cl">        <span class="k">do</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">node</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="na">prev</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">pred</span><span class="o">.</span><span class="na">waitStatus</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pred</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">          * Indicate that we
+</span></span></span><span class="line"><span class="cl"><span class="cm">          * Caller will need to
+</span></span></span><span class="line"><span class="cl"><span class="cm">          * retry to make sure it cannot acquire before parking.
+</span></span></span><span class="line"><span class="cl"><span class="cm">          */</span><span class="n">Caller</span> <span class="n">will</span> <span class="n">need</span> <span class="n">to</span> <span class="o">*</span> <span class="n">retry</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">it</span> <span class="n">cannot</span> <span class="n">acquire</span> <span class="n">before</span> <span class="n">parking</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">compareAndSetWaitStatus</span><span class="o">(</span><span class="n">pred</span><span class="o">,</span> <span class="n">ws</span><span class="o">,</span> <span class="n">Node</span><span class="o">.</span><span class="na">SIGNAL</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SIGNAL</span><span class="o">);</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Method parameters are the current node&rsquo;s predecessor node and the current node, mainly by the predecessor node to determine whether to block, first get the predecessor node&rsquo;s wait status <code>ws</code>, if the node status <code>ws</code> is <code>SIGNAL</code>, that means the predecessor node&rsquo;s thread is ready, waiting for the release of resources, the method returns <code>true</code> that can block, if <code>ws &gt; 0</code>, the method returns <code>CANCELLED</code>. If <code>ws &gt; 0</code>, the node has only one status <code>CANCELLED (value 1)</code> that satisfies this condition, it means that the node thread&rsquo;s request for a lock has been cancelled, and a <code>do-while</code> loop goes forward to find the node with the <code>CANCELLED</code> status and remove it from the synchronization queue, otherwise it goes to the <code>else</code> branch, using the <code>compareAndSetWaitStatus</code> atomic operation to change the wait status of the predecessor node to <code>SIGNAL</code>, in both cases the blocking method returns <code>false</code>.
+When blocking is judged to be necessary, that is, when the <code>compareAndSetWaitStatus</code> method returns <code>true</code>, the current thread will be hung by blocking with the <code>parkAndCheckInterrupt</code> method and the interrupt flag of the current thread will be returned. The method is as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">parkAndCheckInterrupt</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LockSupport</span><span class="o">.</span><span class="na">park</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Thread</span><span class="o">.</span><span class="na">interrupted</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thread blocking is implemented through the <code>LockSupport</code> tool class, and a deep dive into its source code reveals that it is also based on the <code>Unsafe</code> class. If both methods return <code>true</code>, the break flag is updated. Another question here is when will a node&rsquo;s wait status <code>waitStatus</code> be changed to <code>CANCELLED</code> to cancel the request of the node thread to obtain a lock? Careful friends may have noticed that the <code>finally</code> block in the source code of the <code>acquireQueued</code> method posted above will decide whether to call the <code>cancelAcquire</code> method based on the <code>failed</code> flag, which is used to modify the node status to <code>CANCELLED</code>, leaving the specific implementation of the method to everyone to The specific implementation of the method is left for you to explore. This completes the process of <code>AQS</code> exclusive synchronous state acquisition lock.</p>
+<p>Here&rsquo;s another look at the exclusive lock release process. The synchronizer uses the <code>release</code> method to allow us to perform an exclusive lock release with the following method source code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">release</span><span class="o">(</span><span class="kt">int</span> <span class="n">arg</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">tryRelease</span><span class="o">(</span><span class="n">arg</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">h</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">h</span> <span class="o">!</span> <span class="o">=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">h</span><span class="o">.</span><span class="na">waitStatus</span> <span class="o">!</span> <span class="o">=</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">unparkSuccessor</span><span class="o">(</span><span class="n">h</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>First call the <code>tryRelease</code> method to try to perform the lock release operation, and then follow up the method to find that the synchronizer just throws an unsupported operation exception <code>UnsupportedOperationException</code>, which is the same as the <code>tryAcquire</code> method in the exclusive lock acquisition above, and requires the developer to define the lock release operation.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/19/757a5010517b438d9ed31286e96720d2.png" alt="AQS_tryrelease.png"></p>
+<p>As you can see from its <code>JavaDoc</code>, if it returns <code>false</code>, it means that the lock release failed and the method is finished. If the method returns <code>true</code>, then the current thread has released the lock successfully and needs to notify the threads in the queue waiting to get the lock to do so. If the current head node is not <code>null</code> and its waiting state is not the initial state (0), the thread is released from the blocking state and the method <code>unparkSuccessor</code> is used to achieve the following source code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">unparkSuccessor</span><span class="o">(</span><span class="n">Node</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">      * If status is negative (i.e., possibly needing signal) try
+</span></span></span><span class="line"><span class="cl"><span class="cm">      * It is OK if this
+</span></span></span><span class="line"><span class="cl"><span class="cm">      It is OK if this * fails or if status is changed by waiting thread.
+</span></span></span><span class="line"><span class="cl"><span class="cm">      */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ws</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">waitStatus</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">ws</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compareAndSetWaitStatus</span><span class="o">(</span><span class="n">node</span><span class="o">,</span> <span class="n">ws</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">      * Thread to unpark is held in successor, which is normally
+</span></span></span><span class="line"><span class="cl"><span class="cm">      * But if cancelled or apparently null,
+</span></span></span><span class="line"><span class="cl"><span class="cm">      But if cancelled or apparently null, * traverse backwards from tail to find the actual
+</span></span></span><span class="line"><span class="cl"><span class="cm">      But if cancelled or apparently null, * traverse backwards from tail to find the actual * non-cancelled successor.
+</span></span></span><span class="line"><span class="cl"><span class="cm">      */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">s</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">waitStatus</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Node</span> <span class="n">t</span> <span class="o">=</span> <span class="n">tail</span><span class="o">;</span> <span class="n">t</span> <span class="o">!</span> <span class="o">=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">t</span> <span class="o">!</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">prev</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">waitStatus</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">!</span> <span class="o">=</span> <span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LockSupport</span><span class="o">.</span><span class="na">unpark</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">thread</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>First get the wait state <code>ws</code> of the head node, if the state is negative (Node.SIGNAL or Node.PROPAGATE), change it to the initial state (0) by CAS operation, then get the successor node of the head node, if the successor node is <code>null</code> or the status of the successor node is <code>CANCELLED</code> (get lock request cancelled If the node is <code>null</code> or the status of the successor node is <code>CANCELLED</code> (the lock request is cancelled), we start looking for the first node with a status other than <code>CANCELLED</code> from the end of the queue, and if the node is not empty, we use the <code>unpark</code> method of <code>LockSupport</code> to wake it up, which is implemented by the <code>unpark</code> of the <code>Unsafe</code> class at the bottom. The reason for looking for nodes that are not in the <code>CANCELLED</code> state from the end of the queue is that in the previous implementation of the incoming <code>addWaiter</code> method when acquiring an exclusive lock fails, the method is as follows.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/19/3bc146c0a584493d8acec243c06bb1f8.png" alt="AQS_unparkSuccessor.png"></p>
+<p>Suppose a thread has reached ① in the above diagram and ② has not yet been executed, and another thread happens to execute the <code>unparkSuccessor</code> method, then it is not possible to find the node from front to back, because the node&rsquo;s successor pointer <code>next</code> has not been assigned yet, so it is necessary to find it from back to front. At this point, the exclusive lock release operation is over.</p>
+<h2 id="exclusive-interruptible-synchronization-state-acquisition">Exclusive Interruptible Synchronization State Acquisition</h2>
+<p>The synchronizer provides the <code>acquireInterruptibly</code> method to perform interruptible interrupt-acquiring lock operations, and the source code for the method implementation is as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">acquireInterruptibly</span><span class="o">(</span><span class="kt">int</span> <span class="n">arg</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">interrupted</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">InterruptedException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(!</span><span class="n">tryAcquire</span><span class="o">(</span><span class="n">arg</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">doAcquireInterruptibly</span><span class="o">(</span><span class="n">arg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>method first checks the interrupt status of the current thread, if it has been interrupted, it directly throws the interrupt exception <code>InterruptedException</code> that responds to the interrupt, otherwise it calls the <code>tryAcquire</code> method to try to acquire the lock, if the acquisition is successful then the method ends and returns, the acquisition fails to call the <code>doAcquireInterruptibly</code> method. Follow up the method as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">doAcquireInterruptibly</span><span class="o">(</span><span class="kt">int</span> <span class="n">arg</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">addWaiter</span><span class="o">(</span><span class="n">Node</span><span class="o">.</span><span class="na">EXCLUSIVE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">failed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(;;)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">final</span> <span class="n">Node</span> <span class="n">p</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">predecessor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">head</span> <span class="o">&amp;&amp;</span> <span class="n">tryAcquire</span><span class="o">(</span><span class="n">arg</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">setHead</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// help GC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">failed</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">shouldParkAfterFailedAcquire</span><span class="o">(</span><span class="n">p</span><span class="o">,</span> <span class="n">node</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">parkAndCheckInterrupt</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">InterruptedException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">failed</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cancelAcquire</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>A closer look reveals that the source code of this method is basically similar to the implementation of the <code>acquireQueued</code> method above, except that the queueing operation <code>addWaiter</code> has been placed inside the method, and there is also a difference that when the interrupt is judged to be needed inside the loop, an exception is thrown directly in response to the interrupt.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/19/a860dac5e3e74329a2b4ca699835a422.png" alt="AQS_acquirequeued_interruptibly_compare.png"></p>
+<p>The other steps are the same as the exclusive lock acquisition, and the flowchart is roughly the same as the lock acquisition without interrupt response, except that there is an extra step at the beginning to check the interrupt status of the thread and the loop will throw an interrupt exception.</p>
+<h2 id="exclusive-timeout-to-obtain-synchronization-status">Exclusive timeout to obtain synchronization status</h2>
+<p>Synchronizer provides <code>tryAcquireNanos</code> method to obtain synchronized state (i.e. <code>lock</code>) on a timeout, this method provides the timeout feature which was not supported by the <code>synchronized</code> keyword before. otherwise, <code>false</code> is returned. The source code of the method is as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">tryAcquireNanos</span><span class="o">(</span><span class="kt">int</span> <span class="n">arg</span><span class="o">,</span> <span class="kt">long</span> <span class="n">nanosTimeout</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">interrupted</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">InterruptedException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tryAcquire</span><span class="o">(</span><span class="n">arg</span><span class="o">)</span> <span class="o">||</span>
+</span></span><span class="line"><span class="cl">        <span class="n">doAcquireNanos</span><span class="o">(</span><span class="n">arg</span><span class="o">,</span> <span class="n">nanosTimeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>tryAcquire</code> method will be called first to try to acquire a lock, and return immediately if the acquisition is successful, otherwise the <code>doAcquireNanos</code> method will be called to enter the timeout to acquire a lock. As you can see above, the <code>acquireInterruptibly</code> method of the synchronizer throws an interrupted exception <code>InterruptedException</code> and returns immediately if the current thread is interrupted while waiting for the synchronized state to be acquired. The timeout acquisition process actually adds the timeout acquisition feature to the response to interrupts. The source code of the <code>doAcquireNanos</code> method is as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">doAcquireNanos</span><span class="o">(</span><span class="kt">int</span> <span class="n">arg</span><span class="o">,</span> <span class="kt">long</span> <span class="n">nanosTimeout</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">nanosTimeout</span> <span class="o">&lt;=</span> <span class="n">0L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="kt">long</span> <span class="n">deadline</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">nanoTime</span><span class="o">()</span> <span class="o">+</span> <span class="n">nanosTimeout</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">addWaiter</span><span class="o">(</span><span class="n">Node</span><span class="o">.</span><span class="na">EXCLUSIVE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">failed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(;;)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">final</span> <span class="n">Node</span> <span class="n">p</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">predecessor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">head</span> <span class="o">&amp;&amp;</span> <span class="n">tryAcquire</span><span class="o">(</span><span class="n">arg</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">setHead</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// help GC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">failed</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nanosTimeout</span> <span class="o">=</span> <span class="n">deadline</span> <span class="o">-</span> <span class="n">System</span><span class="o">.</span><span class="na">nanoTime</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">nanosTimeout</span> <span class="o">&lt;=</span> <span class="n">0L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">shouldParkAfterFailedAcquire</span><span class="o">(</span><span class="n">p</span><span class="o">,</span> <span class="n">node</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nanosTimeout</span> <span class="o">&gt;</span> <span class="n">spinForTimeoutThreshold</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">LockSupport</span><span class="o">.</span><span class="na">parkNanos</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">nanosTimeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">interrupted</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">InterruptedException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">failed</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cancelAcquire</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>From the source code of the above method, we can see that the main idea of timeout acquisition here is: first use the current time plus the timeout interval <code>deadline</code> passed in as a parameter to calculate the timeout point, then use the timeout point <code>deadline</code> minus the current time to get the remaining time <code>nanosTimeout</code> each time the loop is performed, if the If the remaining time is less than 0, then the method will end and return <code>false</code>, and if the remaining time is greater than 0.
+You can see that the execution of the spin inside and the above exclusive synchronous acquisition of lock status <code>acquireQueued</code> method there is the same routine, that is, when the current node&rsquo;s predecessor is the head node call <code>tryAcquire</code> to try to acquire a lock, if the acquisition is successful then return.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/19/73e1b4e19d0342a5ab0ef347cb501797.png" alt="AQS_acquireQueued_doAcquireNanos_compare.png"></p>
+<p>If the current thread fails to acquire a lock, it will determine whether the remaining timeout <code>nanosTimeout</code> is less than 0. If it is less than 0, the method will return immediately. <code>shouldParkAfterFailedAcquire</code> method, it will further compare the size of the remaining timeout <code>nanosTimeout</code> and <code>spinForTimeoutThreshold</code>, and if it is less than or equal to<code>spinForTimeoutThreshold</code> value (1000 nanoseconds), the current thread will not wait for the timeout, but will go through the spin process again.
+The main reason for adding this latter judgment is that waiting in a very short time (less than 1000 nanoseconds) cannot be done very precisely, and if we wait for a timeout at this point, it will make the timeout we specify for <code>nanosTimeout</code> feel less precise in general. The process of acquiring a lock.</p>
+<h2 id="summary">Summary</h2>
+<p>This article explains the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and we will explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer in the next article<a href="http://www.javai.net/post/java-aqs-principle-2"><code>AbstractQueuedSynchronizer implementation principle - the second part</code></a>.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/thread/">thread</a>
+          <a href="https://www.javai.net/tags/atomic/">atomic</a>
+          <a href="https://www.javai.net/tags/lock/">lock</a>
+          <a href="https://www.javai.net/tags/abstractqueuedsynchronizer/">abstractqueuedsynchronizer</a>
+          <a href="https://www.javai.net/tags/queue/">queue</a>
+          <a href="https://www.javai.net/tags/node/">node</a>
+          <a href="https://www.javai.net/tags/acquire/">acquire</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/202204/java-aqs-principle-2/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">AbstractQueuedSynchronizer implementation principle - 2</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/202204/java-atomic-class/">
+            <span class="next-text nav-default">Simple use of the Atomic class</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
