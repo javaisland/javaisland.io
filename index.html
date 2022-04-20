@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.96.0" />
 
 
 <link rel="canonical" href="https://www.javai.net/" />
@@ -300,6 +300,118 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202204/java-thread-pool/">Basic use of ThreadPool</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-20" class="post-time">
+        2022-04-20
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 1121 words </span>
+      <span class="more-meta"> 6 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Preface In Java, threads are the counterpart of system threads and are used to handle a range of system resources. The number of threads that can be opened is limited in both windows and linux, so if you create unlimited threads in your java program, you will encounter a situation where no threads can be created.
+CPU cores are limited and if there are multiple threads running at the same time, the CPU will rotate according to the priority of the threads and allocate a specific amount of CPU time to each thread.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-thread-pool/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202204/java-fork-join/">The fork join framework in java</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-20" class="post-time">
+        2022-04-20
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 925 words </span>
+      <span class="more-meta"> 5 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Preface Fork join framework is the introduction of java 7 framework, the introduction of this framework is mainly to improve the ability of parallel computing.
+Fork join has two main steps, the first is fork, a large task into many small tasks, the second is join, the results of the first task join up to generate the final result. If there is no return value in the first step, join will wait until all the small tasks are finished.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-fork-join/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202204/java-daemon-thread/">Daemon Thread in Java</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-20" class="post-time">
+        2022-04-20
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 485 words </span>
+      <span class="more-meta"> 3 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Preface There are two types of threads in java, user threads and daemon threads.
+User threads are high priority threads and the JVM will wait for all the User Threads to finish running before it finishes running.
+daemon threads are low-priority threads that serve User Threads. Because daemon threads are low priority and serve only user threads, the JVM will automatically exit when all user threads are finished, regardless of whether there are still daemon threads running.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-daemon-thread/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -935,119 +1047,6 @@ Difference between wait and sleep wait() is a native method defined in Object.
     </div>
     <div class="read-more">
       <a href="/post/202204/java-wait-sleep/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-jna-function/">Advanced Usage of java - Function in JNA</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-10" class="post-time">
-        2022-04-10
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 730 words </span>
-      <span class="more-meta"> 4 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Introduction In JNA, in order to map with native functions, we can have two mapping methods, the first one is interface mapping and the second one is direct mapping. Although the two approaches are different, in the specific method mapping, we both need to define a method in JAVA that maps to the native method..
-This JAVA mapping is a function in JNA, and by using a function object, we can achieve some very powerful functionality.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-jna-function/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-zombie-processes-continued/">Java Zombie Processes Continued</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-09" class="post-time">
-        2022-04-09
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 187 words </span>
-      <span class="more-meta"> 1 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      In a previous article, I mentioned the problem of Java program containers generating a lot of zombie processes. Today I ran into it again, but in a different way.
-The zombie processes are also generated by a bash script, but this script is executed in the K8S readinessProbe and livenessProbe, not by the java program itself.
-Let&rsquo;s look at some failure diagrams.
-You can see that there are many timeout processes that are not cleaned up after execution.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-zombie-processes-continued/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-virtual-threads/">Java introduces preview virtual threads</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-08" class="post-time">
-        2022-04-08
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/news/"> news </a>
-          
-        </div>
-      <span class="more-meta"> 818 words </span>
-      <span class="more-meta"> 4 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      OpenJDK&rsquo;s JEP 425: Virtual Threads (Preview) feature proposal shows that the Java platform will introduce the virtual threads feature. Virtual threads are lightweight threads that can significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.
-Java developers have always relied on threads as the building blocks of concurrent server applications, where statements in each method are executed within a thread, and each thread provides a stack to store local variables and coordinate method calls, as well as context trapping when errors are reported.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-virtual-threads/" class="read-more-link">Read more</a>
     </div>
     
   </div>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>user thread on JavaIsland</title>
+    <link>https://www.javai.net/tags/user-thread/</link>
+    <description>Recent content in user thread on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Apr 2022 14:33:27 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/user-thread/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The fork join framework in java</title>
+      <link>https://www.javai.net/post/202204/java-fork-join/</link>
+      <pubDate>Wed, 20 Apr 2022 14:33:27 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-fork-join/</guid>
+      <description>Preface Fork join framework is the introduction of java 7 framework, the introduction of this framework is mainly to improve the ability of parallel computing.
+Fork join has two main steps, the first is fork, a large task into many small tasks, the second is join, the results of the first task join up to generate the final result. If there is no return value in the first step, join will wait until all the small tasks are finished.</description>
+    </item>
+    
+    <item>
+      <title>Daemon Thread in Java</title>
+      <link>https://www.javai.net/post/202204/java-daemon-thread/</link>
+      <pubDate>Wed, 20 Apr 2022 14:19:16 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-daemon-thread/</guid>
+      <description>Preface There are two types of threads in java, user threads and daemon threads.
+User threads are high priority threads and the JVM will wait for all the User Threads to finish running before it finishes running.
+daemon threads are low-priority threads that serve User Threads. Because daemon threads are low priority and serve only user threads, the JVM will automatically exit when all user threads are finished, regardless of whether there are still daemon threads running.</description>
+    </item>
+    
+  </channel>
+</rss>

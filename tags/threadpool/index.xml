@@ -6,7 +6,17 @@
     <description>Recent content in threadpool on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 12 Apr 2022 17:24:00 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/threadpool/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Apr 2022 14:42:24 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/threadpool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic use of ThreadPool</title>
+      <link>https://www.javai.net/post/202204/java-thread-pool/</link>
+      <pubDate>Wed, 20 Apr 2022 14:42:24 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-thread-pool/</guid>
+      <description>Preface In Java, threads are the counterpart of system threads and are used to handle a range of system resources. The number of threads that can be opened is limited in both windows and linux, so if you create unlimited threads in your java program, you will encounter a situation where no threads can be created.
+CPU cores are limited and if there are multiple threads running at the same time, the CPU will rotate according to the priority of the threads and allocate a specific amount of CPU time to each thread.</description>
+    </item>
+    
     <item>
       <title>The use of Future in java</title>
       <link>https://www.javai.net/post/202204/java-future-use/</link>
