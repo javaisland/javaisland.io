@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.96.0" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 <link rel="canonical" href="https://www.javai.net/post/202204/java-fork-join/" />
@@ -68,7 +68,7 @@
 <meta itemprop="name" content="The fork join framework in java">
 <meta itemprop="description" content="Fork join framework is the introduction of java 7 framework, the introduction of this framework is mainly to improve the ability of parallel computing."><meta itemprop="datePublished" content="2022-04-20T14:33:27+08:00" />
 <meta itemprop="dateModified" content="2022-04-20T14:33:27+08:00" />
-<meta itemprop="wordCount" content="925">
+<meta itemprop="wordCount" content="915">
 <meta itemprop="keywords" content="java,thread,daemon thread,user thread," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="The fork join framework in java"/>
 <meta name="twitter:description" content="Fork join framework is the introduction of java 7 framework, the introduction of this framework is mainly to improve the ability of parallel computing."/>
@@ -311,7 +311,7 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 925 words </span>
+        <span class="more-meta"> 915 words </span>
           <span class="more-meta"> 5 min read </span>
 
         
@@ -355,8 +355,7 @@
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ForkJoinPool</span> <span class="kd">extends</span> <span class="n">AbstractExecutorService</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>A work thread can only handle one task at a time, but instead of creating a separate thread for each task, ForkJoinPool uses a special data structure double-ended queue to store the tasks. Such a structure allows for easy work-stealing.</p>
-<p>What is work-stealing?</p>
+</div><p>A work thread can only handle one task at a time, but instead of creating a separate thread for each task, ForkJoinPool uses a special data structure double-ended queue to store the tasks.</p>
 <p>By default, a work thread takes tasks from the head of the queue assigned to it. If this queue is empty, then this work thread will take tasks from the tail of other task queues to execute, or from the global queue. This design makes full use of the work thread&rsquo;s performance and improves concurrency.</p>
 <p>Here is a look at how to create a ForkJoinPool.</p>
 <p>The most common way is to use ForkJoinPool.commonPool() to create it. commonPool() provides a common default thread pool for all ForkJoinTask.</p>

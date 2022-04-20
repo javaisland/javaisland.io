@@ -46,7 +46,12 @@
 &lt;p&gt;In Java, threads are the counterpart of system threads and are used to handle a range of system resources. The number of threads that can be opened is limited in both windows and linux, so if you create unlimited threads in your java program, you will encounter a situation where no threads can be created.&lt;/p&gt;
 &lt;p&gt;CPU cores are limited and if there are multiple threads running at the same time, the CPU will rotate according to the priority of the threads and allocate a specific amount of CPU time to each thread. So more threads are not better.&lt;/p&gt;
 &lt;p&gt;There are two interfaces that represent the management of ThreadPool: ExecutorService and Executor.&lt;/p&gt;
-&lt;p&gt;The steps we take to run a thread are generally like this: 1. Create an ExecutorService. 2. Submit the task to the ExecutorService. 3. The ExecutorService schedules the thread to run the task.&lt;/p&gt;
+&lt;p&gt;The steps we take to run a thread are generally like this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create an ExecutorService.&lt;/li&gt;
+&lt;li&gt;Submit the task to the ExecutorService.&lt;/li&gt;
+&lt;li&gt;The ExecutorService schedules the thread to run the task.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Draw a diagram to represent.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/20/60ee44b9fc4048df81dbb61efb220f3c.png&#34; alt=&#34;threadPool.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Here I will talk about how to use ThreadPool in java.&lt;/p&gt;
@@ -282,7 +287,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;forkjoinpool&#34;&gt;ForkJoinPool&lt;/h2&gt;
-&lt;p&gt;ForkJoinPool is a new framework introduced in java 7, which we will explain in detail in a later article&lt;a href=&#34;https://www.javai.net/post/java-fork-join&#34;&gt;&lt;code&gt;The fork join framework in java&lt;/code&gt;&lt;/a&gt;. Here is a brief introduction.&lt;/p&gt;
+&lt;p&gt;ForkJoinPool is a new framework introduced in java 7, which we will explain in detail in a later article&lt;a href=&#34;https://www.javai.net/post/202204/java-fork-join&#34;&gt;&lt;code&gt;The fork join framework in java&lt;/code&gt;&lt;/a&gt;. Here is a brief introduction.&lt;/p&gt;
 &lt;p&gt;ForkJoinPool is mainly used to generate a large number of tasks to do algorithmic operations. If you use threads to do it, it will consume a lot of threads. But this problem does not arise in the fork/join framework.&lt;/p&gt;
 &lt;p&gt;In fork/join, any task can generate a large number of sub-tasks, and then wait for the sub-task to finish by using join().&lt;/p&gt;
 &lt;p&gt;Here we give an example.&lt;/p&gt;
@@ -397,8 +402,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;ForkJoinPool&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;AbstractExecutorService&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;A work thread can only handle one task at a time, but instead of creating a separate thread for each task, ForkJoinPool uses a special data structure double-ended queue to store the tasks. Such a structure allows for easy work-stealing.&lt;/p&gt;
-&lt;p&gt;What is work-stealing?&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;A work thread can only handle one task at a time, but instead of creating a separate thread for each task, ForkJoinPool uses a special data structure double-ended queue to store the tasks.&lt;/p&gt;
 &lt;p&gt;By default, a work thread takes tasks from the head of the queue assigned to it. If this queue is empty, then this work thread will take tasks from the tail of other task queues to execute, or from the global queue. This design makes full use of the work thread&amp;rsquo;s performance and improves concurrency.&lt;/p&gt;
 &lt;p&gt;Here is a look at how to create a ForkJoinPool.&lt;/p&gt;
 &lt;p&gt;The most common way is to use ForkJoinPool.commonPool() to create it. commonPool() provides a common default thread pool for all ForkJoinTask.&lt;/p&gt;

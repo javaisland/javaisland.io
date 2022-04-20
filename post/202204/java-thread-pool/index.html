@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.96.0" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 <link rel="canonical" href="https://www.javai.net/post/202204/java-thread-pool/" />
@@ -68,7 +68,7 @@
 <meta itemprop="name" content="Basic use of ThreadPool">
 <meta itemprop="description" content="In java, there are two interfaces that represent the management of ThreadPool: ExecutorService and Executor."><meta itemprop="datePublished" content="2022-04-20T14:42:24+08:00" />
 <meta itemprop="dateModified" content="2022-04-20T14:42:24+08:00" />
-<meta itemprop="wordCount" content="1121">
+<meta itemprop="wordCount" content="1118">
 <meta itemprop="keywords" content="java,threadpool,thread," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Basic use of ThreadPool"/>
 <meta name="twitter:description" content="In java, there are two interfaces that represent the management of ThreadPool: ExecutorService and Executor."/>
@@ -311,7 +311,7 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 1121 words </span>
+        <span class="more-meta"> 1118 words </span>
           <span class="more-meta"> 6 min read </span>
 
         
@@ -345,7 +345,12 @@
 <p>In Java, threads are the counterpart of system threads and are used to handle a range of system resources. The number of threads that can be opened is limited in both windows and linux, so if you create unlimited threads in your java program, you will encounter a situation where no threads can be created.</p>
 <p>CPU cores are limited and if there are multiple threads running at the same time, the CPU will rotate according to the priority of the threads and allocate a specific amount of CPU time to each thread. So more threads are not better.</p>
 <p>There are two interfaces that represent the management of ThreadPool: ExecutorService and Executor.</p>
-<p>The steps we take to run a thread are generally like this: 1. Create an ExecutorService. 2. Submit the task to the ExecutorService. 3. The ExecutorService schedules the thread to run the task.</p>
+<p>The steps we take to run a thread are generally like this:</p>
+<ul>
+<li>Create an ExecutorService.</li>
+<li>Submit the task to the ExecutorService.</li>
+<li>The ExecutorService schedules the thread to run the task.</li>
+</ul>
 <p>Draw a diagram to represent.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/20/60ee44b9fc4048df81dbb61efb220f3c.png" alt="threadPool.png"></p>
 <p>Here I will talk about how to use ThreadPool in java.</p>
