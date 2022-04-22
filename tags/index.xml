@@ -6,13 +6,76 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 20 Apr 2022 14:42:24 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Apr 2022 10:43:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>crypto bug of the year</title>
+      <link>https://www.javai.net/tags/crypto-bug-of-the-year/</link>
+      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/crypto-bug-of-the-year/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ecdsa</title>
+      <link>https://www.javai.net/tags/ecdsa/</link>
+      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/ecdsa/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Wed, 20 Apr 2022 14:42:24 +0800</pubDate>
+      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oracle</title>
+      <link>https://www.javai.net/tags/oracle/</link>
+      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>signature</title>
+      <link>https://www.javai.net/tags/signature/</link>
+      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/signature/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>corretto</title>
+      <link>https://www.javai.net/tags/corretto/</link>
+      <pubDate>Fri, 22 Apr 2022 10:26:59 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/corretto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java 17</title>
+      <link>https://www.javai.net/tags/java-17/</link>
+      <pubDate>Fri, 22 Apr 2022 10:26:59 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java-17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java8</title>
+      <link>https://www.javai.net/tags/java8/</link>
+      <pubDate>Fri, 22 Apr 2022 10:26:59 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java8/</guid>
       <description></description>
     </item>
     
@@ -58,15 +121,6 @@
       <pubDate>Tue, 19 Apr 2022 20:21:04 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java11/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java8</title>
-      <link>https://www.javai.net/tags/java8/</link>
-      <pubDate>Tue, 19 Apr 2022 20:21:04 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java8/</guid>
       <description></description>
     </item>
     
@@ -130,60 +184,6 @@
       <pubDate>Tue, 19 Apr 2022 15:11:02 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/atomic/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lock</title>
-      <link>https://www.javai.net/tags/lock/</link>
-      <pubDate>Tue, 19 Apr 2022 15:11:02 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/lock/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>node</title>
-      <link>https://www.javai.net/tags/node/</link>
-      <pubDate>Tue, 19 Apr 2022 15:11:02 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/node/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>queue</title>
-      <link>https://www.javai.net/tags/queue/</link>
-      <pubDate>Tue, 19 Apr 2022 15:11:02 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/queue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>interrupted</title>
-      <link>https://www.javai.net/tags/interrupted/</link>
-      <pubDate>Mon, 18 Apr 2022 16:24:46 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/interrupted/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>join</title>
-      <link>https://www.javai.net/tags/join/</link>
-      <pubDate>Mon, 18 Apr 2022 16:24:46 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/join/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>life cycle</title>
-      <link>https://www.javai.net/tags/life-cycle/</link>
-      <pubDate>Mon, 18 Apr 2022 15:55:37 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/life-cycle/</guid>
       <description></description>
     </item>
     

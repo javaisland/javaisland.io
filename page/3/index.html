@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.96.0" />
 
 
 <link rel="canonical" href="https://www.javai.net/" />
@@ -300,6 +300,80 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202203/spring-framework-rce-early-announcement/">Spring Framework RCE, Early Announcement</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-03-31" class="post-time">
+        2022-03-31
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/news/"> news </a>
+          
+        </div>
+      <span class="more-meta"> 817 words </span>
+      <span class="more-meta"> 4 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Updates:
+ [15:40 BST] Spring Boot 2.6.6 is available. [14:38 BST] Spring Boot 2.5.12 is available. [14:00 BST] CVE-2022-22965 is published. [13:03 BST] Added section &ldquo;Misconceptions&rdquo;. [12:34 BST] Added section &ldquo;Am I Impacted&rdquo;. [12:11 BST] Fix minor issue in the workaround for adding disallowedFields . [11:59 BST] Spring Framework versions 5.3.18 and 5.2.20 , which address the vulnerability, are now available. The release process for Spring Boot is in progress.  Overview I would like to announce an RCE vulnerability in the Spring Framework that was leaked out ahead of CVE publication.
+    </div>
+    <div class="read-more">
+      <a href="/post/202203/spring-framework-rce-early-announcement/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202203/java-reflect/">Java reflection mechanism</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-03-31" class="post-time">
+        2022-03-31
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 1352 words </span>
+      <span class="more-meta"> 7 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      What is Reflection In the runtime state, for any class, you can know all the properties and methods of the class; for any object, you can call any of its methods and properties; this dynamically obtained information and dynamic invocation of the object&rsquo;s methods is called the reflection mechanism of the Java language. So what can we do with reflection?
+ Analyze classes at runtime. Look at objects at runtime. We can also use reflection to write a toString method for all classes to use.
+    </div>
+    <div class="read-more">
+      <a href="/post/202203/java-reflect/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -588,7 +662,7 @@ If your project is built on Maven, you can introduce Hutool through pom to use t
     
     <div class="post-summary">
       Zero-copy in the Linux operating system Let&rsquo;s start with the general I/O process of Linux This is a procedure that reads from a disk file and writes to it via socket, and the corresponding system call is as follows.
-1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);    The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).
+1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);   The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).
     </div>
     <div class="read-more">
       <a href="/post/202203/zero-copy/" class="read-more-link">Read more</a>
