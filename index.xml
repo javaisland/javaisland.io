@@ -6,7 +6,11 @@
     <description>Recent content on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+<<<<<<< HEAD
     <lastBuildDate>Mon, 25 Apr 2022 16:01:23 +0800</lastBuildDate>
+=======
+    <lastBuildDate>Fri, 22 Apr 2022 10:43:15 +0800</lastBuildDate>
+>>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     
         <atom:link href="https://www.javai.net/index.xml" rel="self" type="application/rss+xml" />
     
@@ -36,6 +40,7 @@
     </item>
     
     <item>
+<<<<<<< HEAD
       <title>JDK 19 / Java 19 has proposed two features</title>
       <link>https://www.javai.net/post/202204/java-jdk19-proposed/</link>
       <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
@@ -424,6 +429,8 @@
     </item>
     
     <item>
+=======
+>>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
       <title>Oracle fixes Java annual encryption vulnerability affecting Java 15 and above</title>
       <link>https://www.javai.net/post/202204/java-oracle-crypto-bug/</link>
       <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
@@ -5053,5 +5060,117 @@ It is impossible to start.&lt;/p&gt;
       
     </item>
     
+<<<<<<< HEAD
+=======
+    <item>
+      <title>Better use of Java thread pool</title>
+      <link>https://www.javai.net/post/202204/thread-pool-tips/</link>
+      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/thread-pool-tips/</guid>
+      
+        <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the use of thread pools from the setting of thread pool size parameters, the creation of work threads, the recycling of idle threads, the use of blocking queues, task rejection strategies, thread pool Hook and other aspects, which involves some details including the choice of different parameters, different queues, different rejection strategies, the resulting The details include the different parameters, the different queues, the choice of different rejection strategies, the resulting impact and behavior, and for better use of the thread pool.&lt;/p&gt;
+&lt;p&gt;The ExecutorService is based on pooled threads to execute user submitted tasks, usually simply by creating ThreadPoolExecutor instances via the factory methods provided by Executors.&lt;/p&gt;
+&lt;p&gt;Thread pooling solves two problems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;thread pooling optimizes system performance when executing a large number of asynchronous tasks by reducing the performance consumption incurred each time a task is performed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;thread pooling also provides a way to limit and manage the resources and threads consumed when batch tasks are executed. In addition ThreadPoolExecutor provides simple statistics such as how many tasks have been executed so far.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;quick-start&#34;&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;To make the thread pool suitable for a large number of different application contexts, ThreadPoolExecutor provides a number of configurable parameters and hooks that can be used to extend it. However, users can also quickly create ThreadPoolExecutor instances by using some of the factory methods provided by Executors. For example.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;using Executors#newCachedThreadPool you can quickly create a thread pool with automatic thread recycling and no limits.&lt;/li&gt;
+&lt;li&gt;use Executors#newFixedThreadPool to create a fixed thread size thread pool.&lt;/li&gt;
+&lt;li&gt;use Executors#newSingleThreadExecutor to create a single-threaded executor.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the instance created by the above method does not meet our needs, we can configure it ourselves with parameters to instantiate an instance.&lt;/p&gt;
+&lt;h2 id=&#34;what-you-need-to-know-about-setting-the-thread-count-size-parameter&#34;&gt;What you need to know about setting the thread count size parameter&lt;/h2&gt;
+&lt;p&gt;ThreadPoolExecutor dynamically adjusts the size of the thread pool based on corePoolSize and maximumPoolSize:poolSize.&lt;/p&gt;
+&lt;p&gt;When a task is submitted to the thread pool through the executor, we need to know the following points.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the number of worker threads in the current pool is less than corePoolSize at this time, a new worker thread is created to execute the task, regardless of whether there are threads in the worker thread collection that are idle. If there are threads in the pool, then a new thread is created to execute the task, regardless of whether there are threads in the worker set that are idle.&lt;/li&gt;
+&lt;li&gt;If there is a worker thread in the pool that is larger than the corePoolSize but smaller than the maximumPoolSize, the task will be first tried to be put into the queue, and two cases need to be mentioned separately here:
+&lt;ul&gt;
+&lt;li&gt;If the task is successfully put into the queue, see if a new thread needs to be opened to execute the task. Only when the current number of threads is 0 will a new thread be created, because the previous threads may be removed because they are idle or because the work is finished.&lt;/li&gt;
+&lt;li&gt;Only go ahead and create a new worker thread if it fails to be put into the queue.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If corePoolSize and maximumPoolSize are the same, the size of the thread pool is fixed.&lt;/li&gt;
+&lt;li&gt;By setting maximumPoolSize to infinity, we can get a thread pool with no upper limit.&lt;/li&gt;
+&lt;li&gt;In addition to setting these thread pool parameters via the construction parameters we can also set them at runtime.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;corethreadwarmup&#34;&gt;CoreThreadWarmUp&lt;/h2&gt;
+&lt;p&gt;By default, core worker threads are created initially and started when a new task arrives, but we can change this behavior by overriding the restartCoreThread or restartCoreThreads methods. The usual scenario is that we can WarmUp the core thread when the application is started, thus achieving the result of being able to execute the task immediately when it comes, making the initial task processing time somewhat optimized.&lt;/p&gt;
+&lt;h2 id=&#34;custom-work-thread-creation&#34;&gt;Custom work thread creation&lt;/h2&gt;
+&lt;p&gt;New threads are created via ThreadFactory, if not specified, the default Executors#defaultThreadFactory will be used, at this time the created threads will all belong to the same thread group, with the same priority and daemon status. Extending the configuration of ThreadFactory, we can configure the thread name, thread combination daemon status. If the call to ThreadFactory#createThread fails, it will return null and the executor will not perform any task.&lt;/p&gt;
+&lt;h2 id=&#34;idle-thread-recycling&#34;&gt;Idle thread recycling&lt;/h2&gt;
+&lt;p&gt;If the number of worker threads in the current pool is greater than corePoolSize, and if the threads above this number are idle for longer than keepAliveTime, these threads will be terminated as a strategy to reduce unnecessary resource consumption. This parameter can be changed at runtime, and we can also apply this policy to core threads, which we can do by calling allowCoreThreadTimeout.&lt;/p&gt;
+&lt;h2 id=&#34;choosing-the-right-blocking-queue&#34;&gt;Choosing the right blocking queue&lt;/h2&gt;
+&lt;p&gt;All blocking queues can be used to hold tasks, but using different queues for corePoolSize will exhibit different behavior.&lt;/p&gt;
+&lt;p&gt;When the number of worker threads in the pool is less than corePoolSize, a new worker thread will be created each time a task comes in.&lt;/p&gt;
+&lt;p&gt;When the number of worker threads in the pool is greater than or equal to corePoolSize, each time a task comes in, it first tries to put the thread into the queue instead of creating the thread directly.&lt;/p&gt;
+&lt;p&gt;If the queue fails and the number of threads in the pool is less than the maximumPoolSize, then a worker thread is created.&lt;/p&gt;
+&lt;p&gt;The following are mainly the different queueing strategies performance:&lt;/p&gt;
+&lt;h2 id=&#34;direct-submission&#34;&gt;Direct Submission&lt;/h2&gt;
+&lt;p&gt;A better default option is to use SynchronousQueue, a strategy that delivers the submitted task directly to the worker thread without holding it. If there is currently no worker thread to process it, i.e., the task fails to be placed in the queue, a new worker thread is triggered to be created according to the thread pool implementation, so the newly submitted task is processed. This strategy avoids lock contention consumption when there are dependencies between the submitted batch of tasks. It is worth mentioning that this strategy is best used in conjunction with the number of unbounded threads, thus avoiding task rejection. Also we have to consider a scenario when tasks arrive faster than they can be processed, which will cause the number of unbounded threads to keep increasing.&lt;/p&gt;
+&lt;h2 id=&#34;unbounded-queues&#34;&gt;Unbounded Queues&lt;/h2&gt;
+&lt;p&gt;Using an unbounded queue such as LinkedBlockingQueue without specifying a maximum capacity will cause new tasks to be placed on the queue when the core threads are all busy, so that no threads larger than corePoolSize will ever be created, and therefore the maximumPoolSize parameter will fail. This strategy is more suitable for all tasks that are not dependent on each other and execute independently. As an example, for example, in a web server, each thread processes requests independently. But when the task processing speed is less than the task entry speed it will cause infinite expansion of the queue.&lt;/p&gt;
+&lt;h2 id=&#34;bounded-queues&#34;&gt;Bounded Queues&lt;/h2&gt;
+&lt;p&gt;Bounded queues such as ArrayBlockingQueue help to limit the consumption of resources, but are not easy to control. The two values of queue length and maximumPoolSize affect each other. Using a large queue and a small maximumPoolSize will reduce CPU usage, OS resources, and context switching consumption, but will reduce throughput. If tasks are blocked frequently such as IO threads, the system can actually schedule more threads. Using a small queue usually requires a large maximumPoolSize, which makes the CPU a little busier, but increases the consumption of thread scheduling that reduces throughput. To summarize is IO-intensive can consider more threads to balance the CPU usage, CPU-intensive can consider less threads to reduce the consumption of thread scheduling.&lt;/p&gt;
+&lt;h2 id=&#34;choose-a-suitable-rejection-strategy&#34;&gt;Choose a suitable rejection strategy&lt;/h2&gt;
+&lt;p&gt;When new tasks arrive and the thread pool is closed, or when the number of threads and queues have reached the upper limit, we need to make a decision on how to reject these tasks. The following is a description of the common strategies.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ThreadPoolExecutor#AbortPolicy&lt;/code&gt;: This policy directly throws a RejectedExecutionException exception.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ThreadPoolExecutor#CallerRunsPolicy&lt;/code&gt;: This policy will use the Caller thread to execute the task, which is a feedback policy that slows down the task submission.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ThreadPoolExecutor#DiscardPolicy&lt;/code&gt;: This policy will simply discard the task.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ThreadPoolExecutor#DiscardOldestPolicy&lt;/code&gt;: This policy will discard the task at the head of the task queue and then retry to execute it, and if it still fails, continue with the policy.&lt;/p&gt;
+&lt;p&gt;In addition to the above policies, we can also implement our own policies by implementing RejectedExecutionHandler.&lt;/p&gt;
+&lt;h2 id=&#34;embedding-your-behavior-with-hook&#34;&gt;Embedding your behavior with Hook&lt;/h2&gt;
+&lt;p&gt;ThreadPoolExecutor provides hook methods of type protected that can be overridden, allowing the user to do something after the task will be executed before it is executed. We can use it to implement operations such as initializing ThreadLocal, collecting statistics, such as logging, etc. There is another hook that can be used to allow the user to insert logic when the task is finished being executed, such as rerminated.&lt;/p&gt;
+&lt;p&gt;If the hook method fails to execute, the execution of the internal worker thread will fail or be interrupted.&lt;/p&gt;
+&lt;h2 id=&#34;accessible-queues&#34;&gt;Accessible Queues&lt;/h2&gt;
+&lt;p&gt;The getQueue method can be used to access the queue for some statistical or debug work, but we do not recommend it for other purposes. Also the remove and purge methods can be used to remove tasks from the queue.&lt;/p&gt;
+&lt;h2 id=&#34;closing-the-thread-pool&#34;&gt;Closing the thread pool&lt;/h2&gt;
+&lt;p&gt;The thread pool will be terminated when it is not referenced anymore and the number of working threads is 0. We can also call shutdown to manually terminate the thread pool. If we forget to call shutdown, we can also use keepAliveTime and allowCoreThreadTimeOut in order to get the thread resources released.&lt;/p&gt;
+&lt;h2 id=&#34;written-at-the-end&#34;&gt;Written at the end&lt;/h2&gt;
+&lt;p&gt;The API provided by JAVA itself already allows us to quickly do multi-threaded development based on thread pools. However, it is not easy to choose different parameters and different strategies. We have to answer some basic questions first: what does the OS do for us for each thread created, and what is the main part of the OS resource consumption for this thread? If my application scenario is IO-intensive, do I need more threads or fewer threads? In my opinion, multi-threaded development is a not easy thing to do.&lt;/p&gt;
+&lt;p&gt;If you are interested in multi-threaded development, then please check out the other multi-threaded articles on this site&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Technology Trends Java Teams Should Watch in 2022</title>
+      <link>https://www.javai.net/post/202204/java-2022-trends/</link>
+      <pubDate>Mon, 11 Apr 2022 15:33:15 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-2022-trends/</guid>
+      
+        <description>&lt;p&gt;Java is evolving quickly, and with potential changes to the OpenJDK release cycle, it may accelerate even further. For people like Michael Rasmussen, JRebel development lead at Perforce, keeping up with these changes and understanding their impact on development; creating features that resonate with the Java development community, keeping applications up to date with the latest versions of popular Java technologies, and developing new features, improvements, and integrations for JRebel is critical. and integrations for JRebel is critical.&lt;/p&gt;
+&lt;p&gt;SDTimes conducted an interview with Michael to discuss in detail the Java trends the team should be looking at during 2022.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/11/9bc50829705849fe8d02854b75f01d8b.png&#34; alt=&#34;developer picture&#34;&gt;&lt;/p&gt;
+&lt;p&gt;First, in terms of release adoption size, Michael says that Java 8 is a release that has driven significant growth in adoption because it includes some major feature additions. Java 17, on the other hand, has not seen such significant changes, and while there are many benefits for Java 8 users to migrate to Java 17, it is unlikely to drive teams to do so on a large scale. So Java 17 adoption is unlikely to reach the scale of Java 8.&lt;/p&gt;
+&lt;p&gt;And after looking at the release roadmap and the status of various Java enhancement projects, Michael believes that the next major adoption event we will see in Java will be related to the Valhalla project and the addition of value types to the language. However, even given the faster LTS release cadence, Michael speculates that this will be in the post-Java 25 LTS release.&lt;/p&gt;
+&lt;p&gt;Michael notes that the change in release cadence has not been formalized, but given that all the major OpenJDK vendors are now on board, it is likely that the LTS release cadence will change from every three years to every two years. This move will have a huge impact on the Java ecosystem; one of the long-term effects will be that fewer users will adopt non-LTS versions.&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Essentially, why would you want to adopt an intermediate version when you can wait less than two years to adopt an LTS version that has the features you need? It&amp;rsquo;s not that people don&amp;rsquo;t adopt non-LTS versions - it&amp;rsquo;s just that most Java teams can&amp;rsquo;t afford to upgrade to the latest version at release time. On the other hand, the fast release cadence means that small upgrades are usually problem-free upgrades. If you have a project, or you&amp;rsquo;re starting one, it&amp;rsquo;s best to aim for an LTS version that aligns with the expected project release and use the latest non-LTS version for the duration of development.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;When it comes to the upcoming 2022 release of Java 18 and 19, Michael, for his part, said that among the features to watch for should be the external function interface and the vector API. &amp;ldquo;I hope that both of those features will be finalized in Java 19. On the language side, I think we&amp;rsquo;ll continue to see more and more enhancements to pattern matching.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;In addition, given that JRebel conducts an annual survey of the Java industry, Michael said that the technology trends shown in this year&amp;rsquo;s report will include the following.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;At the framework level, microservices frameworks such as Micronaut and Quarkus will continue to take market share on Spring Boot. However, given that Spring Framework 6 and Spring Boot 3 are scheduled for release in the second half of 2022, Spring will not go down without a fight. Another thing to consider with the new Spring releases is that they will target Java 17 and Jakarta EE 9, a move that will also likely help drive adoption of Java 17.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On the IDE side, IntelliJ IDEA will still be the most used one, but there will be more VSCode as a secondary or even primary tool.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+>>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
   </channel>
 </rss>
