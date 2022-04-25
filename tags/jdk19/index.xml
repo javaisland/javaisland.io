@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jdk19 on JavaIsland</title>
+    <link>https://www.javai.net/tags/jdk19/</link>
+    <description>Recent content in jdk19 on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 25 Apr 2022 16:01:23 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/jdk19/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JDK 19 / Java 19 has proposed two features</title>
+      <link>https://www.javai.net/post/202204/java-jdk19-proposed/</link>
+      <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-jdk19-proposed/</guid>
+      <description>JDK 18/Java 18 has been released last month, according to the plan JDK 19 will be released in September this year, a few days ago the official proposed two features that will be released in the next version. One is the Vector API, and the other is a port of the JDK to RISC-V. The former Vector API is an API that expresses vector computation and will be incubated for the fourth time in the next Java release; the latter proposes a feature to port the JDK to the open source Linux/RISC-V instruction set architecture (ISA).</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,17 @@
     <description>Recent content in java8 on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 19 Apr 2022 20:21:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Apr 2022 10:26:59 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Father of Java: Don&#39;t Stick with Java 8</title>
+      <link>https://www.javai.net/post/202204/java-not-stick-java8/</link>
+      <pubDate>Fri, 22 Apr 2022 10:26:59 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-not-stick-java8/</guid>
+      <description>James Gosling, the father of Java, recently twitter that developers should abandon JDK 8 as soon as possible and opt for JDK 17 LTS, which brings huge improvements in every aspect.
+But maybe the father of Java was just promoting Corretto, the OpenJDK distribution for his boss AWS. and he suggests that developers still using JDK 8 might consider using Corretto&amp;rsquo;s new version- -Includes all the latest updates and CVE defenses.</description>
+    </item>
+    
     <item>
       <title>Notes on upgrading from Java 8 to Java 11</title>
       <link>https://www.javai.net/post/202204/java-jdk8-upgrade-jdk11/</link>

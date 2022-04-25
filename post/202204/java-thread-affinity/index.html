@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Thread-Affinity for CPU-bound threads - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="James Gosling, the father of Java, recently tweetedthat developers should abandon JDK 8 as soon as possible and opt for JDK 17 LTS." />
+<meta name="keywords" content="java, affinityLock, affinity, thread, cpu" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.96.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202204/java-thread-affinity/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Thread-Affinity for CPU-bound threads" />
+<meta property="og:description" content="James Gosling, the father of Java, recently tweetedthat developers should abandon JDK 8 as soon as possible and opt for JDK 17 LTS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202204/java-thread-affinity/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-24T14:49:37+08:00" />
+<meta property="article:modified_time" content="2022-04-24T14:49:37+08:00" />
+
+<meta itemprop="name" content="Thread-Affinity for CPU-bound threads">
+<meta itemprop="description" content="James Gosling, the father of Java, recently tweetedthat developers should abandon JDK 8 as soon as possible and opt for JDK 17 LTS."><meta itemprop="datePublished" content="2022-04-24T14:49:37+08:00" />
+<meta itemprop="dateModified" content="2022-04-24T14:49:37+08:00" />
+<meta itemprop="wordCount" content="1573">
+<meta itemprop="keywords" content="java,affinityLock,affinity,thread,cpu," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Thread-Affinity for CPU-bound threads"/>
+<meta name="twitter:description" content="James Gosling, the father of Java, recently tweetedthat developers should abandon JDK 8 as soon as possible and opt for JDK 17 LTS."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Thread-Affinity for CPU-bound threads</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-04-24" class="post-time">
+          2022-04-24
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/news/"> news </a>
+            
+          </div>
+        <span class="more-meta"> 1573 words </span>
+          <span class="more-meta"> 8 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#introduction-to-java-thread-affinity">Introduction to Java Thread Affinity</a></li>
+    <li><a href="#use-of-affinitylock">Use of AffinityLock</a></li>
+    <li><a href="#use-the-api-to-allocate-cpus-directly">Use the API to allocate CPUs directly</a></li>
+    <li><a href="#summarize">Summarize</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="introduction">Introduction</h2>
+<p>In modern computer systems, there can be multiple CPUs, and each CPU can have multiple cores. In order to take full advantage of the capabilities of modern CPUs, JAVA introduced multithreading, where different threads can run on different CPUs or different CPU cores at the same time. However, for JAVA programmers it is possible to control how many threads are created, but which CPU the threads are running on is generally difficult to know.</p>
+<p>However, if different CPU cores are scheduling the same thread, there may be a performance loss due to CPU switching. Normally this loss is relatively small, but if your application is particularly concerned about the loss caused by CPU switching, then you can try Java Thread Affinity today.</p>
+<h2 id="introduction-to-java-thread-affinity">Introduction to Java Thread Affinity</h2>
+<p>Java thread Affinity is used to bind threads in JAVA code to specific CPU cores to improve the performance of your program.</p>
+<p>Obviously, to interact with the underlying CPU, java thread Affinity must use JAVA and native methods for interaction, JNI is the official JAVA and native methods for interaction, but JNI is more cumbersome to use. So java thread Affinity actually uses JNA, JNA is a library for interacting with native methods based on JNI improvements.</p>
+<p>First, let&rsquo;s introduce a few concepts in the CPU, respectively, <code>CPU</code>,<code>CPU socket</code> and <code>CPU core</code>.</p>
+<p>The first is the CPU, the full name of the CPU is central processing unit, also known as the central processing unit, is the key core used for task processing.</p>
+<p>So what is CPU socket? The so-called socket is the slot where the CPU is inserted, if you have assembled a desktop computer, you should know that the CPU is installed on the socket.</p>
+<p>CPU Core refers to the number of cores in the CPU. A long time ago, CPUs were single-core, but with the development of multi-core technology, a CPU can contain multiple cores, and the cores in the CPU are the real business processing units.</p>
+<p>If you are on a linux machine, then you can check the CPU status of your system by using the <code>lscpu</code> command as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Architecture: x86_64
+</span></span><span class="line"><span class="cl">CPU op-mode(s): 32-bit, 64-bit
+</span></span><span class="line"><span class="cl">Byte Order: Little Endian
+</span></span><span class="line"><span class="cl">CPU(s): 1
+</span></span><span class="line"><span class="cl">On-line CPU(s) list: 0
+</span></span><span class="line"><span class="cl">Thread(s) per core: 1
+</span></span><span class="line"><span class="cl">Core(s) per socket: 1
+</span></span><span class="line"><span class="cl">Socket(s): 1
+</span></span><span class="line"><span class="cl">NUMA node(s): 1
+</span></span><span class="line"><span class="cl">Vendor ID: GenuineIntel
+</span></span><span class="line"><span class="cl">CPU family: 6
+</span></span><span class="line"><span class="cl">Model: 94
+</span></span><span class="line"><span class="cl">Model name: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz
+</span></span><span class="line"><span class="cl">Stepping: 3
+</span></span><span class="line"><span class="cl">CPU MHz: 2400.000
+</span></span><span class="line"><span class="cl">BogoMIPS: 4800.00
+</span></span><span class="line"><span class="cl">Hypervisor vendor: KVM
+</span></span><span class="line"><span class="cl">Virtualization type: full
+</span></span><span class="line"><span class="cl">L1d cache: 32K
+</span></span><span class="line"><span class="cl">L1i cache: 32K
+</span></span><span class="line"><span class="cl">L2 cache: 4096K
+</span></span><span class="line"><span class="cl">L3 cache: 28160K
+</span></span><span class="line"><span class="cl">NUMA node0 CPU(s): 0
+</span></span><span class="line"><span class="cl">Flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl eagerfpu pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 arat
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>From the above output we can see that this server has one socket, one core per socket, and each core can handle 1 thread at a time.</p>
+<p>This CPU information can be called CPU layout. in linux CPU layout information is stored in /proc/cpuinfo.</p>
+<p>In Java Thread Affinity, there is a CpuLayout interface that corresponds to this information.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CpuLayout</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">cpus</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">sockets</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">coresPerSocket</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">threadsPerCore</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">socketId</span><span class="o">(</span><span class="kt">int</span> <span class="n">cpuId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">coreId</span><span class="o">(</span><span class="kt">int</span> <span class="n">cpuId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">threadId</span><span class="o">(</span><span class="kt">int</span> <span class="n">cpuId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Based on the CPU layout information, AffinityStrategies provides some basic Affinity policies to arrange the distribution relationship between different threads, mainly the following.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">    SAME_CORE - Runs in the same core.
+</span></span><span class="line"><span class="cl">    SAME_SOCKET - runs in the same socket, but not on the same core.
+</span></span><span class="line"><span class="cl">    DIFFERENT_SOCKET - runs in a different socket
+</span></span><span class="line"><span class="cl">    DIFFERENT_CORE - runs on a different core
+</span></span><span class="line"><span class="cl">    ANY - any case is fine
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>These policies are also distinguished based on the socketId and coreId of the CpuLayout. Let&rsquo;s take SAME_CORE as an example and press its specific implementation.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SAME_CORE</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">matches</span><span class="o">(</span><span class="kt">int</span> <span class="n">cpuId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">cpuId2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">CpuLayout</span> <span class="n">cpuLayout</span> <span class="o">=</span> <span class="n">AffinityLock</span><span class="o">.</span><span class="na">cpuLayout</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">cpuLayout</span><span class="o">.</span><span class="na">socketId</span><span class="o">(</span><span class="n">cpuId</span><span class="o">)</span> <span class="o">==</span> <span class="n">cpuLayout</span><span class="o">.</span><span class="na">socketId</span><span class="o">(</span><span class="n">cpuId2</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">cpuLayout</span><span class="o">.</span><span class="na">coreId</span><span class="o">(</span><span class="n">cpuId</span><span class="o">)</span> <span class="o">==</span> <span class="n">cpuLayout</span><span class="o">.</span><span class="na">coreId</span><span class="o">(</span><span class="n">cpuId2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Affinity policies can be sequential, the policy in front will be matched first, if it doesn&rsquo;t match then the second policy will be selected and so on.</p>
+<h2 id="use-of-affinitylock">Use of AffinityLock</h2>
+<p>Next we look at the specific use of Affinity, the first is to get a CPU lock, before JAVA7, we can write it like this.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">AffinityLock</span> <span class="n">al</span> <span class="o">=</span> <span class="n">AffinityLock</span><span class="o">.</span><span class="na">acquireLock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">// do some work locked to a CPU.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">al</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After JAVA 7, it can be written like this.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">AffinityLock</span> <span class="n">al</span> <span class="o">=</span> <span class="n">AffinityLock</span><span class="o">.</span><span class="na">acquireLock</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// do some work while locked to a CPU.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The acquireLock method can get any available CPU for a thread. this is a coarse-grained lock. if you want to get a fine-grained core, you can use acquireCore:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">AffinityLock</span> <span class="n">al</span> <span class="o">=</span> <span class="n">AffinityLock</span><span class="o">.</span><span class="na">acquireCore</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// do some work while locked to a CPU.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>acquireLock also has a bind parameter that indicates whether to bind the current thread to the acquired CPU lock. If the bind parameter = true, then the current thread will run on the CPU acquired in acquireLock. If the bind parameter = false, it means that acquireLock will bind at some point in the future.</p>
+<p>Above we mentioned the AffinityStrategy, which can be used as an argument to acquireLock:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">AffinityLock</span> <span class="nf">acquireLock</span><span class="o">(</span><span class="n">AffinityStrategy</span><span class="o">...</span> <span class="n">strategies</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">acquireLock</span><span class="o">(</span><span class="kc">false</span><span class="o">,</span> <span class="n">cpuId</span><span class="o">,</span> <span class="n">strategies</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>By calling the acquireLock method of the current AffinityLock, the AffinityLock associated with the previous lock strategy can be assigned to the current thread.</p>
+<p>AffinityLock also provides a dumpLocks method to view the current CPU and thread binding status. Let&rsquo;s take an example.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ExecutorService</span> <span class="n">ES</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">4</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">           <span class="k">new</span> <span class="n">AffinityThreadFactory</span><span class="o">(</span><span class="s">&#34;bg&#34;</span><span class="o">,</span> <span class="n">SAME_CORE</span><span class="o">,</span> <span class="n">DIFFERENT_SOCKET</span><span class="o">,</span> <span class="n">ANY</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">12</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ES</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">public</span> <span class="n">Void</span> <span class="nf">call</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">});</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">200</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;\nThe assignment of CPUs is\n&#34;</span> <span class="o">+</span> <span class="n">AffinityLock</span><span class="o">.</span><span class="na">dumpLocks</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ES</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ES</span><span class="o">.</span><span class="na">awaitTermination</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In the above code, we create a thread pool of 4 threads, the corresponding ThreadFactory is AffinityThreadFactory, name the thread pool bg, and assign 3 AffinityStrategy. The idea is to first assign to the same core, then to different sockets, and finally to any available CPU.</p>
+<p>Then the specific execution process, we submitted 12 threads, but our Thread pool only has at most 4 threads, it can be expected that only 4 threads will be bound to the CPU in the result returned by AffinityLock.dumpLocks method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">The assignment of CPUs is
+</span></span><span class="line"><span class="cl">0: CPU not available
+</span></span><span class="line"><span class="cl">1: Reserved for this application
+</span></span><span class="line"><span class="cl">2: Reserved for this application
+</span></span><span class="line"><span class="cl">3: Reserved for this application
+</span></span><span class="line"><span class="cl">4: Thread[bg-4,5,main] alive=true
+</span></span><span class="line"><span class="cl">5: Thread[bg-3,5,main] alive=true
+</span></span><span class="line"><span class="cl">6: Thread[bg-2,5,main] alive=true
+</span></span><span class="line"><span class="cl">7: Thread[bg,5,main] alive=true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As you can see from the output, CPU0 is not available. The other 7 CPUs are available, but only 4 threads are bound, which matches our previous analysis.</p>
+<p>Next, let&rsquo;s modify the AffinityStrategy of AffinityThreadFactory as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">new</span> <span class="n">AffinityThreadFactory</span><span class="o">(</span><span class="s">&#34;bg&#34;</span><span class="o">,</span> <span class="n">SAME_CORE</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>means that threads will only be bound to the same core, because in the current hardware, a core can only support one thread binding at the same time, so it can be expected that only one thread will be bound in the end result, which runs as follows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">The assignment of CPUs is
+</span></span><span class="line"><span class="cl">0: CPU not available
+</span></span><span class="line"><span class="cl">1: Reserved for this application
+</span></span><span class="line"><span class="cl">2: Reserved for this application
+</span></span><span class="line"><span class="cl">3: Reserved for this application
+</span></span><span class="line"><span class="cl">4: Reserved for this application
+</span></span><span class="line"><span class="cl">5: Reserved for this application
+</span></span><span class="line"><span class="cl">6: Reserved for this application
+</span></span><span class="line"><span class="cl">7: Thread[bg,5,main] alive=true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can see that only the first thread is bound to the CPU, which matches the previous analysis.</p>
+<h2 id="use-the-api-to-allocate-cpus-directly">Use the API to allocate CPUs directly</h2>
+<p>The AcquireLock method of AffinityLock we mentioned above actually accepts a CPU id parameter, which can be used to get the lock of the incoming CPU id directly. so that subsequent threads can run on the specified CPU.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">AffinityLock</span> <span class="nf">acquireLock</span><span class="o">(</span><span class="kt">int</span> <span class="n">cpuId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">acquireLock</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="n">cpuId</span><span class="o">,</span> <span class="n">AffinityStrategies</span><span class="o">.</span><span class="na">ANY</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In real time this Affinity is stored in the BitSet, the index of the BitSet is the cpu id and the corresponding value is whether to acquire the lock or not.</p>
+<p>First look at the definition of the setAffinity method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setAffinity</span><span class="o">(</span><span class="kt">int</span> <span class="n">cpu</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BitSet</span> <span class="n">affinity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BitSet</span><span class="o">(</span><span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">availableProcessors</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">affinity</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">cpu</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setAffinity</span><span class="o">(</span><span class="n">affinity</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Look again at the use of setAffinity.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">currentAffinity</span> <span class="o">=</span> <span class="n">AffinitySupport</span><span class="o">.</span><span class="na">getAffinity</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Affinity</span><span class="o">.</span><span class="na">setAffinity</span><span class="o">(</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">5</span><span class="o">);</span> <span class="c1">// lock to CPU 5.
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Note that since the underlying BitSet uses Long for data storage, the index here is bit index, so we need to convert the decimal CPU index.</p>
+</blockquote>
+<h2 id="summarize">Summarize</h2>
+<p>Java Thread Affinity can control the CPU used by the Thread in the program from the JAVA code, which is very powerful and can be used by everyone.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/affinitylock/">affinityLock</a>
+          <a href="https://www.javai.net/tags/affinity/">affinity</a>
+          <a href="https://www.javai.net/tags/thread/">thread</a>
+          <a href="https://www.javai.net/tags/cpu/">cpu</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/202204/java-jdk19-proposed/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">JDK 19 / Java 19 has proposed two features</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/202204/java-oracle-crypto-bug/">
+            <span class="next-text nav-default">Oracle fixes Java annual encryption vulnerability affecting Java 15 and above</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

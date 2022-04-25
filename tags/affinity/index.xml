@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>affinity on JavaIsland</title>
+    <link>https://www.javai.net/tags/affinity/</link>
+    <description>Recent content in affinity on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 24 Apr 2022 14:49:37 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/affinity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thread-Affinity for CPU-bound threads</title>
+      <link>https://www.javai.net/post/202204/java-thread-affinity/</link>
+      <pubDate>Sun, 24 Apr 2022 14:49:37 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-thread-affinity/</guid>
+      <description>Introduction In modern computer systems, there can be multiple CPUs, and each CPU can have multiple cores. In order to take full advantage of the capabilities of modern CPUs, JAVA introduced multithreading, where different threads can run on different CPUs or different CPU cores at the same time. However, for JAVA programmers it is possible to control how many threads are created, but which CPU the threads are running on is generally difficult to know.</description>
+    </item>
+    
+  </channel>
+</rss>

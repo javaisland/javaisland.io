@@ -9,49 +9,182 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/202204/java-thread-pool/</loc>
-    <lastmod>2022-04-20T14:42:24+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-04-20T14:42:24+08:00</lastmod>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-04-20T14:42:24+08:00</lastmod>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java18/</loc>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java19/</loc>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/</loc>
-    <lastmod>2022-04-20T14:42:24+08:00</lastmod>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-jdk19-proposed/</loc>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/jdk18/</loc>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/jdk19/</loc>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/news/</loc>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-04-20T14:42:24+08:00</lastmod>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/</loc>
-    <lastmod>2022-04-20T14:42:24+08:00</lastmod>
+    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/affinity/</loc>
+    <lastmod>2022-04-24T14:49:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/affinitylock/</loc>
+    <lastmod>2022-04-24T14:49:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/cpu/</loc>
+    <lastmod>2022-04-24T14:49:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/thread/</loc>
+    <lastmod>2022-04-24T14:49:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-thread-affinity/</loc>
+    <lastmod>2022-04-24T14:49:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/crypto-bug-of-the-year/</loc>
+    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/ecdsa/</loc>
+    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/oracle/</loc>
+    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-oracle-crypto-bug/</loc>
+    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/signature/</loc>
+    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/corretto/</loc>
+    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java-17/</loc>
+    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java8/</loc>
+    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-not-stick-java8/</loc>
+    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202204/java-thread-pool/</loc>
     <lastmod>2022-04-20T14:42:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -101,13 +234,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/java11/</loc>
-    <lastmod>2022-04-19T20:21:04+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/java8/</loc>
     <lastmod>2022-04-19T20:21:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -396,13 +522,6 @@
   <url>
     <loc>https://www.javai.net/tags/juc/</loc>
     <lastmod>2022-04-11T15:57:29+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/news/</loc>
-    <lastmod>2022-04-11T15:33:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -814,13 +933,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/oracle/</loc>
-    <lastmod>2022-03-30T13:04:22+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/post/202203/oracle-java-license/</loc>
     <lastmod>2022-03-30T13:04:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -892,13 +1004,6 @@
   
   <url>
     <loc>https://www.javai.net/post/202203/jdk18/</loc>
-    <lastmod>2022-03-28T22:44:09+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/jdk18/</loc>
     <lastmod>2022-03-28T22:44:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

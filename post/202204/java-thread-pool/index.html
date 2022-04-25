@@ -68,7 +68,7 @@
 <meta itemprop="name" content="Basic use of ThreadPool">
 <meta itemprop="description" content="In java, there are two interfaces that represent the management of ThreadPool: ExecutorService and Executor."><meta itemprop="datePublished" content="2022-04-20T14:42:24+08:00" />
 <meta itemprop="dateModified" content="2022-04-20T14:42:24+08:00" />
-<meta itemprop="wordCount" content="1121">
+<meta itemprop="wordCount" content="1118">
 <meta itemprop="keywords" content="java,threadpool,thread," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Basic use of ThreadPool"/>
 <meta name="twitter:description" content="In java, there are two interfaces that represent the management of ThreadPool: ExecutorService and Executor."/>
@@ -311,7 +311,7 @@
             <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 1121 words </span>
+        <span class="more-meta"> 1118 words </span>
           <span class="more-meta"> 6 min read </span>
 
         
@@ -345,7 +345,12 @@
 <p>In Java, threads are the counterpart of system threads and are used to handle a range of system resources. The number of threads that can be opened is limited in both windows and linux, so if you create unlimited threads in your java program, you will encounter a situation where no threads can be created.</p>
 <p>CPU cores are limited and if there are multiple threads running at the same time, the CPU will rotate according to the priority of the threads and allocate a specific amount of CPU time to each thread. So more threads are not better.</p>
 <p>There are two interfaces that represent the management of ThreadPool: ExecutorService and Executor.</p>
-<p>The steps we take to run a thread are generally like this: 1. Create an ExecutorService. 2. Submit the task to the ExecutorService. 3. The ExecutorService schedules the thread to run the task.</p>
+<p>The steps we take to run a thread are generally like this:</p>
+<ul>
+<li>Create an ExecutorService.</li>
+<li>Submit the task to the ExecutorService.</li>
+<li>The ExecutorService schedules the thread to run the task.</li>
+</ul>
 <p>Draw a diagram to represent.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/20/60ee44b9fc4048df81dbb61efb220f3c.png" alt="threadPool.png"></p>
 <p>Here I will talk about how to use ThreadPool in java.</p>
@@ -581,7 +586,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="forkjoinpool">ForkJoinPool</h2>
-<p>ForkJoinPool is a new framework introduced in java 7, which we will explain in detail in a later article<a href="https://www.javai.net/post/java-fork-join"><code>The fork join framework in java</code></a>. Here is a brief introduction.</p>
+<p>ForkJoinPool is a new framework introduced in java 7, which we will explain in detail in a later article<a href="https://www.javai.net/post/202204/java-fork-join"><code>The fork join framework in java</code></a>. Here is a brief introduction.</p>
 <p>ForkJoinPool is mainly used to generate a large number of tasks to do algorithmic operations. If you use threads to do it, it will consume a lot of threads. But this problem does not arise in the fork/join framework.</p>
 <p>In fork/join, any task can generate a large number of sub-tasks, and then wait for the sub-task to finish by using join().</p>
 <p>Here we give an example.</p>
@@ -692,6 +697,19 @@
       
       <nav class="post-nav">
         
+          <a class="prev" href="/post/202204/java-not-stick-java8/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">The Father of Java: Don&#39;t Stick with Java 8</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         
           <a class="next" href="/post/202204/java-fork-join/">
             <span class="next-text nav-default">The fork join framework in java</span>
