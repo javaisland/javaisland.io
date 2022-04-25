@@ -14,7 +14,7 @@
       
       <guid>https://www.javai.net/post/202203/zero-copy/</guid>
       <description>Zero-copy in the Linux operating system Let&amp;rsquo;s start with the general I/O process of Linux This is a procedure that reads from a disk file and writes to it via socket, and the corresponding system call is as follows.
-1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);   The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).</description>
+1 2  read(file, tmp_buf, len); write(socket, tmp_buf, len);    The program uses the read() system call to change the system from user state to kernel state, and the data from the disk is read into the kernel buffer by means of DMA (Direct memory access).</description>
     </item>
     
   </channel>

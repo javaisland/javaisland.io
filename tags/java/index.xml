@@ -6,7 +6,6 @@
     <description>Recent content in java on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-<<<<<<< HEAD
     <lastBuildDate>Mon, 25 Apr 2022 16:01:23 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JDK 19 / Java 19 has proposed two features</title>
@@ -26,9 +25,6 @@
       <description>Introduction In modern computer systems, there can be multiple CPUs, and each CPU can have multiple cores. In order to take full advantage of the capabilities of modern CPUs, JAVA introduced multithreading, where different threads can run on different CPUs or different CPU cores at the same time. However, for JAVA programmers it is possible to control how many threads are created, but which CPU the threads are running on is generally difficult to know.</description>
     </item>
     
-=======
-    <lastBuildDate>Fri, 22 Apr 2022 10:43:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <item>
       <title>Oracle fixes Java annual encryption vulnerability affecting Java 15 and above</title>
       <link>https://www.javai.net/post/202204/java-oracle-crypto-bug/</link>
@@ -220,27 +216,5 @@ So when do we use Future? Generally speaking, when we execute a long-running tas
       <description>Introduction This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the use of thread pools from the setting of thread pool size parameters, the creation of work threads, the recycling of idle threads, the use of blocking queues, task rejection strategies, thread pool Hook and other aspects, which involves some details including the choice of different parameters, different queues, different rejection strategies, the resulting The details include the different parameters, the different queues, the choice of different rejection strategies, the resulting impact and behavior, and for better use of the thread pool.</description>
     </item>
     
-<<<<<<< HEAD
-=======
-    <item>
-      <title>Technology Trends Java Teams Should Watch in 2022</title>
-      <link>https://www.javai.net/post/202204/java-2022-trends/</link>
-      <pubDate>Mon, 11 Apr 2022 15:33:15 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-2022-trends/</guid>
-      <description>Java is evolving quickly, and with potential changes to the OpenJDK release cycle, it may accelerate even further. For people like Michael Rasmussen, JRebel development lead at Perforce, keeping up with these changes and understanding their impact on development; creating features that resonate with the Java development community, keeping applications up to date with the latest versions of popular Java technologies, and developing new features, improvements, and integrations for JRebel is critical.</description>
-    </item>
-    
-    <item>
-      <title>Analysis of connection pooling principles through HiKariCP</title>
-      <link>https://www.javai.net/post/202204/java-hikaricp/</link>
-      <pubDate>Mon, 11 Apr 2022 13:54:22 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-hikaricp/</guid>
-      <description>Design and Principle The base case HiKariCP as the default connection pool of SpringBoot2 framework, claimed to be the fastest running connection pool, database connection pool and the previous two mentioned thread pool and object pool, from the principle of design are based on the pooling idea, only in the implementation of their own characteristics; first or see the basic case of HiKariCP usage.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34  import com.</description>
-    </item>
-    
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
   </channel>
 </rss>

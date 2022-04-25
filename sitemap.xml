@@ -10,36 +10,19 @@
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-<<<<<<< HEAD
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/tags/java/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/tags/crypto-bug-of-the-year/</loc>
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/ecdsa/</loc>
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/tags/java18/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -49,27 +32,18 @@
   <url>
     <loc>https://www.javai.net/tags/java19/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/</loc>
-<<<<<<< HEAD
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/post/202204/java-jdk19-proposed/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -79,113 +53,55 @@
   <url>
     <loc>https://www.javai.net/tags/jdk18/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/categories/news/</loc>
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/tags/jdk19/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/tags/oracle/</loc>
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/categories/news/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/post/202204/java-oracle-crypto-bug/</loc>
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/post/</loc>
-<<<<<<< HEAD
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/signature/</loc>
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/</loc>
-<<<<<<< HEAD
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-=======
-    <lastmod>2022-04-22T10:43:15+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/tags/affinity/</loc>
     <lastmod>2022-04-24T14:49:37+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/tags/corretto/</loc>
-    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/tags/affinitylock/</loc>
     <lastmod>2022-04-24T14:49:37+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/tags/java-17/</loc>
-    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>https://www.javai.net/tags/cpu/</loc>
     <lastmod>2022-04-24T14:49:37+08:00</lastmod>
-=======
-    <loc>https://www.javai.net/tags/java8/</loc>
-    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/202204/java-not-stick-java8/</loc>
-    <lastmod>2022-04-22T10:26:59+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/202204/java-thread-pool/</loc>
-    <lastmod>2022-04-20T14:42:24+08:00</lastmod>
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

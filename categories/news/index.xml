@@ -6,7 +6,6 @@
     <description>Recent content in news on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-<<<<<<< HEAD
     <lastBuildDate>Mon, 25 Apr 2022 16:01:23 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JDK 19 / Java 19 has proposed two features</title>
@@ -26,9 +25,6 @@
       <description>Introduction In modern computer systems, there can be multiple CPUs, and each CPU can have multiple cores. In order to take full advantage of the capabilities of modern CPUs, JAVA introduced multithreading, where different threads can run on different CPUs or different CPU cores at the same time. However, for JAVA programmers it is possible to control how many threads are created, but which CPU the threads are running on is generally difficult to know.</description>
     </item>
     
-=======
-    <lastBuildDate>Fri, 22 Apr 2022 10:43:15 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
->>>>>>> bf5f041ba99973f126e6155c003cae74d6b01892
     <item>
       <title>Oracle fixes Java annual encryption vulnerability affecting Java 15 and above</title>
       <link>https://www.javai.net/post/202204/java-oracle-crypto-bug/</link>
