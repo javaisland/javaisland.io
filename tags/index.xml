@@ -6,13 +6,49 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 25 Apr 2022 16:01:23 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Apr 2022 13:44:51 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>crypto</title>
+      <link>https://www.javai.net/tags/crypto/</link>
+      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CVE-2022-21449</title>
+      <link>https://www.javai.net/tags/cve-2022-21449/</link>
+      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/cve-2022-21449/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ecdsa </title>
+      <link>https://www.javai.net/tags/ecdsa/</link>
+      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/ecdsa/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
+      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>signature</title>
+      <link>https://www.javai.net/tags/signature/</link>
+      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/signature/</guid>
       <description></description>
     </item>
     
@@ -98,29 +134,11 @@
     </item>
     
     <item>
-      <title>ecdsa</title>
-      <link>https://www.javai.net/tags/ecdsa/</link>
-      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/ecdsa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>oracle</title>
       <link>https://www.javai.net/tags/oracle/</link>
       <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/oracle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>signature</title>
-      <link>https://www.javai.net/tags/signature/</link>
-      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/signature/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Wed, 20 Apr 2022 14:33:27 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/daemon-thread/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>user thread</title>
-      <link>https://www.javai.net/tags/user-thread/</link>
-      <pubDate>Wed, 20 Apr 2022 14:33:27 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/user-thread/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java11</title>
-      <link>https://www.javai.net/tags/java11/</link>
-      <pubDate>Tue, 19 Apr 2022 20:21:04 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java11/</guid>
       <description></description>
     </item>
     
