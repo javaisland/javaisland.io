@@ -6,7 +6,61 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 Apr 2022 13:44:51 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Apr 2022 15:25:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>enum</title>
+      <link>https://www.javai.net/tags/enum/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/enum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>enumMap</title>
+      <link>https://www.javai.net/tags/enummap/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/enummap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>enumSet</title>
+      <link>https://www.javai.net/tags/enumset/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/enumset/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://www.javai.net/tags/java/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>map</title>
+      <link>https://www.javai.net/tags/map/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/map/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>set</title>
+      <link>https://www.javai.net/tags/set/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/set/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>crypto</title>
       <link>https://www.javai.net/tags/crypto/</link>
@@ -31,15 +85,6 @@
       <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/ecdsa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java/</guid>
       <description></description>
     </item>
     
@@ -139,51 +184,6 @@
       <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/oracle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>corretto</title>
-      <link>https://www.javai.net/tags/corretto/</link>
-      <pubDate>Fri, 22 Apr 2022 10:26:59 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/corretto/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java 17</title>
-      <link>https://www.javai.net/tags/java-17/</link>
-      <pubDate>Fri, 22 Apr 2022 10:26:59 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java-17/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java8</title>
-      <link>https://www.javai.net/tags/java8/</link>
-      <pubDate>Fri, 22 Apr 2022 10:26:59 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>threadpool</title>
-      <link>https://www.javai.net/tags/threadpool/</link>
-      <pubDate>Wed, 20 Apr 2022 14:42:24 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/threadpool/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>daemon thread</title>
-      <link>https://www.javai.net/tags/daemon-thread/</link>
-      <pubDate>Wed, 20 Apr 2022 14:33:27 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/daemon-thread/</guid>
       <description></description>
     </item>
     

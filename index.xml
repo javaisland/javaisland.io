@@ -6,7 +6,7 @@
     <description>Recent content on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 Apr 2022 13:44:51 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Apr 2022 15:25:32 +0800</lastBuildDate>
     
         <atom:link href="https://www.javai.net/index.xml" rel="self" type="application/rss+xml" />
     
@@ -31,6 +31,207 @@
 &lt;li&gt;&lt;a href=&#34;https://redis.io&#34;&gt;https://redis.io&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.nginx.com&#34;&gt;https://www.nginx.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>High-performance collections EnumMap and EnumSet</title>
+      <link>https://www.javai.net/post/202204/java-enum-collection/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-enum-collection/</guid>
+      
+        <description>&lt;p&gt;This article introduces &lt;code&gt;EnumMap&lt;/code&gt; and &lt;code&gt;EnumSet&lt;/code&gt;, which is a collection class under the &lt;code&gt;java.util&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Map&lt;/code&gt; and &lt;code&gt;Set&lt;/code&gt; structures are especially used in our daily work, and often used to store data or pass parameters, but there is no way to control the data setting of &lt;code&gt;Map&lt;/code&gt;, we have no idea what kind of data others will &lt;code&gt;put&lt;/code&gt; into it, or if the type and number of data &lt;code&gt;Key&lt;/code&gt; of our &lt;code&gt;Map&lt;/code&gt; is fixed in some scenarios, then in this case How can we improve the security and performance of the system?&lt;/p&gt;
+&lt;p&gt;This time we can consider using &lt;code&gt;EnumMap&lt;/code&gt;, &lt;code&gt;EnumMap&lt;/code&gt; is a &lt;code&gt;Map&lt;/code&gt;, and secondly its &lt;code&gt;key&lt;/code&gt; can only be an enumeration, we all know that the number of instances in the enumeration is fixed, and still pre-compiled, so to a large extent to ensure the security of the data, but also to improve the performance of certain.&lt;/p&gt;
+&lt;h3 id=&#34;enummap&#34;&gt;EnumMap&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s look at how to use &lt;code&gt;EnumMap&lt;/code&gt;, first we need to create an enumeration &lt;code&gt;Color&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;com.javaisland.demo.enums&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;enum&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;BLUE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;color is blue&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;RED&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;color is red&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;desc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;desc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;color&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;desc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;desc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;After creating a test class&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;com.javaisland.demo.enums&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;java.util.EnumMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;ColorTest&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;EnumMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;enumMap&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;EnumMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;enumMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;put&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;RED&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;enumMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;put&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;BLUE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enumMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;BLUE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;We can see that we need to pass in an enum class when constructing &lt;code&gt;EnumMap&lt;/code&gt;, and the subsequent &lt;code&gt;put&lt;/code&gt; and &lt;code&gt;get&lt;/code&gt; are the same as &lt;code&gt;Map&lt;/code&gt;, except that this time the &lt;code&gt;key&lt;/code&gt; must be the enum instance when &lt;code&gt;put&lt;/code&gt; is used. Next, let&amp;rsquo;s look at how the &lt;code&gt;put&lt;/code&gt; and &lt;code&gt;get&lt;/code&gt; methods of &lt;code&gt;EnumMap&lt;/code&gt; are implemented, and looking at the &lt;code&gt;JDK&lt;/code&gt; source code we can see that&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;put&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;K&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;typeCheck&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ordinal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;oldValue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;vals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maskNull&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;oldValue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;unmaskNull&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;oldValue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;When &lt;code&gt;put&lt;/code&gt; is done, type checking is done first and if the passed in enum is not an enum or not the enum specified during construction, an exception will be thrown here. When the type check is passed, the index of the enumeration instance is obtained by the &lt;code&gt;ordinal()&lt;/code&gt; method of the enumeration, which returns an &lt;code&gt;int&lt;/code&gt; value, and the returned value is related to the order of the enumeration when it is written. RED.ordinal()&lt;code&gt;will return 1. Once the index is obtained, the&lt;/code&gt;value` value will be placed in the corresponding array position.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s easy to get the data, just get the index directly from &lt;code&gt;key&lt;/code&gt; and then remove the data from the array.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;isValidKey&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;unmaskNull&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Enum&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ordinal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()])&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can see that the efficiency of &lt;code&gt;put&lt;/code&gt; and &lt;code&gt;get&lt;/code&gt; of the whole &lt;code&gt;EnumMap&lt;/code&gt; is very high, both are directly directed to process based on index in a one-dimensional array. So you can try to use this approach to improve performance in similar scenarios in the future.&lt;/p&gt;
+&lt;h3 id=&#34;enumset&#34;&gt;EnumSet&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s take a look at &lt;code&gt;EnumSet&lt;/code&gt;, &lt;code&gt;EnumSet&lt;/code&gt; is a collection used to manipulate &lt;code&gt;Enum&lt;/code&gt;, an abstract class that has two inherited classes, &lt;code&gt;JumboEnumSet&lt;/code&gt; and &lt;code&gt;RegularEnumSet&lt;/code&gt;. To use it, you need to determine the enumeration type. An empty &lt;code&gt;EnumSet&lt;/code&gt; can be created and used later by the following way.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;EnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;enumSet&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;EnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;noneOf&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;enumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;BLUE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;enumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;RED&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;());&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The construction of &lt;code&gt;EnumSet&lt;/code&gt; is a bit more involved, we can create empty sets, and we can also create a complete set directly, there is no need to create an empty one and then do the &lt;code&gt;add&lt;/code&gt; operation, as follows&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;EnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;enumSet&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;EnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;allOf&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;());&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;In addition, as mentioned earlier, the &lt;code&gt;ordinal()&lt;/code&gt; method of enumeration is used, so when constructing an &lt;code&gt;EnumSet&lt;/code&gt; we can also construct only all the enumeration values between the specified two enumeration ranges, and note here that the enumeration of the second argument of the &lt;code&gt;range&lt;/code&gt; method cannot precede the first enumeration.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;EnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;BLUE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;RED&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can also use the &lt;code&gt;of&lt;/code&gt; method of &lt;code&gt;EnumSet&lt;/code&gt; to construct the specified enumeration set. We can find out from the source code that no matter what method is used to construct it, the bottom is to construct an empty set first and then add the corresponding enumeration elements. The logic for constructing an empty set is as follows. Here we can see that when the number of enumerations is greater than 64, the subclass &lt;code&gt;JumboEnumSet&lt;/code&gt; is used, otherwise it is the subclass &lt;code&gt;RegularEnumSet&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;E&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Enum&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;EnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;noneOf&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;elementType&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;Enum&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;universe&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;getUniverse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;elementType&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;universe&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ClassCastException&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;elementType&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34; not an enum&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;universe&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RegularEnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;elementType&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;universe&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JumboEnumSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;elementType&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;universe&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The other methods are the same as for a regular Set, and you can use the set in your work exactly as it is.&lt;/p&gt;
+&lt;h3 id=&#34;summary&#34;&gt;Summary&lt;/h3&gt;
+&lt;p&gt;Today we introduced you to two uncommon, but very useful &lt;code&gt;JDK&lt;/code&gt; set classes that can still improve performance in some scenarios.&lt;/p&gt;
 </description>
       
     </item>
@@ -4573,317 +4774,6 @@ It is impossible to start.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Java Virtual Threads Explained</title>
-      <link>https://www.javai.net/post/202204/java-virtual-threads-explained/</link>
-      <pubDate>Fri, 15 Apr 2022 20:59:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
-      
-        <description>&lt;p&gt;Many languages have technologies like &lt;code&gt;virtual threads&lt;/code&gt;, such as Go, C#, Erlang, Lua, etc, which they call &lt;code&gt;concurrent threads&lt;/code&gt;. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s &lt;code&gt;virtual threads&lt;/code&gt; technology, &lt;code&gt;JEP 425: Virtual Threads (Preview)&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications. The &lt;code&gt;JEP 425: Virtual Threads (Preview)&lt;/code&gt; project is a preview API.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Enable server applications written in a simple thread-per-request style to scale with near-optimal hardware utilization.&lt;/li&gt;
-&lt;li&gt;Enable existing code that uses the java.lang.Thread API to adopt virtual threads with minimal changes.&lt;/li&gt;
-&lt;li&gt;Easily troubleshoot, debug, and analyze virtual threads using existing JDK tools.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;non-targeting&#34;&gt;Non-targeting&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The goal is not to remove legacy implementations of threads or to silently migrate existing applications to use virtual threads.&lt;/li&gt;
-&lt;li&gt;Changing Java&amp;rsquo;s basic concurrency model is not the goal.&lt;/li&gt;
-&lt;li&gt;Providing new data parallelism structures in the Java language or Java libraries is not the goal. stream APIs are still the preferred way to parallelize large data sets.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
-&lt;p&gt;For nearly 30 years, Java developers have relied on threads as the building blocks of concurrent server applications. Every statement in every method is executed within a thread, and because Java is multi-threaded, multiple threads of execution occur simultaneously. A thread is Java&amp;rsquo;s concurrent unit: a piece of sequential code that runs concurrently with, and largely independent of, other such units. Each thread provides a stack to store local variables and coordinate method calls, as well as the context when something goes wrong: exceptions are thrown and caught by methods in the same thread, so developers can use a thread&amp;rsquo;s stack trace to find out what happened. Threads are also a core concept of the tool: the debugger steps through statements in threaded methods, and the analyzer visualizes the behavior of multiple threads to help understand their performance.&lt;/p&gt;
-&lt;h3 id=&#34;thread-per-request-style&#34;&gt;Thread per request style&lt;/h3&gt;
-&lt;p&gt;Server applications typically handle concurrent user requests independently of each other, so it makes sense for applications to process requests by dedicating threads to that request for the entire duration of the request. This thread-per-request style is easy to understand, easy to program, and easy to debug and analyze because it uses the concurrency units of the platform to represent the concurrency units of the application.&lt;/p&gt;
-&lt;p&gt;The scalability of server applications follows Little&amp;rsquo;s Law, which relates latency, concurrency, and throughput: for a given request processing duration (i.e., latency), the number of requests processed simultaneously by the application (i.e., concurrency) must grow proportionally to the arrival rate (i.e., throughput). For example, assume that an application with an average latency of 50ms achieves a throughput of 200 requests per second by processing 10 requests simultaneously. In order for the application to scale to a throughput of 2000 requests per second, it needs to process 100 requests simultaneously. If each request is processed in a thread for the duration of the request, then for the application to keep up, the number of threads must grow as the throughput grows.&lt;/p&gt;
-&lt;p&gt;Unfortunately, the number of available threads is limited because the JDK implements threads as wrappers for operating system (OS) threads. OS threads are costly, so we cannot have too many threads, which makes the implementation unsuitable for a threaded per-request style. If each request consumes one thread for its duration, and thus one OS thread, the number of threads typically becomes a limiting factor long before other resources, such as CPU or network connections, are exhausted.The JDK&amp;rsquo;s current threaded implementation limits application throughput to well below what the hardware can support. This can happen even with thread pooling, which helps avoid the high cost of starting new threads but does not increase the total number of threads.&lt;/p&gt;
-&lt;h3 id=&#34;using-asynchronous-styles-to-improve-scalability&#34;&gt;Using asynchronous styles to improve scalability&lt;/h3&gt;
-&lt;p&gt;Some developers who want to take full advantage of the hardware have abandoned the per-request thread style and moved to a thread-sharing style. Instead of processing a request on a thread from start to finish, request processing code returns its thread to the pool while waiting for the I/O operation to complete so that the thread can service other requests. This fine-grained thread sharing - in which the code reserves threads only while the thread performs a computation, not while waiting for I/O - allows for a large number of concurrent operations without consuming a large number of threads. While it removes the throughput limitations imposed by OS thread scarcity, it comes at a high cost: it requires what is called an asynchronous programming style, using a separate set of I/O methods that do not wait for I/O operations to complete but, instead, indicate their completion to a callback later. Without dedicated threads, developers must break their request processing logic into small phases, usually written as lambda expressions, and then use APIs to combine them into sequential pipelines (see the CompletableFuture, or so-called &amp;ldquo;reactive&amp;rdquo; framework. Thus, they abandon the language&amp;rsquo;s basic sequential composition operators, such as loops and try/catch blocks.&lt;/p&gt;
-&lt;p&gt;In the asynchronous style, each phase of the request may be executed on a different thread, each running the phases belonging to a different request in an interleaved fashion. This has profound implications for understanding program behavior: stack traces do not provide usable context, debuggers cannot step through request processing logic, and analyzers cannot correlate the cost of an operation with its caller. Writing lambda expressions is manageable when using Java Stream APIs process data in short pipelines, but it is problematic when all request processing code in an application must be written in this manner. This style of programming is inconsistent with the Java platform because the application&amp;rsquo;s unit of concurrency - the asynchronous pipeline - is no longer the platform&amp;rsquo;s unit of concurrency.&lt;/p&gt;
-&lt;h3 id=&#34;use-virtual-threads-to-preserve-thread-per-request-style&#34;&gt;Use virtual threads to preserve thread per-request style&lt;/h3&gt;
-&lt;p&gt;To enable applications to scale while remaining in harmony with the platform, we should strive to preserve per-request thread styles by implementing threads more efficiently so they can be richer. Operating systems cannot implement OS threads more efficiently because different languages and runtimes use the thread stack in different ways. However, the Java runtime can implement Java threads in a way that separates the one-to-one correspondence between Java threads and OS threads. Just as the operating system gives the illusion of abundant memory by mapping a large amount of virtual address space to a limited amount of physical RAM, so the Java runtime can give the illusion of abundant threads by mapping a large number of virtual threads to a small number of operating system threads.&lt;/p&gt;
-&lt;p&gt;A virtual thread is an instance of java.lang.Thread that is not bound to a specific operating system thread. In contrast, a platform thread is an instance of java.lang.Thread, implemented in the traditional way as a streamlined wrapper around the operating system thread.&lt;/p&gt;
-&lt;p&gt;Application code in the thread-per-request style can run for the entire request duration in a virtual thread, but the virtual thread only consumes the OS thread while the computation is performed on the CPU. The result is the same scalability as the asynchronous style, except that it is transparent: when code running in the virtual thread calls the &lt;code&gt;java.*&lt;/code&gt; API for blocking I/O operations in java, the runtime executes a non-blocking OS call and automatically hangs the virtual thread until it can be resumed later. For Java developers, virtual threads are simply cheap to create and almost infinitely rich in threads. Hardware utilization is near optimal, allowing high levels of concurrency and thus high throughput, while the application remains in harmony with the multi-threaded design of the Java platform and its tools.&lt;/p&gt;
-&lt;h3 id=&#34;the-meaning-of-virtual-threads&#34;&gt;The meaning of virtual threads&lt;/h3&gt;
-&lt;p&gt;Virtual threads are both cheap and abundant and therefore should never be pooled: a new virtual thread should be created for each application task. As a result, most virtual threads are ephemeral and have shallow call stacks, executing for as little as a single HTTP client call or a single JDBC query. In contrast, platform threads are heavyweight and expensive, and therefore usually must be pooled. They tend to be long-lived, have deep call stacks, and are shared across many tasks.&lt;/p&gt;
-&lt;p&gt;In summary, virtual threads retain a reliable per-request thread style that is harmonious with the design of the Java platform while optimally utilizing the hardware. Using virtual threading does not require learning new concepts, although it may require getting into the habit of not learning to cope with the high cost of threading today. Virtual threading will help not only application developers, but also framework designers with easy-to-use APIs that are compatible with the platform&amp;rsquo;s design without compromising scalability.&lt;/p&gt;
-&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
-&lt;p&gt;Today, per example java.lang.Thread in the JDK, is a platform thread. A platform thread runs Java code on the underlying operating system thread and captures the operating system thread for the entire life of the code. The number of platform threads is limited to the number of operating system threads.&lt;/p&gt;
-&lt;p&gt;A virtual thread is an instance of java.lang.Thread that runs Java code on the underlying operating system thread, but does not capture operating system threads for the entire life cycle of the code. This means that many virtual threads can run their Java code on the same OS thread, effectively sharing it. While platform threads have a monopoly on valuable OS threads, virtual threads do not. The number of virtual threads can be much larger than the number of operating system threads.&lt;/p&gt;
-&lt;p&gt;Virtual threads are lightweight implementations of threads provided by the JDK rather than the operating system. They are a form of user-mode threads that have been successful in other multi-threaded languages (e.g., goroutines in Go and processes in Erlang). User state threads were even called &amp;ldquo;green threads&amp;rdquo; in early versions of Java, when OS threads were not yet mature and widespread. However, Java&amp;rsquo;s green threads all share a single OS thread (M:1 scheduling), and platform threads are implemented as wrappers for OS threads (1:1 scheduling). Virtual threads use M:N scheduling, where a large number (M) of virtual threads are scheduled to run on a smaller number (N) of OS threads.&lt;/p&gt;
-&lt;h3 id=&#34;using-virtual-threads-vs-platform-threads&#34;&gt;Using virtual threads vs. platform threads&lt;/h3&gt;
-&lt;p&gt;Developers can choose whether to use virtual threads or platform threads. Here is an example program that creates a large number of virtual threads. The program first gets an ExecutorService which will create a new virtual thread for each task submitted. It then submits 10,000 tasks and waits for all of them to complete.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Executors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;newVirtualThreadPerTaskExecutor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;IntStream&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;10_000&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;forEach&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sleep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Duration&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ofSeconds&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;});&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;});&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// executor.close() is called implicitly, and waits
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The task in this example is simple code - sleep for a second - and modern hardware can easily support 10,000 virtual threads running such code simultaneously. Behind the scenes, the JDK runs the code on a small number of OS threads, perhaps just one.&lt;/p&gt;
-&lt;p&gt;If this program uses an ExecutorService that creates a new platform thread for each task, such as Executor.newCachedThreadPool(), the situation is very different. the ExecutorService will try to create 10,000 platform threads, thus creating 10,000 OS threads, and the program will crash on most operating systems.&lt;/p&gt;
-&lt;p&gt;Conversely, the situation is not much better if the program uses an ExecutorService that gets its platform threads from a pool, such as Executor.newFixedThreadPool(200). 200 platform threads will be created by the ExecutorService to be shared by all 10,000 tasks, so many tasks will run sequentially instead of concurrently, and the program will need to run sequentially. Instead of running concurrently, the program will take a long time to complete. For this program, a pool with 200 platform threads would only achieve a throughput of 200 tasks per second, while the virtual threads would have a throughput of about 10,000 tasks per second (after a full warm-up). In addition, if &lt;code&gt;10_000&lt;/code&gt; in the sample program is changed to &lt;code&gt;1_000_000&lt;/code&gt;, the program will submit 1,000,000 tasks, create 1,000,000 simultaneous virtual threads, and achieve (after full warm-up) a throughput of about 1,000,000 tasks per second.&lt;/p&gt;
-&lt;p&gt;If the tasks in this program perform a second of computation (e.g., sorting a huge array) and not just sleep, then increasing the number of threads beyond the number of processor cores will not help, regardless of whether they are virtual or platform threads. Virtual threads are not faster threads-they do not run code faster than platform threads. They exist to provide scale (higher throughput), not speed (lower latency). They may be much more numerous than platform threads, so by Little&amp;rsquo;s law they achieve the higher concurrency required for higher throughput.&lt;/p&gt;
-&lt;p&gt;Put another way, virtual threads can significantly increase application throughput when&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the number of concurrent tasks is high (more than a few thousand), and&lt;/li&gt;
-&lt;li&gt;workloads are not CPU-bound, because in this case, a much larger number of threads than processor cores cannot improve throughput.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Virtual threads help improve the throughput of typical server applications precisely because such applications consist of a large number of concurrent tasks that spend a lot of time waiting.&lt;/p&gt;
-&lt;p&gt;Virtual threads can run any code that platform threads can run. In particular, virtual threads support thread-local variables and thread interrupts, just like platform threads. This means that existing Java code that handles requests will easily run in a virtual thread. Many server frameworks will choose to do this automatically, starting a new virtual thread for each incoming request and running the application&amp;rsquo;s business logic in it.&lt;/p&gt;
-&lt;p&gt;The following is an example of a server application that aggregates the results of two other services. The hypothetical server framework (not shown) creates a new virtual thread for each request and runs the application&amp;rsquo;s handle code in that virtual thread. The application code in turn creates two new virtual threads that obtain resources concurrently through the same ExecutorService as in the first example.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;handle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Request&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Response&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Executors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;newVirtualThreadPerTaskExecutor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;future1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fetchURL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;future2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fetchURL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;future1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;future2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;());&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ExecutionException&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;InterruptedException&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;fail&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;fetchURL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;URL&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;throws&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;IOException&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;openStream&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;readAllBytes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;StandardCharsets&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;UTF_8&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;A server application like this, with simple blocking code, can scale well because it can use a large number of virtual threads. Executor.newVirtualThreadPerTaskExecutor() is not the only way to create virtual threads. The new java.lang.Thread.BuilderAPI, discussed below, can create and start virtual threads. In addition, structured concurrency provides a more powerful API for creating and managing virtual threads, especially in code like this server example, through which the relationships between threads will be known to the platform and its tools.&lt;/p&gt;
-&lt;h3 id=&#34;virtual-threads-is-a-preview-api-disabled-by-default&#34;&gt;Virtual Threads is a preview API, disabled by default&lt;/h3&gt;
-&lt;p&gt;The above programs use Executors.newVirtualThreadPerTaskExecutor() method, so to run them on JDK XX, the preview API must be enabled as follows.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Compile the program using &lt;code&gt;javac --release XX --enable-preview Main.java&lt;/code&gt; and run it using &lt;code&gt;java --enable-preview Main&lt;/code&gt;; or&lt;/li&gt;
-&lt;li&gt;When using the source launcher, run the program with &lt;code&gt;java --release XX --enable-preview Main.java;&lt;/code&gt;; or&lt;/li&gt;
-&lt;li&gt;When using jshell, start with &lt;code&gt;jshell --enable-preview&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;not-pooling-virtual-threads&#34;&gt;Not pooling virtual threads&lt;/h3&gt;
-&lt;p&gt;Developers often migrate application code from a traditional thread pool-based ExecutorService to a virtual thread per-task ExecutorService. thread pools, like all resource pools, are designed to share expensive resources, but virtual threads are not expensive, and there is never a need to pool them.&lt;/p&gt;
-&lt;p&gt;Developers sometimes use thread pooling to limit concurrent access to limited resources. For example, if a service cannot handle more than 20 concurrent requests, performing all accesses to that service through tasks submitted to a pool of size 20 will ensure this. This idiom has become ubiquitous due to the high cost of platform threads that make thread pools ubiquitous, but developers should not be tempted to pool virtual threads to limit concurrency. Constructs designed specifically for this purpose, such as semaphores, should be used to protect access to limited resources. This is more efficient and convenient than thread pooling, and safer too, since thread-local data is not at risk of accidental leakage from one task to another.&lt;/p&gt;
-&lt;h3 id=&#34;observing-virtual-threads&#34;&gt;Observing virtual threads&lt;/h3&gt;
-&lt;p&gt;Writing clear code is not the complete story. A clear representation of the state of a running program is also essential for troubleshooting, maintenance, and optimization, and the JDK has long provided mechanisms for debugging, analyzing, and monitoring threads. These tools should perform the same operations on virtual threads-perhaps with some reconciliation of their extensive operations-because they are, after all, instances of java.lang.&lt;/p&gt;
-&lt;p&gt;The Java debugger can step through virtual threads, display call stacks, and examine variables in stack frames.JDK Flight Recorder (JFR) is the JDK&amp;rsquo;s low-overhead analysis and monitoring mechanism that associates events in application code, such as object allocations and I/O operations, with the correct virtual threads. These tools cannot perform these operations for applications written in an asynchronous style. In this style, the task is thread-independent, so the debugger cannot display or manipulate the state of the task, and the parser cannot determine how long the task is waiting for I/O.&lt;/p&gt;
-&lt;p&gt;Thread dumps are another popular tool for troubleshooting applications written in a thread-per-request style. Unfortunately, the JDK&amp;rsquo;s legacy thread dumps, obtained using jstack or jcmd, provide a flat list of threads. This is suitable for tens or hundreds of platform threads, but not for thousands or millions of virtual threads. Therefore, instead of extending the traditional thread dump to include virtual threads, we will introduce a new thread dump in jcmd to present virtual threads along with platform threads, all of which are grouped in a meaningful way. When used by programs, a richer &lt;a href=&#34;https://openjdk.java.net/jeps/8277129&#34;&gt;relational structured concurrency&lt;/a&gt; between threads can be displayed.&lt;/p&gt;
-&lt;p&gt;Since visualizing and analyzing a large number of threads can benefit from the tool, jcmd can issue new thread dumps in JSON format in addition to plain text as follows.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jcmd &amp;lt;pid&amp;gt; Thread.dump_to_file -format&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;json &amp;lt;file&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The new thread dump format lists virtual threads that are blocked in network I/O operations, as well as virtual threads created by the new-thread-per-task (one-task-one-thread) ExecutorService shown above. It does not include object addresses, locks, JNI statistics, heap statistics, and other information that appears in traditional thread dumps. In addition, because it may need to list a large number of threads, generating a new thread dump does not suspend the application. The following is an example of such a thread dump, taken from an application similar to the second example above, presented in the JSON viewer (see below).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/04/13/6fcf1f15abef48f8945c16033c4cbb37.png&#34; alt=&#34;Thread.dump&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Since virtual threads are implemented in the JDK and are not bound to any specific OS thread, they are invisible to the OS, which is unaware of their existence. OS-level monitoring will observe that JDK processes use fewer OS threads than virtual threads.&lt;/p&gt;
-&lt;h3 id=&#34;scheduling-virtual-threads&#34;&gt;Scheduling virtual threads&lt;/h3&gt;
-&lt;p&gt;To do useful work, threads need to be scheduled, i.e., assigned to execute on the processor core. For platform threads, which are implemented as operating system threads, the JDK relies on the scheduler in the operating system. In contrast, for virtual threads, the JDK has its own scheduler. the JDK&amp;rsquo;s scheduler assigns virtual threads to platform threads instead of assigning virtual threads directly to processors (this is the M:N scheduling of virtual threads mentioned earlier). The operating system will then schedule the platform threads as usual.&lt;/p&gt;
-&lt;p&gt;The JDK&amp;rsquo;s virtual thread scheduler is a steal job tool ForkJoinPool works in FIFO mode. The parallelism of the scheduler is the number of platform threads available for scheduling virtual threads. By default, it is equal to the available processors, but it can be adjusted using the system property jdk.virtualThreadScheduler.parallelism. Note that this ForkJoinPool is different from the public pool, for example, it is used for parallel stream implementations and works in LIFO mode.&lt;/p&gt;
-&lt;p&gt;The platform thread on which the scheduler allocates virtual threads is called a carrier of virtual threads. Virtual threads can be scheduled on different carriers during their lifetime; in other words, the scheduler does not maintain an affinity between virtual threads and any particular platform thread. However, from the perspective of Java code, a running virtual thread is logically independent of its current carrier: the&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The virtual thread cannot use the identity of the carrier. the value returned by Thread.currentThread() is always the virtual thread itself.&lt;/li&gt;
-&lt;li&gt;The carrier and the stack trace of the virtual thread are separate. Exceptions thrown in the virtual thread will not include the carrier&amp;rsquo;s stack frame. Thread dumps will not display the carrier&amp;rsquo;s stack frame on the virtual thread&amp;rsquo;s stack, and vice versa.&lt;/li&gt;
-&lt;li&gt;Thread-local variables of carriers are not available to the virtual thread, and vice versa.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Furthermore, from the perspective of Java code, the fact that the virtual thread and its carrier temporarily share the operating system thread is invisible. In contrast, from the perspective of native code, both the virtual thread and its carrier run on the same native thread. Therefore, native code that is called multiple times on the same virtual thread may observe a different OS thread identifier on each call.&lt;/p&gt;
-&lt;p&gt;Schedulers do not currently implement time-sharing for virtual threads. Time-sharing is a forced preemption of threads that take up an allocated amount of CPU time. While time-sharing can be effective using a few hundred platform threads, it is unclear whether time-sharing would be as effective using a million virtual threads.&lt;/p&gt;
-&lt;h3 id=&#34;executing-virtual-threads&#34;&gt;Executing virtual threads&lt;/h3&gt;
-&lt;p&gt;To take advantage of virtual threads, there is no need to rewrite the program. Virtual threads do not require or expect the application code to explicitly hand control back to the scheduler; in other words, virtual threads are not cooperative. User code must not assume how or when virtual threads are assigned to platform threads, just as it assumes how or when platform threads are assigned to processor cores.&lt;/p&gt;
-&lt;p&gt;To run code in a virtual thread, the JDK&amp;rsquo;s virtual thread scheduler assigns virtual threads to execute on platform threads by mounting them on platform threads. This makes the platform thread a vehicle for the virtual thread. Later, after running some code, the virtual thread can be unmounted from its carrier. At this point, the platform thread is idle, so the scheduler can load a different virtual thread on it, thus making it a carrier again.&lt;/p&gt;
-&lt;p&gt;Typically, virtual threads are unloaded when they block I/O or other blocking operations in the JDK, such as BlockingQueue.take(). When the blocking operation is ready to complete (e.g., bytes have been received on a socket), it commits the virtual thread back to the scheduler, which will load the virtual thread on the carrier to resume execution.&lt;/p&gt;
-&lt;p&gt;The loading and unloading of virtual threads occurs frequently and transparently, and does not block any OS threads. For example, the server application shown earlier includes the following lines of code that contain calls to the blocking operation.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;future1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;future2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;());&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;These operations will cause the virtual thread to load and unload multiple times, usually once per call to get() and possibly multiple times during the execution of I/O in send(&amp;hellip;).&lt;/p&gt;
-&lt;p&gt;The vast majority of blocking operations in the JDK will unload the virtual thread, freeing its carrier and the underlying OS thread to take on new work. However, some blocking operations in the JDK do not offload virtual threads, and therefore block their carriers and the underlying OS threads. This is due to the operating system level (e.g., many file system operations) or the JDK level (e.g., Object.wait()). The implementation of these blocking operations will compensate for the capture of OS threads by temporarily extending the parallelism of the scheduler. As a result, the number of platform threads in the scheduler&amp;rsquo;s ForkJoinPool may temporarily exceed the number of available processors. The maximum number of platform threads available to the scheduler can be adjusted using the system property jdk.virtualThreadScheduler.maxPoolSize.&lt;/p&gt;
-&lt;p&gt;A virtual thread cannot be unloaded during a blocking operation because it is fixed to its carrier in two cases.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;when it executes code in a synchronous block or method, or&lt;/li&gt;
-&lt;li&gt;when it executes a native method or a foreign function.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Fixation does not make the application incorrect, but it may hinder its scalability. If a virtual thread performs a blocking operation, such as I/O or BlockingQueue.take(), while being fixed, its carrier and the underlying OS thread will be blocked for the duration of the operation. Frequent fixes over long periods of time may harm the scalability of the application by capturing operators.&lt;/p&gt;
-&lt;p&gt;Schedulers do not compensate for fixes by extending their parallelism. Instead, frequent and long term fixes are avoided by modifying frequently run synchronization blocks or methods and protecting potentially long I/O operations to be used java.util.concurrent.locks.ReentrantLock Instead, there is no need to replace infrequently used synchronization blocks and methods (e.g., executed only at startup) or to protect memory operations. As always, efforts are made to keep locking strategies simple and straightforward.&lt;/p&gt;
-&lt;p&gt;The new diagnostics help to migrate code to virtual threads and to assess whether a specific use of synchronization should be replaced with java.util.concurrentLock.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;JDK Flight Recorder (JFR) events will be raised when a thread blocks while being fixed.&lt;/li&gt;
-&lt;li&gt;The system property &lt;code&gt;jdk.tracePinnedThreads&lt;/code&gt; triggers a stack trace when a thread is blocked at a fixed time. Use &lt;code&gt;-Djdk.tracePinnedThreads=full&lt;/code&gt; to print a full stack trace when the thread is blocked at fixed time, with native frames and frames holding monitors highlighted. Use &lt;code&gt;-Djdk.tracePinnedThreads=short&lt;/code&gt; to limit the output to only problematic frames.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We may be able to remove the first restriction above in a future release. The second restriction is necessary for proper interaction with native code.&lt;/p&gt;
-&lt;h3 id=&#34;memory-usage-and-interaction-with-garbage-collection&#34;&gt;Memory usage and interaction with garbage collection&lt;/h3&gt;
-&lt;p&gt;The virtual thread&amp;rsquo;s stack is stored in Java&amp;rsquo;s garbage collection heap as a stack block object. The stack grows and shrinks as the application runs, both for memory efficiency and to accommodate stacks of arbitrary depth (up to the JVM-configured platform thread stack size). This efficiency allows for a large number of virtual threads, which in turn allows for the continuous per-request style survivability of threads in server applications.&lt;/p&gt;
-&lt;p&gt;In the second example above, keep in mind that the framework is assumed to process each request by creating a new virtual thread and calling the handle method; even if it calls the handle at the end of the deep call stack (after authentication, transactions, etc.), the handle itself generates multiple virtual threads that perform only short-term tasks. Thus, for each virtual thread with a deep call stack, there will be multiple virtual threads with shallow call stacks consuming very little memory.&lt;/p&gt;
-&lt;p&gt;In general, the amount of heap space and garbage collector activity required by virtual threads is difficult to compare with asynchronous code. Application code that handles requests must typically maintain data across I/O operations; threaded per-request code can keep data in local variables, which are stored on a virtual thread stack in the heap. Asynchronous code, on the other hand, must retain the same data in heap objects that are passed from one stage of the pipeline to the next. On the one hand, the layout of stack frames required by virtual threads is more wasteful than compact objects; on the other hand, virtual threads can mutate and reuse their stacks in many cases (depending on low-level GC interactions), while asynchronous pipelines always require the allocation of new objects. Overall, heap consumption and garbage collector activity should be roughly similar for threads per request and asynchronous code. Over time, we want to make the internal representation of the virtual thread stack more compact.&lt;/p&gt;
-&lt;p&gt;Unlike the platform thread stack, the virtual thread stack is not the GC root, so the references contained in it are not traversed by the garbage collector performing concurrent scans in a stop-world pause. This also means that if a virtual thread is blocked on, say, BlockingQueue.take(), and no other thread can get a reference to the virtual thread or queue, then that thread can be garbage collected-which is good because the virtual thread is never interrupted or unblocked. Of course, if the virtual thread is running, or if it is blocked and may be unblocked, it will not be garbage collected.&lt;/p&gt;
-&lt;p&gt;The current limitation of virtual threads is that G1 GC does not support huge stack block objects. A StackOverflowError may be raised if the virtual thread&amp;rsquo;s stack reaches half the size of the region (typically 512KB).&lt;/p&gt;
-&lt;h3 id=&#34;detailed-changes&#34;&gt;Detailed changes&lt;/h3&gt;
-&lt;p&gt;The remaining subsections detail the changes proposed in the Java platform and its implementation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;java.lang.Thread&lt;/li&gt;
-&lt;li&gt;Thread-local variables&lt;/li&gt;
-&lt;li&gt;java.util.concurrent&lt;/li&gt;
-&lt;li&gt;Networking&lt;/li&gt;
-&lt;li&gt;java.io&lt;/li&gt;
-&lt;li&gt;Java Native Interface (JNI)&lt;/li&gt;
-&lt;li&gt;Debugging (JVM TI, JDWP, and JDI)&lt;/li&gt;
-&lt;li&gt;JDK Flight Recorder (JFR)&lt;/li&gt;
-&lt;li&gt;Java Management Extensions (JMX)&lt;/li&gt;
-&lt;li&gt;java.lang.ThreadGroup&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;javalangthread&#34;&gt;java.lang.Thread&lt;/h3&gt;
-&lt;p&gt;Update the java.lang.Thread API as follows.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Thread.Builder, Thread.ofVirtual() and Thread.ofPlatform() are new APIs for creating virtual and platform threads. for example, &lt;code&gt;Thread thread = Thread.ofVirtual().name(&amp;quot;duke&amp;quot;). unstarted(runnable);&lt;/code&gt; Creates a new unstarted virtual thread named &amp;ldquo;duke&amp;rdquo;.&lt;/li&gt;
-&lt;li&gt;``Thread.startVirtualThread(Runnable)` is a convenient method for creating and starting virtual threads.&lt;/li&gt;
-&lt;li&gt;Thread.Builder can create a single thread, or a ThreadFactory, which can then create multiple threads with the same properties.&lt;/li&gt;
-&lt;li&gt;Thread.isVirtual() tests if a thread is virtual.&lt;/li&gt;
-&lt;li&gt;Thread.join and Thread.sleep accept wait and sleep times as java.time.&lt;/li&gt;
-&lt;li&gt;The new final method Thread.threadId() returns the thread&amp;rsquo;s identifier. The existing non-final method Thread.getId() is now deprecated.&lt;/li&gt;
-&lt;li&gt;Thread.getAllStackTraces() now returns a mapping of all platform threads instead of all threads.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The java.lang.Thread API remains otherwise unchanged. The constructor for the thread class definition creates platform threads, as before. There is no new public constructor.&lt;/p&gt;
-&lt;p&gt;The main API differences between virtual threads and platform threads are.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The public thread constructor cannot create virtual threads.&lt;/li&gt;
-&lt;li&gt;A virtual thread is always a daemon thread. The Thread.setDaemon(boolean) method cannot change a virtual thread to a non-daemon thread.&lt;/li&gt;
-&lt;li&gt;Virtual threads have a fixed priority of Thread.NORM_PRIORITY. The Thread.setPriority(int) method has no effect on virtual threads. This restriction may be revisited in a future release.&lt;/li&gt;
-&lt;li&gt;A virtual thread is not an active member of a thread group. The Thread.getThreadGroup() returns a placeholder thread group named &amp;ldquo;VirtualThreads&amp;rdquo; when called on a virtual thread.&lt;/li&gt;
-&lt;li&gt;Virtual threads do not have permissions when run with the SecurityManager set.&lt;/li&gt;
-&lt;li&gt;The stop(), suspend(), and resume() methods are not supported for virtual threads. These methods raise an exception when called on a virtual thread.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;thread-local-variables&#34;&gt;Thread Local Variables&lt;/h3&gt;
-&lt;p&gt;Virtual threads support ThreadLocal and InheritableThreadLocal variables, just like platform threads, so they can run existing code that uses thread-local programs. However, since virtual threads can be very numerous, please use thread locals after careful consideration. In particular, do not use thread locals to pool expensive resources between multiple tasks that share the same thread in a thread pool. Virtual threads should not be pooled, as each thread runs only one task during its lifetime. We have removed much of the use of thread local from the java.base module to prepare virtual threads to reduce memory usage when running with millions of threads.&lt;/p&gt;
-&lt;p&gt;In addition.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The Thread.Builder API defines methods to opt out of thread local when creating threads. It also defines methods for opting out of inheriting thread-local initial values that can be inherited. ThreadLocal.get() returns the initial value and ThreadLocalSet(T) throws an exception when called from a thread that never supports thread locals.&lt;/li&gt;
-&lt;li&gt;The legacy context class loader is now specified to work like a local inheritable thread. If Thread.setContextClassLoader(ClassLoader) is called on a thread that does not support thread locality, then an exception is thrown.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://openjdk.java.net/jeps/8263012&#34;&gt;scope-local variables&lt;/a&gt; may prove to be a better alternative to thread-local for some use cases.&lt;/p&gt;
-&lt;h3 id=&#34;javautilconcurrent&#34;&gt;java.util.concurrent&lt;/h3&gt;
-&lt;p&gt;LockSupport, now supports virtual threads: the resident virtual thread releases the base carrier thread to perform other work, and the unresident virtual thread plans for it to continue. This change to LockSupport allows all APIs that use it (locks, semaphores, blocking queues, etc.) to be gracefully parked when called in a virtual thread.&lt;/p&gt;
-&lt;p&gt;In addition.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Executors.newThreadPerTaskExecutor(ThreadFactory) and Executors.newVirtualThreadPerTaskExecutor() create an ExecutorService that creates a new thread for each task. These methods support migration and interoperability with existing code that uses thread pools and ExecutorService.&lt;/li&gt;
-&lt;li&gt;ExecutorService is now extended to be automatically closed, thus allowing this API to be used with the try-with-resource construct shown in the example above.&lt;/li&gt;
-&lt;li&gt;Future now defines methods to get the result or exception of a completed task and to get the status of the task. Combined, these additions make it easy to use the Future object as an element of a stream, filter the Future stream to find completed tasks, and then map to get the result stream. These methods will also help for structured concurrency.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;networking&#34;&gt;Networking&lt;/h3&gt;
-&lt;p&gt;The implementation of the networking API in the java.net and java.nio.channels packages now works with virtual threads: an operation on the virtual thread that prevents the establishment of a network connection or reading from a socket, releasing the underlying carrier thread to perform other work.&lt;/p&gt;
-&lt;p&gt;To allow interrupts and cancellations, blocking I/O methods defined as java.net.Socket, ServerSocket and DatagramSocket are now specified as interruptible when called in a virtual thread: a virtual thread blocking on an interrupted socket will unlock the thread and close the socket. Blocking I/O operations on these types of sockets when fetching from an InterruptibleChannel is always interruptible, so this change aligns the behavior of these APIs at creation time with the behavior when fetching from a channel.&lt;/p&gt;
-&lt;h3 id=&#34;javaio&#34;&gt;java.io&lt;/h3&gt;
-&lt;p&gt;The java.io package provides APIs for byte streams and character streams. the implementation of these APIs is highly synchronous and changes are needed to avoid fixing them when they are used in virtual threads.&lt;/p&gt;
-&lt;p&gt;As background, byte-oriented input/output streams are not specified as thread-safe, nor is the expected behavior when close() is called when a thread is blocked in a read or write method. In most cases, it does not make sense to use a specific input or output stream from multiple concurrent threads. Character-oriented readers/writers are also not specified as thread-safe, but they do expose lock objects for subclasses. In addition to being fixed, synchronization in these classes is problematic and inconsistent; for example, the stream decoders and encoders used by InputStreamReader and OutputStreamWriter are synchronized on the stream object, not on the lock object.&lt;/p&gt;
-&lt;p&gt;To prevent fixes, the implementation now works as follows.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;BufferedInputStream, BufferedOutputStream, BufferedReader, BufferedWriter, PrintStream, and PrintWriter now use explicit locks instead of monitors when used directly. These classes are synchronized when subclassing as before.&lt;/li&gt;
-&lt;li&gt;Stream decoders and encoders used by InputStreamReader and OutputStreamWriter now use the same locks as the closed InputStreamReader or OutputStreamWriter.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Further, eliminating all of these normally unnecessary locks is beyond the scope of this JEP.&lt;/p&gt;
-&lt;p&gt;In addition, the initial size of the buffers used by the stream encoders of BufferedOutputStream, BufferedWriter, and OutputStreamWriter are now smaller to reduce memory usage when there are many streams or writers in the heap - if there are a million virtual threads, each with a buffer on the socket connection streams.&lt;/p&gt;
-&lt;h3 id=&#34;java-native-interface-jni&#34;&gt;Java Native Interface (JNI)&lt;/h3&gt;
-&lt;p&gt;JNI defines a new function, IsVirtualThread, to test whether an object is a virtual thread.&lt;/p&gt;
-&lt;p&gt;The JNI specification remains otherwise unchanged.&lt;/p&gt;
-&lt;h3 id=&#34;debugging&#34;&gt;Debugging&lt;/h3&gt;
-&lt;p&gt;The debugging architecture consists of three interfaces: the JVM Tool Interface (JVM TI), the Java Debug Wire Protocol (JDWP), and the Java Debug Interface (JDI). All three interfaces now support virtual threads.&lt;/p&gt;
-&lt;p&gt;Updates to the JVM TI are.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Most functions called with jthread (i.e., a JNI reference to a thread object) can be called with a reference to a virtual thread. Virtual threads do not support a small number of functions, namely PopFrame, ForceEarlyReturn, StopThread, AgentStartFunction, and GetThreadCpuTime. The &lt;code&gt;SetLocal*&lt;/code&gt; function is limited to setting local variables in the topmost frame of a virtual thread that is hung at a breakpoint or single-step event.&lt;/li&gt;
-&lt;li&gt;The GetAllThreads and GetAllStackTraces functions are now specified to return all platform threads, not all threads.&lt;/li&gt;
-&lt;li&gt;Event callbacks can be called in the context of a virtual thread for all events except those posted during early VM startup or heap iterations.&lt;/li&gt;
-&lt;li&gt;The hang/resume implementation allows the debugger to hang and resume virtual threads, and allows carrier threads to be hung when a virtual thread is hung.&lt;/li&gt;
-&lt;li&gt;A new function, can_support_virtual_threads, allows the agent to more finely control the thread start and end events of virtual threads.&lt;/li&gt;
-&lt;li&gt;New functions to support bulk hangs and resumes of virtual threads; these functions require the can_support_virtual_threads feature.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Existing JVM TI agents will work as before, but they may encounter errors if they call functions that are not supported by virtual threads. These occur when agents that are not aware of virtual threads are used with applications that use virtual threads. For some agents, changing GetAllThreads to return an array containing only platform threads may be a problem. Existing agents with ThreadStart and ThreadEnd events enabled may encounter performance issues because they are unable to restrict these events to platform threads.&lt;/p&gt;
-&lt;p&gt;Updates to JDWP are.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A new command that allows the debugger to test if a thread is a virtual thread.&lt;/li&gt;
-&lt;li&gt;A new modifier on the EventRequest command allows the debugger to restrict thread start and end events to platform threads.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Updates to JDI are.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A new method com.sun.jdi.ThreadReference to test if a thread is virtual.&lt;/li&gt;
-&lt;li&gt;The new methods com.sun.jdi.request.ThreadStartRequest and com.sun.jdi.request.ThreadDeathRequest restrict the events generated for the request to the platform thread.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;As mentioned above, virtual threads are not considered to be active threads in the thread group. Therefore, the list of threads returned by the JVM TI function GetThreadGroupCalt, the JDWP command ThreadGroupReference/Children, and the JDI method com.sun.jdi.ThreadGroupReference.threads() includes only platform threads.&lt;/p&gt;
-&lt;h3 id=&#34;jdk-flight-recorder-jfr&#34;&gt;JDK Flight Recorder (JFR)&lt;/h3&gt;
-&lt;p&gt;JFR supports virtual threads with multiple new events:.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;jdk.VirtualThreadStart and jdk.VirtualThreadEnd indicate the start and end of a virtual thread. By default, these events are disabled.&lt;/li&gt;
-&lt;li&gt;jdk.VirtualThreadPinned indicates that a virtual thread is resident while being fixed, i.e., not releasing its carrier thread (see Restrictions). This event is enabled by default and has a threshold value of 20ms.&lt;/li&gt;
-&lt;li&gt;jdk.VirtualThreadSubmitFailed indicates that starting or canceling a resident virtual thread failed, possibly due to a resource issue. By default, this event is enabled.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;java-management-extensions-jmx&#34;&gt;Java Management Extensions (JMX)&lt;/h3&gt;
-&lt;p&gt;A new method com.sun.management.HotSpotDiagnosticsMXBean generates a new style of thread dump described above. The method can also be called indirectly via the platform MBeanServer from a local or remote JMX tool.&lt;/p&gt;
-&lt;p&gt;java.lang.management.ThreadMXBean supports monitoring and management of platform threads only.&lt;/p&gt;
-&lt;h3 id=&#34;javalangthreadgroup&#34;&gt;java.lang.ThreadGroup&lt;/h3&gt;
-&lt;p&gt;java.lang.ThreadGroup is an old API for grouping threads that is rarely used in modern applications and is not suitable for grouping virtual threads. We do not recommend and downgrade it now, and hope to introduce a new thread organization structure as structured concurrency in the future.&lt;/p&gt;
-&lt;p&gt;As background, the ThreadGroup API dates back to Java 1.0. it was originally intended to provide job control operations such as stopping all threads in a group. Modern code prefers to use the thread pool API of java.util.concurrent (introduced in Java 5.) ThreadGroup supported the isolation of applets in early Java versions, but the Java security architecture evolved significantly in Java 1.2 and ThreadGroup no longer plays an important role. ThreadGroup was also intended to be used for diagnostic purposes, but that role has been replaced by monitoring and management features introduced in Java 5, including the java.lang. management API. In addition to being largely irrelevant now, there are a number of significant issues with the ThreadGroup API and implementation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The API and mechanism for destroying thread groups is flawed.&lt;/li&gt;
-&lt;li&gt;The API requires the implementation to reference all active threads in the group. This adds synchronization and contention overhead to thread creation, thread startup, and thread termination.&lt;/li&gt;
-&lt;li&gt;The API defines enumerate() methods, which are valid in their own right.&lt;/li&gt;
-&lt;li&gt;The API defines the suspend(), resume(), and stop() methods, which are inherently deadlock-prone and unsafe.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Now specify, discourage, and demote ThreadGroup , as follows.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Removed the ability to explicitly destroy the thread group: the ultimately not recommended destroy() method does nothing.&lt;/li&gt;
-&lt;li&gt;The concept of a daemon thread group has been removed: the setDaemon(boolean) and isDaemon() methods, which were set by the daemon state and eventually deprecated, are ignored.&lt;/li&gt;
-&lt;li&gt;The implementation no longer retains strong references to subgroups. Thread groups are now eligible for garbage collection when there are no active threads in the thread group and no other any other threads keep the thread group active.&lt;/li&gt;
-&lt;li&gt;The suspend(), resume(), and stop() methods, which are ultimately not recommended, always throw exceptions.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
       
     </item>
     
