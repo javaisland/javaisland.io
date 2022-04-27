@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>set on JavaIsland</title>
+    <link>https://www.javai.net/tags/set/</link>
+    <description>Recent content in set on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 26 Apr 2022 15:25:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/set/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>High-performance collections EnumMap and EnumSet</title>
+      <link>https://www.javai.net/post/202204/java-enum-collection/</link>
+      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202204/java-enum-collection/</guid>
+      <description>This article introduces EnumMap and EnumSet, which is a collection class under the java.util package.
+The Map and Set structures are especially used in our daily work, and often used to store data or pass parameters, but there is no way to control the data setting of Map, we have no idea what kind of data others will put into it, or if the type and number of data Key of our Map is fixed in some scenarios, then in this case How can we improve the security and performance of the system?</description>
+    </item>
+    
+  </channel>
+</rss>
