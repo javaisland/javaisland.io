@@ -6,7 +6,18 @@
     <description>Recent content in java on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 Apr 2022 15:25:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 May 2022 17:04:19 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java stream common operations on streams</title>
+      <link>https://www.javai.net/post/202205/java-stream-use/</link>
+      <pubDate>Sat, 07 May 2022 17:04:19 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-stream-use/</guid>
+      <description>Introduction As we all know, starting from Java8, jdk has added a new Stream class to complement the collection class.
+Stream provides a higher-order abstraction of Java collection operations and expressions using an intuitive way similar to querying data from a database with SQL statements.
+This style treats the collection of elements to be processed as a stream, which travels through the pipeline and can be processed at the nodes of the pipeline, such as filtering, sorting, aggregating, etc.</description>
+    </item>
+    
     <item>
       <title>High-performance collections EnumMap and EnumSet</title>
       <link>https://www.javai.net/post/202204/java-enum-collection/</link>
@@ -205,16 +216,6 @@ The first way is to use the factory class methods in Executors, for example.
       <guid>https://www.javai.net/post/202204/java-class-file-format-analysis/</guid>
       <description>Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
 Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.</description>
-    </item>
-    
-    <item>
-      <title>Java Virtual Threads Explained</title>
-      <link>https://www.javai.net/post/202204/java-virtual-threads-explained/</link>
-      <pubDate>Fri, 15 Apr 2022 20:59:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
-      <description>Many languages have technologies like virtual threads, such as Go, C#, Erlang, Lua, etc, which they call concurrent threads. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s virtual threads technology, JEP 425: Virtual Threads (Preview).
-The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</description>
     </item>
     
   </channel>

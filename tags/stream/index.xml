@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>stream on JavaIsland</title>
+    <link>https://www.javai.net/tags/stream/</link>
+    <description>Recent content in stream on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 07 May 2022 17:04:19 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/stream/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java stream common operations on streams</title>
+      <link>https://www.javai.net/post/202205/java-stream-use/</link>
+      <pubDate>Sat, 07 May 2022 17:04:19 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-stream-use/</guid>
+      <description>Introduction As we all know, starting from Java8, jdk has added a new Stream class to complement the collection class.
+Stream provides a higher-order abstraction of Java collection operations and expressions using an intuitive way similar to querying data from a database with SQL statements.
+This style treats the collection of elements to be processed as a stream, which travels through the pipeline and can be processed at the nodes of the pipeline, such as filtering, sorting, aggregating, etc.</description>
+    </item>
+    
+  </channel>
+</rss>
