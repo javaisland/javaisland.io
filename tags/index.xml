@@ -6,13 +6,40 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 May 2022 17:04:19 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 May 2022 13:48:54 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>concurrent</title>
+      <link>https://www.javai.net/tags/concurrent/</link>
+      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/concurrent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cyclicbarrier</title>
+      <link>https://www.javai.net/tags/cyclicbarrier/</link>
+      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/cyclicbarrier/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Sat, 07 May 2022 17:04:19 +0800</pubDate>
+      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>countdownlatch</title>
+      <link>https://www.javai.net/tags/countdownlatch/</link>
+      <pubDate>Thu, 12 May 2022 13:34:16 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/countdownlatch/</guid>
       <description></description>
     </item>
     
@@ -157,33 +184,6 @@
       <pubDate>Sun, 24 Apr 2022 14:49:37 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/affinitylock/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cpu</title>
-      <link>https://www.javai.net/tags/cpu/</link>
-      <pubDate>Sun, 24 Apr 2022 14:49:37 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/cpu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thread</title>
-      <link>https://www.javai.net/tags/thread/</link>
-      <pubDate>Sun, 24 Apr 2022 14:49:37 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/thread/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>crypto bug of the year</title>
-      <link>https://www.javai.net/tags/crypto-bug-of-the-year/</link>
-      <pubDate>Fri, 22 Apr 2022 10:43:15 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/crypto-bug-of-the-year/</guid>
       <description></description>
     </item>
     

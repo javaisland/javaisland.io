@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cyclicbarrier on JavaIsland</title>
+    <link>https://www.javai.net/tags/cyclicbarrier/</link>
+    <description>Recent content in cyclicbarrier on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 12 May 2022 13:48:54 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/cyclicbarrier/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Use of CyclicBarrier in java concurrency</title>
+      <link>https://www.javai.net/post/202205/java-cyclicbarrier-use/</link>
+      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-cyclicbarrier-use/</guid>
+      <description>Introduction CyclicBarrier is a thread-safe component introduced in java 5. It has the concept of a barrier, which is used to wait for all threads to finish executing before performing a specific operation.
+If we have many threads and each thread computes some data, then we need to wait for all the threads to finish executing and then add up the data computed by each thread to the final result, then we can use CyclicBarrier.</description>
+    </item>
+    
+  </channel>
+</rss>

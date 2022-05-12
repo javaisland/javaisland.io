@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>countdownlatch on JavaIsland</title>
+    <link>https://www.javai.net/tags/countdownlatch/</link>
+    <description>Recent content in countdownlatch on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 12 May 2022 13:34:16 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/countdownlatch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Use of CountDownLatch in java concurrency</title>
+      <link>https://www.javai.net/post/202205/java-countdownlatch-use/</link>
+      <pubDate>Thu, 12 May 2022 13:34:16 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-countdownlatch-use/</guid>
+      <description>Introduction In java concurrency, it is very important to control access to shared variables, sometimes we also want to control the order of execution of concurrent threads, for example: wait for all threads to finish executing before executing another thread, or wait for all threads to be ready before starting the execution of all threads, This time we can use CountDownLatch.
+CountDownLatch contains a counter that is placed in the QueuedSynchronizer.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -310,6 +310,80 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/202205/java-cyclicbarrier-use/">Use of CyclicBarrier in java concurrency</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-05-12" class="post-time">
+        2022-05-12
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 1531 words </span>
+      <span class="more-meta"> 8 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Introduction CyclicBarrier is a thread-safe component introduced in java 5. It has the concept of a barrier, which is used to wait for all threads to finish executing before performing a specific operation.
+If we have many threads and each thread computes some data, then we need to wait for all the threads to finish executing and then add up the data computed by each thread to the final result, then we can use CyclicBarrier.
+    </div>
+    <div class="read-more">
+      <a href="/post/202205/java-cyclicbarrier-use/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202205/java-countdownlatch-use/">Use of CountDownLatch in java concurrency</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-05-12" class="post-time">
+        2022-05-12
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 737 words </span>
+      <span class="more-meta"> 4 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Introduction In java concurrency, it is very important to control access to shared variables, sometimes we also want to control the order of execution of concurrent threads, for example: wait for all threads to finish executing before executing another thread, or wait for all threads to be ready before starting the execution of all threads, This time we can use CountDownLatch.
+CountDownLatch contains a counter that is placed in the QueuedSynchronizer.
+    </div>
+    <div class="read-more">
+      <a href="/post/202205/java-countdownlatch-use/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/202205/java-stream-use/">Java stream common operations on streams</a>
     </h1>
     
@@ -974,83 +1048,6 @@ Operation mechanism First look at the interface definition of Runnable and Calla
     </div>
     <div class="read-more">
       <a href="/post/202204/java-runnable-callable/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-executorservice-use/">The use of ExecutorService in java concurrency</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-17" class="post-time">
-        2022-04-17
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 721 words </span>
-      <span class="more-meta"> 4 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Preface ExecutorService is a framework for asynchronous execution in java. By using ExecutorService you can easily create a multi-threaded execution environment.
-This article will explain in detail the specific use of ExecutorService.
-Creating an ExecutorService Generally speaking, there are two ways to create an ExecutorService.
-The first way is to use the factory class methods in Executors, for example.
-1  ExecutorService executor = Executors.newFixedThreadPool(10);   In addition to the newFixedThreadPool method, Executors contains a number of methods to create an ExecutorService.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-executorservice-use/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-class-file-format-analysis/">Java Class File Format Analysis</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-16" class="post-time">
-        2022-04-16
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 505 words </span>
-      <span class="more-meta"> 3 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
-Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-class-file-format-analysis/" class="read-more-link">Read more</a>
     </div>
     
   </div>

@@ -6,7 +6,27 @@
     <description>Recent content in java on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 May 2022 17:04:19 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 May 2022 13:48:54 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Use of CyclicBarrier in java concurrency</title>
+      <link>https://www.javai.net/post/202205/java-cyclicbarrier-use/</link>
+      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-cyclicbarrier-use/</guid>
+      <description>Introduction CyclicBarrier is a thread-safe component introduced in java 5. It has the concept of a barrier, which is used to wait for all threads to finish executing before performing a specific operation.
+If we have many threads and each thread computes some data, then we need to wait for all the threads to finish executing and then add up the data computed by each thread to the final result, then we can use CyclicBarrier.</description>
+    </item>
+    
+    <item>
+      <title>Use of CountDownLatch in java concurrency</title>
+      <link>https://www.javai.net/post/202205/java-countdownlatch-use/</link>
+      <pubDate>Thu, 12 May 2022 13:34:16 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-countdownlatch-use/</guid>
+      <description>Introduction In java concurrency, it is very important to control access to shared variables, sometimes we also want to control the order of execution of concurrent threads, for example: wait for all threads to finish executing before executing another thread, or wait for all threads to be ready before starting the execution of all threads, This time we can use CountDownLatch.
+CountDownLatch contains a counter that is placed in the QueuedSynchronizer.</description>
+    </item>
+    
     <item>
       <title>Java stream common operations on streams</title>
       <link>https://www.javai.net/post/202205/java-stream-use/</link>
@@ -193,29 +213,6 @@ To store and get the object in ThreadLocal is also very simple, using get() and 
 In this article, we will explore the differences between Runnable and Callable in detail.
 Operation mechanism First look at the interface definition of Runnable and Callable:
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  @FunctionalInterface public interface Runnable { /** * When an object implementing interface &amp;lt;code&amp;gt;Runnable&amp;lt;/code&amp;gt; is used * to create a thread, starting the thread causes the object&amp;#39;s * &amp;lt;code&amp;gt;run&amp;lt;/code&amp;gt; method to be called in that separately executing * thread.</description>
-    </item>
-    
-    <item>
-      <title>The use of ExecutorService in java concurrency</title>
-      <link>https://www.javai.net/post/202204/java-executorservice-use/</link>
-      <pubDate>Sun, 17 Apr 2022 13:29:57 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-executorservice-use/</guid>
-      <description>Preface ExecutorService is a framework for asynchronous execution in java. By using ExecutorService you can easily create a multi-threaded execution environment.
-This article will explain in detail the specific use of ExecutorService.
-Creating an ExecutorService Generally speaking, there are two ways to create an ExecutorService.
-The first way is to use the factory class methods in Executors, for example.
-1  ExecutorService executor = Executors.newFixedThreadPool(10);   In addition to the newFixedThreadPool method, Executors contains a number of methods to create an ExecutorService.</description>
-    </item>
-    
-    <item>
-      <title>Java Class File Format Analysis</title>
-      <link>https://www.javai.net/post/202204/java-class-file-format-analysis/</link>
-      <pubDate>Sat, 16 Apr 2022 19:44:15 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-class-file-format-analysis/</guid>
-      <description>Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
-Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.</description>
     </item>
     
   </channel>
