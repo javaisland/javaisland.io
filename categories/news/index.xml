@@ -6,7 +6,17 @@
     <description>Recent content in news on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 Apr 2022 13:44:51 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 May 2022 13:40:53 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java introduces static images to solve problems like slow running</title>
+      <link>https://www.javai.net/post/202205/java-oracle-leyden/</link>
+      <pubDate>Thu, 26 May 2022 13:40:53 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-oracle-leyden/</guid>
+      <description>In a recent social media post, Mark Reinhold, Chief Architect of Oracle&amp;rsquo;s Java Platform Group, officially announced the launch of the &amp;ldquo;Leyden&amp;rdquo; project. The project is said to have been approved and will alleviate slow startup and performance issues by introducing &amp;ldquo;static images&amp;rdquo; on the Java platform, designed to accelerate the creation of Java businesses.
+It is understood that the &amp;ldquo;Leyden&amp;rdquo; project was first proposed around May 2020 and has been discussed for more than 2 years now.</description>
+    </item>
+    
     <item>
       <title>Java Discovers Annual Encryption Vulnerability</title>
       <link>https://www.javai.net/post/202204/java-encryption-vulnerability/</link>

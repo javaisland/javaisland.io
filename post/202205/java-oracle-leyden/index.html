@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Java introduces static images to solve problems like slow running - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="Oracle officially launches the Leyden project! Introducing static images to the Java platform to address slow performance and other issues." />
+<meta name="keywords" content="java, leyden, static image, image" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.96.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202205/java-oracle-leyden/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Java introduces static images to solve problems like slow running" />
+<meta property="og:description" content="Oracle officially launches the Leyden project! Introducing static images to the Java platform to address slow performance and other issues." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202205/java-oracle-leyden/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-05-26T13:40:53+08:00" />
+<meta property="article:modified_time" content="2022-05-26T13:40:53+08:00" />
+
+<meta itemprop="name" content="Java introduces static images to solve problems like slow running">
+<meta itemprop="description" content="Oracle officially launches the Leyden project! Introducing static images to the Java platform to address slow performance and other issues."><meta itemprop="datePublished" content="2022-05-26T13:40:53+08:00" />
+<meta itemprop="dateModified" content="2022-05-26T13:40:53+08:00" />
+<meta itemprop="wordCount" content="842">
+<meta itemprop="keywords" content="java,leyden," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java introduces static images to solve problems like slow running"/>
+<meta name="twitter:description" content="Oracle officially launches the Leyden project! Introducing static images to the Java platform to address slow performance and other issues."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6905255539094935"
+     crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java introduces static images to solve problems like slow running</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-05-26" class="post-time">
+          2022-05-26
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/news/"> news </a>
+            
+          </div>
+        <span class="more-meta"> 842 words </span>
+          <span class="more-meta"> 4 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#leyden-project-introduces-static-images">Leyden Project Introduces &ldquo;Static Images&rdquo;</a></li>
+    <li><a href="#leyden-project-to-accelerate-java-optimization-efforts">Leyden Project to Accelerate Java Optimization Efforts</a></li>
+    <li><a href="#deep-improvements-to-the-java-platform-officially-the-first-step">Deep improvements to the Java platform: Officially the first step</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>In a recent social media post, Mark Reinhold, Chief Architect of Oracle&rsquo;s Java Platform Group, officially announced the launch of the &ldquo;Leyden&rdquo; project. The project is said to have been approved and will alleviate slow startup and performance issues by introducing &ldquo;static images&rdquo; on the Java platform, designed to accelerate the creation of Java businesses.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/05/26/1e91ca4f04114eb4bd36119e75c22553.png" alt="message"></p>
+<p>It is understood that the &ldquo;Leyden&rdquo; project was first proposed around May 2020 and has been discussed for more than 2 years now.</p>
+<p>At the time, Mark Reinhold published a post on a Java mailing list about the work he was proposing and leading, stating that &ldquo;this work, called the &ldquo;Leyden&rdquo; project, will be implemented by introducing &ldquo;static images&rdquo; into the Java platform and the Java Development Kit (JDK). The work, called the &ldquo;Leyden&rdquo; project, will address these pain points by introducing the concept of &ldquo;static images&rdquo; into the Java platform and the Java Development Kit (JDK).</p>
+<h2 id="leyden-project-introduces-static-images">Leyden Project Introduces &ldquo;Static Images&rdquo;</h2>
+<p>The so-called &ldquo;static image&rdquo; introduced in the &ldquo;Leyden&rdquo; project is an application-independent program that derives from an application running that application and not from another application.</p>
+<p>A static image is a &ldquo;closed world&rdquo; with respect to the classes it can load: at runtime, classes cannot be loaded from outside the image, nor can they be created dynamically. The closed world constraint severely limits the natural dynamics of Java, especially with respect to runtime reflection and the ability to load classes, on which many existing Java frameworks and libraries rely.</p>
+<p>Both of these constraints not only reduce the size of images and their startup time, but they also &ldquo;allow aggressive Ahead-of-time compilation, which is the compilation of high-level programming languages (such as C or C++) into native machine code, to reduce the time it takes for images to reach peak performance. The act of generating a binary file that can be executed natively.</p>
+<h2 id="leyden-project-to-accelerate-java-optimization-efforts">Leyden Project to Accelerate Java Optimization Efforts</h2>
+<p>Leyden is described as a new project that builds on past projects, including the GNU Compiler for Java and the native imaging capabilities of GraalVM, a high-performance runtime optimized for performance in a variety of languages (e.g., Java and JVM languages, JavaScript, Ruby, Python, etc.), and GraalVM is a high-performance runtime optimized for performance in a variety of languages (such as Java and JVM languages, JavaScript, Ruby, Python, etc.) and interoperability for multilingual or multi-language applications.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/05/26/bb026c1bd3054fa5b713f658cf215816.png" alt="message"></p>
+<p>Since the Leyden project was inspired by GraalVM, the two projects share common components that may (or may not) make their way into the mainstream Java specification. However, due to a lack of further information at this time, some observers believe that the two projects are intertwined.</p>
+<p>Back in 2020 when the Leyden project was first proposed, Longmeado Omdia analyst Bradley Shimmin commented, &ldquo;The Leyden project seems like it should be part of the GraalVM project, and I believe the authors want it to be, because it achieves the same goals that GraalVM supports Except here, they propose to create an extremely streamlined runtime environment for a single application.&rdquo;</p>
+<p>(The Valhalla project is an ongoing effort by Oracle to introduce value types, a mechanism that allows Java programs to manage data more efficiently at runtime.) Oracle says the entire performance landscape will change when the Valhalla project is finally incorporated into the JDK.</p>
+<p>In addition, other members of the larger Java community have expressed interest in and anticipation of the Leyden project. Earlier, Rich Sharples, Red Hat&rsquo;s Senior Director of Product Management, noted that the project is &ldquo;designed to provide much of what we need from the OpenJDK&rsquo;s own Graal/SubstrateVM.</p>
+<h2 id="deep-improvements-to-the-java-platform-officially-the-first-step">Deep improvements to the Java platform: Officially the first step</h2>
+<p>Of course, not all applications will fit well within these two constraints of the &ldquo;static image&rdquo; of the Leyden project, and not all developers will be willing to accept this constraint.</p>
+<p>But all in all, Mark Reinhold did not start out with closed-world constraints, but rather explored a set of constraints to come up with an incremental approach that results in optimizations that may be weaker than the closed-world constraints, but that should apply to a wider range of existing code.</p>
+<p>This time, Mark Reinhold officially announced the launch of the &ldquo;Leyden&rdquo; project in a May 20 OpenJDK article &ndash; &ldquo;It&rsquo;s time to take the first step and start the It&rsquo;s time to take the first step and start the project,&rdquo; and is intended to accelerate the creation of Java businesses through the &ldquo;Leyden&rdquo; project.</p>
+<p>Mark Reinhold said, &ldquo;Work will be done step-by-step along the scope of the above constraints, starting small and simple to enable deeper understanding of the changes needed for the Java platform specification. &ldquo;In doing so, efforts will also be made to maintain Java&rsquo;s core values of readability, compatibility and universality.&rdquo;</p>
+<p>Mark Reinhold also added that in the long run, the Leyden project developers will likely adopt the constraints of a completely closed world to generate completely static images. In the meantime, the project will also largely support existing JDK components such as JVM hotspots, C2 compilers, shared class and application data, and JLink code tools.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/leyden/">leyden</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202205/java-cyclicbarrier-use/">
+            <span class="next-text nav-default">Use of CyclicBarrier in java concurrency</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
