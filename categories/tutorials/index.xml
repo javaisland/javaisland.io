@@ -6,7 +6,17 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 May 2022 13:48:54 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 May 2022 23:43:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java virtual thread (LOOM) and thread fairness</title>
+      <link>https://www.javai.net/post/202205/java-virtual-thread-fair/</link>
+      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-virtual-thread-fair/</guid>
+      <description>Project Loom ( JEP 425 ) is probably one of the most anticipated additions to Java ever. Its implementation of virtual threading (or &amp;ldquo;green threading&amp;rdquo;) ensures that developers can create highly concurrent applications, such as those with hundreds of thousands of open HTTP connections, adhering to the well-known thread-per-request programming model without resorting to less familiar and often more complex reactive methods.
+Only recently, after several years of effort, has Loom been merged into the main line of the OpenJDK and made available as a preview feature in the latest Java 19 early access release.</description>
+    </item>
+    
     <item>
       <title>Use of CyclicBarrier in java concurrency</title>
       <link>https://www.javai.net/post/202205/java-cyclicbarrier-use/</link>
@@ -208,15 +218,6 @@ The Java platform plans to introduce virtual threads that will significantly red
       <description>The use of Future in java Future is an interface introduced in java 1.5 that can be used to get asynchronous results easily. This article will explain how to use Future through specific examples.
 Creating Future As mentioned above, Future represents the result of asynchronous execution, which means that when the asynchronous execution is finished, the returned result will be saved in Future.
 So when do we use Future? Generally speaking, when we execute a long-running task, using Future allows us to temporarily deal with other tasks, and then return the result when the long task is finished.</description>
-    </item>
-    
-    <item>
-      <title>Better use of Java thread pool</title>
-      <link>https://www.javai.net/post/202204/thread-pool-tips/</link>
-      <pubDate>Mon, 11 Apr 2022 15:57:29 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/thread-pool-tips/</guid>
-      <description>Introduction This article combines the JUC package provided by Doug Lea in JDK1.5 to understand the use of thread pools from the setting of thread pool size parameters, the creation of work threads, the recycling of idle threads, the use of blocking queues, task rejection strategies, thread pool Hook and other aspects, which involves some details including the choice of different parameters, different queues, different rejection strategies, the resulting The details include the different parameters, the different queues, the choice of different rejection strategies, the resulting impact and behavior, and for better use of the thread pool.</description>
     </item>
     
   </channel>

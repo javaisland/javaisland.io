@@ -310,6 +310,43 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/202205/java-virtual-thread-fair/">Java virtual thread (LOOM) and thread fairness</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-05-31" class="post-time">
+        2022-05-31
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 1363 words </span>
+      <span class="more-meta"> 7 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Project Loom ( JEP 425 ) is probably one of the most anticipated additions to Java ever. Its implementation of virtual threading (or &ldquo;green threading&rdquo;) ensures that developers can create highly concurrent applications, such as those with hundreds of thousands of open HTTP connections, adhering to the well-known thread-per-request programming model without resorting to less familiar and often more complex reactive methods.
+Only recently, after several years of effort, has Loom been merged into the main line of the OpenJDK and made available as a preview feature in the latest Java 19 early access release.
+    </div>
+    <div class="read-more">
+      <a href="/post/202205/java-virtual-thread-fair/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/202205/java-oracle-leyden/">Java introduces static images to solve problems like slow running</a>
     </h1>
     
@@ -1007,45 +1044,6 @@ The state of Thread in java There are six states of Thread in java, which are.
     </div>
     <div class="read-more">
       <a href="/post/202204/java-thread-life-cycle/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-threadlocal-use/">The use of ThreadLocal in java</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-17" class="post-time">
-        2022-04-17
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 580 words </span>
-      <span class="more-meta"> 3 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Preface ThreadLocal is mainly used to store data for the current thread, this data is only accessible by the current thread.
-When defining a ThreadLocal, we can also define specific types of objects stored in the ThreadLocal.
-1  ThreadLocal&lt;Integer&gt; threadLocalValue = new ThreadLocal&lt;&gt;();   Above we have defined a ThreadLocal object that stores an Integer.
-To store and get the object in ThreadLocal is also very simple, using get() and set().
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-threadlocal-use/" class="read-more-link">Read more</a>
     </div>
     
   </div>

@@ -6,7 +6,17 @@
     <description>Recent content in thread on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 24 Apr 2022 14:49:37 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/thread/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 May 2022 23:43:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/thread/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java virtual thread (LOOM) and thread fairness</title>
+      <link>https://www.javai.net/post/202205/java-virtual-thread-fair/</link>
+      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-virtual-thread-fair/</guid>
+      <description>Project Loom ( JEP 425 ) is probably one of the most anticipated additions to Java ever. Its implementation of virtual threading (or &amp;ldquo;green threading&amp;rdquo;) ensures that developers can create highly concurrent applications, such as those with hundreds of thousands of open HTTP connections, adhering to the well-known thread-per-request programming model without resorting to less familiar and often more complex reactive methods.
+Only recently, after several years of effort, has Loom been merged into the main line of the OpenJDK and made available as a preview feature in the latest Java 19 early access release.</description>
+    </item>
+    
     <item>
       <title>Thread-Affinity for CPU-bound threads</title>
       <link>https://www.javai.net/post/202204/java-thread-affinity/</link>

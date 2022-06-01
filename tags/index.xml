@@ -6,13 +6,31 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 May 2022 13:40:53 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 May 2022 23:43:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Thu, 26 May 2022 13:40:53 +0800</pubDate>
+      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thread</title>
+      <link>https://www.javai.net/tags/thread/</link>
+      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/thread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtual threads</title>
+      <link>https://www.javai.net/tags/virtual-threads/</link>
+      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/virtual-threads/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/jdk18/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>jdk19</title>
-      <link>https://www.javai.net/tags/jdk19/</link>
-      <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/jdk19/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>affinity</title>
-      <link>https://www.javai.net/tags/affinity/</link>
-      <pubDate>Sun, 24 Apr 2022 14:49:37 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/affinity/</guid>
       <description></description>
     </item>
     

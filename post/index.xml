@@ -6,7 +6,17 @@
     <description>Recent content in Posts on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 May 2022 13:40:53 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 May 2022 23:43:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java virtual thread (LOOM) and thread fairness</title>
+      <link>https://www.javai.net/post/202205/java-virtual-thread-fair/</link>
+      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202205/java-virtual-thread-fair/</guid>
+      <description>Project Loom ( JEP 425 ) is probably one of the most anticipated additions to Java ever. Its implementation of virtual threading (or &amp;ldquo;green threading&amp;rdquo;) ensures that developers can create highly concurrent applications, such as those with hundreds of thousands of open HTTP connections, adhering to the well-known thread-per-request programming model without resorting to less familiar and often more complex reactive methods.
+Only recently, after several years of effort, has Loom been merged into the main line of the OpenJDK and made available as a preview feature in the latest Java 19 early access release.</description>
+    </item>
+    
     <item>
       <title>Java introduces static images to solve problems like slow running</title>
       <link>https://www.javai.net/post/202205/java-oracle-leyden/</link>
@@ -199,18 +209,6 @@ Definition join() is a method defined in Thread, let&amp;rsquo;s look at his def
       <description>Introduction Threads is a frequently used technology in java, this article will explain in detail the life cycle of threads in java, I hope you can give some help.
 The state of Thread in java There are six states of Thread in java, which are.
  NEW - newly created Thread, has not yet started execution RUNNABLE - Thread in runnable state, including ready to run and running. BLOCKED - Threads that are waiting for a resource lock WAITING - A thread that is waiting indefinitely for other threads to perform a specific operation TIMED_WAITING - Waiting for a certain amount of time for other threads to perform a specific operation TERMINATED - the thread has finished executing  We can visualize this in a diagram.</description>
-    </item>
-    
-    <item>
-      <title>The use of ThreadLocal in java</title>
-      <link>https://www.javai.net/post/202204/java-threadlocal-use/</link>
-      <pubDate>Sun, 17 Apr 2022 13:47:38 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-threadlocal-use/</guid>
-      <description>Preface ThreadLocal is mainly used to store data for the current thread, this data is only accessible by the current thread.
-When defining a ThreadLocal, we can also define specific types of objects stored in the ThreadLocal.
-1  ThreadLocal&amp;lt;Integer&amp;gt; threadLocalValue = new ThreadLocal&amp;lt;&amp;gt;();   Above we have defined a ThreadLocal object that stores an Integer.
-To store and get the object in ThreadLocal is also very simple, using get() and set().</description>
     </item>
     
   </channel>
