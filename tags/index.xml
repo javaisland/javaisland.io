@@ -6,13 +6,31 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 May 2022 23:43:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 13:24:03 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>elasticsearch</title>
+      <link>https://www.javai.net/tags/elasticsearch/</link>
+      <pubDate>Sat, 11 Jun 2022 13:24:03 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/elasticsearch/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
+      <pubDate>Sat, 11 Jun 2022 13:24:03 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>restclient</title>
+      <link>https://www.javai.net/tags/restclient/</link>
+      <pubDate>Sat, 11 Jun 2022 13:24:03 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/restclient/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java18/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java19</title>
-      <link>https://www.javai.net/tags/java19/</link>
-      <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java19/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>jdk18</title>
-      <link>https://www.javai.net/tags/jdk18/</link>
-      <pubDate>Mon, 25 Apr 2022 16:01:23 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/jdk18/</guid>
       <description></description>
     </item>
     
