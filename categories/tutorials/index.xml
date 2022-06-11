@@ -6,7 +6,17 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Jun 2022 13:24:03 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 15:45:08 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to avoid memory leaks in java programs</title>
+      <link>https://www.javai.net/post/202206/java-out-of-memory/</link>
+      <pubDate>Sat, 11 Jun 2022 15:45:08 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202206/java-out-of-memory/</guid>
+      <description>Although jvm has a garbage collection mechanism, if the program is written without paying attention to some specific rules, it can still lead to memory leaks in java programs, which may end up with OutOfMemory exceptions.
+1. Causes of memory leaks in Java Objects in java are divided into 2 types in terms of usage, referenced and unreferenced. Garbage collection only recovers objects that are not referenced. Referenced objects, even if they are no longer used, are not recycled.</description>
+    </item>
+    
     <item>
       <title>ElasticSearch new version of JavaClient using the introduction</title>
       <link>https://www.javai.net/post/202206/elasticsearch-javaclient/</link>
@@ -207,16 +217,6 @@ The first way is to use the factory class methods in Executors, for example.
       <guid>https://www.javai.net/post/202204/java-class-file-format-analysis/</guid>
       <description>Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
 Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.</description>
-    </item>
-    
-    <item>
-      <title>Java Virtual Threads Explained</title>
-      <link>https://www.javai.net/post/202204/java-virtual-threads-explained/</link>
-      <pubDate>Fri, 15 Apr 2022 20:59:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-virtual-threads-explained/</guid>
-      <description>Many languages have technologies like virtual threads, such as Go, C#, Erlang, Lua, etc, which they call concurrent threads. Whether they are virtual threads or concurrent threads, they are all lightweight threads that aim to improve concurrency. This section details the Java platform&amp;rsquo;s virtual threads technology, JEP 425: Virtual Threads (Preview).
-The Java platform plans to introduce virtual threads that will significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.</description>
     </item>
     
   </channel>
