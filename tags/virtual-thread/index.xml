@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>virtual thread on JavaIsland</title>
+    <link>https://www.javai.net/tags/virtual-thread/</link>
+    <description>Recent content in virtual thread on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 13 Jun 2022 19:20:24 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/virtual-thread/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Virtual Threads</title>
+      <link>https://www.javai.net/post/202206/java-virtual-thread/</link>
+      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202206/java-virtual-thread/</guid>
+      <description>Virtual threading is something I&amp;rsquo;m really excited about. It&amp;rsquo;s a long-awaited feature in the language and we&amp;rsquo;ve made very few attempts to implement it in the past, but it&amp;rsquo;s finally here and it&amp;rsquo;s been merged into Java 19. This means that it will be included as a preview feature and we will be able to use it as soon as JDK 19 is released.
+As I read this article I had to browse through many posts and videos.</description>
+    </item>
+    
+  </channel>
+</rss>

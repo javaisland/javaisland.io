@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Java Virtual Threads - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="Virtual threads are a long-awaited feature of the Java language that we have rarely tried to implement in the past." />
+<meta name="keywords" content="java, virtual thread, thread, concurrency, loom" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202206/java-virtual-thread/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Java Virtual Threads" />
+<meta property="og:description" content="Virtual threads are a long-awaited feature of the Java language that we have rarely tried to implement in the past." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202206/java-virtual-thread/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-13T19:20:24+08:00" />
+<meta property="article:modified_time" content="2022-06-13T19:20:24+08:00" />
+
+<meta itemprop="name" content="Java Virtual Threads">
+<meta itemprop="description" content="Virtual threads are a long-awaited feature of the Java language that we have rarely tried to implement in the past."><meta itemprop="datePublished" content="2022-06-13T19:20:24+08:00" />
+<meta itemprop="dateModified" content="2022-06-13T19:20:24+08:00" />
+<meta itemprop="wordCount" content="4294">
+<meta itemprop="keywords" content="java,virtual thread,thread,concurrency," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java Virtual Threads"/>
+<meta name="twitter:description" content="Virtual threads are a long-awaited feature of the Java language that we have rarely tried to implement in the past."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6905255539094935"
+     crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java Virtual Threads</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-06-13" class="post-time">
+          2022-06-13
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 4294 words </span>
+          <span class="more-meta"> 21 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#project-loom">Project Loom</a></li>
+    <li><a href="#a-few-words-about-the-java-concurrency-model">A few words about the Java concurrency model</a></li>
+    <li><a href="#concurrency-and-parallelism">Concurrency and <strong>parallelism</strong></a></li>
+    <li><a href="#modern-java-server-concurrency-issues">Modern Java Server Concurrency Issues</a></li>
+    <li><a href="#concurrency-model">Concurrency Model</a></li>
+    <li><a href="#callbacks">Callbacks</a></li>
+    <li><a href="#asynchronouswaiting-and-commitment">Asynchronous/waiting and commitment</a></li>
+    <li><a href="#concurrency-continued--routines">Concurrency (continued + routines)</a></li>
+    <li><a href="#virtual-threads">Virtual threads</a></li>
+    <li><a href="#using-virtual-threads">Using Virtual Threads</a></li>
+    <li><a href="#server-sending-events">Server sending events</a></li>
+    <li><a href="#when-not-to-use-virtual-threads">When not to use virtual threads</a></li>
+    <li><a href="#structured-concurrency">Structured Concurrency</a>
+      <ul>
+        <li><a href="#all-tasks-must-succeed-if-one-fails-there-is-no-point-in-continuing">All tasks must succeed, if one fails, there is no point in continuing</a></li>
+        <li><a href="#if-a-task-succeeds-then-at-least-one-task-must-succeed-and-there-is-no-point-in-waiting-for-the-rest">If a task succeeds, then at least one task must succeed, and there is no point in waiting for the rest</a></li>
+        <li><a href="#deadline-if-the-execution-takes-longer-than-a-specific-time-we-want-to-terminate-everything">Deadline. If the execution takes longer than a specific time, we want to terminate everything</a></li>
+        <li><a href="#if-you-are-using-a-reactor-framework-should-you-consider-switching-to-loom">If you are using a reactor framework, should you consider switching to Loom</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-words">Final Words</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>Virtual threading is something I&rsquo;m really excited about. It&rsquo;s a long-awaited feature in the language and we&rsquo;ve made very few attempts to implement it in the past, but it&rsquo;s finally here and it&rsquo;s been merged into Java 19. This means that it will be included as a preview feature and we will be able to use it as soon as JDK 19 is released.</p>
+<p>As I read this article I had to browse through many posts and videos. Most of the content on the virtual (green) threads is written by non-Java developers, why is that? Green threads are new to the Java world, most Java applications use regular (platform) threads and have little exposure to the concept. java is one of the most popular languages and is the only one of them that does not support any form of async/await without the help of third party libraries (which we will cover soon).</p>
+<p>In early versions of Java, when designing the multithreading API, Sun Microsystems was faced with a dilemma: should we use user-mode threads or map Java threads one-to-one with OS threads. All benchmarks at the time showed that user-mode threads were severely underutilized, increasing memory consumption without giving much in return. However, this is a benchmark from 20 years ago, when things were completely different. We didn&rsquo;t have such high load requirements, and the Java language wasn&rsquo;t very mature. Things are different now, and we have made little attempt to introduce user-mode threads into the language. Take fibers, for example.</p>
+<p>Unfortunately, because they were implemented as a separate class, it was difficult to migrate the entire code base to it, and eventually they disappeared and were never merged into the language.</p>
+<h2 id="project-loom">Project Loom</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/8c9ca05b99434e4b934c54f44d4c9ca0.png" alt="image"></p>
+<p>There are several Java projects that require very specific tasks to be completed. Examples include Valhala, Panama, Amber, and of course Loom. Loom&rsquo;s goal is to overhaul the language&rsquo;s concurrency model. Their goal is to bring virtual threads, structured concurrency, and a few other smaller things (for now).</p>
+<h2 id="a-few-words-about-the-java-concurrency-model">A few words about the Java concurrency model</h2>
+<p>The way threads are implemented in the JVM is considered to be one of the best ways, even for non-Java developers. We have excellent thread debugging, and you can get thread dumps, breakpoints, memory checks, and more. You can even use the JFR API to define custom metrics for your threads.</p>
+<p>The Thread class is Java&rsquo;s way of giving you access to the OS Thread API. Most of the operations performed in this class make system calls. In production we rarely use threads directly, we use the Java Concurrency package and thread pools, locks and other goodies.Java has excellent built-in tools for multi-threading.</p>
+<h2 id="concurrency-and-parallelism">Concurrency and <strong>parallelism</strong></h2>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/ef415101862d42a38202d4d2f3d9edeb.png" alt="image"></p>
+<p>Before we move on to the fun stuff, we have to address this issue. Concurrency and parallelism are two things that are often confused and confusing.</p>
+<p><strong>parallelism</strong> means <strong>executing two or more tasks at the same time</strong> . This is only possible if the CPU supports it. We need multiple cores to achieve parallelism. However, modern CPUs are always multi-core, and single-core CPUs are mostly obsolete and no longer widely used because their performance is significantly better than multi-core CPUs. this is because modern applications are designed to take advantage of multiple cores, and they always need to do something at the same time.</p>
+<p>Concurrency means simultaneously <strong>managing tasks</strong>. For example, JavaScript is a single-threaded language, and everything that must happen at the same time happens at the same time. A single thread manages all the tasks generated by the code. JS uses async/await to do this, and we&rsquo;ll discuss other ways to implement concurrency later.</p>
+<p>From an operating system perspective, the CPU must handle multiple threads of processes. The number of threads is always higher than the number of cores, which means that the CPU must perform <strong>context switching</strong>. Briefly each thread has a priority and can be idle, working or waiting for a CPU cycle. the CPU must iterate through all non-idle threads and allocate its limited resources according to the priority. In addition, it must ensure that all threads with the same priority get the same amount of CPU time, otherwise some applications may freeze. Each time the kernel is assigned to a different thread, it must freeze the currently running thread and preserve its register state. In addition to this, it must keep track of whether there are idle threads that have not been woken up. As you can see, this is a rather complex and expensive operation and we as developers should try to minimize the number of threads we use. Ideally, the number of threads should be close to the number of CPU cores, so that we can minimize CPU context switches.</p>
+<h2 id="modern-java-server-concurrency-issues">Modern Java Server Concurrency Issues</h2>
+<p>Cloud space is getting bigger and bigger, and with it comes load and resource requirements. Most enterprise servers (the most heavily loaded servers) are written in Java, so Java is used to solve the load problem. So far it has done a good job, judging by the fact that it is still the most popular server language, but that doesn&rsquo;t mean it is perfect.</p>
+<p>The usual way we handle requests is to dedicate a platform thread to them, which is the &ldquo;thread per request model&rdquo;. When a client requests something and we get the data or process it, that thread is occupied and cannot be used by anyone else. The server starts and allocates a predefined number of threads (e.g. 200 for Tomcat). They are placed in the thread pool and wait for requests. Their initial state is called &ldquo;Parked&rdquo; and in this state they do not use CPU resources.</p>
+<p>This is easy to write, understand and debug, but what if the client requests something that executes a blocking call? A blocking call is an operation that waits for a third-party call to complete, such as a SQL query, a request for a different service, or a simple IO operation to the operating system. When a blocking call occurs, the <strong>thread must wait</strong> . While it is waiting, the thread is not available and the CPU must manage it because it is not idle. This increases context switching. The server limits the number of threads, a higher number of threads may increase the throughput, but they slow down the request processing considerably. This is a good balance that we must keep in mind and manage. People often ask, &ldquo;why not just spawn 10k threads and process 10k requests at the same time&rdquo;, and while this may not stop the operating system from stopping you, gee, you can even spawn a million threads with the right configuration, there are benchmarks that show 80% of CPU utilization is purely for 3-4k threads on popular CPUs. 4k threads after context switching, and remembering that the OS also needs the CPU to run and manage other processes.</p>
+<p>To address our scalability issues, we typically just scale and spawn multiple nodes of the server. This is feasible, and we can now handle any number of requests if we pay enough to the cloud provider, but one of the main drivers for using cloud technology is to reduce operational costs. Sometimes we can&rsquo;t afford the extra expense and end up with a slow and nearly unusable system.</p>
+<h2 id="concurrency-model">Concurrency Model</h2>
+<p>Concurrency to the rescue! A few concurrency models used by other languages</p>
+<h2 id="callbacks">Callbacks</h2>
+<p>Callbacks are a simple but powerful concept. They are objects that are passed as arguments to other functions or procedures. The parent function passes the callback to the child function, which can then use the callback to notify the parent of some event, such as &ldquo;I have completed my task&rdquo;. This is a way to achieve concurrency on a single thread. Callbacks form a stack trace, which can make debugging easier. They are good when the nesting is one or two layers, but quickly get out of hand when you need to build more complex callback chains. Currently, they are mainly used as building blocks for other concurrency models and are considered a bad practice and legacy issue.</p>
+<h2 id="asynchronouswaiting-and-commitment">Asynchronous/waiting and commitment</h2>
+<p>As the name implies, this model is based on promises. promise represents the final computation (or failure). A function can return a Promise, such as the result of an http request, and then the calling function can link their logic to it. This is how concurrency is implemented in most popular languages.Java also has Promise, but they are called <strong>Futures</strong>, but only <strong>CompletableFuture</strong> has the full list of functions for Promise.Most operations in Java are blocking, and Futures will take up threads anyway.</p>
+<p><strong>Async/await is the syntactic sugar of Promises</strong>. It saves you from writing cumbersome sample files for linking, subscribing, and managing Promise. You can usually mark a function as <em>async</em> and its result is wrapped internally in a Promise.</p>
+<p>One of the big problems you can run into with async/await is the infamous colored function problem. Using async on a function essentially makes it non-blocking, but blocking functions (without the async prefix) can&rsquo;t call them unless they use await. you might ask, &ldquo;So what? I just make everything asynchronous and never use blocking functions&rdquo;&hellip; Sure, but you need a third-party library to block and boom everything goes to hell. Also, there may be some things in the language that are inherently blocking, and sooner or later you will be forced to deal with function colors. It is important to note that in some languages like C# this is not the case and your async/await has no function colors.</p>
+<h2 id="concurrency-continued--routines">Concurrency (continued + routines)</h2>
+<p>When we talk about concurrent processes, we don&rsquo;t mean Kotlin&rsquo;s concurrent processes, they just steal the word.</p>
+<p>A <strong>continuity</strong> is a special kind of function call. If function A calls function B and it&rsquo;s the last thing A does, then we can say that B is a continuation of A.</p>
+<p><strong>routines</strong> (aka. subroutines) are reusable pieces of code that are usually called multiple times during execution. Think of them as a set of immutable instructions with inputs and outputs that you can call at any time.</p>
+<p><strong>Combining these terms, we get CoRoutines</strong> . They are essentially suspendable tasks managed by the runtime, and they form a tree structure of chained calls.</p>
+<p>CoRoutines have several key properties.</p>
+<ul>
+<li>They can be suspended <strong>and resumed</strong> at any time</li>
+<li>They are a data structure that <strong>remembers its state and stack trace</strong></li>
+<li>They can <strong>cede/give control to other concurrent programs</strong> (subroutines)</li>
+<li>They must have isDone(), yield(), and run() functions</li>
+</ul>
+<p>This is an example of a concurrent process in JS, sorry to all hardcore Java readers :(</p>
+<p>JavaScript has a yield mechanism. With it, you can create so-called generators. To support this, they have pretty much implemented concurrency in the language.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">function *getNumbersGen() {
+</span></span><span class="line"><span class="cl">  let temp = 5;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  console.log(&#34;1&#34;);
+</span></span><span class="line"><span class="cl">  yield 1;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  console.log(&#34;2&#34;);
+</span></span><span class="line"><span class="cl">  yield 2;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  console.log(&#34;3&#34;);
+</span></span><span class="line"><span class="cl">  yield 3;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  console.log(&#34;Temp &#34; + temp);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is our simple generator.&rsquo; *&rsquo; marks the function as a generator, and then the function can use yield. this <code>yield</code> keyword is used to pause and resume the generator function (same as hang/run).</p>
+<p>Now, if we execute the following code, it will get the numbers from the generator until it stops generating them.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">for (let n of getNumbersGen()) {
+</span></span><span class="line"><span class="cl">  console.log(&#34;Num &#34; + n);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We get</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;1&#34;
+</span></span><span class="line"><span class="cl">&#34;Num 1&#34;
+</span></span><span class="line"><span class="cl">&#34;2&#34;
+</span></span><span class="line"><span class="cl">&#34;Num 2&#34;
+</span></span><span class="line"><span class="cl">&#34;3&#34;
+</span></span><span class="line"><span class="cl">&#34;Num 3&#34;
+</span></span><span class="line"><span class="cl">&#34;Temp 5&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Notice how the control is generated between the two code blocks, first the generator prints the number and then loops through it. In addition, we define the temp variable at the beginning of the generator, after which the value of temp is generated back and forth and still retained and printed correctly.This generator implements everything needed to be called a concurrent program. It can pause, it can resume and it can maintain its state. All of this is handled by the JS interpreter. Great, we implemented concurrency without introducing any special words like async and await,we don&rsquo;t have colored functions, but still run on a single Thread.</p>
+<h2 id="virtual-threads">Virtual threads</h2>
+<p>Loom&rsquo;s developers had a lot to think about and multiple ways to implement virtual threads. I&rsquo;m glad they chose the concurrent thread approach. The <strong>Thread class will remain the same and use the same API</strong> . This makes the migration seamless and the switch to green threads is just a sign. However, this comes at a huge cost. They have to go through every API of the language, such as Sockets and I/O, and make it non-blocking in case it runs in a virtual thread. This is a huge change that affects the core JDK APIs. In addition, it had to be backwards compatible and not break existing logic. No wonder this took more than 5 years to complete.</p>
+<p>In order to switch to virtual threads, we don&rsquo;t have to learn something new, we just need to forget something.</p>
+<ul>
+<li><strong>Never merge virtual threads</strong> , they are cheap and pointless</li>
+<li><strong>Stop using thread local variables</strong> . They will work, but if you spawn millions of threads, you&rsquo;ll run into memory problems. According to Ron Pressler: &quot; <em>Thread-local variables should not be exposed to end users and should be kept as internal implementation details</em> &ldquo;.</li>
+</ul>
+<p>An almost exhaustive list of advantages of virtual threads over platform threads</p>
+<ul>
+<li><strong>Context switching actually becomes free</strong> . They are managed by the JVM, which means that the JVM will perform context switching between threads.</li>
+<li><strong>Tail/call optimization.</strong> They mention in the JEP that tail-call optimization is done on threads. This can save a lot of memory for the stack, but it is still a work in progress</li>
+<li><strong>Cheap start/stop.</strong> When we stop the OS thread, we have to make a system call to terminate the thread and then release the memory it is occupying. When starting the OS thread, we make the system call again. Starting and killing a green thread is just a matter of deleting the object and then letting the GC delete it.</li>
+<li><strong>Hard cap.</strong> As mentioned before, the OS can handle so many threads. Even with hardware improvements, we still can&rsquo;t keep up with demand. Currently you can spawn tens of millions of virtual threads (which should be enough for most cases)</li>
+<li><strong>Threads that perform transactions behave very differently than threads that perform video processing.</strong> This is very easy to overlook. Essentially what I&rsquo;m saying is that the OS and CPU must be optimized for the general case. They must be able to handle the various tasks requested by the application, so they cannot be optimized for specific use cases. the JVM can optimize its threads for the specific task of processing the request.</li>
+<li><strong>Resizable stacks.</strong> Virtual threads exist in RAM. Their stacks and metadata are there as well. Platform threads must be allocated a fixed stack size (1MB for Java) and that stack cannot be resized. This means that if you exceed it you get stackoverflow, and if you don&rsquo;t use it you waste memory. In addition, the minimum memory required to bootstrap a virtual thread is about 200-300 bytes.</li>
+</ul>
+<h2 id="using-virtual-threads">Using Virtual Threads</h2>
+<p>Consider the following</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">1_000_000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}}).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here we try to create 1 million regular threads, and all the threads do is sleep for 1 second and then die. Obviously, this code throws an OutOfMemory error, and on my machine I was able to generate 40k threads before I ran out of memory.</p>
+<p>Now let&rsquo;s try to generate virtual ones. In order to create a new virtual thread, we have to use <em>Thread.startVirtualThread(runnable).</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">1_000_000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}});</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This code worked fine and I was able to generate over 20 million of these threads on my machine. This is to be expected, since a user mode thread is nothing more than an object in the memory managed by the JVM.</p>
+<p>Okay, let&rsquo;s dig a little deeper. Usually when we use threads, we use them together with thread pools. We will define a blocking code that needs to be executed</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">someWork</span><span class="o">(</span><span class="n">String</span> <span class="n">taskName</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; executing &#34;</span> <span class="o">+</span> <span class="n">taskName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">&#34;https://httpstat.us/200?sleep=2000&#34;</span><span class="o">).</span><span class="na">getContent</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; completed &#34;</span> <span class="o">+</span> <span class="n">taskName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We print the platform (operator) thread where the code is running, then make a 2 second http call, then print the operator thread again. Simple enough.</p>
+<p>Now let&rsquo;s run it in parallel</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">ExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">5</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">taskName</span> <span class="o">=</span> <span class="s">&#34;Task&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">executor</span><span class="o">.</span><span class="na">execute</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">someWork</span><span class="o">(</span><span class="n">taskName</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We create a fixed size thread pool with 5 threads and submit 10 tasks that will only run the <em>someWork</em> method described earlier. Did you notice anything else? The thread pool is in the try-with-resources block! This is a new Java 19 feature that now tries to use resources to wait for all threads to complete, and we no longer need to use <em>shutdown</em> and <em>awaitTermination when using thread pooling.</em> Anyway, the above code provides us with the following output</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Thread[#25,pool-1-thread-5,5,main] executing Task5
+</span></span><span class="line"><span class="cl">Thread[#24,pool-1-thread-4,5,main] executing Task4
+</span></span><span class="line"><span class="cl">Thread[#21,pool-1-thread-1,5,main] executing Task1
+</span></span><span class="line"><span class="cl">Thread[#22,pool-1-thread-2,5,main] executing Task2
+</span></span><span class="line"><span class="cl">Thread[#23,pool-1-thread-3,5,main] executing Task3
+</span></span><span class="line"><span class="cl">Thread[#21,pool-1-thread-1,5,main] completed Task1
+</span></span><span class="line"><span class="cl">Thread[#22,pool-1-thread-2,5,main] completed Task2
+</span></span><span class="line"><span class="cl">Thread[#21,pool-1-thread-1,5,main] executing Task6
+</span></span><span class="line"><span class="cl">Thread[#22,pool-1-thread-2,5,main] executing Task7
+</span></span><span class="line"><span class="cl">Thread[#25,pool-1-thread-5,5,main] completed Task5
+</span></span><span class="line"><span class="cl">Thread[#23,pool-1-thread-3,5,main] completed Task3
+</span></span><span class="line"><span class="cl">Thread[#24,pool-1-thread-4,5,main] completed Task4
+</span></span><span class="line"><span class="cl">Thread[#25,pool-1-thread-5,5,main] executing Task8
+</span></span><span class="line"><span class="cl">Thread[#23,pool-1-thread-3,5,main] executing Task9
+</span></span><span class="line"><span class="cl">Thread[#24,pool-1-thread-4,5,main] executing Task10
+</span></span><span class="line"><span class="cl">Thread[#22,pool-1-thread-2,5,main] completed Task7
+</span></span><span class="line"><span class="cl">Thread[#21,pool-1-thread-1,5,main] completed Task6
+</span></span><span class="line"><span class="cl">Thread[#25,pool-1-thread-5,5,main] completed Task8
+</span></span><span class="line"><span class="cl">Thread[#24,pool-1-thread-4,5,main] completed Task10
+</span></span><span class="line"><span class="cl">Thread[#23,pool-1-thread-3,5,main] completed Task9
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note how each task is executed by the same thread. (e.g. <em>Task4</em> was completed by <em>Thread[#24,pool-1-thread-4,5,main]</em>)</p>
+<p>This shows that when the blocking call is made, the thread is waiting and resumes after 2 seconds.</p>
+<p>Now let&rsquo;s convert it to a user mode thread. The code is the same, we just need to use <em>Executors.newVirtualThreadPerTaskExecutor()</em> to create a new green thread each time a task is submitted.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">ExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">taskName</span> <span class="o">=</span> <span class="s">&#34;Task&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">executor</span><span class="o">.</span><span class="na">execute</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">someWork</span><span class="o">(</span><span class="n">taskName</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This time we get the following output</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">VirtualThread[#25]/runnable@ForkJoinPool-1-worker-4 executing Task4
+</span></span><span class="line"><span class="cl">VirtualThread[#26]/runnable@ForkJoinPool-1-worker-5 executing Task5
+</span></span><span class="line"><span class="cl">VirtualThread[#28]/runnable@ForkJoinPool-1-worker-7 executing Task7
+</span></span><span class="line"><span class="cl">VirtualThread[#23]/runnable@ForkJoinPool-1-worker-2 executing Task2
+</span></span><span class="line"><span class="cl">VirtualThread[#21]/runnable@ForkJoinPool-1-worker-1 executing Task1
+</span></span><span class="line"><span class="cl">VirtualThread[#24]/runnable@ForkJoinPool-1-worker-3 executing Task3
+</span></span><span class="line"><span class="cl">VirtualThread[#27]/runnable@ForkJoinPool-1-worker-6 executing Task6
+</span></span><span class="line"><span class="cl">VirtualThread[#29]/runnable@ForkJoinPool-1-worker-8 executing Task8
+</span></span><span class="line"><span class="cl">VirtualThread[#32]/runnable@ForkJoinPool-1-worker-3 executing Task10
+</span></span><span class="line"><span class="cl">VirtualThread[#31]/runnable@ForkJoinPool-1-worker-8 executing Task9
+</span></span><span class="line"><span class="cl">VirtualThread[#26]/runnable@ForkJoinPool-1-worker-1 completed Task5
+</span></span><span class="line"><span class="cl">VirtualThread[#21]/runnable@ForkJoinPool-1-worker-1 completed Task1
+</span></span><span class="line"><span class="cl">VirtualThread[#25]/runnable@ForkJoinPool-1-worker-9 completed Task4
+</span></span><span class="line"><span class="cl">VirtualThread[#24]/runnable@ForkJoinPool-1-worker-2 completed Task3
+</span></span><span class="line"><span class="cl">VirtualThread[#27]/runnable@ForkJoinPool-1-worker-2 completed Task6
+</span></span><span class="line"><span class="cl">VirtualThread[#32]/runnable@ForkJoinPool-1-worker-9 completed Task10
+</span></span><span class="line"><span class="cl">VirtualThread[#28]/runnable@ForkJoinPool-1-worker-1 completed Task7
+</span></span><span class="line"><span class="cl">VirtualThread[#23]/runnable@ForkJoinPool-1-worker-7 completed Task2
+</span></span><span class="line"><span class="cl">VirtualThread[#31]/runnable@ForkJoinPool-1-worker-6 completed Task9
+</span></span><span class="line"><span class="cl">VirtualThread[#29]/runnable@ForkJoinPool-1-worker-1 completed Task8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Notice how the task is now executed by two threads, the first executing the code before the blocking call and the second after. For example <em>Task5</em> is executed first by <em>ForkJoinPool-1-worker-5</em> and then by <em>ForkJoinPool-1-worker-1.</em> This shows that we are not blocking the operator threads. Note also that we are now using a forked connection pool. This pool has a certain size number of cores and is managed by the JVM. It is also used for things like parallel streaming.</p>
+<p>This is very similar to the JavaScript example we gave earlier. Threads give up control to each other, state is retained and then restored, a true collaborative process. The best part is that it&rsquo;s the same as regular blocking code.</p>
+<h2 id="server-sending-events">Server sending events</h2>
+<p>I wanted to use this as a cool use case for user mode threads. If you are not familiar with SSE, this is a good and more detailed explanation. Essentially, we open an http connection and never close it, and then the server is able to keep pushing data to the client. It&rsquo;s very lightweight and much cheaper than WebSockets. The problem is that in order to implement it, we need a thread to keep running and sending events to the stream, and if the thread dies, we will disconnect. You can already see that using platform threads here is not a good idea. Using virtual threads, we can do this in spring boot</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/sse&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">SseEmitter</span> <span class="nf">streamSSE</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">SseEmitter</span> <span class="n">emitter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SseEmitter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ExecutorService</span> <span class="n">sseMvcExecutor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sseMvcExecutor</span><span class="o">.</span><span class="na">execute</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SseEmitter</span><span class="o">.</span><span class="na">SseEventBuilder</span> <span class="n">event</span> <span class="o">=</span> <span class="n">SseEmitter</span><span class="o">.</span><span class="na">event</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">data</span><span class="o">(</span><span class="s">&#34;SSE time -&gt; &#34;</span> <span class="o">+</span> <span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">id</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">&#34;Custom SSE&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">emitter</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">500</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">emitter</span><span class="o">.</span><span class="na">completeWithError</span><span class="o">(</span><span class="n">ex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">});</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">emitter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>SseEmitter is a special class in Spring MVC that implements the SSE protocol. What we do is create an infinite loop (obviously not production code) and send new data to the client every 500 milliseconds. Then any number of clients can subscribe to it.</p>
+<p>curl localhost:8080/api/v1/test/sse</p>
+<p>You&rsquo;ll keep getting events like this</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">data:SSE time -&gt; 13:41:59.878294
+</span></span><span class="line"><span class="cl">id:f2059d56-d27e-461b-8f7c-1aa75b3aab64
+</span></span><span class="line"><span class="cl">event:Custom SSE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">data:SSE time -&gt; 13:42:00.383703
+</span></span><span class="line"><span class="cl">id:fdaac3bb-47aa-45b0-9382-549ff7549f08
+</span></span><span class="line"><span class="cl">event:Custom SSE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The full source code can be found here.</p>
+<h2 id="when-not-to-use-virtual-threads">When not to use virtual threads</h2>
+<p>Having to manage virtual threads can degrade performance. For less loaded applications, threads may be preferable to virtual threads simply because context switching is lower when there are few active clients. In addition, if your application is CPU-intensive, such as performing a lot of math calculations, it does not make sense to use green threads, since they must occupy OS threads during calculations anyway. In general, Loom will not make your application faster, it will only increase its throughput, so if throughput is not an issue, then stick with platform threads. This blog does a good job of analyzing and showing how Loom utilizes threads, but if you read it, keep in mind that the author bashes Loom for things it shouldn&rsquo;t be doing in the first place (like fair thread scheduling).</p>
+<p><strong>Find your bottleneck</strong> . Whether you use Postgres with 50 connection pools and then spawn more than 50 threads (platform or non-platform) won&rsquo;t make any difference.</p>
+<p>As a reference, you can check out little&rsquo;s law and this great article on the topic of choosing the optimal number of threads</p>
+<h2 id="structured-concurrency">Structured Concurrency</h2>
+<p>Structured concurrency refers to the way we handle the life cycle of threads. Currently we can&rsquo;t stop a thread that no longer needs to run, because their results are obsolete. We can only send an <strong>interrupt signal that will eventually be consumed and the thread stopped</strong>. This wastes RAM and CPU cycles.</p>
+<p>Let&rsquo;s consider the following case</p>
+<h3 id="all-tasks-must-succeed-if-one-fails-there-is-no-point-in-continuing">All tasks must succeed, if one fails, there is no point in continuing</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/506a46a077754c64a01da6c346ee1900.png" alt="image"></p>
+<h3 id="if-a-task-succeeds-then-at-least-one-task-must-succeed-and-there-is-no-point-in-waiting-for-the-rest">If a task succeeds, then at least one task must succeed, and there is no point in waiting for the rest</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/d0d0b7b47c9d4050bb7f517d364f0f18.png" alt="image"></p>
+<h3 id="deadline-if-the-execution-takes-longer-than-a-specific-time-we-want-to-terminate-everything">Deadline. If the execution takes longer than a specific time, we want to terminate everything</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/2e3437cc2daf4708a74b4d73d81b9a81.png" alt="image"></p>
+<p>I&rsquo;ve marked in red the threads that need to be stopped immediately after reaching a certain state. With Loom we can do this, currently we have no choice but to stop the thread manually except for the special thread pool they will introduce, but this JEP promises to bring more utilities to manage it.</p>
+<p>These may seem like small optimizations, in fact they are trivial for small applications or low load servers. When you are dealing with millions of requests per day, these things really matter, in fact they can be game changers and in some cases greatly increase your throughput.</p>
+<h3 id="if-you-are-using-a-reactor-framework-should-you-consider-switching-to-loom">If you are using a reactor framework, should you consider switching to Loom</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/7eae4130ab8543be876d839a01cd59fc.png" alt="image"></p>
+<p>The Reactor framework is very good at dealing with application throughput issues. What they do is essentially create abstract tasks (similar to a concurrent process) and wrap everything in them. The reactor runtime then manages these tasks. Sounds very similar to virtual threading, but with few major problems</p>
+<ul>
+<li>The language itself doesn&rsquo;t support it, which leads to very complex code (Flux/Mono)</li>
+<li>The excellent Java thread debugging we talked about before is completely ignored and replaced by a centralized error handler that provides almost zero information. We must rely heavily on logging.</li>
+<li>Once you use the reactor style it&rsquo;s hard to go back and you may have to rewrite everything from scratch.
+*Brian Goetz says Loom will kill webflux. I&rsquo;m not saying you should believe him blindly, but at least listen to what he has to say.</li>
+</ul>
+<p>I personally don&rsquo;t like reactors (I don&rsquo;t like the actor model either, but it at least behaves better and is easier to understand). I really like the blocking code and the per-request model of threads. They are readable and take full advantage of the Java language. These frameworks eliminate that, and you need a good reason to use them after Loom.</p>
+<h2 id="final-words">Final Words</h2>
+<p>I know this is a big topic and there is a lot to deal with. I hope it&rsquo;s useful. Please feel free to comment and challenge me if I haven&rsquo;t explained something very well. I will also link to all the resources below and further reading so you can do your own research if needed. loom is still in pre-release and things may change, but one thing is for sure, we will get virtual threads in JDK 19 and the official release date, as I write this, is September 2022. Unfortunately, Java 19 is not LTS, and if you work for companies that only use the LTS version, you will have to wait for Java 21 which should be released in September 2023.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/virtual-thread/">virtual thread</a>
+          <a href="https://www.javai.net/tags/thread/">thread</a>
+          <a href="https://www.javai.net/tags/concurrency/">concurrency</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202206/java-out-of-memory/">
+            <span class="next-text nav-default">How to avoid memory leaks in java programs</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

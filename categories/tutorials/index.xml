@@ -6,7 +6,17 @@
     <description>Recent content in tutorials on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Jun 2022 15:45:08 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jun 2022 19:20:24 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Virtual Threads</title>
+      <link>https://www.javai.net/post/202206/java-virtual-thread/</link>
+      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202206/java-virtual-thread/</guid>
+      <description>Virtual threading is something I&amp;rsquo;m really excited about. It&amp;rsquo;s a long-awaited feature in the language and we&amp;rsquo;ve made very few attempts to implement it in the past, but it&amp;rsquo;s finally here and it&amp;rsquo;s been merged into Java 19. This means that it will be included as a preview feature and we will be able to use it as soon as JDK 19 is released.
+As I read this article I had to browse through many posts and videos.</description>
+    </item>
+    
     <item>
       <title>How to avoid memory leaks in java programs</title>
       <link>https://www.javai.net/post/202206/java-out-of-memory/</link>
@@ -207,16 +217,6 @@ This article will explain in detail the specific use of ExecutorService.
 Creating an ExecutorService Generally speaking, there are two ways to create an ExecutorService.
 The first way is to use the factory class methods in Executors, for example.
 1  ExecutorService executor = Executors.newFixedThreadPool(10);   In addition to the newFixedThreadPool method, Executors contains a number of methods to create an ExecutorService.</description>
-    </item>
-    
-    <item>
-      <title>Java Class File Format Analysis</title>
-      <link>https://www.javai.net/post/202204/java-class-file-format-analysis/</link>
-      <pubDate>Sat, 16 Apr 2022 19:44:15 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-class-file-format-analysis/</guid>
-      <description>Preface Learn jvm word code, you need to understand the way class is composed, this article explains the process of parsing the class file format in java method, I hope it can help you.
-Class file specification The code that is compiled and executed by the Java virtual machine uses a platform-neutral (hardware- and operating system-independent). It is often (but not always) stored as a file, so this format is called the Class file format.</description>
     </item>
     
   </channel>

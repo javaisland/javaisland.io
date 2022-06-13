@@ -6,13 +6,40 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Jun 2022 15:45:08 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jun 2022 19:20:24 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>concurrency</title>
+      <link>https://www.javai.net/tags/concurrency/</link>
+      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Sat, 11 Jun 2022 15:45:08 +0800</pubDate>
+      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thread</title>
+      <link>https://www.javai.net/tags/thread/</link>
+      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/thread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtual thread</title>
+      <link>https://www.javai.net/tags/virtual-thread/</link>
+      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/virtual-thread/</guid>
       <description></description>
     </item>
     
@@ -49,15 +76,6 @@
       <pubDate>Sat, 11 Jun 2022 13:24:03 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/restclient/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thread</title>
-      <link>https://www.javai.net/tags/thread/</link>
-      <pubDate>Tue, 31 May 2022 23:43:35 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/thread/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/crypto/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CVE-2022-21449</title>
-      <link>https://www.javai.net/tags/cve-2022-21449/</link>
-      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/cve-2022-21449/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ecdsa </title>
-      <link>https://www.javai.net/tags/ecdsa/</link>
-      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/ecdsa/</guid>
       <description></description>
     </item>
     

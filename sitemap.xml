@@ -10,27 +10,76 @@
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-06-11T15:45:08+08:00</lastmod>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/202206/java-out-of-memory/</loc>
-    <lastmod>2022-06-11T15:45:08+08:00</lastmod>
+    <loc>https://www.javai.net/tags/concurrency/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-06-11T15:45:08+08:00</lastmod>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202206/java-virtual-thread/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/thread/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/tutorials/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/virtual-thread/</loc>
+    <lastmod>2022-06-13T19:20:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202206/java-out-of-memory/</loc>
     <lastmod>2022-06-11T15:45:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -45,27 +94,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/memory/</loc>
-    <lastmod>2022-06-11T15:45:08+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-06-11T15:45:08+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
-    <lastmod>2022-06-11T15:45:08+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/tutorials/</loc>
     <lastmod>2022-06-11T15:45:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -94,13 +122,6 @@
   
   <url>
     <loc>https://www.javai.net/post/202205/java-virtual-thread-fair/</loc>
-    <lastmod>2022-05-31T23:43:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/thread/</loc>
     <lastmod>2022-05-31T23:43:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
