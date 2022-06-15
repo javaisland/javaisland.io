@@ -14,7 +14,7 @@
       
       <guid>https://www.javai.net/post/202206/java-virtual-thread/</guid>
       <description>Virtual threading is something I&amp;rsquo;m really excited about. It&amp;rsquo;s a long-awaited feature in the language and we&amp;rsquo;ve made very few attempts to implement it in the past, but it&amp;rsquo;s finally here and it&amp;rsquo;s been merged into Java 19. This means that it will be included as a preview feature and we will be able to use it as soon as JDK 19 is released.
-As I read this article I had to browse through many posts and videos.</description>
+Most of the content on the virtual (green) threads is written by non-Java developers, why is that?</description>
     </item>
     
   </channel>
