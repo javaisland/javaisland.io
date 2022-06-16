@@ -310,6 +310,83 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/202206/java-infinite-stream/">Building an infinite stream in java 8</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-06-16" class="post-time">
+        2022-06-16
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 289 words </span>
+      <span class="more-meta"> 2 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Introduction In java, we can convert a specific set into a stream, so in some cases, such as in a test environment, we need to construct a stream with a certain number of elements, how do we need to handle it?
+Here we can construct an unlimited stream and then call the limit method to limit the number returned.
+Basic use Let&rsquo;s start with an example of using Stream.iterate to create an infinite Stream.
+    </div>
+    <div class="read-more">
+      <a href="/post/202206/java-infinite-stream/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202206/java-parallel-stream-thread-pool/">Customizing parallelStream&#39;s thread pool</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-06-16" class="post-time">
+        2022-06-16
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 180 words </span>
+      <span class="more-meta"> 1 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Introduction By default, ForkJoinPool creates a thread for each processor, and parallelStream will use this shared thread pool to submit tasks if not specified.
+So how do we handle a specific situation where we want to use a custom ForkJoinPool?
+Common operations If we want to do an addition from 1 to 1000, we can use parallel stream like this.
+1 2 3 4 5  List&lt;Integer&gt; integerList= IntStream.range(1,1000).boxed().collect(Collectors.toList()); ForkJoinPool customThreadPool = new ForkJoinPool(4); Integer total= integerList.
+    </div>
+    <div class="read-more">
+      <a href="/post/202206/java-parallel-stream-thread-pool/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/202206/java-cloud-compiler/">Cloud Native Compiler - Java Cloud Compiler</a>
     </h1>
     
@@ -967,80 +1044,6 @@ daemon threads are low-priority threads that serve User Threads. Because daemon 
     </div>
     <div class="read-more">
       <a href="/post/202204/java-daemon-thread/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-jdk8-upgrade-jdk11/">Notes on upgrading from Java 8 to Java 11</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-19" class="post-time">
-        2022-04-19
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 5131 words </span>
-      <span class="more-meta"> 25 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Preface Although the latest version of Java has evolved to Java 18, most projects on the market are still using Java 8. Many people are apprehensive about upgrading their Java version because the Java API is not necessarily forward compatible from Java 8. Java 11 is the next long-supported version of Java 8, and there is no doubt that Java 11 is even better than Java 8. superior.
-This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-jdk8-upgrade-jdk11/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-aqs-principle-2/">AbstractQueuedSynchronizer implementation principle - 2</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-19" class="post-time">
-        2022-04-19
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 1980 words </span>
-      <span class="more-meta"> 10 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Preface In the previous articleAbstractQueuedSynchronizer implementation principle - 1, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
-Shared Synchronous State Acquisition and Release Shared lock as the name implies is that multiple threads can share a lock, use acquireShared in the synchronizer to get the shared lock (synchronous state), the source code of the method is as follows.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-aqs-principle-2/" class="read-more-link">Read more</a>
     </div>
     
   </div>

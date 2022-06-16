@@ -310,6 +310,80 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/202204/java-jdk8-upgrade-jdk11/">Notes on upgrading from Java 8 to Java 11</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-19" class="post-time">
+        2022-04-19
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 5131 words </span>
+      <span class="more-meta"> 25 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Preface Although the latest version of Java has evolved to Java 18, most projects on the market are still using Java 8. Many people are apprehensive about upgrading their Java version because the Java API is not necessarily forward compatible from Java 8. Java 11 is the next long-supported version of Java 8, and there is no doubt that Java 11 is even better than Java 8. superior.
+This article describes the code checking tools used to convert code from Java 8 to Java 11, as well as the problems you may encounter and suggestions for resolving them.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-jdk8-upgrade-jdk11/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/202204/java-aqs-principle-2/">AbstractQueuedSynchronizer implementation principle - 2</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-19" class="post-time">
+        2022-04-19
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 1980 words </span>
+      <span class="more-meta"> 10 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Preface In the previous articleAbstractQueuedSynchronizer implementation principle - 1, we explained the acquisition and release of exclusive synchronization state in AbstractQueuedSynchronizer, and here we start to explain the acquisition and release of shared synchronization state in AbstractQueuedSynchronizer.
+Shared Synchronous State Acquisition and Release Shared lock as the name implies is that multiple threads can share a lock, use acquireShared in the synchronizer to get the shared lock (synchronous state), the source code of the method is as follows.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-aqs-principle-2/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/202204/java-aqs-principle-1/">AbstractQueuedSynchronizer implementation principle - 1</a>
     </h1>
     
@@ -979,81 +1053,6 @@ Java developers have always relied on threads as the building blocks of concurre
     </div>
     <div class="read-more">
       <a href="/post/202204/java-virtual-threads/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/volatile-application/">Application of Volatile</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-07" class="post-time">
-        2022-04-07
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 1082 words </span>
-      <span class="more-meta"> 6 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Memory Visibility Since the Java Memory Model (JMM) states that all variables are stored in main memory, and each thread has its own working memory (cache).
-When a thread is working, it needs to copy the data from the main memory to the working memory. This way, any operation on the data is based on the working memory (which is more efficient) and cannot directly manipulate the data in the main memory or the working memory of other threads, and then flush the updated data to the main memory afterwards.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/volatile-application/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/reentrantlock-principle/">ReentrantLock implementation principle</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-06" class="post-time">
-        2022-04-06
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 1487 words </span>
-      <span class="more-meta"> 7 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      When using synchronize to do synchronization, lock acquisition and release are implicitly implemented by compiling and adding different machine instructions to achieve the principle.
- ReentrantLock is a class based on AbstractQueuedSynchronizer(AQS for short) implementation, this article analyzes the implementation principle of ReentrantLock, I hope it will be helpful to you.
-ReentrantLock: a thread can still repeat the lock after it has obtained it, and will not appear to block itself.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/reentrantlock-principle/" class="read-more-link">Read more</a>
     </div>
     
   </div>

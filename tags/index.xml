@@ -6,22 +6,76 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Jun 2022 20:45:51 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jun 2022 16:43:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java</title>
+      <link>https://www.javai.net/tags/java/</link>
+      <pubDate>Thu, 16 Jun 2022 16:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java8</title>
+      <link>https://www.javai.net/tags/java8/</link>
+      <pubDate>Thu, 16 Jun 2022 16:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stream</title>
+      <link>https://www.javai.net/tags/stream/</link>
+      <pubDate>Thu, 16 Jun 2022 16:43:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/stream/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>forkjoinpool</title>
+      <link>https://www.javai.net/tags/forkjoinpool/</link>
+      <pubDate>Thu, 16 Jun 2022 15:36:40 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/forkjoinpool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>parallel</title>
+      <link>https://www.javai.net/tags/parallel/</link>
+      <pubDate>Thu, 16 Jun 2022 15:36:40 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/parallel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thread</title>
+      <link>https://www.javai.net/tags/thread/</link>
+      <pubDate>Thu, 16 Jun 2022 15:36:40 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/thread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>threadpool</title>
+      <link>https://www.javai.net/tags/threadpool/</link>
+      <pubDate>Thu, 16 Jun 2022 15:36:40 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/threadpool/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AOT</title>
       <link>https://www.javai.net/tags/aot/</link>
       <pubDate>Wed, 15 Jun 2022 20:45:51 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/aot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Wed, 15 Jun 2022 20:45:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java/</guid>
       <description></description>
     </item>
     
@@ -49,15 +103,6 @@
       <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/concurrency/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thread</title>
-      <link>https://www.javai.net/tags/thread/</link>
-      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/thread/</guid>
       <description></description>
     </item>
     
@@ -139,51 +184,6 @@
       <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/cyclicbarrier/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>countdownlatch</title>
-      <link>https://www.javai.net/tags/countdownlatch/</link>
-      <pubDate>Thu, 12 May 2022 13:34:16 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/countdownlatch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>stream</title>
-      <link>https://www.javai.net/tags/stream/</link>
-      <pubDate>Sat, 07 May 2022 17:04:19 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/stream/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>enum</title>
-      <link>https://www.javai.net/tags/enum/</link>
-      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/enum/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>enumMap</title>
-      <link>https://www.javai.net/tags/enummap/</link>
-      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/enummap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>enumSet</title>
-      <link>https://www.javai.net/tags/enumset/</link>
-      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/enumset/</guid>
       <description></description>
     </item>
     
