@@ -9,21 +9,70 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/202206/java-infinite-stream/</loc>
-    <lastmod>2022-06-16T16:43:35+08:00</lastmod>
+    <loc>https://www.javai.net/categories/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-06-16T16:43:35+08:00</lastmod>
+    <loc>https://www.javai.net/tags/class-file-api/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/news/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/openjdk/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202206/java-class-api/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202206/java-infinite-stream/</loc>
     <lastmod>2022-06-16T16:43:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -37,28 +86,7 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/</loc>
-    <lastmod>2022-06-16T16:43:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-06-16T16:43:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/stream/</loc>
-    <lastmod>2022-06-16T16:43:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
     <lastmod>2022-06-16T16:43:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -220,13 +248,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/leyden/</loc>
-    <lastmod>2022-05-26T13:40:53+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/news/</loc>
     <lastmod>2022-05-26T13:40:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -6,13 +6,31 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 16 Jun 2022 16:43:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Jun 2022 19:55:48 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>class file api</title>
+      <link>https://www.javai.net/tags/class-file-api/</link>
+      <pubDate>Fri, 24 Jun 2022 19:55:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/class-file-api/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Thu, 16 Jun 2022 16:43:35 +0800</pubDate>
+      <pubDate>Fri, 24 Jun 2022 19:55:48 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openjdk</title>
+      <link>https://www.javai.net/tags/openjdk/</link>
+      <pubDate>Fri, 24 Jun 2022 19:55:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/openjdk/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Thu, 26 May 2022 13:40:53 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/leyden/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>concurrent</title>
-      <link>https://www.javai.net/tags/concurrent/</link>
-      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/concurrent/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cyclicbarrier</title>
-      <link>https://www.javai.net/tags/cyclicbarrier/</link>
-      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/cyclicbarrier/</guid>
       <description></description>
     </item>
     

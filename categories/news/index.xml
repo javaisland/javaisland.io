@@ -6,7 +6,17 @@
     <description>Recent content in news on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 May 2022 13:40:53 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Jun 2022 19:55:48 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenJDK proposal will provide Java class file API</title>
+      <link>https://www.javai.net/post/202206/java-class-api/</link>
+      <pubDate>Fri, 24 Jun 2022 19:55:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202206/java-class-api/</guid>
+      <description>The Java community is working on a Classfile API proposal that aims to provide an API for parsing, generating, and converting Java class files; initially as an internal replacement for the ASM in the JDK, and later as a public API. It is planned that ASM will eventually be removed from the JDK entirely.
+The proposal notes that class file generation, parsing, and detection are ubiquitous in the Java ecosystem; many tools and libraries need to be able to handle class files, and frameworks often perform on-the-fly bytecode instrumentation, transformation, and generation.</description>
+    </item>
+    
     <item>
       <title>Java introduces static images to solve problems like slow running</title>
       <link>https://www.javai.net/post/202205/java-oracle-leyden/</link>

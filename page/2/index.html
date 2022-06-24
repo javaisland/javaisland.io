@@ -310,6 +310,44 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/202204/java-daemon-thread/">Daemon Thread in Java</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-20" class="post-time">
+        2022-04-20
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 485 words </span>
+      <span class="more-meta"> 3 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Preface There are two types of threads in java, user threads and daemon threads.
+User threads are high priority threads and the JVM will wait for all the User Threads to finish running before it finishes running.
+daemon threads are low-priority threads that serve User Threads. Because daemon threads are low priority and serve only user threads, the JVM will automatically exit when all user threads are finished, regardless of whether there are still daemon threads running.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-daemon-thread/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/202204/java-jdk8-upgrade-jdk11/">Notes on upgrading from Java 8 to Java 11</a>
     </h1>
     
@@ -1016,43 +1054,6 @@ You can see that there are many timeout processes that are not cleaned up after 
     </div>
     <div class="read-more">
       <a href="/post/202204/java-zombie-processes-continued/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/java-virtual-threads/">Java introduces preview virtual threads</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-08" class="post-time">
-        2022-04-08
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/news/"> news </a>
-          
-        </div>
-      <span class="more-meta"> 818 words </span>
-      <span class="more-meta"> 4 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      OpenJDK&rsquo;s JEP 425: Virtual Threads (Preview) feature proposal shows that the Java platform will introduce the virtual threads feature. Virtual threads are lightweight threads that can significantly reduce the effort of writing, maintaining, and observing high-throughput concurrent applications.
-Java developers have always relied on threads as the building blocks of concurrent server applications, where statements in each method are executed within a thread, and each thread provides a stack to store local variables and coordinate method calls, as well as context trapping when errors are reported.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/java-virtual-threads/" class="read-more-link">Read more</a>
     </div>
     
   </div>

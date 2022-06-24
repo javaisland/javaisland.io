@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>java · JavaIsland</title>
+  <title>OpenJDK proposal will provide Java class file API - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,9 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" />
-  <meta name="description" content="Level up your Java code and explore what Java can do for you." />
-  <meta name="keywords" content="java, javaweb, spring, javaee, java software, oracle java, java platform, what is java" />
+<meta name="author" content="JavaIsland" /><meta name="description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing." />
+<meta name="keywords" content="java, class file api, openjdk" />
+
 
 
 
@@ -34,8 +34,8 @@
 <meta name="generator" content="Hugo 0.95.0" />
 
 
-<link rel="canonical" href="https://www.javai.net/tags/java/" />
-<link href="/tags/java/index.xml" rel="alternate" type="application/rss+xml" title="JavaIsland" />
+<link rel="canonical" href="https://www.javai.net/post/202206/java-class-api/" />
+
 
 
 
@@ -58,15 +58,20 @@
 
 
 
-<meta property="og:title" content="java" />
-<meta property="og:description" content="Level up your Java code and explore what Java can do for you." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.javai.net/tags/java/" />
+<meta property="og:title" content="OpenJDK proposal will provide Java class file API" />
+<meta property="og:description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202206/java-class-api/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-24T19:55:48+08:00" />
+<meta property="article:modified_time" content="2022-06-24T19:55:48+08:00" />
 
-<meta itemprop="name" content="java">
-<meta itemprop="description" content="Level up your Java code and explore what Java can do for you."><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="java"/>
-<meta name="twitter:description" content="Level up your Java code and explore what Java can do for you."/>
+<meta itemprop="name" content="OpenJDK proposal will provide Java class file API">
+<meta itemprop="description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing."><meta itemprop="datePublished" content="2022-06-24T19:55:48+08:00" />
+<meta itemprop="dateModified" content="2022-06-24T19:55:48+08:00" />
+<meta itemprop="wordCount" content="430">
+<meta itemprop="keywords" content="java,class file api,openjdk," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OpenJDK proposal will provide Java class file API"/>
+<meta name="twitter:description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -298,278 +303,112 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">OpenJDK proposal will provide Java class file API</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-06-24" class="post-time">
+          2022-06-24
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/news/"> news </a>
+            
+          </div>
+        <span class="more-meta"> 430 words </span>
+          <span class="more-meta"> 3 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>The Java community is working on a <a href="https://bugs.openjdk.org/browse/JDK-8280389">Classfile API</a> proposal that aims to provide an API for parsing, generating, and converting Java class files; initially as an internal replacement for the ASM in the JDK, and later as a public API. It is planned that ASM will eventually be removed from the JDK entirely.</p>
+<p>The proposal notes that class file generation, parsing, and detection are ubiquitous in the Java ecosystem; many tools and libraries need to be able to handle class files, and frameworks often perform on-the-fly bytecode instrumentation, transformation, and generation. The JDK should provide an accurate, complete, up-to-date, high-performance API for reading, writing, and converting Java class files.</p>
+<p>The initial goal of this API is to replace the ASM as a runtime dependency of the JDK without unacceptable performance loss. As an extension, it is also desirable to further replace the internal &ldquo;classreader&rdquo; library used by the compiler and JDK tools. Ultimately, the expectation is that a large number of applications and frameworks will be able to use this library as an effective replacement for ASM, cglib, or other bytecode libraries. Design goals and principles include having all Class file entities (e.g., methods and fields) represented by immutable objects, user-driven navigation, etc.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/24/d5ea70ed0e6d420db3779715e4096e4d.png" alt="classfile-api.png"></p>
+<p>The motivation for its genesis is.</p>
+<ul>
+<li><strong>JDK integration.</strong> The JDK itself is important in handling class files. there is an inherent delay in the JDK using ASM, and JDK developers need a bytecode library that keeps pace with JVMS.</li>
+<li><strong>Version deviations between the framework and the running JDK.</strong> Applications and frameworks that handle class files usually bundle a class file library, such as ASM, cglib, etc. But because new class file features can appear in any JDK version, and because the JDK has been released much faster since Java 9, applications and frameworks more frequently encounter newer class files than the libraries they bundle, leading to runtime errors (or worse, frameworks trying to parse the class file format). Developers need a class file library that keeps pace with the running JDK.</li>
+<li><strong>JVM evolution.</strong> Compared to the early days of Java, the JVM and class file formats are evolving much faster now. While some evolutions are simple, others are more complex, such as <a href="https://www.infoworld.com/article/3646092/project-valhalla-tees-up-java-object-model-improvements.html">Project Valhalla</a> brings new bytecode, field descriptors, and validation rules. At some point, improving existing libraries to support these new features may be costly or complex.</li>
+<li>**Language Improvements.**The language has improved significantly since the ASM was written, meaning that what may have been the best API idiomatic usage in 2002 may not be ideal 20 years from now.</li>
+</ul>
+<p>For more details <a href="https://bugs.openjdk.org/browse/JDK-8280389">see the proposal</a>.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/class-file-api/">class file api</a>
+          <a href="https://www.javai.net/tags/openjdk/">openjdk</a>
           
+        </div>
 
-<section id="archive" class="archive">
-  
-
-  
-    <div class="archive-post">
-      <time datetime="2022-04-08" class="archive-post-time">
-        2022-04-08
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java-virtual-threads/" class="archive-post-link">
-          Java introduces preview virtual threads
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-07" class="archive-post-time">
-        2022-04-07
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/volatile-application/" class="archive-post-link">
-          Application of Volatile
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/reentrantlock-principle/" class="archive-post-link">
-          ReentrantLock implementation principle
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java-reflect-application/" class="archive-post-link">
-          Practical Applications of Reflection - Building Log Objects
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/detect-loops/" class="archive-post-link">
-          How to implement detection of undirected and directed loops in Java
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-06" class="archive-post-time">
-        2022-04-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/undirected-graphs/" class="archive-post-link">
-          How to implement undirected graphs in Java
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-05" class="archive-post-time">
-        2022-04-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/bigdecimal-use/" class="archive-post-link">
-          Usage of Bigdecimal
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-05" class="archive-post-time">
-        2022-04-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java8-time-api/" class="archive-post-link">
-          Java8 new features of the time and date API
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-04" class="archive-post-time">
-        2022-04-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/threadpool-size/" class="archive-post-link">
-          How to estimate throughput and thread pool size
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-04" class="archive-post-time">
-        2022-04-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java9-string/" class="archive-post-link">
-          Changes to the String object in Java 9
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-04" class="archive-post-time">
-        2022-04-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/java-zombie-processes/" class="archive-post-link">
-          Java generates a lot of zombie process problems
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-03" class="archive-post-time">
-        2022-04-03
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/piped-stream/" class="archive-post-link">
-          Practical application scenarios for pipeline stream
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-02" class="archive-post-time">
-        2022-04-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/atomic-principle/" class="archive-post-link">
-          Principle of implementation of atomic operations
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-04-01" class="archive-post-time">
-        2022-04-01
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202204/thread-pool-rejection-strategy/" class="archive-post-link">
-          Thread pool rejection policy
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-03-31" class="archive-post-time">
-        2022-03-31
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/java-reflect/" class="archive-post-link">
-          Java reflection mechanism
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-03-30" class="archive-post-time">
-        2022-03-30
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/threadlocal-use/" class="archive-post-link">
-          A scenario using Threadlocal to solve concurrency and efficiency problems
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-03-30" class="archive-post-time">
-        2022-03-30
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/oracle-java-license/" class="archive-post-link">
-          Oracle cracks down on Java licensing issues, enterprises remove JDK overnight
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-03-29" class="archive-post-time">
-        2022-03-29
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/memory-dos/" class="archive-post-link">
-          A common defect in java systems - Memory DoS
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-03-28" class="archive-post-time">
-        2022-03-28
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/jdk18/" class="archive-post-link">
-          JDK 18 / Java 18 GA is released
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2022-03-27" class="archive-post-time">
-        2022-03-27
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/202203/java-startup-params/" class="archive-post-link">
-          Java Startup Params
-        </a>
-      </span>
-    </div>
-  
-</section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
       
-      <li >
-        <a href="/tags/java/">1</a>
-      </li>
-      
-      <li >
-        <a href="/tags/java/page/2/">2</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/tags/java/page/3/">3</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202206/java-infinite-stream/">
+            <span class="next-text nav-default">Building an infinite stream in java 8</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>
@@ -651,6 +490,13 @@
 
 
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 
