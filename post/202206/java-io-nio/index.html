@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>OpenJDK proposal will provide Java class file API - JavaIsland</title>
+  <title>The essence and difference between IO and NIO in Java - JavaIsland</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,8 +22,8 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="JavaIsland" /><meta name="description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing." />
-<meta name="keywords" content="java, class file api, openjdk" />
+<meta name="author" content="JavaIsland" /><meta name="description" content="The full name of IO is input output. NIO is called new IO, is the new generation of IO introduced in java 1.4" />
+<meta name="keywords" content="java, io, nio, stream, buffer, channel" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.95.0" />
 
 
-<link rel="canonical" href="https://www.javai.net/post/202206/java-class-api/" />
+<link rel="canonical" href="https://www.javai.net/post/202206/java-io-nio/" />
 
 
 
@@ -58,20 +58,20 @@
 
 
 
-<meta property="og:title" content="OpenJDK proposal will provide Java class file API" />
-<meta property="og:description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing." />
+<meta property="og:title" content="The essence and difference between IO and NIO in Java" />
+<meta property="og:description" content="The full name of IO is input output. NIO is called new IO, is the new generation of IO introduced in java 1.4" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.javai.net/post/202206/java-class-api/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-06-24T19:55:48+08:00" />
-<meta property="article:modified_time" content="2022-06-24T19:55:48+08:00" />
+<meta property="og:url" content="https://www.javai.net/post/202206/java-io-nio/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-28T11:06:41+08:00" />
+<meta property="article:modified_time" content="2022-06-28T11:06:41+08:00" />
 
-<meta itemprop="name" content="OpenJDK proposal will provide Java class file API">
-<meta itemprop="description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing."><meta itemprop="datePublished" content="2022-06-24T19:55:48+08:00" />
-<meta itemprop="dateModified" content="2022-06-24T19:55:48+08:00" />
-<meta itemprop="wordCount" content="430">
-<meta itemprop="keywords" content="java,class file api,openjdk," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="OpenJDK proposal will provide Java class file API"/>
-<meta name="twitter:description" content="The Java community is working on a Classfile API proposal that aims to provide an API for parsing."/>
+<meta itemprop="name" content="The essence and difference between IO and NIO in Java">
+<meta itemprop="description" content="The full name of IO is input output. NIO is called new IO, is the new generation of IO introduced in java 1.4"><meta itemprop="datePublished" content="2022-06-28T11:06:41+08:00" />
+<meta itemprop="dateModified" content="2022-06-28T11:06:41+08:00" />
+<meta itemprop="wordCount" content="1102">
+<meta itemprop="keywords" content="java,io,nio," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The essence and difference between IO and NIO in Java"/>
+<meta name="twitter:description" content="The full name of IO is input output. NIO is called new IO, is the new generation of IO introduced in java 1.4"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -306,18 +306,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">OpenJDK proposal will provide Java class file API</h1>
+      <h1 class="post-title">The essence and difference between IO and NIO in Java</h1>
       
       <div class="post-meta">
-        <time datetime="2022-06-24" class="post-time">
-          2022-06-24
+        <time datetime="2022-06-28" class="post-time">
+          2022-06-28
         </time>
         <div class="post-category">
-            <a href="https://www.javai.net/categories/news/"> news </a>
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
             
           </div>
-        <span class="more-meta"> 430 words </span>
-          <span class="more-meta"> 3 min read </span>
+        <span class="more-meta"> 1102 words </span>
+          <span class="more-meta"> 6 min read </span>
 
         
         
@@ -332,24 +332,76 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Table of Contents</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#the-nature-of-io">The nature of IO</a></li>
+    <li><a href="#dma-and-virtual-address-space">DMA and virtual address space</a></li>
+    <li><a href="#classification-of-io">Classification of IO</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      <p>The Java community is working on a <a href="https://bugs.openjdk.org/browse/JDK-8280389">Classfile API</a> proposal that aims to provide an API for parsing, generating, and converting Java class files; initially as an internal replacement for the ASM in the JDK, and later as a public API. It is planned that ASM will eventually be removed from the JDK entirely.</p>
-<p>The proposal notes that class file generation, parsing, and detection are ubiquitous in the Java ecosystem; many tools and libraries need to be able to handle class files, and frameworks often perform on-the-fly bytecode instrumentation, transformation, and generation. The JDK should provide an accurate, complete, up-to-date, high-performance API for reading, writing, and converting Java class files.</p>
-<p>The initial goal of this API is to replace the ASM as a runtime dependency of the JDK without unacceptable performance loss. As an extension, it is also desirable to further replace the internal &ldquo;classreader&rdquo; library used by the compiler and JDK tools. Ultimately, the expectation is that a large number of applications and frameworks will be able to use this library as an effective replacement for ASM, cglib, or other bytecode libraries. Design goals and principles include having all Class file entities (e.g., methods and fields) represented by immutable objects, user-driven navigation, etc.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/24/d5ea70ed0e6d420db3779715e4096e4d.png" alt="classfile-api.png"></p>
-<p>The motivation for its genesis is.</p>
-<ul>
-<li><strong>JDK integration.</strong> The JDK itself is important in handling class files. there is an inherent delay in the JDK using ASM, and JDK developers need a bytecode library that keeps pace with JVMS.</li>
-<li><strong>Version deviations between the framework and the running JDK.</strong> Applications and frameworks that handle class files usually bundle a class file library, such as ASM, cglib, etc. But because new class file features can appear in any JDK version, and because the JDK has been released much faster since Java 9, applications and frameworks more frequently encounter newer class files than the libraries they bundle, leading to runtime errors (or worse, frameworks trying to parse the class file format). Developers need a class file library that keeps pace with the running JDK.</li>
-<li><strong>JVM evolution.</strong> Compared to the early days of Java, the JVM and class file formats are evolving much faster now. While some evolutions are simple, others are more complex, such as <a href="https://www.infoworld.com/article/3646092/project-valhalla-tees-up-java-object-model-improvements.html">Project Valhalla</a> brings new bytecode, field descriptors, and validation rules. At some point, improving existing libraries to support these new features may be costly or complex.</li>
-<li>**Language Improvements.**The language has improved significantly since the ASM was written, meaning that what may have been the best API idiomatic usage in 2002 may not be ideal 20 years from now.</li>
-</ul>
-<p>For more details <a href="https://bugs.openjdk.org/browse/JDK-8280389">see the proposal</a>.</p>
+      <h2 id="introduction">Introduction</h2>
+<p>The full name of IO is input output, is the bridge between the java program and the outside world, IO refers to all the classes in the java.io package, they exist from java 1.0. NIO is called new IO, is the new generation of IO introduced in java 1.4.</p>
+<p>What is the nature of IO? What is the difference between it and NIO? How do we learn IO and NIO?</p>
+<p>Don&rsquo;t worry, after reading this article everything has an answer.</p>
+<blockquote>
+<p>For more content, please visit <a href="https://www.javai.net/">www.javai.net</a></p>
+</blockquote>
+<h2 id="the-nature-of-io">The nature of IO</h2>
+<p>The role of IO is to read data from an external system into the java program or to write the data output from the java program back to the external system. Here the external system may be disk, network streams etc.</p>
+<p>Because the processing of all external data is implemented by the operating system kernel, for the java application, it just calls the corresponding interface methods in the operating system, thus interacting with the external data.</p>
+<p>The essence of all IO is the processing of Buffer, we put data into Buffer for the system to write external data, or read data from the system Buffer read from the external system.</p>
+<p>The user space which is our own java program has a Buffer and the system space also has a buffer. so there will be a situation where the system space caches the data, in this case the system space will return the data in the Buffer directly to improve the read speed.</p>
+<h2 id="dma-and-virtual-address-space">DMA and virtual address space</h2>
+<p>Before we continue, let&rsquo;s explain two basic concepts in operating systems to facilitate our understanding of IO later.</p>
+<p>Modern operating systems have a component called DMA (Direct memory access). What does this component do?</p>
+<p>Without DMA, if a program performs an IO operation, all the CPU time is taken up, and the CPU cannot respond to other tasks, but has to wait for the IO to finish. This is unthinkable in modern applications.</p>
+<p>If DMA is used, the CPU can pass the IO operation to other OS components, such as the data manager, and only when the data manager is finished, it will notify the CPU that the IO operation is complete. DMA is basically implemented in modern operating systems.</p>
+<p>Virtual address space is also called (Virtual address space), in order to isolate different programs from each other and ensure the certainty of addresses in the program, modern computer systems have introduced the concept of virtual address space. In simple terms, it can be seen as a mapping to the actual physical address, by using segmentation or paging techniques to map the actual physical address to the virtual address space.</p>
+<p>We can map both the system space buffer and the user space buffer to the same place in the virtual address space. This way the step of copying from system space to user space is omitted. It will be much faster.</p>
+<p>Also to solve the problem of virtual space being larger than physical memory space, modern computer technology generally uses paging technology.</p>
+<p>Paging is the process of dividing the virtual space into many pages and only assigning a map to the physical memory when it is needed, so that the physical memory can actually be seen as a cache of virtual space addresses.</p>
+<p>The impact of virtual space address paging on IO is that IO operations are also based on page.</p>
+<p>Some common page sizes are: 1,024, 2,048, and 4,096 bytes.</p>
+<h2 id="classification-of-io">Classification of IO</h2>
+<p>IO can be divided into two categories: File/Block IO and Stream I/O.</p>
+<p>For File/Block IO, the data is stored in the disk, which is managed by the filesystem. We can define the name, path, file attributes, etc. of the file through the filesystem.</p>
+<p>The filesystem manages the data by dividing it into data blocks. Some blocks store the metadata of the file and some blocks store the real data.</p>
+<p>Finally filesystem paginates the data as it processes it. filesystem pagination can be the same size as the memory pagination or a multiple of it, such as 2,048 or 8,192 bytes.</p>
+<p>Not all data is in the form of blocks, we have another type of IO called stream IO.</p>
+<p>Stream IO is like a pipeline stream in which the data is consumed in sequence.</p>
+<p>Difference between # IO and NIO</p>
+<p>IO in java 1.0 is stream IO, which can only process data byte by byte, so IO is also called Stream IO.</p>
+<p>And NIO is born to improve the efficiency of IO, it reads data in Block.</p>
+<p>In Stream IO, input is one byte, output is one byte, because it is Stream, you can add filter or filter chain, think about the filter chain in web framework. in Stream IO, data can only be processed once, you can&rsquo;t back out data in Stream.</p>
+<p>In Block IO, data is processed in the form of blocks, so its processing speed is faster than Stream IO, and you can fall back on processing data. But you need to handle the buffer yourself, so the complexity is higher than Stream IO.</p>
+<p>Generally speaking, Stream IO is blocking IO, when a thread reads or writes, the thread will be blocked.</p>
+<p>NIO is generally non-blocking, which means that you can do other operations during the read or write process, and the NIO operation will be notified of the completion of the read or write operation after it is executed.</p>
+<p>In IO, it is mainly divided into DataOutPut and DataInput, which correspond to IO out and in respectively.</p>
+<p>DataOutPut has three main classes, namely Writer, OutputStream and ObjectOutput.</p>
+<p>Look at the inheritance relationship among them.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/28/b42f01eaf4fc4625937efe0f9ffc4a8e.png" alt="png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/28/a7f9f79c185c493f967557b3b8bb0d20.png" alt="png"></p>
+<p>DataInput also has three main classes, ObjectInput, InputStream and Reader.</p>
+<p>Look at their inheritance relationships.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/28/8f4463757b1d4734a46d3a7018f8319a.png" alt="png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/28/03810bef05fe4183a5a35f85f16a648a.png" alt="png"></p>
+<p>ObjectOutput and ObjectInput classes are relatively few, so they are not listed here.</p>
+<p>Statistics about 20 classes, figure out the use of these 20 classes, congratulations on java IO you understand!</p>
+<p>For NIO is a little more complicated, first of all, in order to handle the information of the block, you need to read the data into the buffer, so in NIO Buffer is a very important concept, we look at the Buffer in NIO: !</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/28/41f269976944487ba7af571d7005ab20.png" alt="buffer.png"></p>
+<p>From the above figure we can see that there are various buffer types prepared for us to use in NIO.</p>
+<p>Another very important concept is the channel, which is the channel through which NIO gets its data: !</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/28/dea066f71bc146218f3323f49e63dd0a.png" alt="channel.png"></p>
+<p>NIO needs to master the number of classes slightly more than IO, after all, NIO is a little more complex.</p>
+<h2 id="summary">Summary</h2>
+<p>We will introduce more knowledge about io and nio later, so stay tuned.</p>
 
     </div>
 
@@ -363,30 +415,17 @@
     <footer class="post-footer">
       <div class="post-tags">
           <a href="https://www.javai.net/tags/java/">java</a>
-          <a href="https://www.javai.net/tags/class-file-api/">class file api</a>
-          <a href="https://www.javai.net/tags/openjdk/">openjdk</a>
+          <a href="https://www.javai.net/tags/io/">io</a>
+          <a href="https://www.javai.net/tags/nio/">nio</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/202206/java-io-nio/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">The essence and difference between IO and NIO in Java</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
-          <a class="next" href="/post/202206/java-infinite-stream/">
-            <span class="next-text nav-default">Building an infinite stream in java 8</span>
+          <a class="next" href="/post/202206/java-class-api/">
+            <span class="next-text nav-default">OpenJDK proposal will provide Java class file API</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">

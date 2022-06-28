@@ -10,27 +10,69 @@
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/class-file-api/</loc>
-    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <loc>https://www.javai.net/tags/io/</loc>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/</loc>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/nio/</loc>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202206/java-io-nio/</loc>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/tutorials/</loc>
+    <lastmod>2022-06-28T11:06:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/class-file-api/</loc>
     <lastmod>2022-06-24T19:55:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -58,20 +100,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
-    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/post/202206/java-infinite-stream/</loc>
     <lastmod>2022-06-16T16:43:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -87,13 +115,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/stream/</loc>
-    <lastmod>2022-06-16T16:43:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/tutorials/</loc>
     <lastmod>2022-06-16T16:43:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1115,13 +1136,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/io/</loc>
-    <lastmod>2022-04-03T15:17:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/piped-stream/</loc>
     <lastmod>2022-04-03T15:17:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -1305,13 +1319,6 @@
   
   <url>
     <loc>https://www.javai.net/post/202203/zero-copy/</loc>
-    <lastmod>2022-03-26T21:46:31+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/nio/</loc>
     <lastmod>2022-03-26T21:46:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

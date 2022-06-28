@@ -6,7 +6,17 @@
     <description>Recent content in Posts on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jun 2022 19:55:48 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Jun 2022 11:06:41 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The essence and difference between IO and NIO in Java</title>
+      <link>https://www.javai.net/post/202206/java-io-nio/</link>
+      <pubDate>Tue, 28 Jun 2022 11:06:41 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202206/java-io-nio/</guid>
+      <description>Introduction The full name of IO is input output, is the bridge between the java program and the outside world, IO refers to all the classes in the java.io package, they exist from java 1.0. NIO is called new IO, is the new generation of IO introduced in java 1.4.
+What is the nature of IO? What is the difference between it and NIO? How do we learn IO and NIO?</description>
+    </item>
+    
     <item>
       <title>OpenJDK proposal will provide Java class file API</title>
       <link>https://www.javai.net/post/202206/java-class-api/</link>
@@ -198,16 +208,6 @@ But maybe the father of Java was just promoting Corretto, the OpenJDK distributi
       <guid>https://www.javai.net/post/202204/java-thread-pool/</guid>
       <description>Preface In Java, threads are the counterpart of system threads and are used to handle a range of system resources. The number of threads that can be opened is limited in both windows and linux, so if you create unlimited threads in your java program, you will encounter a situation where no threads can be created.
 CPU cores are limited and if there are multiple threads running at the same time, the CPU will rotate according to the priority of the threads and allocate a specific amount of CPU time to each thread.</description>
-    </item>
-    
-    <item>
-      <title>The fork join framework in java</title>
-      <link>https://www.javai.net/post/202204/java-fork-join/</link>
-      <pubDate>Wed, 20 Apr 2022 14:33:27 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-fork-join/</guid>
-      <description>Preface Fork join framework is the introduction of java 7 framework, the introduction of this framework is mainly to improve the ability of parallel computing.
-Fork join has two main steps, the first is fork, a large task into many small tasks, the second is join, the results of the first task join up to generate the final result. If there is no return value in the first step, join will wait until all the small tasks are finished.</description>
     </item>
     
   </channel>
