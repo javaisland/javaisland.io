@@ -6,7 +6,43 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Jun 2022 19:59:32 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jul 2022 11:52:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java</title>
+      <link>https://www.javai.net/tags/java/</link>
+      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java11</title>
+      <link>https://www.javai.net/tags/java11/</link>
+      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java11/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java8</title>
+      <link>https://www.javai.net/tags/java8/</link>
+      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/java8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jenkins</title>
+      <link>https://www.javai.net/tags/jenkins/</link>
+      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>concurrency</title>
       <link>https://www.javai.net/tags/concurrency/</link>
@@ -22,15 +58,6 @@
       <pubDate>Wed, 29 Jun 2022 19:59:32 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/futuretask/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Wed, 29 Jun 2022 19:59:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java/</guid>
       <description></description>
     </item>
     
@@ -76,15 +103,6 @@
       <pubDate>Fri, 24 Jun 2022 19:55:48 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/openjdk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java8</title>
-      <link>https://www.javai.net/tags/java8/</link>
-      <pubDate>Thu, 16 Jun 2022 16:43:35 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java8/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Sat, 11 Jun 2022 15:45:08 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/jvm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>memory</title>
-      <link>https://www.javai.net/tags/memory/</link>
-      <pubDate>Sat, 11 Jun 2022 15:45:08 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/memory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>elasticsearch</title>
-      <link>https://www.javai.net/tags/elasticsearch/</link>
-      <pubDate>Sat, 11 Jun 2022 13:24:03 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/elasticsearch/</guid>
       <description></description>
     </item>
     
