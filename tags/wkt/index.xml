@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wkt on JavaIsland</title>
+    <link>https://www.javai.net/tags/wkt/</link>
+    <description>Recent content in wkt on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Jul 2022 14:41:18 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/wkt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Geometry spatial geometry data processing applications</title>
+      <link>https://www.javai.net/post/202207/java-geometry/</link>
+      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/java-geometry/</guid>
+      <description>First understand a few basic concepts that help to understand the application scenario of this article  Geographic Information System GIS   GIS (Geographic Information System or Geo-Information system, GIS) is sometimes referred to as a &amp;ldquo;geographic information system&amp;rdquo;. It is a specific and very important spatial information system. It is in the [computer] hardware and software system support, the whole or part of the [Earth] surface (including the atmosphere) space in the relevant [geographic] distribution [data], [storage], [management], [computing], [analysis], [show]and [description] of the technical system</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -10,14 +10,140 @@
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-07-02T11:52:35+08:00</lastmod>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/frameworks/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-07-02T11:52:35+08:00</lastmod>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202207/java-test-tools/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/test/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/testing/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/tutorials/</loc>
+    <lastmod>2022-07-11T19:55:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/cglib/</loc>
+    <lastmod>2022-07-11T16:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/dynamic-proxy/</loc>
+    <lastmod>2022-07-11T16:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202207/java-proxy/</loc>
+    <lastmod>2022-07-11T16:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/proxy/</loc>
+    <lastmod>2022-07-11T16:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/static-proxy/</loc>
+    <lastmod>2022-07-11T16:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/geographic/</loc>
+    <lastmod>2022-07-11T14:41:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/geometry/</loc>
+    <lastmod>2022-07-11T14:41:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/gis/</loc>
+    <lastmod>2022-07-11T14:41:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202207/java-geometry/</loc>
+    <lastmod>2022-07-11T14:41:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/wkt/</loc>
+    <lastmod>2022-07-11T14:41:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -44,13 +170,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/</loc>
-    <lastmod>2022-07-02T11:52:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/jenkins/</loc>
     <lastmod>2022-07-02T11:52:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -59,20 +178,6 @@
   
   <url>
     <loc>https://www.javai.net/categories/news/</loc>
-    <lastmod>2022-07-02T11:52:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-07-02T11:52:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
     <lastmod>2022-07-02T11:52:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -101,13 +206,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/thread/</loc>
-    <lastmod>2022-06-29T19:59:32+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/tutorials/</loc>
     <lastmod>2022-06-29T19:59:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

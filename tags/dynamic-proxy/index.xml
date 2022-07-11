@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dynamic Proxy on JavaIsland</title>
+    <link>https://www.javai.net/tags/dynamic-proxy/</link>
+    <description>Recent content in Dynamic Proxy on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Jul 2022 16:52:25 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/dynamic-proxy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Proxy Pattern Explained</title>
+      <link>https://www.javai.net/post/202207/java-proxy/</link>
+      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/java-proxy/</guid>
+      <description>1. Proxy Pattern The proxy pattern is a relatively well understood design pattern. Simply put we use a proxy object to replace access to the real object (real object), so that we can provide additional functional operations to extend the functionality of the target object without modifying the original target object.
+The main purpose of the proxy pattern is to extend the functionality of the target object, for example, you can add some custom operations before and after the execution of a method of the target object.</description>
+    </item>
+    
+  </channel>
+</rss>

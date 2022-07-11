@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>testing on JavaIsland</title>
+    <link>https://www.javai.net/tags/testing/</link>
+    <description>Recent content in testing on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Jul 2022 19:55:18 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Seven of the best Java testing frameworks</title>
+      <link>https://www.javai.net/post/202207/java-test-tools/</link>
+      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/java-test-tools/</guid>
+      <description>Java is one of the most popular programming languages today and is perennially in the top three of the most popular programming languages. A good java programmer cannot develop safer and more efficient code without knowledge of testing frameworks. One of the most important reasons for using these testing frameworks is to reduce the possibility of errors, increase development efficiency, and reduce development costs. In this article, we will introduce the most common testing frameworks used for Java testing.</description>
+    </item>
+    
+  </channel>
+</rss>

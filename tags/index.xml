@@ -6,13 +6,112 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Jul 2022 11:52:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 19:55:18 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>frameworks</title>
+      <link>https://www.javai.net/tags/frameworks/</link>
+      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/frameworks/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
+      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>https://www.javai.net/tags/test/</link>
+      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>https://www.javai.net/tags/testing/</link>
+      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cglib</title>
+      <link>https://www.javai.net/tags/cglib/</link>
+      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/cglib/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dynamic Proxy</title>
+      <link>https://www.javai.net/tags/dynamic-proxy/</link>
+      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/dynamic-proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>https://www.javai.net/tags/proxy/</link>
+      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>static Proxy</title>
+      <link>https://www.javai.net/tags/static-proxy/</link>
+      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/static-proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Geographic</title>
+      <link>https://www.javai.net/tags/geographic/</link>
+      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/geographic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geometry</title>
+      <link>https://www.javai.net/tags/geometry/</link>
+      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/geometry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gis</title>
+      <link>https://www.javai.net/tags/gis/</link>
+      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/gis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wkt</title>
+      <link>https://www.javai.net/tags/wkt/</link>
+      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/wkt/</guid>
       <description></description>
     </item>
     
@@ -85,105 +184,6 @@
       <pubDate>Tue, 28 Jun 2022 11:06:41 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/nio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>class file api</title>
-      <link>https://www.javai.net/tags/class-file-api/</link>
-      <pubDate>Fri, 24 Jun 2022 19:55:48 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/class-file-api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>openjdk</title>
-      <link>https://www.javai.net/tags/openjdk/</link>
-      <pubDate>Fri, 24 Jun 2022 19:55:48 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/openjdk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>stream</title>
-      <link>https://www.javai.net/tags/stream/</link>
-      <pubDate>Thu, 16 Jun 2022 16:43:35 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/stream/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>forkjoinpool</title>
-      <link>https://www.javai.net/tags/forkjoinpool/</link>
-      <pubDate>Thu, 16 Jun 2022 15:36:40 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/forkjoinpool/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>parallel</title>
-      <link>https://www.javai.net/tags/parallel/</link>
-      <pubDate>Thu, 16 Jun 2022 15:36:40 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/parallel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>threadpool</title>
-      <link>https://www.javai.net/tags/threadpool/</link>
-      <pubDate>Thu, 16 Jun 2022 15:36:40 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/threadpool/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AOT</title>
-      <link>https://www.javai.net/tags/aot/</link>
-      <pubDate>Wed, 15 Jun 2022 20:45:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/aot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java-cloud-compiler</title>
-      <link>https://www.javai.net/tags/java-cloud-compiler/</link>
-      <pubDate>Wed, 15 Jun 2022 20:45:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java-cloud-compiler/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JIT</title>
-      <link>https://www.javai.net/tags/jit/</link>
-      <pubDate>Wed, 15 Jun 2022 20:45:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/jit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>virtual thread</title>
-      <link>https://www.javai.net/tags/virtual-thread/</link>
-      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/virtual-thread/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>jvm</title>
-      <link>https://www.javai.net/tags/jvm/</link>
-      <pubDate>Sat, 11 Jun 2022 15:45:08 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/jvm/</guid>
       <description></description>
     </item>
     

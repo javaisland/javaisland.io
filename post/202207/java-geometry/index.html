@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Java Geometry spatial geometry data processing applications - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="Geometry is a spatial geometry data type that is commonly used to describe spatial geometric information" />
+<meta name="keywords" content="java, geometry, Geographic, gis, wkt" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202207/java-geometry/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Java Geometry spatial geometry data processing applications" />
+<meta property="og:description" content="Geometry is a spatial geometry data type that is commonly used to describe spatial geometric information" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202207/java-geometry/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-11T14:41:18+08:00" />
+<meta property="article:modified_time" content="2022-07-11T14:41:18+08:00" />
+
+<meta itemprop="name" content="Java Geometry spatial geometry data processing applications">
+<meta itemprop="description" content="Geometry is a spatial geometry data type that is commonly used to describe spatial geometric information"><meta itemprop="datePublished" content="2022-07-11T14:41:18+08:00" />
+<meta itemprop="dateModified" content="2022-07-11T14:41:18+08:00" />
+<meta itemprop="wordCount" content="2385">
+<meta itemprop="keywords" content="java,geometry,Geographic,gis,wkt," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java Geometry spatial geometry data processing applications"/>
+<meta name="twitter:description" content="Geometry is a spatial geometry data type that is commonly used to describe spatial geometric information"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6905255539094935"
+     crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java Geometry spatial geometry data processing applications</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-07-11" class="post-time">
+          2022-07-11
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 2385 words </span>
+          <span class="more-meta"> 12 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#first-understand-a-few-basic-concepts-that-help-to-understand-the-application-scenario-of-this-article">First understand a few basic concepts that help to understand the application scenario of this article</a></li>
+        <li><a href="#1-spatial-data-and-wkt-familiar-text">1. Spatial data and WKT familiar text</a></li>
+        <li><a href="#3-insert-data-into-the-spatial-database">3. insert data into the spatial database</a></li>
+        <li><a href="#4-creating-geometry-objects-with-java">4. Creating Geometry objects with Java</a></li>
+        <li><a href="#5-adding-data-to-the-spatial-database-using-java">5. Adding data to the spatial database using JAVA</a></li>
+        <li><a href="#6-insert-geometry-data-using-typehandler-mapping-custom-object-fields">6. Insert Geometry data using <code>TypeHandler</code> mapping custom object fields</a></li>
+        <li><a href="#7-handwritten-xml-to-insert-geometry-data">7. Handwritten xml to insert Geometry data</a></li>
+        <li><a href="#8-pit-picking-records">8 Pit picking records</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h3 id="first-understand-a-few-basic-concepts-that-help-to-understand-the-application-scenario-of-this-article">First understand a few basic concepts that help to understand the application scenario of this article</h3>
+<ul>
+<li><strong>Geographic Information System GIS</strong></li>
+</ul>
+<blockquote>
+<p><strong>GIS</strong> (Geographic Information System or Geo-Information system, GIS) is sometimes referred to as a &ldquo;geographic information system&rdquo;. It is a specific and very important spatial information system. It is in the [computer] hardware and software system support, the whole or part of the [Earth] surface (including the atmosphere) space in the relevant [geographic] distribution [data], [storage], [management], [computing], [analysis], [show]and [description] of the technical system</p>
+</blockquote>
+<ul>
+<li><strong>ArcGIS Platform</strong></li>
+</ul>
+<blockquote>
+<p>The ArcGIS product line provides users with a scalable, comprehensive [GIS]platform. ArcObjects contains Many programmable components, ranging from fine-grained objects (such as individual geometry objects) to coarse-grained objects (such as map objects that interact with existing ArcMap documents), which integrate comprehensive GIS functionality for developers.</p>
+</blockquote>
+<ul>
+<li><strong>Geometry data type</strong></li>
+</ul>
+<p>Geometry is a spatial geometry data type that is commonly used to describe spatial geometric information, such as coordinate points, lines, surfaces, and 3D information.
+That is, GIS generally uses the Geometry data type to store and display geographic information.
+The common databases that support Geometry are Oracle, SqlServer, Mysql, PostgreSQL
+Geometry supported in Sql-Server [document] and the geographic data types available in Sql-Server as shown</p>
+<ul>
+<li><strong>Application Scenario Example</strong></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/11/9d0a513041a24d9b9f533eb995978ecf.png" alt="map.png"></p>
+<p>As shown in the figure, the application mainly uses ArcGIS to do GIS, using SqlServer as the spatial database, using Java to build backend services to process the data, using JS Vue combined with ArcGIS API to do front-end rendering, successfully highlighting geographic information on the map</p>
+<p><strong>This article focuses on: using java to process Geometry data, with some simple instructions for the use of arcgis system</strong> A simple description of the processing process of a gis application system</p>
+<hr>
+<p><strong>With these services provided by ArcGIS, we can query and display spatial geographic information in a visual way</strong>.
+We&rsquo;ll explain more about this later</p>
+<hr>
+<h3 id="1-spatial-data-and-wkt-familiar-text">1. Spatial data and WKT familiar text</h3>
+<p>When we use a database that supports spatial data, how do we now add spatial data?</p>
+<p>Let&rsquo;s start with WKT to understand what the spatial data Geometry looks like</p>
+<blockquote>
+<p>[WKT], is a text markup language for representing vector geometry objects, spatial reference systems, and transformations between spatial reference systems. Its binary representation, WKB (well known binary), is superior for transferring and storing the same information in a database. This format was developed by the Open Geospatial Consortium (OGC).
+WKT can represent geometric objects including: points, lines, polygons, TINs <code>Irregular Triangulated Network</code> and polyhedra. Geometric objects can be represented in different dimensions by means of geometric sets.
+The coordinates of a geometric object can be 2D(x,y), 3D(x,y,z), 4D(x,y,z,m), plus a value of m that belongs to a linear reference system.
+The following is a sample geometric WKT string.
+POINT(6 10)
+LINESTRING(3 4,10 50,20 25)
+POLYGON((1 1,5 1,5 5,1 5,1 1),(2 2,2 3,3 3 3,3 2,2 2))
+MULTIPOINT(3.5 5.6, 4.8 10.5)
+MULTILINESTRING((3 4,10 50,20 25),(-5 -8,-10 -8,-15 -4))
+MULTIPOLYGON(((1 1,5 1,5 5,1 5,1 1 1),(2 2,2 3,3 3 3,3 2,2 2)),((6 3,9 2,9 4,6 3)))
+GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))
+POINT ZM (1 1 5 60)
+POINT M (1 1 80)
+POINT EMPTY
+MULTIPOLYGON EMPTY</p>
+</blockquote>
+<p>Here we are clear, the so-called spatial data is a coordinate or a group of coordinates, this coordinate or group of coordinates have type (POINT point LINESTRING line POLYGON surface), through these coordinates, the GIS system can be a complete positioning query to plot these coordinate information</p>
+<hr>
+<h3 id="3-insert-data-into-the-spatial-database">3. insert data into the spatial database</h3>
+<p>That database how to add these spatial data?
+First, let&rsquo;s understand what the SQLSERVER spatial data insertion statement looks like</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">-- GEOM is a field of type Geometry --
+</span></span><span class="line"><span class="cl">--we add a 3D polygon data to this field--
+</span></span><span class="line"><span class="cl">--geometry :: STGeomFromText () is a function provided by SQLSERVER that converts WKT text to database geometry type data --
+</span></span><span class="line"><span class="cl">INSERT INTO [dbo]. [TEST_GEO_TABLE] ( [GEOM] )
+</span></span><span class="line"><span class="cl">VALUES
+</span></span><span class="line"><span class="cl">    ( geometry :: STGeomFromText ( 
+</span></span><span class="line"><span class="cl">    &#39;POLYGON ((
+</span></span><span class="line"><span class="cl">        113.507259000000005 22.24814946 8, 
+</span></span><span class="line"><span class="cl">        113.507188600000006 22.248088559999999 9, 
+</span></span><span class="line"><span class="cl">        113.507117399999998 22.24802743 10, 
+</span></span><span class="line"><span class="cl">        113.507046099999997 22.24796624 11, 
+</span></span><span class="line"><span class="cl">        113.507017300000001 22.247888209999999 12
+</span></span><span class="line"><span class="cl">        ))&#39;,4326 )
+</span></span><span class="line"><span class="cl">    );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>That is, by converting the coordinates into WKT text, we can insert the spatial data. The next thing we have to consider is how to generate the WKT text</p>
+<hr>
+<h3 id="4-creating-geometry-objects-with-java">4. Creating Geometry objects with Java</h3>
+<h4 id="41-java-api-for-common-geometry">4.1 Java API for Common Geometry</h4>
+<p>The wkt text is just a string. Isn&rsquo;t it enough to directly stitch the coordinate points into a string that conforms to the WKT format?
+The reason is the same, but it is difficult to do well.</p>
+<ul>
+<li>The splicing workload is huge</li>
+<li>The stitching process is error-prone</li>
+<li>The result of stitching is not always legal and usable
+We need a set of JAVA API for data processing, which can easily create Geometry objects for geographic information drawing, creation, validation, etc.</li>
+</ul>
+<p>The common GeometryApi on the market are</p>
+<p><strong>[Esri]</strong></p>
+<p><strong>[locationtech]</strong></p>
+<p>Esri is the official javaSDK provided by Arcgis, but unfortunately it doesn&rsquo;t have many features and can&rsquo;t even provide basic spatial calculation functions.
+jts is more fully functional and relatively rich in information.</p>
+<hr>
+<h4 id="42-some-api-usage-of-jts">4.2 Some API usage of JTS</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">geoTest</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ParseException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * GeometryFactory factory, parameter one: data precision parameter two spatial reference system SRID
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">GeometryFactory</span> <span class="n">geometryFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GeometryFactory</span><span class="o">(</span><span class="k">new</span> <span class="n">PrecisionModel</span><span class="o">(</span><span class="n">PrecisionModel</span><span class="o">.</span><span class="na">FLOATING</span><span class="o">),</span> <span class="n">4326</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * Familiar with text WKT reader to convert WKT text to Geometry object
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WKTReader</span> <span class="n">wktReader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WKTReader</span><span class="o">(</span><span class="n">geometryFactory</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * Geometry objects, including subclasses such as Point, LineString, Polygon
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Geometry</span> <span class="n">geometry</span> <span class="o">=</span> <span class="n">wktReader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="s">&#34;POINT (113.53896635 22.36429837)&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * Read the Geometry object as a binary stream
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WKBReader</span> <span class="n">wkbReader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WKBReader</span><span class="o">(</span><span class="n">geometryFactory</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * A single coordinate point, a single point can create Point, multiple points can create LineString, Polygon, etc.
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Coordinate</span> <span class="n">coordinate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">.</span><span class="na">00</span><span class="o">,</span> <span class="n">2</span><span class="o">.</span><span class="na">00</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Point</span> <span class="n">point</span> <span class="o">=</span> <span class="n">geometryFactory</span><span class="o">.</span><span class="na">createPoint</span><span class="o">(</span><span class="n">coordinate</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Polygon</span> <span class="n">polygon</span> <span class="o">=</span> <span class="n">geometryFactory</span><span class="o">.</span><span class="na">createPolygon</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">[]{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">).</span> <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">).</span> <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Geometry</span> <span class="n">geometry1</span> <span class="o">=</span> <span class="n">point</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Geometry</span> <span class="n">geometry2</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * WKT exporter, write out Geometry object as WKT text
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WKTWriter</span> <span class="n">wktWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WKTWriter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">write</span> <span class="o">=</span> <span class="n">wktWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">point</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="43-subclasses-of-the-geometry-data-type-in-jts">4.3 Subclasses of the Geometry data type in JTS</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/11/e5402d9d785647d68329f45a5a6e4c8d.png" alt="jts.png"></p>
+<p>image.png</p>
+<p>According to the documentation in github, we can already introduce the relevant coordinates into the project and create the Geometry object to construct the WKT text</p>
+<hr>
+<h3 id="5-adding-data-to-the-spatial-database-using-java">5. Adding data to the spatial database using JAVA</h3>
+<p>Based on the use of Api in the test class above, let&rsquo;s summarize a few key points</p>
+<ul>
+<li>The factory class object should be initialized only once and should be placed in the configuration class injected into the Spring container</li>
+<li>import relevant coordinate data from front-end or Excel to generate Geometry object</li>
+<li>Persistent Geometry object to SqlServer</li>
+</ul>
+<p>Two ways are recommended for persisting Geometry objects in this example.</p>
+<ol>
+<li>get the WKT text of the Geometry object, and then use the <code>geometry :: STGeomFromText ()</code> function provided by SqlServer to store the WKT text as the database Geometry type</li>
+<li>convert the Geometry object in the jts package to the Geometry object in the SqlServer JDBC package, and persist the Geometry object in binary form to the database</li>
+</ol>
+<p>Environment.
+This example code is based on JTS, SpringBoot, Mybatis-Plus, mssql-jdbc environment.</p>
+<h3 id="6-insert-geometry-data-using-typehandler-mapping-custom-object-fields">6. Insert Geometry data using <code>TypeHandler</code> mapping custom object fields</h3>
+<h4 id="61-custom-typehandler">6.1 Custom TypeHandler</h4>
+<p>When we use the Mybatis framework, Mybatis provides a custom type converter TypeHandler to implement the mapping relationship between special objects and Sql fields</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.type.BaseTypeHandler</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.type.JdbcType</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.type.MappedTypes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.locationtech.jts.geom.Geometry</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.locationtech.jts.io.WKTReader</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.sql.CallableStatement</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.sql.PreparedStatement</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.sql.ResultSet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">SQLException</span><span class="o">;</span> <span class="kn">import</span> <span class="nn">java.sql</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Slf4j</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@MappedTypes</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="o">{</span><span class="n">Geometry</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GeometryTypeHandler</span> <span class="kd">extends</span> <span class="n">BaseTypeHandler</span><span class="o">&lt;</span><span class="n">Geometry</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNonNullParameter</span><span class="o">(</span><span class="n">PreparedStatement</span> <span class="n">preparedStatement</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="n">Geometry</span> <span class="n">geometry</span><span class="o">,</span> <span class="n">JdbcType</span> <span class="n">jdbcType</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * Get the wkt text of the jts package object, and then convert it to the geometry object of sqlserver
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * call ps&#39;s setBytes() method to persist the geometry object in binary
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">com</span><span class="o">.</span><span class="na">microsoft</span><span class="o">.</span><span class="na">sqlserver</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Geometry</span> <span class="n">geo</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="na">microsoft</span><span class="o">.</span><span class="na">sqlserver</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Geometry</span><span class="o">.</span><span class="na">STGeomFromText</span><span class="o">(</span><span class="n">geometry</span><span class="o">.</span><span class="na">toText</span><span class="o">(),</span> <span class="n">geometry</span><span class="o">.</span><span class="na">getSRID</span><span class="o">()</span> <span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">preparedStatement</span><span class="o">.</span><span class="na">setBytes</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">geo</span><span class="o">.</span><span class="na">STAsBinary</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Geometry</span> <span class="nf">getNullableResult</span><span class="o">(</span><span class="n">ResultSet</span> <span class="n">resultSet</span><span class="o">,</span> <span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * Read the binary conversion from the ResultSet into a SqlServer Geometry object
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * Use jts&#39;s WKTReader to convert wkt text to jts&#39;s Geometryd object
+</span></span></span><span class="line"><span class="cl"><span class="cm">             */</span>
+</span></span><span class="line"><span class="cl">            <span class="n">com</span><span class="o">.</span><span class="na">microsoft</span><span class="o">.</span><span class="na">sqlserver</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Geometry</span> <span class="n">geometry1</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="na">microsoft</span><span class="o">.</span><span class="na">sqlserver</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Geometry</span><span class="o">.</span><span class="na">STGeomFromWKB</span><span class="o">(</span><span class="n">resultSet</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">geometry1</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">WKTReader</span> <span class="n">wktReader</span> <span class="o">=</span> <span class="n">SpringContextUtil</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">WKTReader</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Geometry</span> <span class="n">read</span> <span class="o">=</span> <span class="n">wktReader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">s1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">read</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">ServiceException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Geometry</span> <span class="nf">getNullableResult</span><span class="o">(</span><span class="n">ResultSet</span> <span class="n">resultSet</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Geometry</span> <span class="nf">getNullableResult</span><span class="o">(</span><span class="n">CallableStatement</span> <span class="n">callableStatement</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="62-entity-objects">6.2 Entity objects</h4>
+<p>The entity object is as follows.</p>
+<ul>
+<li><code>objectid</code> is an Integer type, non-self-incrementing (this field is maintained by Arcgis and cannot be modified) <code>@TableId</code> is a mybatis-plus plugin annotation that tells the plugin that the field is a primary key field, the field name is OBJECT, and the primary key policy is user input</li>
+<li><code>shape</code> is the Geometry object of jts (the object JSON serialization result is very scary, so use <code>@JsonIgnore</code> to modify it)</li>
+<li><code>@KeySequence</code> is also a plugin for mybatis-plus, and serves to identify the primary key sequence name that the object needs to use. Here I implemented an <code>IKeyGenerator</code> that works similar to querying Oracle for the sequence name to populate the primary key before inserting the data.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@TableName</span><span class="o">(</span><span class="s">&#34;LINE_WELL&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@KeySequence</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;LINE_WELL&#34;</span><span class="o">,</span><span class="n">clazz</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Well</span> <span class="kd">extends</span> <span class="n">MyGeometry</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@TableId</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;OBJECTID&#34;</span><span class="o">,</span> <span class="n">type</span> <span class="o">=</span> <span class="n">IdType</span><span class="o">.</span><span class="na">INPUT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">objectid</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@JsonIgnore</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">Geometry</span> <span class="n">shape</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="63-custom-primary-key-generation-strategy">6.3 Custom primary key generation strategy</h4>
+<p>In arcgis, the primary key field in the spatial table is int and non-self-incrementing and cannot be modified. When modified as self-incrementing arcgis will show some errors. Therefore, the java backend inserting spatial data needs to complete the primary key query generation by itself.
+<code>IKeyGenerator</code> is an interface provided by Mybatis-Plus. The role of this implementation is that when this primary key generation strategy is specified, the mp framework will call this implementation before adding data to assign the result to the ID of the object (similar to Oracle&rsquo;s sequence)
+Note that this class needs to be injected into the Spring container</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.baomidou.mybatisplus.core.incrementer.IKeyGenerator</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SqlServerKeyGenerator</span> <span class="kd">implements</span> <span class="n">IKeyGenerator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">executeSql</span><span class="o">(</span><span class="n">String</span> <span class="n">incrementerName</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;select max(OBJECTID)+1 from &#34;</span> <span class="o">+</span> <span class="n">incrementerName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="64-geometry-object-persistence">6.4 Geometry Object Persistence</h4>
+<p>When we call the methods provided by mybatis-plus to persist the object</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;POLYGON ((113.52048666400003 22.248443089000034, 113.5206744190001 22.24822462700007, 113.52082998700007 22.248343788000057, 113.52060468200011 22.248547355000028, 113.52048666400003 22.248443089000034))&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Geometry</span> <span class="n">read</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * Here the wkt text is used to generate a Geometry object under the jts package
+</span></span></span><span class="line"><span class="cl"><span class="cm">             */</span>
+</span></span><span class="line"><span class="cl">            <span class="n">read</span> <span class="o">=</span> <span class="n">SpringContextUtil</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">WKTReader</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">read</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Well</span> <span class="n">well</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Well</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">well</span><span class="o">.</span><span class="na">setShape</span><span class="o">(</span><span class="n">read</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Here is the save interface provided by Mybatis-Plus, call its internal implementation to store the object directly
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">wellService</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">well</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Persistence successful&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The execution log is as follows.
+The data is inserted before the execution of the sql in <code>SqlServerKeyGenerator</code> to get the primary key
+Insert code in the field shape for the Geometry object binary</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2022-08-30 15:54:23.541 INFO 8484 --- [nio-8905-exec-1] jdbc.sqltiming : SELECT max(OBJECTID) + 1 FROM LINE_WELL 
+</span></span><span class="line"><span class="cl"> {executed in 4 msec}
+</span></span><span class="line"><span class="cl">2022-08-30 15:54:23.631 INFO 8484 --- [nio-8905-exec-1] jdbc.sqltiming : INSERT INTO LINE_WELL (OBJECTID, shape) VALUES (3, &#39;&lt;byte[]&gt;&#39;) 
+</span></span><span class="line"><span class="cl"> {executed in 17 msec}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-handwritten-xml-to-insert-geometry-data">7. Handwritten xml to insert Geometry data</h3>
+<p>Use the function <code>geometry :: STGeomFromText( #{wktText},4326)</code> provided by SqlServer to convert geometry to WKT text and then insert it</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insertCorridorBySql&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.zh.xxx.entity.xxx&#34;</span> <span class="na">useGeneratedKeys=</span><span class="s">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">keyProperty=</span><span class="s">&#34;objectid&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        INSERT INTO [LINE_CORRIDOR] (
+</span></span><span class="line"><span class="cl">         shape
+</span></span><span class="line"><span class="cl">        )
+</span></span><span class="line"><span class="cl">        values (
+</span></span><span class="line"><span class="cl">        geometry :: STGeomFromText( #{wktText},4326)
+</span></span><span class="line"><span class="cl">        )
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/insert&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that wktText is a temporary field that is not a table field, I have defined a parent class here that all spatial table entities that contain Geometry inherit from this class to handle wkt text</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.locationtech.jts.geom.Geometry</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.locationtech.jts.io.WKTWriter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.Serializable</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * for Geometry to get Wkt text field to do processing of Geometry parent class, getWktText instead of getText, output three-dimensional wkt text
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * For sql_server can not recognize POLYGON Z syntax, the wkt text to replace
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGeometry</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 3D wkt output, default is 2D without Z
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@TableField</span><span class="o">(</span><span class="n">exists</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@JsonIgnore</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">WKTWriter</span> <span class="n">wktWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WKTWriter</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * sql_server and jts wkt incompatibility issue
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@TableField</span><span class="o">(</span><span class="n">exists</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@JsonIgnore</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">THREE_D_PRIFIX</span> <span class="o">=</span> <span class="s">&#34;POLYGON Z&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@TableField</span><span class="o">(</span><span class="n">exists</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@JsonIgnore</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TWO_D_PRIFIX</span> <span class="o">=</span> <span class="s">&#34;POLYGON&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@JsonIgnore</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">Geometry</span> <span class="n">shape</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@TableField</span><span class="o">(</span><span class="n">exists</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@JsonIgnore</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">wktText</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getWktText</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">StrUtil</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">wktText</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">getShape</span><span class="o">()</span> <span class="o">!</span> <span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">String</span> <span class="n">wkt</span> <span class="o">=</span> <span class="n">wktWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">shape</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">wkt</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="n">THREE_D_PRIFIX</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">wktText</span> <span class="o">=</span> <span class="n">StrUtil</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="n">wkt</span><span class="o">,</span> <span class="n">THREE_D_PRIFIX</span><span class="o">,</span> <span class="n">TWO_D_PRIFIX</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">wktText</span> <span class="o">=</span> <span class="n">wkt</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">wktText</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="8-pit-picking-records">8 Pit picking records</h3>
+<h4 id="81-jts-is-not-compatible-with-sqlserver-recognized-wkt">8.1 jts is not compatible with sqlserver recognized wkt</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[2022-07-01 16:40:20,637] [ERROR] [http-nio-8905-exec-5] jdbc.audit 111 7. PreparedStatement.execute() INSERT INTO [zhundergroundcableline].[dbo].[LINE_CORRIDOR] ( [Shape] ) values ( geometry :: STGeomFromText( &#39;POLYGON Z((113.5079365 22.24850034 
+</span></span><span class="line"><span class="cl">0, 113.5078521 22.24845659 0, 113.5077674 22.24841271 0, 113.5076826 22.24836872 0, 113.5075978 22.24832498 0))&#39;,4326) ) 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SQLServerException: NET Framework error during execution of user-defined routine or aggregate &#39;geometry&#39;: 
+</span></span><span class="line"><span class="cl">System.FormatException: 24142: The value &#34;(&#34; should be at position 8, but the input is actually &#34;Z&#34;.
+</span></span><span class="line"><span class="cl">System.FormatException: 
+</span></span><span class="line"><span class="cl">   WellKnownTextReader.RecognizeToken(Char token) at Microsoft.SqlServer.
+</span></span><span class="line"><span class="cl">   SqlGeometry.GeometryFromText(OpenGisType type, SqlChars text, Int32 srid)
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/geometry/">geometry</a>
+          <a href="https://www.javai.net/tags/geographic/">Geographic</a>
+          <a href="https://www.javai.net/tags/gis/">gis</a>
+          <a href="https://www.javai.net/tags/wkt/">wkt</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/202207/java-proxy/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Java Proxy Pattern Explained</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/202207/java-jenkins-require-java8&#43;/">
+            <span class="next-text nav-default">Java8 is going down? Jenkins announces support for Java 11 and above only</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
