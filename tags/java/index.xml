@@ -6,7 +6,58 @@
     <description>Recent content in java on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 11 Jul 2022 19:55:18 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 15:47:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Date Timestamp Date Comparison Pitfalls</title>
+      <link>https://www.javai.net/post/202207/time-comparison/</link>
+      <pubDate>Mon, 18 Jul 2022 15:47:04 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/time-comparison/</guid>
+      <description>Scenario reenactment   In the mysql database (innodb engine) tab table has a createAt field of type datetime(6) precise to milliseconds.Of course we know that mysql&amp;rsquo;s date field is only accurate to the second level by default, if you want to millisecond subtlety can be defined as datetime(6), from version 5.6.4 onwards support
+  business interface A through the ORM framework to deposit a record in the table, here createAt deposit2016-04-13 15:20:39.</description>
+    </item>
+    
+    <item>
+      <title>StackOverflowError errors in Java</title>
+      <link>https://www.javai.net/post/202207/stackvoerflow-error/</link>
+      <pubDate>Mon, 18 Jul 2022 11:21:05 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/stackvoerflow-error/</guid>
+      <description>Introduction StackOverflowError can be annoying for Java developers as it is one of the most common runtime errors we may encounter.
+In this article, we will learn how this error occurs by looking at various code examples and how to handle it.
+Stack Frames and StackOverflowerError Occur Let&amp;rsquo;s start with the basics. When a method is called, a new stack frame is created on the call stack. This stack frame contains the parameters of the called method, its local variables and the return address of the method, i.</description>
+    </item>
+    
+    <item>
+      <title>Jump table implementation in Java</title>
+      <link>https://www.javai.net/post/202207/jump-table/</link>
+      <pubDate>Mon, 18 Jul 2022 11:09:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/jump-table/</guid>
+      <description>Introduction Jump table is a data structure for storing a sorted list of elements with the help of a linked table hierarchy connected to a subsequence of elements. Jump table allows to handle item lookups in an efficient way. A jump table is a probabilistic data structure, which means that it skips several elements of the entire list, hence the name. We can think of a jump table as an extended version of a linked table.</description>
+    </item>
+    
+    <item>
+      <title>The difference between the delete() method and deleteOnExit() method in Java.io.</title>
+      <link>https://www.javai.net/post/202207/io-delete/</link>
+      <pubDate>Mon, 18 Jul 2022 10:59:30 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/io-delete/</guid>
+      <description>delete () method Deletes a file directly when the delete () method is called, regardless of whether the file exists or not, and executes it as soon as it is called.
+deleteOnExit () method When the deleteOnExit () method is called, it is only equivalent to a declaration of deleteOnExit (), and the deleteOnExit () method is really called when the program is finished running and the JVM is terminated to achieve the delete operation.</description>
+    </item>
+    
+    <item>
+      <title>Why do double floating point operations lose precision?</title>
+      <link>https://www.javai.net/post/202207/double-precision/</link>
+      <pubDate>Mon, 18 Jul 2022 10:49:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/double-precision/</guid>
+      <description>1. What is a floating point number? A floating point number is a type of data used by computers to represent decimals, using scientific notation. In java, double is a double-precision, 64-bit, floating-point number, and the default is 0.0d. float is a single-precision, 32-bit floating-point numbers, default is 0.0f.
+Storing in memory
+float sign bit (1 bit) exponent (8 bit) mantissa (23 bit) double sign bit (1 bit) exponent (11 bit) mantissa (52 bit)</description>
+    </item>
+    
     <item>
       <title>Seven of the best Java testing frameworks</title>
       <link>https://www.javai.net/post/202207/java-test-tools/</link>
@@ -157,58 +208,6 @@ Only recently, after several years of effort, has Loom been merged into the main
       <guid>https://www.javai.net/post/202205/java-oracle-leyden/</guid>
       <description>In a recent social media post, Mark Reinhold, Chief Architect of Oracle&amp;rsquo;s Java Platform Group, officially announced the launch of the &amp;ldquo;Leyden&amp;rdquo; project. The project is said to have been approved and will alleviate slow startup and performance issues by introducing &amp;ldquo;static images&amp;rdquo; on the Java platform, designed to accelerate the creation of Java businesses.
 It is understood that the &amp;ldquo;Leyden&amp;rdquo; project was first proposed around May 2020 and has been discussed for more than 2 years now.</description>
-    </item>
-    
-    <item>
-      <title>Use of CyclicBarrier in java concurrency</title>
-      <link>https://www.javai.net/post/202205/java-cyclicbarrier-use/</link>
-      <pubDate>Thu, 12 May 2022 13:48:54 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202205/java-cyclicbarrier-use/</guid>
-      <description>Introduction CyclicBarrier is a thread-safe component introduced in java 5. It has the concept of a barrier, which is used to wait for all threads to finish executing before performing a specific operation.
-If we have many threads and each thread computes some data, then we need to wait for all the threads to finish executing and then add up the data computed by each thread to the final result, then we can use CyclicBarrier.</description>
-    </item>
-    
-    <item>
-      <title>Use of CountDownLatch in java concurrency</title>
-      <link>https://www.javai.net/post/202205/java-countdownlatch-use/</link>
-      <pubDate>Thu, 12 May 2022 13:34:16 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202205/java-countdownlatch-use/</guid>
-      <description>Introduction In java concurrency, it is very important to control access to shared variables, sometimes we also want to control the order of execution of concurrent threads, for example: wait for all threads to finish executing before executing another thread, or wait for all threads to be ready before starting the execution of all threads, This time we can use CountDownLatch.
-CountDownLatch contains a counter that is placed in the QueuedSynchronizer.</description>
-    </item>
-    
-    <item>
-      <title>Java stream common operations on streams</title>
-      <link>https://www.javai.net/post/202205/java-stream-use/</link>
-      <pubDate>Sat, 07 May 2022 17:04:19 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202205/java-stream-use/</guid>
-      <description>Introduction As we all know, starting from Java8, jdk has added a new Stream class to complement the collection class.
-Stream provides a higher-order abstraction of Java collection operations and expressions using an intuitive way similar to querying data from a database with SQL statements.
-This style treats the collection of elements to be processed as a stream, which travels through the pipeline and can be processed at the nodes of the pipeline, such as filtering, sorting, aggregating, etc.</description>
-    </item>
-    
-    <item>
-      <title>High-performance collections EnumMap and EnumSet</title>
-      <link>https://www.javai.net/post/202204/java-enum-collection/</link>
-      <pubDate>Tue, 26 Apr 2022 15:25:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-enum-collection/</guid>
-      <description>This article introduces EnumMap and EnumSet, which is a collection class under the java.util package.
-The Map and Set structures are especially used in our daily work, and often used to store data or pass parameters, but there is no way to control the data setting of Map, we have no idea what kind of data others will put into it, or if the type and number of data Key of our Map is fixed in some scenarios, then in this case How can we improve the security and performance of the system?</description>
-    </item>
-    
-    <item>
-      <title>Java Discovers Annual Encryption Vulnerability</title>
-      <link>https://www.javai.net/post/202204/java-encryption-vulnerability/</link>
-      <pubDate>Tue, 26 Apr 2022 13:44:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202204/java-encryption-vulnerability/</guid>
-      <description>Recently, security researcher Khaled Nassar made public on GitHub the PoC code for a newly disclosed digital signature bypass vulnerability in Java, tracked as CVE-2022-21449.
-The vulnerability is known to have been discovered by Neil Madden, a researcher at security consulting firm ForgeRock, in November of last year, and was notified to Oracle the same day.
-Although Oracle gave the vulnerability a CVSS rating of 7.5, ForgeRock said they had privately disclosed the vulnerability when it was first discovered and rated the vulnerability a 10 on the CVSS.</description>
     </item>
     
   </channel>

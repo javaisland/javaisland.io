@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>double on JavaIsland</title>
+    <link>https://www.javai.net/tags/double/</link>
+    <description>Recent content in double on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Jul 2022 10:49:46 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/double/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why do double floating point operations lose precision?</title>
+      <link>https://www.javai.net/post/202207/double-precision/</link>
+      <pubDate>Mon, 18 Jul 2022 10:49:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/double-precision/</guid>
+      <description>1. What is a floating point number? A floating point number is a type of data used by computers to represent decimals, using scientific notation. In java, double is a double-precision, 64-bit, floating-point number, and the default is 0.0d. float is a single-precision, 32-bit floating-point numbers, default is 0.0f.
+Storing in memory
+float sign bit (1 bit) exponent (8 bit) mantissa (23 bit) double sign bit (1 bit) exponent (11 bit) mantissa (52 bit)</description>
+    </item>
+    
+  </channel>
+</rss>

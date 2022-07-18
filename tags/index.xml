@@ -6,22 +6,148 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 11 Jul 2022 19:55:18 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 15:47:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>frameworks</title>
-      <link>https://www.javai.net/tags/frameworks/</link>
-      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
+      <title>datetime</title>
+      <link>https://www.javai.net/tags/datetime/</link>
+      <pubDate>Mon, 18 Jul 2022 15:47:04 +0800</pubDate>
       
-      <guid>https://www.javai.net/tags/frameworks/</guid>
+      <guid>https://www.javai.net/tags/datetime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
+      <pubDate>Mon, 18 Jul 2022 15:47:04 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>timestamp</title>
+      <link>https://www.javai.net/tags/timestamp/</link>
+      <pubDate>Mon, 18 Jul 2022 15:47:04 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/timestamp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stack</title>
+      <link>https://www.javai.net/tags/stack/</link>
+      <pubDate>Mon, 18 Jul 2022 11:21:05 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/stack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stackOverflow</title>
+      <link>https://www.javai.net/tags/stackoverflow/</link>
+      <pubDate>Mon, 18 Jul 2022 11:21:05 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/stackoverflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stackOverflowError</title>
+      <link>https://www.javai.net/tags/stackoverflowerror/</link>
+      <pubDate>Mon, 18 Jul 2022 11:21:05 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/stackoverflowerror/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithm</title>
+      <link>https://www.javai.net/tags/algorithm/</link>
+      <pubDate>Mon, 18 Jul 2022 11:09:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jump-table</title>
+      <link>https://www.javai.net/tags/jump-table/</link>
+      <pubDate>Mon, 18 Jul 2022 11:09:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/jump-table/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>node</title>
+      <link>https://www.javai.net/tags/node/</link>
+      <pubDate>Mon, 18 Jul 2022 11:09:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/node/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>delete</title>
+      <link>https://www.javai.net/tags/delete/</link>
+      <pubDate>Mon, 18 Jul 2022 10:59:30 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/delete/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deleteOnExit</title>
+      <link>https://www.javai.net/tags/deleteonexit/</link>
+      <pubDate>Mon, 18 Jul 2022 10:59:30 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/deleteonexit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>io</title>
+      <link>https://www.javai.net/tags/io/</link>
+      <pubDate>Mon, 18 Jul 2022 10:59:30 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/io/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>decimal</title>
+      <link>https://www.javai.net/tags/decimal/</link>
+      <pubDate>Mon, 18 Jul 2022 10:49:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/decimal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>double</title>
+      <link>https://www.javai.net/tags/double/</link>
+      <pubDate>Mon, 18 Jul 2022 10:49:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/double/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>float</title>
+      <link>https://www.javai.net/tags/float/</link>
+      <pubDate>Mon, 18 Jul 2022 10:49:46 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/float/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>frameworks</title>
+      <link>https://www.javai.net/tags/frameworks/</link>
+      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/frameworks/</guid>
       <description></description>
     </item>
     
@@ -58,132 +184,6 @@
       <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/dynamic-proxy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>proxy</title>
-      <link>https://www.javai.net/tags/proxy/</link>
-      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/proxy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>static Proxy</title>
-      <link>https://www.javai.net/tags/static-proxy/</link>
-      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/static-proxy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Geographic</title>
-      <link>https://www.javai.net/tags/geographic/</link>
-      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/geographic/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>geometry</title>
-      <link>https://www.javai.net/tags/geometry/</link>
-      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/geometry/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gis</title>
-      <link>https://www.javai.net/tags/gis/</link>
-      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/gis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wkt</title>
-      <link>https://www.javai.net/tags/wkt/</link>
-      <pubDate>Mon, 11 Jul 2022 14:41:18 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/wkt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java11</title>
-      <link>https://www.javai.net/tags/java11/</link>
-      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java11/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java8</title>
-      <link>https://www.javai.net/tags/java8/</link>
-      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/java8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>jenkins</title>
-      <link>https://www.javai.net/tags/jenkins/</link>
-      <pubDate>Sat, 02 Jul 2022 11:52:35 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/jenkins/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>concurrency</title>
-      <link>https://www.javai.net/tags/concurrency/</link>
-      <pubDate>Wed, 29 Jun 2022 19:59:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/concurrency/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>futuretask</title>
-      <link>https://www.javai.net/tags/futuretask/</link>
-      <pubDate>Wed, 29 Jun 2022 19:59:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/futuretask/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thread</title>
-      <link>https://www.javai.net/tags/thread/</link>
-      <pubDate>Wed, 29 Jun 2022 19:59:32 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/thread/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>io</title>
-      <link>https://www.javai.net/tags/io/</link>
-      <pubDate>Tue, 28 Jun 2022 11:06:41 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/io/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nio</title>
-      <link>https://www.javai.net/tags/nio/</link>
-      <pubDate>Tue, 28 Jun 2022 11:06:41 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/nio/</guid>
       <description></description>
     </item>
     

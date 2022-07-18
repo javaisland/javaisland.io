@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>stack on JavaIsland</title>
+    <link>https://www.javai.net/tags/stack/</link>
+    <description>Recent content in stack on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Jul 2022 11:21:05 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/stack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>StackOverflowError errors in Java</title>
+      <link>https://www.javai.net/post/202207/stackvoerflow-error/</link>
+      <pubDate>Mon, 18 Jul 2022 11:21:05 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/stackvoerflow-error/</guid>
+      <description>Introduction StackOverflowError can be annoying for Java developers as it is one of the most common runtime errors we may encounter.
+In this article, we will learn how this error occurs by looking at various code examples and how to handle it.
+Stack Frames and StackOverflowerError Occur Let&amp;rsquo;s start with the basics. When a method is called, a new stack frame is created on the call stack. This stack frame contains the parameters of the called method, its local variables and the return address of the method, i.</description>
+    </item>
+    
+  </channel>
+</rss>

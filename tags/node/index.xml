@@ -6,7 +6,16 @@
     <description>Recent content in node on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 19 Apr 2022 15:11:02 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 11:09:48 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jump table implementation in Java</title>
+      <link>https://www.javai.net/post/202207/jump-table/</link>
+      <pubDate>Mon, 18 Jul 2022 11:09:48 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/jump-table/</guid>
+      <description>Introduction Jump table is a data structure for storing a sorted list of elements with the help of a linked table hierarchy connected to a subsequence of elements. Jump table allows to handle item lookups in an efficient way. A jump table is a probabilistic data structure, which means that it skips several elements of the entire list, hence the name. We can think of a jump table as an extended version of a linked table.</description>
+    </item>
+    
     <item>
       <title>AbstractQueuedSynchronizer implementation principle - 2</title>
       <link>https://www.javai.net/post/202204/java-aqs-principle-2/</link>

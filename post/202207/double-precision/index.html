@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Why do double floating point operations lose precision? - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="Precision is lost when using double or float for calculations, everyone will think of using BigDecimal to solve" />
+<meta name="keywords" content="java, double, decimal, float" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202207/double-precision/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Why do double floating point operations lose precision?" />
+<meta property="og:description" content="Precision is lost when using double or float for calculations, everyone will think of using BigDecimal to solve" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202207/double-precision/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-18T10:49:46+08:00" />
+<meta property="article:modified_time" content="2022-07-18T10:49:46+08:00" />
+
+<meta itemprop="name" content="Why do double floating point operations lose precision?">
+<meta itemprop="description" content="Precision is lost when using double or float for calculations, everyone will think of using BigDecimal to solve"><meta itemprop="datePublished" content="2022-07-18T10:49:46+08:00" />
+<meta itemprop="dateModified" content="2022-07-18T10:49:46+08:00" />
+<meta itemprop="wordCount" content="1107">
+<meta itemprop="keywords" content="java,double,decimal,float," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Why do double floating point operations lose precision?"/>
+<meta name="twitter:description" content="Precision is lost when using double or float for calculations, everyone will think of using BigDecimal to solve"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6905255539094935"
+     crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Why do double floating point operations lose precision?</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-07-18" class="post-time">
+          2022-07-18
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 1107 words </span>
+          <span class="more-meta"> 6 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-what-is-a-floating-point-number"><strong>1. What is a floating point number?</strong></a></li>
+    <li><a href="#2-into-the-distortion-of-scientific-notation"><strong>2. Into the Distortion of Scientific Notation</strong></a></li>
+    <li><a href="#3-into-the-accuracy-of-distortion"><strong>3. Into the accuracy of distortion</strong></a></li>
+    <li><a href="#3-summary">3. Summary</a></li>
+    <li><a href="#4-so-how-do-we-solve-it-with-bigdecimal">4. So how do we solve it with BigDecimal?</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="1-what-is-a-floating-point-number"><strong>1. What is a floating point number?</strong></h2>
+<p>A floating point number is a type of data used by computers to represent decimals, using scientific notation. In java, double is a double-precision, 64-bit, floating-point number, and the default is 0.0d. float is a single-precision, 32-bit floating-point numbers, default is 0.0f.</p>
+<p>Storing in memory</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/18/0bb637e1a98f4ca6825bf560cedf2d12.png" alt="num.png"></p>
+<p>float sign bit (1 bit) exponent (8 bit) mantissa (23 bit)
+double sign bit (1 bit) exponent (11 bit) mantissa (52 bit)</p>
+<p>The float exponent is 8bit in memory, and since the factorial actually stores the shift of the exponent, assuming that the true value of the exponent is e and the factorial is E, we have E=e+(2^n-1 - 1). Where 2^n-1 - 1 is the exponent offset specified by IEEE754 standard, according to this formula we can get 2^8 - 1=127. Thus, the exponent range of float is - 128 + 127, while the exponent range of double is - 1024 + 1023. where the negative exponent determines the smallest absolute non-zero number that can be expressed by a floating point number; while the positive exponent determines the absolute value that can be expressed by a The negative exponent determines the non-zero number with the smallest absolute value that can be expressed by a floating point number, while the positive exponent determines the number with the largest absolute value that can be expressed by a floating point number.</p>
+<p>The range of float is - 2^128 ~ +2^127, i.e. - 3.40E+38 ~ +3.40E+38.
+The range of double is - 2^1024 ~ +2^1023, which is - 1.79E+308 ~ +1.79E+308</p>
+<h2 id="2-into-the-distortion-of-scientific-notation"><strong>2. Into the Distortion of Scientific Notation</strong></h2>
+<p>Let&rsquo;s talk about scientific notation first. Scientific notation is a simplified counting method used to approximate a very large or very small number with a large number of digits, for small values, scientific notation has no advantage, but for values with a large number of digits the advantage of its counting method is very obvious. For example, the speed of light is 300,000,000 meters per second, and the world&rsquo;s population is about 6,100,000,000. It is difficult to read and write large numbers like the speed of light and the world&rsquo;s population, so the speed of light can be written as 3<em>10^8, and the world&rsquo;s population can be written as 6.1</em>10^9. The population is about 6.1E9.</p>
+<p>When we played with calculators as kids, we liked to add and subtract like crazy, and at the end of the day, the calculator would display the graph below. This is the result of scientific notation.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/18/86c4d07e8a5a491db988b93daf5e2c75.png" alt="scientific.png"></p>
+<p>The real value in that graph is -4.86*10^11=-486000000000. Decimal scientific notation requires that the integer part of a valid number must be in the [1, 9] range.</p>
+<h2 id="3-into-the-accuracy-of-distortion"><strong>3. Into the accuracy of distortion</strong></h2>
+<p>Computer in processing data are involved in the conversion of data and a variety of complex operations, such as, different units conversion, different decimal (such as binary decimal) conversion, etc., many division operations can not divide the exhaustive, such as 10 ÷ 3 = 3.3333 &hellip;.. infinite, and the precision is limited, 3.3333333x3 is not equal to 10, the decimal data obtained after complex processing is not precise, the higher the precision the more precise. float and double precision is determined by the number of bits in the tail, its integer part is always an implied &ldquo;1 Since it is invariant, it cannot have an impact on precision. float: 2^23 = 8388608, seven bits in total, and since the leftmost bit is omitted for 1, this means that at most 8 bits can be represented: 2*8388608 = 16777216. There are 8 significant digits, but the absolute guarantee is 7, i.e.float has a precision of 7~8 significant digits; double: 2^52 = 4503599627370496, 16 bits in total, similarly, double has a precision of 16~17 bits.</p>
+<p>Scientific notation is automatically started when a certain value is reached, and the valid digits of the relevant precision are retained, so the result is an approximation, and the exponent is an integer. Some of the decimal numbers in decimal cannot be represented completely in binary. Therefore, they can only be expressed in finite bits, and thus may have errors in storage. For decimal decimal to binary conversion, the multiplication by 2 method is used, where the integer part is removed and the remaining decimals are multiplied by 2 until the decimal part is all 0.</p>
+<p>If you encounter</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/18/c352d7e2c5e54364a17378e9ea2a523f.png" alt="java.png"></p>
+<p>the output is 0.1999999999999999998</p>
+<p>The case of double type 0.3-0.1. You need to convert 0.3 to binary in the operation</p>
+<p>0.3 * 2 = 0.6 =&gt; .0 (.6) takes 0 and leaves 0.6
+0.6 * 2 = 1.2 =&gt; .01 (.2) takes 1 and leaves 0.2
+0.2 * 2 = 0.4 =&gt; .010 (.4) Take 0 and leave 0.4
+0.4 * 2 = 0.8 =&gt; .0100 (.8) Take 0 and leave 0.8
+0.8 * 2 = 1.6 =&gt; .01001 (.6) Take 1 and leave 0.6
+&hellip;&hellip;&hellip;&hellip;.</p>
+<h2 id="3-summary">3. Summary</h2>
+<p>After reading the above, it&rsquo;s probably clear why floating point numbers have precision problems. Simply put, float and double types are designed primarily for scientific and engineering computations, and they perform binary floating-point operations, which are carefully designed to provide fast and relatively accurate approximations over a wide range of values. However, they do not provide completely accurate results, so they should not be used in situations where exact results are possible. Floating point numbers up to a certain size automatically use scientific notation, and such a representation only approximates the true number and is not equal to it. Infinite loops or exceeding the length of the floating point trailing number can also occur when decimal fractional bits are converted to binary.</p>
+<h2 id="4-so-how-do-we-solve-it-with-bigdecimal">4. So how do we solve it with BigDecimal?</h2>
+<p>Look at the following two outputs</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/18/e83184e3e94d45168de2c63076a9ad7e.png" alt="output.png"></p>
+<p>The output is:</p>
+<p>0.2999999999999999998889776975374843454595763683319091796875
+0.3</p>
+<p>Ari&rsquo;s code constraint plugin on the chart has marked a warning to create BigDecimal using constructor method with String parameter. because double cannot be represented exactly as 0.3 (any finite length binary) and the value passed by constructor method is not exactly equal to 0.3. <strong>Everyone must create BigDecimal using constructor method with String parameter constructor</strong>. Speaking of this, is there any curious baby who has a question, what is the principle of BigDecimal? Why is there no problem with it? In fact, the principle is very simple, BigDecimal is immutable, and it can be used to represent the signed decimal number with any precision. double has a problem because the decimal point is lost to binary precision. **BigDecimal expands the decimal decimal by a factor of N to make it compute on the integer, and keeps the corresponding precision information when processing.**You can read the source code to see how BigDecimal is saved.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/double/">double</a>
+          <a href="https://www.javai.net/tags/decimal/">decimal</a>
+          <a href="https://www.javai.net/tags/float/">float</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/202207/io-delete/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">The difference between the delete() method and deleteOnExit() method in Java.io.</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/202207/java-test-tools/">
+            <span class="next-text nav-default">Seven of the best Java testing frameworks</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
