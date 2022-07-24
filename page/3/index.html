@@ -310,6 +310,45 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/202204/java-runnable-callable/">The difference between Runnable and Callable in java</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2022-04-17" class="post-time">
+        2022-04-17
+      </time>
+      <div class="post-category">
+          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+          
+        </div>
+      <span class="more-meta"> 542 words </span>
+      <span class="more-meta"> 3 min read </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Preface In java&rsquo;s multi-threaded development Runnable has always been the core of multi-threading, and Callable is an enhanced version of java 1.5 added in.
+In this article, we will explore the differences between Runnable and Callable in detail.
+Operation mechanism First look at the interface definition of Runnable and Callable:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  @FunctionalInterface public interface Runnable { /** * When an object implementing interface &lt;code&gt;Runnable&lt;/code&gt; is used * to create a thread, starting the thread causes the object&#39;s * &lt;code&gt;run&lt;/code&gt; method to be called in that separately executing * thread.
+    </div>
+    <div class="read-more">
+      <a href="/post/202204/java-runnable-callable/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/202204/java-executorservice-use/">The use of ExecutorService in java concurrency</a>
     </h1>
     
@@ -1011,44 +1050,6 @@ Local time: LocalDate, LocalTime, LocalDateTime Instances of the classes localDa
     </div>
     <div class="read-more">
       <a href="/post/202204/java8-time-api/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/202204/threadpool-size/">How to estimate throughput and thread pool size</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2022-04-04" class="post-time">
-        2022-04-04
-      </time>
-      <div class="post-category">
-          <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
-          
-        </div>
-      <span class="more-meta"> 766 words </span>
-      <span class="more-meta"> 4 min read </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Estimating Throughput Now there is a task which execution time is divided into 2 parts, the first part does math and the second part waits for IO. these two parts are called compute operation and wait operation.
-So now we need to estimate the peak throughput that can be achieved by executing this task with the CPU at full power.
-Then we need to know how much time it takes to execute this task, how much time is spent on the computation part and how much time is spent on the wait part.
-    </div>
-    <div class="read-more">
-      <a href="/post/202204/threadpool-size/" class="read-more-link">Read more</a>
     </div>
     
   </div>

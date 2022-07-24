@@ -6,7 +6,18 @@
     <description>Recent content in Posts on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Jul 2022 15:47:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jul 2022 21:27:28 +0800</lastBuildDate><atom:link href="https://www.javai.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nuclear-grade Log4j vulnerabilities remain prevalent and have ongoing impact</title>
+      <link>https://www.javai.net/post/202207/log4j-vulnerability/</link>
+      <pubDate>Sun, 24 Jul 2022 21:27:28 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/log4j-vulnerability/</guid>
+      <description>Log4j &amp;ldquo;nuclear-grade&amp;rdquo; vulnerability Log4Shell may affect the world forever.
+ The U.S. Department of Homeland Security (DHS) Cybersecurity Review Board (CSRB) recently released its investigative report in response to last year&amp;rsquo;s Log4Shell vulnerability.
+ The CSRB is an agency established by DHS only this February to investigate major cybersecurity incidents and provide reports containing recommendations to enhance the nation&amp;rsquo;s cybersecurity. The CSRB&amp;rsquo;s first investigation was into the &amp;ldquo;nuclear-grade&amp;rdquo; vulnerability that erupted in Log4j last year.</description>
+    </item>
+    
     <item>
       <title>Java Date Timestamp Date Comparison Pitfalls</title>
       <link>https://www.javai.net/post/202207/time-comparison/</link>
@@ -198,16 +209,6 @@ I. Overview Elasticsearch 7.17 version of the new Java API Client has the follow
       <guid>https://www.javai.net/post/202205/java-virtual-thread-fair/</guid>
       <description>Project Loom ( JEP 425 ) is probably one of the most anticipated additions to Java ever. Its implementation of virtual threading (or &amp;ldquo;green threading&amp;rdquo;) ensures that developers can create highly concurrent applications, such as those with hundreds of thousands of open HTTP connections, adhering to the well-known thread-per-request programming model without resorting to less familiar and often more complex reactive methods.
 Only recently, after several years of effort, has Loom been merged into the main line of the OpenJDK and made available as a preview feature in the latest Java 19 early access release.</description>
-    </item>
-    
-    <item>
-      <title>Java introduces static images to solve problems like slow running</title>
-      <link>https://www.javai.net/post/202205/java-oracle-leyden/</link>
-      <pubDate>Thu, 26 May 2022 13:40:53 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202205/java-oracle-leyden/</guid>
-      <description>In a recent social media post, Mark Reinhold, Chief Architect of Oracle&amp;rsquo;s Java Platform Group, officially announced the launch of the &amp;ldquo;Leyden&amp;rdquo; project. The project is said to have been approved and will alleviate slow startup and performance issues by introducing &amp;ldquo;static images&amp;rdquo; on the Java platform, designed to accelerate the creation of Java businesses.
-It is understood that the &amp;ldquo;Leyden&amp;rdquo; project was first proposed around May 2020 and has been discussed for more than 2 years now.</description>
     </item>
     
   </channel>

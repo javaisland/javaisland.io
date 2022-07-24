@@ -6,22 +6,49 @@
     <description>Recent content in Tags on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Jul 2022 15:47:04 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jul 2022 21:27:28 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>datetime</title>
-      <link>https://www.javai.net/tags/datetime/</link>
-      <pubDate>Mon, 18 Jul 2022 15:47:04 +0800</pubDate>
+      <title>csrb</title>
+      <link>https://www.javai.net/tags/csrb/</link>
+      <pubDate>Sun, 24 Jul 2022 21:27:28 +0800</pubDate>
       
-      <guid>https://www.javai.net/tags/datetime/</guid>
+      <guid>https://www.javai.net/tags/csrb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>java</title>
       <link>https://www.javai.net/tags/java/</link>
-      <pubDate>Mon, 18 Jul 2022 15:47:04 +0800</pubDate>
+      <pubDate>Sun, 24 Jul 2022 21:27:28 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>log4j</title>
+      <link>https://www.javai.net/tags/log4j/</link>
+      <pubDate>Sun, 24 Jul 2022 21:27:28 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/log4j/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vulnerability</title>
+      <link>https://www.javai.net/tags/vulnerability/</link>
+      <pubDate>Sun, 24 Jul 2022 21:27:28 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/vulnerability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datetime</title>
+      <link>https://www.javai.net/tags/datetime/</link>
+      <pubDate>Mon, 18 Jul 2022 15:47:04 +0800</pubDate>
+      
+      <guid>https://www.javai.net/tags/datetime/</guid>
       <description></description>
     </item>
     
@@ -157,33 +184,6 @@
       <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
       
       <guid>https://www.javai.net/tags/test/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>testing</title>
-      <link>https://www.javai.net/tags/testing/</link>
-      <pubDate>Mon, 11 Jul 2022 19:55:18 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/testing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cglib</title>
-      <link>https://www.javai.net/tags/cglib/</link>
-      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/cglib/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dynamic Proxy</title>
-      <link>https://www.javai.net/tags/dynamic-proxy/</link>
-      <pubDate>Mon, 11 Jul 2022 16:52:25 +0800</pubDate>
-      
-      <guid>https://www.javai.net/tags/dynamic-proxy/</guid>
       <description></description>
     </item>
     

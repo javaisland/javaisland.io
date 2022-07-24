@@ -6,7 +6,18 @@
     <description>Recent content in news on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Jul 2022 11:52:35 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jul 2022 21:27:28 +0800</lastBuildDate><atom:link href="https://www.javai.net/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nuclear-grade Log4j vulnerabilities remain prevalent and have ongoing impact</title>
+      <link>https://www.javai.net/post/202207/log4j-vulnerability/</link>
+      <pubDate>Sun, 24 Jul 2022 21:27:28 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/log4j-vulnerability/</guid>
+      <description>Log4j &amp;ldquo;nuclear-grade&amp;rdquo; vulnerability Log4Shell may affect the world forever.
+ The U.S. Department of Homeland Security (DHS) Cybersecurity Review Board (CSRB) recently released its investigative report in response to last year&amp;rsquo;s Log4Shell vulnerability.
+ The CSRB is an agency established by DHS only this February to investigate major cybersecurity incidents and provide reports containing recommendations to enhance the nation&amp;rsquo;s cybersecurity. The CSRB&amp;rsquo;s first investigation was into the &amp;ldquo;nuclear-grade&amp;rdquo; vulnerability that erupted in Log4j last year.</description>
+    </item>
+    
     <item>
       <title>Java8 is going down? Jenkins announces support for Java 11 and above only</title>
       <link>https://www.javai.net/post/202207/java-jenkins-require-java8&#43;/</link>
