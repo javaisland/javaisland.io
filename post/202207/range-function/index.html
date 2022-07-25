@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to the Range function in Java - JavaIsland</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="JavaIsland" /><meta name="description" content="In Java, the Range method helps to return the sequential value of an IntStream within the range of the function&#39;s parameters." />
+<meta name="keywords" content="java, range, intStream, longStream" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<link rel="canonical" href="https://www.javai.net/post/202207/range-function/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa4b2b9f31b5c6d0b683db81157a9226e17b06e61911791ab547242a4a0556f2.css" integrity="sha256-&#43;ksrnzG1xtC2g9uBFXqSJuF7BuYZEXkatUckKkoFVvI=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Introduction to the Range function in Java" />
+<meta property="og:description" content="In Java, the Range method helps to return the sequential value of an IntStream within the range of the function&#39;s parameters." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.javai.net/post/202207/range-function/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-25T16:16:19+08:00" />
+<meta property="article:modified_time" content="2022-07-25T16:16:19+08:00" />
+
+<meta itemprop="name" content="Introduction to the Range function in Java">
+<meta itemprop="description" content="In Java, the Range method helps to return the sequential value of an IntStream within the range of the function&#39;s parameters."><meta itemprop="datePublished" content="2022-07-25T16:16:19+08:00" />
+<meta itemprop="dateModified" content="2022-07-25T16:16:19+08:00" />
+<meta itemprop="wordCount" content="974">
+<meta itemprop="keywords" content="java,range,intStream,longStream," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to the Range function in Java"/>
+<meta name="twitter:description" content="In Java, the Range method helps to return the sequential value of an IntStream within the range of the function&#39;s parameters."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69R2047H9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-69R2047H9F');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6905255539094935"
+     crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">JavaIsland</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      JavaIsland
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.javai.net/about/">About</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Introduction to the Range function in Java</h1>
+      
+      <div class="post-meta">
+        <time datetime="2022-07-25" class="post-time">
+          2022-07-25
+        </time>
+        <div class="post-category">
+            <a href="https://www.javai.net/categories/tutorials/"> tutorials </a>
+            
+          </div>
+        <span class="more-meta"> 974 words </span>
+          <span class="more-meta"> 5 min read </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#range-syntax">Range syntax</a>
+      <ul>
+        <li><a href="#syntax-of-the-intstream-range">Syntax of the IntStream range</a></li>
+        <li><a href="#syntax-of-the-longstream-range">Syntax of the LongStream range</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-do-range-functions-work-in-java">How do Range functions work in Java?</a></li>
+    <li><a href="#range-example-in-java">Range example in Java</a>
+      <ul>
+        <li><a href="#example-1">Example #1</a></li>
+        <li><a href="#example-2">Example #2</a></li>
+        <li><a href="#example-3">Example #3</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="introduction">Introduction</h2>
+<p>In Java, the Range method is available in both the <code>IntStream</code> and <code>LongStream</code> classes. In the IntStream class it helps to return the sequential value of the IntStream in the range of function parameters. In this method, <code>startInclusive(inclusive)</code> and <code>endExclusive(exclusive)</code> are the two parameters used with the incremental step which, as mentioned before, will include the start value and exclude the end value. In the case of LongStream, the only difference is the addition of the LongStream value.</p>
+<h2 id="range-syntax">Range syntax</h2>
+<p>Let&rsquo;s look at the syntax of the range method in Java.</p>
+<h3 id="syntax-of-the-intstream-range">Syntax of the IntStream range</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">IntStream</span> <span class="nf">range</span><span class="o">(</span><span class="kt">int</span> <span class="n">startInclusive</span><span class="o">,</span> <span class="kt">int</span> <span class="n">endExclusive</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Parameters.</p>
+<ul>
+<li>IntStream: this is a sequence of int-valued elements of primitive type.</li>
+<li>startInclusive: the initial value to include in the range.</li>
+<li>endExclusive: the last value or upper limit to be excluded from the range.</li>
+</ul>
+<p>Return Value.</p>
+<p>This method returns as an argument a continuous int stream of the int elements mentioned in the range.</p>
+<h3 id="syntax-of-the-longstream-range">Syntax of the LongStream range</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">LongStream</span> <span class="nf">range</span><span class="o">(</span><span class="kt">int</span> <span class="n">startInclusive</span><span class="o">,</span> <span class="kt">int</span> <span class="n">endExclusive</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Parameters.</p>
+<ul>
+<li>LongStream: this is a sequence of long-valued elements of primitive type.</li>
+<li>startInclusive: the initial value to be included in the range.</li>
+<li>endExclusive: the last value or upper limit to be excluded from the range.</li>
+</ul>
+<p>Return Value.</p>
+<p>The method returns a continuous long stream of the long elements mentioned in the range as arguments.</p>
+<h2 id="how-do-range-functions-work-in-java">How do Range functions work in Java?</h2>
+<p>First, let&rsquo;s look at how the IntStream range works in Java. Similarly to other classes in Java, this class requires a package that must first be imported. That is, in order to use the IntStream class, import the package <code>java.util.stream.IntStream</code>. Once imported, an IntStream is created so that elements can be added to it. After the stream is created, elements are added using the method <code>range()</code>. When the code is executed, a sequential ordered IntStream will be returned by an incremental step within the range mentioned in the argument.</p>
+<p>To print each element, use the method shown below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">intStream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>For LongStream, first import the package ``java.util.stream. Similar to the function of IntStream, once the package is imported, a LongStream is created so that elements can be added to it. Once the stream is created, elements are added using the method range(). When the code is executed, a sequentially ordered LongStream is returned by an incremental step within the range mentioned in the parameters.</p>
+<p>For printing each element using the method shown below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LongStream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>With the help of a for loop, an equivalent print sequence of incrementing elements can be generated in order, as shown below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="n">inti</span> <span class="o">=</span> <span class="n">startInclusive</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">endExclusive</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl"><span class="o">{...</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="range-example-in-java">Range example in Java</h2>
+<p>The following examples are mentioned.</p>
+<h3 id="example-1">Example #1</h3>
+<p>Java program implementing the IntStream Range function.</p>
+<p>Code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// IntStream range implementation using Java
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//import the package for IntStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RangeExample</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// main method
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Create an IntStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">IntStream</span> <span class="n">st</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">32</span><span class="o">,</span> <span class="n">45</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Display the elements in the range mentioned as 32 and 45 where 32 is included and 45 is excluded
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The elements are:&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">st</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/25/e5453e24781f41ff8e2ed47ad25b56eb.png" alt="Introduction to the range function in Java"></p>
+<p>First, import the package <code>java.util.stream.IntStream</code>. Then, an IntStream <code>st</code> is created and used to add elements to it. In the process of creating the stream, elements are added using the method range (32, 45), which includes 32 elements and excludes 45 elements. When the code is executed, an ordered IntStream will be returned in an incremental step from 32 to 44, as shown in the example output.</p>
+<h3 id="example-2">Example #2</h3>
+<p>Java program implementing the LongStream range function.</p>
+<p>Code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// LongStream range implementation using Java
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//import the package for LongStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.stream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RangeExample</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// main method
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Create a LongStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">LongStream</span> <span class="n">st</span> <span class="o">=</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">1000001L</span><span class="o">,</span> <span class="n">1000010L</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Display the elements in the range mentioned as 1000001L and 1000010L where 1000001L is included and 1000010L is excluded
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The elements are:&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">st</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/25/69dc97fefee34e148a442bc76ad6ba51.png" alt="Introduction to the range function in Java"></p>
+<p>Similar to the above program, import the package <code>java.util.stream. Then, create a LongStreamst with method</code>range <code>(100001L, 100010L)</code> for adding elements to it. When the code is executed, it will return from 100001L to 100010L by an incremental step, as shown in the sample output.</p>
+<h3 id="example-3">Example #3</h3>
+<p>Java program for combined implementation of LongStream and IntStream range functions.</p>
+<p>Code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//import the package for IntStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.stream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//import the package for LongStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.stream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RangeExample</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// main method
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Create an IntStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">IntStream</span> <span class="n">str</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">32</span><span class="o">,</span> <span class="n">45</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Display the elements in the range mentioned as 32 and 45 where 32 is included and 45 is excluded
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The IntStream elements are:&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">str</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Create a LongStream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">LongStream</span> <span class="n">st</span> <span class="o">=</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">1000001L</span><span class="o">,</span> <span class="n">1000010L</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Display the elements in the range mentioned as 1000001L and 1000010L where 1000001L is included and 1000010L is excluded
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The LongStream elements are:&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">st</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/25/c9ae93e3479149c1a1fa347d59371289.png" alt="Introduction to the range function in Java"></p>
+<p>Import the packages <code>java.util.stream.IntStream</code> and <code>java.util.stream.LongStream</code>. Then, create IntStreamstr and LongStreamst to add elements to them. During the creation of the stream, elements are added to the IntStream using the method <code>range(32, 45)</code>, which includes 32 and excludes 45. similarly, elements are added to the LongStream using the method <code>range(100001L, 100010L)</code>. When the code is executed, the sequence ordered IntStream will return from 32 to 44 and the LongStream will return from 100001L to 100010L by incrementing step 1.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The range method in Java is used to return the sequential values of IntStream and LongStream over the range of function parameters.</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.javai.net/tags/java/">java</a>
+          <a href="https://www.javai.net/tags/range/">range</a>
+          <a href="https://www.javai.net/tags/intstream/">intStream</a>
+          <a href="https://www.javai.net/tags/longstream/">longStream</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/202207/http-parameter-missing/">
+            <span class="next-text nav-default">HttpServletRequest getParameter() missing parameter problem</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+<a href="https://www.javai.net/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2022
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        JavaIsland
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.dee43230127a73d039a734510fa896c89c3c7ce0cf0be0c7a7433f8fd69b76dc.js" integrity="sha256-3uQyMBJ6c9A5pzRRD6iWyJw8fODPC&#43;DHp0M/j9abdtw=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

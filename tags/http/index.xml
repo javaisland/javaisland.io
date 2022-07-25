@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>http on JavaIsland</title>
+    <link>https://www.javai.net/tags/http/</link>
+    <description>Recent content in http on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 25 Jul 2022 16:06:06 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HttpServletRequest getParameter() missing parameter problem</title>
+      <link>https://www.javai.net/post/202207/http-parameter-missing/</link>
+      <pubDate>Mon, 25 Jul 2022 16:06:06 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/http-parameter-missing/</guid>
+      <description>Background  Implemented a basic component can intercept all http requests, the request header/parameter/body/response, etc. for printout. Here the most critical and most difficult to deal with is the output of the body, because the transmission of characters in the body is obtained through the HttpServletRequest byte stream getInputStream (); and this byte stream does not exist after reading once. For example, the use of open source frameworks such as Spring some links have been intercepted to read the input stream, that after our custom interceptor to intercept the print body, the InputStream has no bytes &amp;hellip; The implementation of the idea is not difficult, is their own inheritance to achieve HttpServletRequestWrapper, a copy of the body to save a good, and then in the Filter chain transfer can be.</description>
+    </item>
+    
+  </channel>
+</rss>
