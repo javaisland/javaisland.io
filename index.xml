@@ -6,7 +6,7 @@
     <description>Recent content on JavaIsland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 25 Jul 2022 16:16:19 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jul 2022 20:05:07 +0800</lastBuildDate>
     
         <atom:link href="https://www.javai.net/index.xml" rel="self" type="application/rss+xml" />
     
@@ -33,6 +33,141 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;contact&#34;&gt;Contact&lt;/h2&gt;
 &lt;p&gt;Email: &lt;a href=&#34;mailto:admin@javai.net&#34;&gt;admin@javai.net&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Java7 End of Life Cycle</title>
+      <link>https://www.javai.net/post/202207/java7-end-of-life-cycle/</link>
+      <pubDate>Thu, 28 Jul 2022 20:05:07 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/java7-end-of-life-cycle/</guid>
+      
+        <description>&lt;p&gt;Java SE 7, a nearly 11-year-old version of the Java standard, is coming to the end of its life cycle and Oracle will officially discontinue extended support for it at the end of July 2022.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/07/28/e75efb8142464f62bd2af8373632ad4e.png&#34; alt=&#34;java.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;With &lt;a href=&#34;https://www.oracle.com/java/technologies/java-se-support-roadmap.html&#34;&gt;official extension support&lt;/a&gt; is discontinued, Java 7 will enter a Sustaining Support model as defined by the Oracle Lifetime Support Policy. Oracle will no longer provide patch updates, bug or security fixes, or feature implementations.&lt;/p&gt;
+&lt;p&gt;Java 7, released on 28 July 2011, had been the first major release of Java in five years (Java 6 was released in 2006, five years apart) and the first release from Oracle since the acquisition of Sun Microsystems. The end of extended support means that some older versions of Oracle Fusion Middleware products will no longer have a certified JDK available.&lt;/p&gt;
+&lt;p&gt;A &lt;a href=&#34;https://newrelic.com/resources/report/2022-state-of-java-ecosystem&#34;&gt;research report&lt;/a&gt; on the Java ecosystem published by application monitor New Relic in April  shows that 1.71% of applications are still using Java 7 in production.&lt;/p&gt;
+&lt;p&gt;The most current version of Java, Java 18, was officially released in March this year and will cease to be updated in September 2022. Longer term support versions that are still available include Java 8, Java 11 and Java 17, each with end of support dates of December 2030, September 2026 and September 2029 respectively, to which developers who require them can upgrade.&lt;/p&gt;
+&lt;p&gt;Oracle has stated in its latest &lt;a href=&#34;https://support.oracle.com/knowledge/Middleware/2809708_1.html&#34;&gt;support announcement&lt;/a&gt; also states that customers using Java SE 7 are advised to upgrade to a supported version of standard Java, such as Java SE 8 or 11.&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>JDK 19 feature set freeze: Java 19 has only 7 new features</title>
+      <link>https://www.javai.net/post/202207/java19-new-features/</link>
+      <pubDate>Thu, 28 Jul 2022 19:52:22 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/java19-new-features/</guid>
+      
+        <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;From the &lt;a href=&#34;https://openjdk.org/projects/jdk/19/&#34;&gt;Overview page&lt;/a&gt; of JDK 19, it appears that JDK 19 is in the &lt;a href=&#34;https://openjdk.org/jeps/3#rdp-2&#34;&gt;Rampdown Phase Two&lt;/a&gt;, the entire feature set has been frozen and no further changes will be made to the JEP.&lt;/p&gt;
+&lt;p&gt;Java 19 has only 7 new features.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;405:&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/405&#34;&gt;Record Patterns (Preview)&lt;/a&gt; Record Patterns&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;422:&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/422&#34;&gt;Linux/RISC-V Port&lt;/a&gt; Linux/RISC-V porting&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;424:&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/424&#34;&gt;Foreign Function &amp;amp; Memory API (Preview)&lt;/a&gt; External Function and Memory API&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;425:&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/F425&#34;&gt;Virtual Threads (Preview)&lt;/a&gt; Virtual Threads&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;426:&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/426&#34;&gt;Vector API (Fourth Incubator)&lt;/a&gt; Vector API&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;427:&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/427&#34;&gt;Pattern Matching for switch (Third Preview)&lt;/a&gt; Switch Pattern Matching&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;428:&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/428&#34;&gt;Structured Concurrency (Incubator)&lt;/a&gt; Structured Concurrency&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The following is a short description of the new features.&lt;/p&gt;
+&lt;h2 id=&#34;record-mode-preview-version&#34;&gt;Record mode &lt;strong&gt;(preview version)&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Enhance the Java programming language to deconstruct record values with &lt;em&gt;&lt;strong&gt;Record Patterns&lt;/strong&gt;&lt;/em&gt;, which can nest record patterns and type patterns to enable powerful, declarative and composable forms of data navigation and processing.&lt;/p&gt;
+&lt;p&gt;This is a preview language feature.&lt;/p&gt;
+&lt;h2 id=&#34;linuxrisc-v-porting&#34;&gt;Linux/RISC-V porting&lt;/h2&gt;
+&lt;p&gt;Porting the JDK to Linux/RISC-V currently only supports the RV64GV configuration of RISC-V (a generic 64-bit ISA containing vector instructions). Support for other RISC-V configurations, such as the generic 32-bit configuration (RV32G), may be considered in the future.&lt;/p&gt;
+&lt;h2 id=&#34;external-functions-and-memory-api-preview&#34;&gt;&lt;strong&gt;External Functions and Memory API (Preview)&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Introduces an API through which Java programs can interoperate with code and data outside of the Java runtime. The API enables efficient calls to external functions (code outside the JVM) and safe access to external memory (memory not managed by the JVM), allowing Java programs to call native libraries and work with native data without the vulnerabilities and dangers of JNI.&lt;/p&gt;
+&lt;p&gt;This is a preview API.&lt;/p&gt;
+&lt;h2 id=&#34;virtual-threading-preview&#34;&gt;Virtual Threading (Preview)&lt;/h2&gt;
+&lt;p&gt;Introduces virtual threading to the Java platform. Virtual threads are lightweight threads that significantly reduce the effort of writing, maintaining and observing high-throughput concurrent applications.&lt;/p&gt;
+&lt;p&gt;This is a preview API, which we at OSC have &lt;a href=&#34;https://www.javai.net/post/202204/java-virtual-threads/&#34;&gt;described in detail&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;vector-api-fourth-incubation&#34;&gt;&lt;strong&gt;Vector API (fourth incubation)&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Introduces an API to express vector computation that compiles reliably at runtime, optimising vector instructions on supported CPU architectures to achieve better performance than scalar computation.&lt;/p&gt;
+&lt;h3 id=&#34;switch-pattern-matching-3rd-preview-version&#34;&gt;&lt;strong&gt;Switch Pattern Matching (3rd preview version)&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Enhances the Java programming language with pattern matching of &lt;code&gt;switch&lt;/code&gt; expressions and statements, and extensions to the pattern language. Extending pattern matching to &lt;code&gt;switch&lt;/code&gt; allows expressions to be tested against a number of patterns so that complex data-oriented queries can be expressed concisely and safely.&lt;/p&gt;
+&lt;p&gt;This feature first appeared as a preview in Java 17, with Java 19 being the third preview.&lt;/p&gt;
+&lt;h2 id=&#34;structured-concurrency-incubation-phase&#34;&gt;Structured concurrency (incubation phase)&lt;/h2&gt;
+&lt;p&gt;Simplify multi-threaded programming by introducing an API for structured concurrency, which treats multiple tasks running in different threads as a single unit of work, thereby simplifying error handling, improving reliability and enhancing observability.&lt;/p&gt;
+&lt;p&gt;This is an incubation stage API.&lt;/p&gt;
+&lt;p&gt;Also attached &lt;strong&gt;JDK 19 Timeline:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2022/06/09&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/3#rdp-1&#34;&gt;Rampdown Phase One&lt;/a&gt; Rampdown Phase One (fork from main line)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2022/07/21&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/3#rdp-2&#34;&gt;Rampdown Phase Two&lt;/a&gt; Rampdown Phase Two&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2022/08/11&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/3#rc&#34;&gt;Initial Release Candidate&lt;/a&gt; Initial Candidate Version (RC)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2022/08/25&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://openjdk.org/jeps/3#rc&#34;&gt;Final Release Candidate&lt;/a&gt; Final Release Candidate ( RC)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2022/09/20&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;General Availability stable release&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The Rampdown is mainly a bug fixing and testing phase.&lt;/p&gt;
+&lt;p&gt;Another interesting thing: starting with Java 16, the number of features per release gets smaller and smaller: * Java 16: 17 features&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java 16: 17&lt;/li&gt;
+&lt;li&gt;Java 17: 14&lt;/li&gt;
+&lt;li&gt;Java 18: 9&lt;/li&gt;
+&lt;li&gt;Java 19: 7&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>
@@ -4541,482 +4676,6 @@ Insert code in the field shape for the Geometry object binary&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;If you don&amp;rsquo;t want to use a public thread pool, you can use a custom ForkJoinPool to submit it.&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Cloud Native Compiler - Java Cloud Compiler</title>
-      <link>https://www.javai.net/post/202206/java-cloud-compiler/</link>
-      <pubDate>Wed, 15 Jun 2022 20:45:51 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202206/java-cloud-compiler/</guid>
-      
-        <description>&lt;p&gt;Azul has introduced a new cloud-native compiler, Java Cloud Compiler, which offloads Java JIT compilation from local systems to elastic resources, reducing the amount of resources needed to run applications and shortening the time to peak performance.&lt;/p&gt;
-&lt;h2 id=&#34;understanding-jit-and-aot&#34;&gt;Understanding JIT and AOT&lt;/h2&gt;
-&lt;p&gt;The Java Runtime is a completely self-reliant system designed to run and improve code on a single system. The runtime works through just-in-time (JIT) compilation, using native resources that convert Java bytecode (JAR and class files) into native code to improve speed and memory. Simon Ritter, Azul&amp;rsquo;s Deputy CTO, explains this process understanding Java compilation in a blog post detailing how code improves over time. JIT compilation is transparent to most users transparently, requiring no developer or administrator interaction, but curious developers can monitor their role JITWatch with the following tools.By offloading this JIT compilation to a separate system, Azul&amp;rsquo;s cloud compiler can execute the JIT faster, share optimizations between systems running the same code, and return resources to the application to improve throughput or reduce the total CPU/RAM required and reduce costs.&lt;/p&gt;
-&lt;p&gt;Red Hat has published a blog, How the JIT Compiler Improves Performance in the OpenJDK, which covers how JIT improves Java applications as they run. This post discusses how Java applications start, monitor code, and perform optimizations to improve performance in part. These JIT optimizations are done in a self-reliant JRE that shares resources with the running application and seeks to make improvements in the application as it runs, then switches the execution to faster JIT code.&lt;/p&gt;
-&lt;p&gt;An alternative to JIT is advance (AOT) compilation, which seeks to compile Java applications directly into native code rather than through bytecode. AOT aims to reduce the time to peak performance and improve memory consumption by working ahead. A Belton article that delves into the new Java JIT compiler describes the role and differences between the standard OpenJDK JIT compiler C1/C2 and the GraalVM AOT compiler. neither JIT nor AOT is inherently better-although AOT can often be started faster, the &amp;ldquo;ahead of time &amp;quot; term ignores what can be learned from observing what parts of the code run, as well as the fact that AOT compilation takes significantly longer rather than bytecode, and includes other behavioral tradeoffs.&lt;/p&gt;
-&lt;h2 id=&#34;cloud-compiler&#34;&gt;Cloud Compiler&lt;/h2&gt;
-&lt;p&gt;Azul Smart Cloud introduces a third option that connects the benefits of JIT (peak performance) with the benefits of AOT (fast startup time). Since teams typically run the same code across many systems, the JRE communicates with the organization&amp;rsquo;s shared JIT server, so each JRE does not need to perform the same watch and optimization cycles. The cloud compiler can then also perform deeper analysis using CPU resources that are isolated from the running application. The resulting application can achieve peak performance in the network time required to transfer this information and run with the improved code. In the tests described by QCon, peak performance was reached in a much faster time and throughput was 25% to 100% faster.&lt;/p&gt;
-&lt;p&gt;Azul&amp;rsquo;s Cloud Compiler is available in the commercial Azul Prime distribution. The free version of Prime is available for development, testing and evaluation.&lt;/p&gt;
-&lt;h2 id=&#34;reference-citation&#34;&gt;Reference Citation&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://developers.redhat.com/articles/2021/06/23/how-jit-compiler-boosts-java-performance-openjdk#hotspot_s_jit_execution_model&#34;&gt;https://developers.redhat.com/articles/2021/06/23/how-jit-compiler-boosts-java-performance-openjdk#hotspot_s_jit_execution_model&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Java Virtual Threads</title>
-      <link>https://www.javai.net/post/202206/java-virtual-thread/</link>
-      <pubDate>Mon, 13 Jun 2022 19:20:24 +0800</pubDate>
-      
-      <guid>https://www.javai.net/post/202206/java-virtual-thread/</guid>
-      
-        <description>&lt;p&gt;Virtual threading is something I&amp;rsquo;m really excited about. It&amp;rsquo;s a long-awaited feature in the language and we&amp;rsquo;ve made very few attempts to implement it in the past, but it&amp;rsquo;s finally here and it&amp;rsquo;s been merged into Java 19. This means that it will be included as a preview feature and we will be able to use it as soon as JDK 19 is released.&lt;/p&gt;
-&lt;p&gt;Most of the content on the virtual (green) threads is written by non-Java developers, why is that? Green threads are new to the Java world, most Java applications use regular (platform) threads and have little exposure to the concept. java is one of the most popular languages and is the only one of them that does not support any form of async/await without the help of third party libraries (which we will cover soon).&lt;/p&gt;
-&lt;p&gt;In early versions of Java, when designing the multithreading API, Sun Microsystems was faced with a dilemma: should we use user-mode threads or map Java threads one-to-one with OS threads. All benchmarks at the time showed that user-mode threads were severely underutilized, increasing memory consumption without giving much in return. However, this is a benchmark from 20 years ago, when things were completely different. We didn&amp;rsquo;t have such high load requirements, and the Java language wasn&amp;rsquo;t very mature. Things are different now, and we have made little attempt to introduce user-mode threads into the language. Take fibers, for example.&lt;/p&gt;
-&lt;p&gt;Unfortunately, because they were implemented as a separate class, it was difficult to migrate the entire code base to it, and eventually they disappeared and were never merged into the language.&lt;/p&gt;
-&lt;h2 id=&#34;project-loom&#34;&gt;Project Loom&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/8c9ca05b99434e4b934c54f44d4c9ca0.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;There are several Java projects that require very specific tasks to be completed. Examples include Valhala, Panama, Amber, and of course Loom. Loom&amp;rsquo;s goal is to overhaul the language&amp;rsquo;s concurrency model. Their goal is to bring virtual threads, structured concurrency, and a few other smaller things (for now).&lt;/p&gt;
-&lt;h2 id=&#34;a-few-words-about-the-java-concurrency-model&#34;&gt;A few words about the Java concurrency model&lt;/h2&gt;
-&lt;p&gt;The way threads are implemented in the JVM is considered to be one of the best ways, even for non-Java developers. We have excellent thread debugging, and you can get thread dumps, breakpoints, memory checks, and more. You can even use the JFR API to define custom metrics for your threads.&lt;/p&gt;
-&lt;p&gt;The Thread class is Java&amp;rsquo;s way of giving you access to the OS Thread API. Most of the operations performed in this class make system calls. In production we rarely use threads directly, we use the Java Concurrency package and thread pools, locks and other goodies.Java has excellent built-in tools for multi-threading.&lt;/p&gt;
-&lt;h2 id=&#34;concurrency-and-parallelism&#34;&gt;Concurrency and &lt;strong&gt;parallelism&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/ef415101862d42a38202d4d2f3d9edeb.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Before we move on to the fun stuff, we have to address this issue. Concurrency and parallelism are two things that are often confused and confusing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;parallelism&lt;/strong&gt; means &lt;strong&gt;executing two or more tasks at the same time&lt;/strong&gt; . This is only possible if the CPU supports it. We need multiple cores to achieve parallelism. However, modern CPUs are always multi-core, and single-core CPUs are mostly obsolete and no longer widely used because their performance is significantly better than multi-core CPUs. this is because modern applications are designed to take advantage of multiple cores, and they always need to do something at the same time.&lt;/p&gt;
-&lt;p&gt;Concurrency means simultaneously &lt;strong&gt;managing tasks&lt;/strong&gt;. For example, JavaScript is a single-threaded language, and everything that must happen at the same time happens at the same time. A single thread manages all the tasks generated by the code. JS uses async/await to do this, and we&amp;rsquo;ll discuss other ways to implement concurrency later.&lt;/p&gt;
-&lt;p&gt;From an operating system perspective, the CPU must handle multiple threads of processes. The number of threads is always higher than the number of cores, which means that the CPU must perform &lt;strong&gt;context switching&lt;/strong&gt;. Briefly each thread has a priority and can be idle, working or waiting for a CPU cycle. the CPU must iterate through all non-idle threads and allocate its limited resources according to the priority. In addition, it must ensure that all threads with the same priority get the same amount of CPU time, otherwise some applications may freeze. Each time the kernel is assigned to a different thread, it must freeze the currently running thread and preserve its register state. In addition to this, it must keep track of whether there are idle threads that have not been woken up. As you can see, this is a rather complex and expensive operation and we as developers should try to minimize the number of threads we use. Ideally, the number of threads should be close to the number of CPU cores, so that we can minimize CPU context switches.&lt;/p&gt;
-&lt;h2 id=&#34;modern-java-server-concurrency-issues&#34;&gt;Modern Java Server Concurrency Issues&lt;/h2&gt;
-&lt;p&gt;Cloud space is getting bigger and bigger, and with it comes load and resource requirements. Most enterprise servers (the most heavily loaded servers) are written in Java, so Java is used to solve the load problem. So far it has done a good job, judging by the fact that it is still the most popular server language, but that doesn&amp;rsquo;t mean it is perfect.&lt;/p&gt;
-&lt;p&gt;The usual way we handle requests is to dedicate a platform thread to them, which is the &amp;ldquo;thread per request model&amp;rdquo;. When a client requests something and we get the data or process it, that thread is occupied and cannot be used by anyone else. The server starts and allocates a predefined number of threads (e.g. 200 for Tomcat). They are placed in the thread pool and wait for requests. Their initial state is called &amp;ldquo;Parked&amp;rdquo; and in this state they do not use CPU resources.&lt;/p&gt;
-&lt;p&gt;This is easy to write, understand and debug, but what if the client requests something that executes a blocking call? A blocking call is an operation that waits for a third-party call to complete, such as a SQL query, a request for a different service, or a simple IO operation to the operating system. When a blocking call occurs, the &lt;strong&gt;thread must wait&lt;/strong&gt; . While it is waiting, the thread is not available and the CPU must manage it because it is not idle. This increases context switching. The server limits the number of threads, a higher number of threads may increase the throughput, but they slow down the request processing considerably. This is a good balance that we must keep in mind and manage. People often ask, &amp;ldquo;why not just spawn 10k threads and process 10k requests at the same time&amp;rdquo;, and while this may not stop the operating system from stopping you, gee, you can even spawn a million threads with the right configuration, there are benchmarks that show 80% of CPU utilization is purely for 3-4k threads on popular CPUs. 4k threads after context switching, and remembering that the OS also needs the CPU to run and manage other processes.&lt;/p&gt;
-&lt;p&gt;To address our scalability issues, we typically just scale and spawn multiple nodes of the server. This is feasible, and we can now handle any number of requests if we pay enough to the cloud provider, but one of the main drivers for using cloud technology is to reduce operational costs. Sometimes we can&amp;rsquo;t afford the extra expense and end up with a slow and nearly unusable system.&lt;/p&gt;
-&lt;h2 id=&#34;concurrency-model&#34;&gt;Concurrency Model&lt;/h2&gt;
-&lt;h3 id=&#34;callbacks&#34;&gt;Callbacks&lt;/h3&gt;
-&lt;p&gt;Callbacks are a simple but powerful concept. They are objects that are passed as arguments to other functions or procedures. The parent function passes the callback to the child function, which can then use the callback to notify the parent of some event, such as &amp;ldquo;I have completed my task&amp;rdquo;. This is a way to achieve concurrency on a single thread. Callbacks form a stack trace, which can make debugging easier. They are good when the nesting is one or two layers, but quickly get out of hand when you need to build more complex callback chains. Currently, they are mainly used as building blocks for other concurrency models and are considered a bad practice and legacy issue.&lt;/p&gt;
-&lt;h3 id=&#34;asynchronouswaiting-and-commitment&#34;&gt;Asynchronous/waiting and commitment&lt;/h3&gt;
-&lt;p&gt;As the name implies, this model is based on promises. promise represents the final computation (or failure). A function can return a Promise, such as the result of an http request, and then the calling function can link their logic to it. This is how concurrency is implemented in most popular languages.Java also has Promise, but they are called &lt;strong&gt;Futures&lt;/strong&gt;, but only &lt;strong&gt;CompletableFuture&lt;/strong&gt; has the full list of functions for Promise.Most operations in Java are blocking, and Futures will take up threads anyway.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Async/await is the syntactic sugar of Promises&lt;/strong&gt;. It saves you from writing cumbersome sample files for linking, subscribing, and managing Promise. You can usually mark a function as &lt;em&gt;async&lt;/em&gt; and its result is wrapped internally in a Promise.&lt;/p&gt;
-&lt;p&gt;One of the big problems you can run into with async/await is the infamous colored function problem. Using async on a function essentially makes it non-blocking, but blocking functions (without the async prefix) can&amp;rsquo;t call them unless they use await. you might ask, &amp;ldquo;So what? I just make everything asynchronous and never use blocking functions&amp;rdquo;&amp;hellip; Sure, but you need a third-party library to block and boom everything goes to hell. Also, there may be some things in the language that are inherently blocking, and sooner or later you will be forced to deal with function colors. It is important to note that in some languages like C# this is not the case and your async/await has no function colors.&lt;/p&gt;
-&lt;h3 id=&#34;concurrency-continued--routines&#34;&gt;Concurrency (continued + routines)&lt;/h3&gt;
-&lt;p&gt;When we talk about concurrent processes, we don&amp;rsquo;t mean Kotlin&amp;rsquo;s concurrent processes, they just steal the word.&lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;continuity&lt;/strong&gt; is a special kind of function call. If function A calls function B and it&amp;rsquo;s the last thing A does, then we can say that B is a continuation of A.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;routines&lt;/strong&gt; (aka. subroutines) are reusable pieces of code that are usually called multiple times during execution. Think of them as a set of immutable instructions with inputs and outputs that you can call at any time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Combining these terms, we get CoRoutines&lt;/strong&gt; . They are essentially suspendable tasks managed by the runtime, and they form a tree structure of chained calls.&lt;/p&gt;
-&lt;p&gt;CoRoutines have several key properties.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;They can be suspended &lt;strong&gt;and resumed&lt;/strong&gt; at any time&lt;/li&gt;
-&lt;li&gt;They are a data structure that &lt;strong&gt;remembers its state and stack trace&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;They can &lt;strong&gt;cede/give control to other concurrent programs&lt;/strong&gt; (subroutines)&lt;/li&gt;
-&lt;li&gt;They must have isDone(), yield(), and run() functions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This is an example of a concurrent process in JS, sorry to all hardcore Java readers :(&lt;/p&gt;
-&lt;p&gt;JavaScript has a yield mechanism. With it, you can create so-called generators. To support this, they have pretty much implemented concurrency in the language.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;function *getNumbersGen() {
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  let temp = 5;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  console.log(&amp;#34;1&amp;#34;);
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  yield 1;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  console.log(&amp;#34;2&amp;#34;);
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  yield 2;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  console.log(&amp;#34;3&amp;#34;);
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  yield 3;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  console.log(&amp;#34;Temp &amp;#34; + temp);
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;This is our simple generator.&amp;rsquo; *&amp;rsquo; marks the function as a generator, and then the function can use yield. this &lt;code&gt;yield&lt;/code&gt; keyword is used to pause and resume the generator function (same as hang/run).&lt;/p&gt;
-&lt;p&gt;Now, if we execute the following code, it will get the numbers from the generator until it stops generating them.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;for (let n of getNumbersGen()) {
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  console.log(&amp;#34;Num &amp;#34; + n);
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;We get&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;1&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;Num 1&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;2&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;Num 2&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;3&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;Num 3&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;Temp 5&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Notice how the control is generated between the two code blocks, first the generator prints the number and then loops through it. In addition, we define the temp variable at the beginning of the generator, after which the value of temp is generated back and forth and still retained and printed correctly.This generator implements everything needed to be called a concurrent program. It can pause, it can resume and it can maintain its state. All of this is handled by the JS interpreter. Great, we implemented concurrency without introducing any special words like async and await,we don&amp;rsquo;t have colored functions, but still run on a single Thread.&lt;/p&gt;
-&lt;h2 id=&#34;virtual-threads&#34;&gt;Virtual threads&lt;/h2&gt;
-&lt;p&gt;Loom&amp;rsquo;s developers had a lot to think about and multiple ways to implement virtual threads. I&amp;rsquo;m glad they chose the concurrent thread approach. The &lt;strong&gt;Thread class will remain the same and use the same API&lt;/strong&gt; . This makes the migration seamless and the switch to green threads is just a sign. However, this comes at a huge cost. They have to go through every API of the language, such as Sockets and I/O, and make it non-blocking in case it runs in a virtual thread. This is a huge change that affects the core JDK APIs. In addition, it had to be backwards compatible and not break existing logic. No wonder this took more than 5 years to complete.&lt;/p&gt;
-&lt;p&gt;In order to switch to virtual threads, we don&amp;rsquo;t have to learn something new, we just need to forget something.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Never merge virtual threads&lt;/strong&gt; , they are cheap and pointless&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stop using thread local variables&lt;/strong&gt; . They will work, but if you spawn millions of threads, you&amp;rsquo;ll run into memory problems. According to Ron Pressler: &amp;quot; &lt;em&gt;Thread-local variables should not be exposed to end users and should be kept as internal implementation details&lt;/em&gt; &amp;ldquo;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;An almost exhaustive list of advantages of virtual threads over platform threads&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Context switching actually becomes free&lt;/strong&gt; . They are managed by the JVM, which means that the JVM will perform context switching between threads.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tail/call optimization.&lt;/strong&gt; They mention in the JEP that tail-call optimization is done on threads. This can save a lot of memory for the stack, but it is still a work in progress&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cheap start/stop.&lt;/strong&gt; When we stop the OS thread, we have to make a system call to terminate the thread and then release the memory it is occupying. When starting the OS thread, we make the system call again. Starting and killing a green thread is just a matter of deleting the object and then letting the GC delete it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Hard cap.&lt;/strong&gt; As mentioned before, the OS can handle so many threads. Even with hardware improvements, we still can&amp;rsquo;t keep up with demand. Currently you can spawn tens of millions of virtual threads (which should be enough for most cases)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Threads that perform transactions behave very differently than threads that perform video processing.&lt;/strong&gt; This is very easy to overlook. Essentially what I&amp;rsquo;m saying is that the OS and CPU must be optimized for the general case. They must be able to handle the various tasks requested by the application, so they cannot be optimized for specific use cases. the JVM can optimize its threads for the specific task of processing the request.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Resizable stacks.&lt;/strong&gt; Virtual threads exist in RAM. Their stacks and metadata are there as well. Platform threads must be allocated a fixed stack size (1MB for Java) and that stack cannot be resized. This means that if you exceed it you get stackoverflow, and if you don&amp;rsquo;t use it you waste memory. In addition, the minimum memory required to bootstrap a virtual thread is about 200-300 bytes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;using-virtual-threads&#34;&gt;Using Virtual Threads&lt;/h2&gt;
-&lt;p&gt;Consider the following&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;1_000_000&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sleep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Exception&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;printStackTrace&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}}).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Here we try to create 1 million regular threads, and all the threads do is sleep for 1 second and then die. Obviously, this code throws an OutOfMemory error, and on my machine I was able to generate 40k threads before I ran out of memory.&lt;/p&gt;
-&lt;p&gt;Now let&amp;rsquo;s try to generate virtual ones. In order to create a new virtual thread, we have to use &lt;em&gt;Thread.startVirtualThread(runnable).&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;1_000_000&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;startVirtualThread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sleep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Exception&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;printStackTrace&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}});&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;This code worked fine and I was able to generate over 20 million of these threads on my machine. This is to be expected, since a user mode thread is nothing more than an object in the memory managed by the JVM.&lt;/p&gt;
-&lt;p&gt;Okay, let&amp;rsquo;s dig a little deeper. Usually when we use threads, we use them together with thread pools. We will define a blocking code that needs to be executed&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;someWork&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;taskName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;currentThread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34; executing &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;taskName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;URL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://httpstat.us/200?sleep=2000&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getContent&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;currentThread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34; completed &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;taskName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Exception&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;printStackTrace&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;We print the platform (operator) thread where the code is running, then make a 2 second http call, then print the operator thread again. Simple enough.&lt;/p&gt;
-&lt;p&gt;Now let&amp;rsquo;s run it in parallel&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ExecutorService&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Executors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;newFixedThreadPool&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;taskName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Task&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;someWork&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;taskName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;We create a fixed size thread pool with 5 threads and submit 10 tasks that will only run the &lt;em&gt;someWork&lt;/em&gt; method described earlier. Did you notice anything else? The thread pool is in the try-with-resources block! This is a new Java 19 feature that now tries to use resources to wait for all threads to complete, and we no longer need to use &lt;em&gt;shutdown&lt;/em&gt; and &lt;em&gt;awaitTermination when using thread pooling.&lt;/em&gt; Anyway, the above code provides us with the following output&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#25,pool-1-thread-5,5,main] executing Task5
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#24,pool-1-thread-4,5,main] executing Task4
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#21,pool-1-thread-1,5,main] executing Task1
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#22,pool-1-thread-2,5,main] executing Task2
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#23,pool-1-thread-3,5,main] executing Task3
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#21,pool-1-thread-1,5,main] completed Task1
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#22,pool-1-thread-2,5,main] completed Task2
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#21,pool-1-thread-1,5,main] executing Task6
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#22,pool-1-thread-2,5,main] executing Task7
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#25,pool-1-thread-5,5,main] completed Task5
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#23,pool-1-thread-3,5,main] completed Task3
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#24,pool-1-thread-4,5,main] completed Task4
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#25,pool-1-thread-5,5,main] executing Task8
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#23,pool-1-thread-3,5,main] executing Task9
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#24,pool-1-thread-4,5,main] executing Task10
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#22,pool-1-thread-2,5,main] completed Task7
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#21,pool-1-thread-1,5,main] completed Task6
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#25,pool-1-thread-5,5,main] completed Task8
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#24,pool-1-thread-4,5,main] completed Task10
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thread[#23,pool-1-thread-3,5,main] completed Task9
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Note how each task is executed by the same thread. (e.g. &lt;em&gt;Task4&lt;/em&gt; was completed by &lt;em&gt;Thread[#24,pool-1-thread-4,5,main]&lt;/em&gt;)&lt;/p&gt;
-&lt;p&gt;This shows that when the blocking call is made, the thread is waiting and resumes after 2 seconds.&lt;/p&gt;
-&lt;p&gt;Now let&amp;rsquo;s convert it to a user mode thread. The code is the same, we just need to use &lt;em&gt;Executors.newVirtualThreadPerTaskExecutor()&lt;/em&gt; to create a new green thread each time a task is submitted.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ExecutorService&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Executors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;newVirtualThreadPerTaskExecutor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;taskName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Task&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;someWork&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;taskName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;This time we get the following output&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#25]/runnable@ForkJoinPool-1-worker-4 executing Task4
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#26]/runnable@ForkJoinPool-1-worker-5 executing Task5
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#28]/runnable@ForkJoinPool-1-worker-7 executing Task7
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#23]/runnable@ForkJoinPool-1-worker-2 executing Task2
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#21]/runnable@ForkJoinPool-1-worker-1 executing Task1
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#24]/runnable@ForkJoinPool-1-worker-3 executing Task3
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#27]/runnable@ForkJoinPool-1-worker-6 executing Task6
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#29]/runnable@ForkJoinPool-1-worker-8 executing Task8
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#32]/runnable@ForkJoinPool-1-worker-3 executing Task10
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#31]/runnable@ForkJoinPool-1-worker-8 executing Task9
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#26]/runnable@ForkJoinPool-1-worker-1 completed Task5
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#21]/runnable@ForkJoinPool-1-worker-1 completed Task1
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#25]/runnable@ForkJoinPool-1-worker-9 completed Task4
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#24]/runnable@ForkJoinPool-1-worker-2 completed Task3
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#27]/runnable@ForkJoinPool-1-worker-2 completed Task6
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#32]/runnable@ForkJoinPool-1-worker-9 completed Task10
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#28]/runnable@ForkJoinPool-1-worker-1 completed Task7
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#23]/runnable@ForkJoinPool-1-worker-7 completed Task2
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#31]/runnable@ForkJoinPool-1-worker-6 completed Task9
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VirtualThread[#29]/runnable@ForkJoinPool-1-worker-1 completed Task8
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Notice how the task is now executed by two threads, the first executing the code before the blocking call and the second after. For example &lt;em&gt;Task5&lt;/em&gt; is executed first by &lt;em&gt;ForkJoinPool-1-worker-5&lt;/em&gt; and then by &lt;em&gt;ForkJoinPool-1-worker-1.&lt;/em&gt; This shows that we are not blocking the operator threads. Note also that we are now using a forked connection pool. This pool has a certain size number of cores and is managed by the JVM. It is also used for things like parallel streaming.&lt;/p&gt;
-&lt;p&gt;This is very similar to the JavaScript example we gave earlier. Threads give up control to each other, state is retained and then restored, a true collaborative process. The best part is that it&amp;rsquo;s the same as regular blocking code.&lt;/p&gt;
-&lt;h2 id=&#34;server-sending-events&#34;&gt;Server sending events&lt;/h2&gt;
-&lt;p&gt;I wanted to use this as a cool use case for user mode threads. If you are not familiar with SSE, this is a good and more detailed explanation. Essentially, we open an http connection and never close it, and then the server is able to keep pushing data to the client. It&amp;rsquo;s very lightweight and much cheaper than WebSockets. The problem is that in order to implement it, we need a thread to keep running and sending events to the stream, and if the thread dies, we will disconnect. You can already see that using platform threads here is not a good idea. Using virtual threads, we can do this in spring boot&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@GetMapping&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/sse&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SseEmitter&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;streamSSE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;SseEmitter&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;emitter&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SseEmitter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;ExecutorService&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sseMvcExecutor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Executors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;newVirtualThreadPerTaskExecutor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;sseMvcExecutor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;SseEmitter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;SseEventBuilder&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;event&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SseEmitter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;event&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;SSE time -&amp;gt; &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LocalTime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;now&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;toString&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;())&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;randomUUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;toString&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;())&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Custom SSE&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;emitter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;event&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sleep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;500&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Exception&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;emitter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;completeWithError&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ex&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;});&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;emitter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;SseEmitter is a special class in Spring MVC that implements the SSE protocol. What we do is create an infinite loop (obviously not production code) and send new data to the client every 500 milliseconds. Then any number of clients can subscribe to it.&lt;/p&gt;
-&lt;p&gt;curl localhost:8080/api/v1/test/sse&lt;/p&gt;
-&lt;p&gt;You&amp;rsquo;ll keep getting events like this&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;data:SSE time -&amp;gt; 13:41:59.878294
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;id:f2059d56-d27e-461b-8f7c-1aa75b3aab64
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;event:Custom SSE
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;data:SSE time -&amp;gt; 13:42:00.383703
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;id:fdaac3bb-47aa-45b0-9382-549ff7549f08
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;event:Custom SSE
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The full source code can be found here.&lt;/p&gt;
-&lt;h2 id=&#34;when-not-to-use-virtual-threads&#34;&gt;When not to use virtual threads&lt;/h2&gt;
-&lt;p&gt;Having to manage virtual threads can degrade performance. For less loaded applications, threads may be preferable to virtual threads simply because context switching is lower when there are few active clients. In addition, if your application is CPU-intensive, such as performing a lot of math calculations, it does not make sense to use green threads, since they must occupy OS threads during calculations anyway. In general, Loom will not make your application faster, it will only increase its throughput, so if throughput is not an issue, then stick with platform threads. This blog does a good job of analyzing and showing how Loom utilizes threads, but if you read it, keep in mind that the author bashes Loom for things it shouldn&amp;rsquo;t be doing in the first place (like fair thread scheduling).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Find your bottleneck&lt;/strong&gt; . Whether you use Postgres with 50 connection pools and then spawn more than 50 threads (platform or non-platform) won&amp;rsquo;t make any difference.&lt;/p&gt;
-&lt;p&gt;As a reference, you can check out little&amp;rsquo;s law and this great article on the topic of choosing the optimal number of threads&lt;/p&gt;
-&lt;h2 id=&#34;structured-concurrency&#34;&gt;Structured Concurrency&lt;/h2&gt;
-&lt;p&gt;Structured concurrency refers to the way we handle the life cycle of threads. Currently we can&amp;rsquo;t stop a thread that no longer needs to run, because their results are obsolete. We can only send an &lt;strong&gt;interrupt signal that will eventually be consumed and the thread stopped&lt;/strong&gt;. This wastes RAM and CPU cycles.&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s consider the following case&lt;/p&gt;
-&lt;h3 id=&#34;all-tasks-must-succeed-if-one-fails-there-is-no-point-in-continuing&#34;&gt;All tasks must succeed, if one fails, there is no point in continuing&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/506a46a077754c64a01da6c346ee1900.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;if-a-task-succeeds-then-at-least-one-task-must-succeed-and-there-is-no-point-in-waiting-for-the-rest&#34;&gt;If a task succeeds, then at least one task must succeed, and there is no point in waiting for the rest&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/d0d0b7b47c9d4050bb7f517d364f0f18.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;deadline-if-the-execution-takes-longer-than-a-specific-time-we-want-to-terminate-everything&#34;&gt;Deadline. If the execution takes longer than a specific time, we want to terminate everything&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/2e3437cc2daf4708a74b4d73d81b9a81.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ve marked in red the threads that need to be stopped immediately after reaching a certain state. With Loom we can do this, currently we have no choice but to stop the thread manually except for the special thread pool they will introduce, but this JEP promises to bring more utilities to manage it.&lt;/p&gt;
-&lt;p&gt;These may seem like small optimizations, in fact they are trivial for small applications or low load servers. When you are dealing with millions of requests per day, these things really matter, in fact they can be game changers and in some cases greatly increase your throughput.&lt;/p&gt;
-&lt;h3 id=&#34;if-you-are-using-a-reactor-framework-should-you-consider-switching-to-loom&#34;&gt;If you are using a reactor framework, should you consider switching to Loom&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/javaisland/images/2022/06/13/7eae4130ab8543be876d839a01cd59fc.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The Reactor framework is very good at dealing with application throughput issues. What they do is essentially create abstract tasks (similar to a concurrent process) and wrap everything in them. The reactor runtime then manages these tasks. Sounds very similar to virtual threading, but with few major problems&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The language itself doesn&amp;rsquo;t support it, which leads to very complex code (Flux/Mono)&lt;/li&gt;
-&lt;li&gt;The excellent Java thread debugging we talked about before is completely ignored and replaced by a centralized error handler that provides almost zero information. We must rely heavily on logging.&lt;/li&gt;
-&lt;li&gt;Once you use the reactor style it&amp;rsquo;s hard to go back and you may have to rewrite everything from scratch.
-*Brian Goetz says Loom will kill webflux. I&amp;rsquo;m not saying you should believe him blindly, but at least listen to what he has to say.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I personally don&amp;rsquo;t like reactors (I don&amp;rsquo;t like the actor model either, but it at least behaves better and is easier to understand). I really like the blocking code and the per-request model of threads. They are readable and take full advantage of the Java language. These frameworks eliminate that, and you need a good reason to use them after Loom.&lt;/p&gt;
-&lt;h2 id=&#34;final-words&#34;&gt;Final Words&lt;/h2&gt;
-&lt;p&gt;I know this is a big topic and there is a lot to deal with. I hope it&amp;rsquo;s useful. I will also link to all the resources below and further reading so you can do your own research if needed. loom is still in pre-release and things may change, but one thing is for sure, we will get virtual threads in JDK 19 and the official release date, as I write this, is September 2022. Unfortunately, Java 19 is not LTS, and if you work for companies that only use the LTS version, you will have to wait for Java 21 which should be released in September 2023.&lt;/p&gt;
 </description>
       
     </item>

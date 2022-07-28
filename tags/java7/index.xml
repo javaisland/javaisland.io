@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java7 on JavaIsland</title>
+    <link>https://www.javai.net/tags/java7/</link>
+    <description>Recent content in java7 on JavaIsland</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Jul 2022 20:05:07 +0800</lastBuildDate><atom:link href="https://www.javai.net/tags/java7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java7 End of Life Cycle</title>
+      <link>https://www.javai.net/post/202207/java7-end-of-life-cycle/</link>
+      <pubDate>Thu, 28 Jul 2022 20:05:07 +0800</pubDate>
+      
+      <guid>https://www.javai.net/post/202207/java7-end-of-life-cycle/</guid>
+      <description>Java SE 7, a nearly 11-year-old version of the Java standard, is coming to the end of its life cycle and Oracle will officially discontinue extended support for it at the end of July 2022.
+With official extension support is discontinued, Java 7 will enter a Sustaining Support model as defined by the Oracle Lifetime Support Policy. Oracle will no longer provide patch updates, bug or security fixes, or feature implementations.</description>
+    </item>
+    
+  </channel>
+</rss>

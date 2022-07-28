@@ -10,7 +10,98 @@
   
   <url>
     <loc>https://www.javai.net/categories/</loc>
-    <lastmod>2022-07-25T16:16:19+08:00</lastmod>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java7/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202207/java7-end-of-life-cycle/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/jdk/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/jdk7/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/categories/news/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/openjdk/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/</loc>
+    <lastmod>2022-07-28T20:05:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/java19/</loc>
+    <lastmod>2022-07-28T19:52:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/post/202207/java19-new-features/</loc>
+    <lastmod>2022-07-28T19:52:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.javai.net/tags/jdk19/</loc>
+    <lastmod>2022-07-28T19:52:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -30,20 +121,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/java/</loc>
-    <lastmod>2022-07-25T16:16:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/</loc>
-    <lastmod>2022-07-25T16:16:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/longstream/</loc>
     <lastmod>2022-07-25T16:16:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -51,21 +128,7 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/post/</loc>
-    <lastmod>2022-07-25T16:16:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/tags/range/</loc>
-    <lastmod>2022-07-25T16:16:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/</loc>
     <lastmod>2022-07-25T16:16:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -115,13 +178,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/log4j/</loc>
-    <lastmod>2022-07-24T21:27:28+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/categories/news/</loc>
     <lastmod>2022-07-24T21:27:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -450,13 +506,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/openjdk/</loc>
-    <lastmod>2022-06-24T19:55:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/post/202206/java-class-api/</loc>
     <lastmod>2022-06-24T19:55:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -744,13 +793,6 @@
   </url>
   
   <url>
-    <loc>https://www.javai.net/tags/java19/</loc>
-    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.javai.net/post/202204/java-jdk19-proposed/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -759,13 +801,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/jdk18/</loc>
-    <lastmod>2022-04-25T16:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/jdk19/</loc>
     <lastmod>2022-04-25T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -885,13 +920,6 @@
   
   <url>
     <loc>https://www.javai.net/tags/jdeps/</loc>
-    <lastmod>2022-04-19T20:21:04+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.javai.net/tags/jdk/</loc>
     <lastmod>2022-04-19T20:21:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
